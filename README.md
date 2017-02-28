@@ -1,2 +1,2 @@
 # AspNetCoreSamples
-All EasyQuery samples for ASP.NET Core
+All samples for EasyQuery ASP.NET Core
