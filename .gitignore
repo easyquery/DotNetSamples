@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/EqAspNetCoreDemo01/.vs
+/EqAspNetCoreDemo01/.vs
+/EqAspNetCoreDemo01/bin/Debug/netcoreapp1.0
+/EqAspNetCoreDemo01/bower_components
+/EqAspNetCoreDemo01/obj
