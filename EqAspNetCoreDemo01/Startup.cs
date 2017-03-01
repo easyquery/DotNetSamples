@@ -56,6 +56,10 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
                     name: "default",
                     template: "{controller=EasyQuery}/{action=Index}/{id?}");
             });
+
+            var scriptFilePath = "App_Data\\EqDemoDb.sql";
+            var dbInit = new EqAspNetCoreDemo01.Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
+            dbInit.EnsureCreated();
         }
     }
 }
