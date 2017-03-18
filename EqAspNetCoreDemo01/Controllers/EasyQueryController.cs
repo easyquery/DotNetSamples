@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Services;
-using Korzh.EasyQuery.Services.Db;
+
 using Korzh.EasyQuery.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -128,7 +128,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         //[ValidateAntiForgeryToken]
         public ActionResult SaveQuery(string queryJson, string queryName)
         {
-            eqService.SaveQueryDict(queryJson.ToDictionary(), queryName);
+            eqService.SaveQueryDict(queryJson.JsonToDictionary(), queryName);
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("result", "OK");
             return Json(dict);
@@ -153,8 +153,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         //[ValidateAntiForgeryToken]
         public ActionResult SyncQuery(string queryJson, string optionsJson)
         {
-            var query = eqService.SyncQueryDict(queryJson.ToDictionary());
-            var statement = eqService.BuildQuery(query, optionsJson.ToDictionary());
+            var query = eqService.SyncQueryDict(queryJson.JsonToDictionary());
+            var statement = eqService.BuildQuery(query, optionsJson.JsonToDictionary());
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("statement", statement);
             return Json(dict);
@@ -182,8 +182,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         //[ValidateAntiForgeryToken]
         public IActionResult ExecuteQuery(string queryJson, string optionsJson) {
 
-            var query = eqService.LoadQueryDict(queryJson.ToDictionary());
-            var queryOptions = optionsJson.ToDictionary();
+            var query = eqService.LoadQueryDict(queryJson.JsonToDictionary());
+            var queryOptions = optionsJson.JsonToDictionary();
             var sql = eqService.BuildQuery(query, queryOptions);
 
             var resultSet = eqService.ExecuteQuery(query, queryOptions);
