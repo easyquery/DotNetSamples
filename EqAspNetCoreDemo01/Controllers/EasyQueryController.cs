@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 using System.Linq;
 using System.Text;
+using System.IO;
+
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
+
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +20,7 @@ using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Services;
 
 using Korzh.EasyQuery.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
+
 
 namespace Korzh.EasyQuery.AspNetCore.Demo01
 {
@@ -28,20 +33,23 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             eqService = new EqServiceProviderDb();
             eqService.DefaultModelName = "NWindSQL";            
 
-            //eqService.SessionGetter = key => Session[key];
-            //eqService.SessionSetter = (key, value) => Session[key] = value;
+            eqService.CacheGetter = (key) => HttpContext.Session.GetString(key);
+            eqService.CacheSetter = (key, value) => HttpContext.Session.SetString(key, value);
 
-            eqService.StoreQueryInSession = false;
+            eqService.StoreQueryInCache = true;
 
             eqService.Formats.SetDefaultFormats(FormatType.MsSqlServer);
             eqService.Formats.UseSchema = true;
 
             string dataPath = System.IO.Path.Combine(env.ContentRootPath , "App_Data");
-            eqService.DataPath = dataPath;  
+            eqService.DataPath = dataPath;
 
-            eqService.Connection = new SqlConnection(config.GetConnectionString("EqDemoDb"));
+            eqService.ConnectionResolver = () => {
+                return new SqlConnection(config.GetConnectionString("EqDemoDb"));
+            };
 
-            eqService.CustomListResolver = (listname) => {
+
+            eqService.ValueListResolver = (listname) => {
                 if (listname == "Regions") {
                     return new List<ListItem> {
                         new ListItem("US", "USA", new List<ListItem> {
@@ -64,33 +72,12 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
 
         }
 
-        public ActionResult Index() {
-            //var query = eqService.GetQuery();
-            //ViewBag.QueryJson = query.SaveToDictionary().ToJson();
-            //ViewBag.Message = TempData["Message"];
+        public ActionResult Index(string queryId) {
+            ViewData["QueryId"] = queryId ?? "";
             return View("EasyQuery");
         }
 
 
-
-        /// <summary>
-        /// Creates a <see cref="T:System.Web.Mvc.JsonResult" /> object that serializes the specified object to JavaScript Object Notation (JSON) format using the content type, content encoding, and the JSON request behavior.
-        /// </summary>
-        /// <remarks>We override this method to set MaxJsonLength property to the maximum possible value</remarks>
-        /// <param name="data">The JavaScript object graph to serialize.</param>
-        /// <param name="contentType">The content type (MIME type).</param>
-        /// <param name="contentEncoding">The content encoding.</param>
-        /// <param name="behavior">The JSON request behavior</param>
-        /// <returns>The result object that serializes the specified object to JSON format.</returns>
-        //protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior) {
-        //    return new JsonResult {
-        //        Data = data,
-        //        ContentType = contentType,
-        //        ContentEncoding = contentEncoding,
-        //        JsonRequestBehavior = behavior,
-        //        MaxJsonLength = int.MaxValue
-        //    };
-        //}
 
         #region public actions
         /// <summary>
@@ -151,8 +138,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         /// <returns></returns>
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult SyncQuery(string queryJson, string optionsJson)
-        {
+        public ActionResult SyncQuery(string queryJson, string optionsJson) {
             var query = eqService.SyncQueryDict(queryJson.JsonToDictionary());
             var statement = eqService.BuildQuery(query, optionsJson.JsonToDictionary());
             Dictionary<string, object> dict = new Dictionary<string, object>();
@@ -167,8 +153,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         /// <returns></returns>
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult GetList(ListRequestOptions options)
-        {
+        public ActionResult GetList(ListRequestOptions options) {
             return Json(eqService.GetList(options));
         }
 
@@ -251,12 +236,18 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
 
         //}
 
-        [HttpGet]
-        public FileResult GetCurrentQuery() {
+        [HttpPost]
+        public FileStreamResult SaveQueryToFile(string queryJson) {
             var query = eqService.GetQuery();
-            FileContentResult result = new FileContentResult(Encoding.UTF8.GetBytes(query.SaveToString()), "Content-disposition: attachment;");
-            result.FileDownloadName = "CurrentQuery.xml";
-            return result;
+            query.LoadFromDictionary(queryJson.JsonToDictionary());
+            MemoryStream stream = new MemoryStream();
+            query.SaveToStream(stream);
+            stream.Position = 0;
+            return new FileStreamResult(stream, new MediaTypeHeaderValue("text/xml")) {
+                FileDownloadName = "CurrentQuery.xml"
+            };
+
+
         }
 
         [HttpPost]
@@ -267,13 +258,16 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
                     using (var fileStream = queryFile.OpenReadStream()) {
                         query.LoadFromStream(fileStream);
                     }
+
+                    //saves loaded query into session so it will be loaded automatically after redirect
                     eqService.SyncQuery(query);
-                }  
-                catch (Exception ex){  
-                    TempData["Message"] = "ERROR:" + ex.Message.ToString();  
+                    return RedirectToAction("Index", new { queryId = query.ID});
+                }
+                catch {  
+                    //just do nothing  
                 }  
             else{  
-                TempData["Message"] = "You have not specified a file.";  
+
             }
 
             return RedirectToAction("Index");

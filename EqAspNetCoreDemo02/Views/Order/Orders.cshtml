@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Orders - EasyQuery LINQ demo";
+}
+
+<link href="~/css/easyquery.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="~/css/eqview.css" rel="stylesheet" type="text/css" />
+
+
+
+<script type="text/javascript">
+
+    window.easyQuerySettings = {
+        serviceUrl: getPrefix(),
+        loadDefaultModel: true,
+        useBootstrap: true,
+        filterBar: {
+            queryPanel: {
+                attrElementFormat: "{entity} {attr}"
+            }
+        }
+    };
+		
+    function getPrefix() {
+        var res = window.location.pathname;
+        if (res.charAt(res.length - 1) !== '/')
+            res = res + '/';
+        return res;
+    }
+</script>
+
+<h2>Orders</h2>
+
+@Html.FilterBar()
+
+
+<div id="ResultPanel"></div>
+
+
+@section scripts {
+    <!-- EasyQuery script files -->
+<environment names="Development">
+    <script src="@Url.Content("~/js/eq.all.js")" type="text/javascript"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="@Url.Content("~/js/eq.all.min.js")" type="text/javascript"></script>
+</environment>
+
+<script src="@Url.Content("~/js/eq.view.grid.js")" type="text/javascript"></script>
+ 
+}

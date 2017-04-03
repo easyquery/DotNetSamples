@@ -1,0 +1,14 @@
+﻿<Query id="LastQuery" name="">
+  <Description />
+  <Columns />
+  <JustSortedColumns />
+  <Conditions linking="All">
+    <Condition class="SMPL" enabled="True" readOnly="False">
+      <Operator id="StartsWith" />
+      <Expressions>
+        <Expr class="ENTATTR" id="Customer.CompanyName" />
+        <Expr class="CONST" type="String" kind="Scalar" value="A" text="A" />
+      </Expressions>
+    </Condition>
+  </Conditions>
+</Query>

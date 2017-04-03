@@ -29,6 +29,12 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         {
             // Add framework services.
             services.AddMvc();
+
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+
+            services.AddSession();
+
             services.AddSingleton<IConfiguration>(Configuration);
         }
 
@@ -49,6 +55,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

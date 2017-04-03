@@ -3,8 +3,9 @@
 ################################################################################
 
 /.vs
-/EqAspNetCoreDemo01/.vs
-/EqAspNetCoreDemo01/.vs
-/EqAspNetCoreDemo01/bin/Debug/netcoreapp1.0
-/EqAspNetCoreDemo01/bower_components
-/EqAspNetCoreDemo01/obj
+/bin
+/obj
+/bower_components
+
+/EqAspNetCoreDemo01/.vs/config/applicationhost.config
+/EqAspNetCoreDemo01/.vs/EqAspNetCoreDemo01/v15/.suo
