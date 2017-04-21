@@ -31,7 +31,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
 
         public EasyQueryController(IHostingEnvironment env, IConfiguration config) {
             eqService = new EqServiceProviderDb();
-            eqService.DefaultModelName = "NWindSQL";            
+            eqService.DefaultModelId = "NWindSQL";            
 
             eqService.CacheGetter = (key) => HttpContext.Session.GetString(key);
             eqService.CacheSetter = (key, value) => HttpContext.Session.SetString(key, value);
@@ -81,165 +81,120 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
 
         #region public actions
         /// <summary>
-        /// Gets the model by its name
+        /// Gets the model by its ID
         /// </summary>
-        /// <param name="modelName">The name.</param>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
         /// <returns></returns>
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public IActionResult GetModel(string modelName) {
-            var model = eqService.GetModel(modelName);
-            return Json(model.SaveToDictionary());
+        public IActionResult GetModel([FromBody] JsonDict jsonDict) {
+            string modelId = jsonDict["modelId"].ToString();
+            var model = eqService.GetModel(modelId);
+            return Json(model.SaveToJsonDict());
         }
 
         /// <summary>
-        /// Gets the query by its name
+        /// Gets the query by its ID
         /// </summary>
-        /// <param name="queryName">The name.</param>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
         /// <returns></returns>
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult GetQuery(string queryId)
-        {
-            var query = eqService.GetQuery(queryId);
-            return Json(query.SaveToDictionary());
+        public ActionResult GetQuery([FromBody] JsonDict jsonDict) {
+            var query = eqService.GetQueryByJsonDict(jsonDict);
+            return Json(query.SaveToJsonDict());
         }
 
+
         /// <summary>
-        /// Saves the query.
+        /// Saves the query passed in request with new name
         /// </summary>
-        /// <param name="queryJson">The JSON representation of the query .</param>
-        /// <param name="queryName">Query name.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns>IActionResult object</returns>
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult SaveQuery(string queryJson, string queryName)
-        {
-            eqService.SaveQueryDict(queryJson.JsonToDictionary(), queryName);
-            Dictionary<string, object> dict = new Dictionary<string, object>();
+        public IActionResult SaveQuery([FromBody] JsonDict jsonDict) {
+            var queryDict = jsonDict["query"] as JsonDict;
+            var queryName = jsonDict["queryName"].ToString();
+
+            eqService.SaveQueryDict(queryDict, queryName);
+
+            JsonDict dict = new JsonDict();
             dict.Add("result", "OK");
             return Json(dict);
         }
 
-        [HttpGet]
-        //[ValidateAntiForgeryToken]
-        public JsonResult GetQueryList(string modelName)
-        {
-            var queries = eqService.GetQueryList(modelName);
+
+        [HttpPost]
+        /// <summary>
+        /// Gets the list of saved queries 
+        /// </summary>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns>IActionResult object</returns>
+        public JsonResult GetQueryList([FromBody] JsonDict jsonDict) {
+            string modelId = jsonDict["modelId"].ToString();
+            var queries = eqService.GetQueryList(modelId);
             return Json(queries);
         }
 
         /// <summary>
-        /// It's called when it's necessary to synchronize query on client side with its server-side copy.
+        /// This action is called when it's necessary to synchronize query on client side with its server-side copy.
         /// Additionally this action can be used to return a generated SQL statement (or several statements) as JSON string
         /// </summary>
-        /// <param name="queryJson">The JSON representation of the query .</param>
-        /// <param name="optionsJson">The additional parameters which can be passed to this method to adjust query statement generation.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult SyncQuery(string queryJson, string optionsJson) {
-            var query = eqService.SyncQueryDict(queryJson.JsonToDictionary());
-            var statement = eqService.BuildQuery(query, optionsJson.JsonToDictionary());
+        public IActionResult SyncQuery([FromBody] JsonDict jsonDict) {
+            var queryDict = jsonDict["query"];
+            var optionsDict = jsonDict["options"] as JsonDict;
+            var query = eqService.SyncQueryDict(queryDict as JsonDict);
+            var statement = eqService.BuildQuery(query, optionsDict);
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("statement", statement);
             return Json(dict);
         }
 
+
         /// <summary>
         /// This action returns a custom list by different list request options (list name).
         /// </summary>
-        /// <param name="options">List request options - an instance of <see cref="ListRequestOptions"/> type.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">GetList request options.</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult GetList(ListRequestOptions options) {
-            return Json(eqService.GetList(options));
+        public IActionResult GetList([FromBody] JsonDict jsonDict) {
+            return Json(eqService.GetList(jsonDict));
         }
 
+
         /// <summary>
-        /// Executes the query passed as JSON string and returns the result record set (again as JSON).
+        /// Executes the query and some options passed as JSON string and returns the result record set (again as JSON).
         /// </summary>
-        /// <param name="queryJson">The JSON representation of the query.</param>
-        /// <param name="optionsJson">Different options in JSON format</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public IActionResult ExecuteQuery(string queryJson, string optionsJson) {
+        public IActionResult ExecuteQuery([FromBody] JsonDict jsonDict) {
+            var queryDict = jsonDict["query"] as JsonDict;
+            var optionsDict = jsonDict["options"] as JsonDict;
 
-            var query = eqService.LoadQueryDict(queryJson.JsonToDictionary());
-            var queryOptions = optionsJson.JsonToDictionary();
-            var sql = eqService.BuildQuery(query, queryOptions);
+            var query = eqService.GetQueryByJsonDict(queryDict);
+            var sql = eqService.BuildQuery(query, optionsDict);
 
-            var resultSet = eqService.ExecuteQuery(query, queryOptions);
+            var resultSet = eqService.ExecuteQuery(query, optionsDict);
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("statement", sql);
             dict.Add("resultSet", resultSet);
             dict.Add("resultCount", resultSet.RecordCount + " record(s) found");
 
-
             return Json(dict);
         }
 
-
-        private void ErrorResponse(string msg) {
-            Response.StatusCode = 400;
-            Response.WriteAsync(msg);
-        }
-
-
-        //[HttpGet]
-        //public void ExportToFileExcel() {
-        //    Response.Clear();
-
-        //    var query = eqService.GetQuery();
-
-        //    if (!query.IsEmpty) {
-        //        var sql = eqService.BuildQuery(query);
-        //        eqService.Paging.Enabled = false;
-        //        DataSet dataset = eqService.GetDataSetBySql(sql);
-        //        if (dataset != null) {
-        //            Response.ContentType = "application/vnd.ms-excel";
-        //            Response.AddHeader("Content-Disposition",
-        //                string.Format("attachment; filename=\"{0}\"", HttpUtility.UrlEncode("report.xls")));
-        //            DbExport.ExportToExcelHtml(dataset, Response.Output, HtmlFormats.Default);
-        //        }
-        //        else
-        //            ErrorResponse("Empty dataset");
-        //    }
-        //    else
-        //        ErrorResponse("Empty query");
-            
-        //}
-
-        //[HttpGet]
-        //public void ExportToFileCsv() {
-        //    Response.Clear();
-        //    var query = eqService.GetQuery();
-
-        //    if (!query.IsEmpty) {
-        //        var sql = eqService.BuildQuery(query);
-        //        eqService.Paging.Enabled = false;
-        //        DataSet dataset = eqService.GetDataSetBySql(sql);
-        //        if (dataset != null) {
-        //            Response.ContentType = "text/csv";
-        //            Response.AddHeader("Content-Disposition",
-        //                string.Format("attachment; filename=\"{0}\"", HttpUtility.UrlEncode("report.csv")));
-        //            DbExport.ExportToCsv(dataset, Response.Output, CsvFormats.Default);
-        //        }
-        //        else
-        //            ErrorResponse("Empty dataset");
-        //    }
-        //    else
-        //        ErrorResponse("Empty query");
-
-        //}
-
+        
+        /// <summary>
+        /// Returns XML file which represents the query passed in parameter as JSON string
+        /// </summary>
+        /// <param name="queryJson">JSON representation of the query</param>
+        /// <returns><see cref="FileStreamResult"/> object which contains the query XML file</returns>
         [HttpPost]
         public FileStreamResult SaveQueryToFile(string queryJson) {
-            var query = eqService.GetQuery();
-            query.LoadFromDictionary(queryJson.JsonToDictionary());
+            var query = eqService.GetQueryByJsonDict(queryJson.ToJsonDict());
             MemoryStream stream = new MemoryStream();
             query.SaveToStream(stream);
             stream.Position = 0;
@@ -247,31 +202,40 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
                 FileDownloadName = "CurrentQuery.xml"
             };
 
-
         }
 
+
+        /// <summary>
+        /// Loads query XML uploaded from the client and saves it 
+        /// </summary>
+        /// <param name="queryId"></param>
+        /// <param name="modelId"></param>
+        /// <param name="queryFile"></param>
+        /// <returns></returns>
         [HttpPost]
-        public IActionResult LoadQueryFromFile(IFormFile queryFile) {  
-            if (queryFile != null && queryFile.Length > 0)  
+        public IActionResult LoadQueryFromFile(string modelId, string queryId, IFormFile queryFile) {
+            if (queryFile != null && queryFile.Length > 0)
                 try {
-                    var query = eqService.GetQuery();
+                    var query = eqService.GetQuery(modelId, queryId);
                     using (var fileStream = queryFile.OpenReadStream()) {
                         query.LoadFromStream(fileStream);
                     }
 
                     //saves loaded query into session so it will be loaded automatically after redirect
                     eqService.SyncQuery(query);
-                    return RedirectToAction("Index", new { queryId = query.ID});
+                    return RedirectToAction("Index", new { queryId = queryId });
                 }
-                catch {  
+                catch {
                     //just do nothing  
-                }  
-            else{  
+                }
+            else {
 
             }
 
             return RedirectToAction("Index");
         }
+
+
 
 
         #endregion

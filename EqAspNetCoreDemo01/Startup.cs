@@ -27,6 +27,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IConfiguration>(Configuration);
+
             // Add framework services.
             services.AddMvc();
 
@@ -35,7 +37,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
 
             services.AddSession();
 
-            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddEasyQuery();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

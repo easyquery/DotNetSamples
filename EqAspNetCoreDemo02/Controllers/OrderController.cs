@@ -38,24 +38,56 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
 
         // GET: /Order/
         public IActionResult Index() {
-            //var orders = db.Orders.Include(o => o.Customer).Include(o => o.Employee);
             return View("Orders");
         }
 
-        public IActionResult GetModel(string modelName) {
-            var model = eqService.GetModel();
-            return Json(model.SaveToDictionary());
+        /// <summary>
+        /// Gets the model by its ID
+        /// </summary>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object with JSON representation of the model</returns>
+        [HttpPost]
+        public IActionResult GetModel([FromBody] JsonDict jsonDict) {
+            string modelId = jsonDict["modelId"].ToString();
+            var model = eqService.GetModel(modelId);
+            return Json(model.SaveToJsonDict());
         }
 
-        public IActionResult GetQuery(string queryId) {
-            var query = eqService.GetQuery(queryId);
 
-            return Json(query.SaveToDictionary());
+        /// <summary>
+        /// Gets the query by its ID
+        /// </summary>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object with JSON representation of the query</returns>
+        [HttpPost]
+        public IActionResult GetQuery([FromBody] JsonDict jsonDict) {
+            var query = eqService.GetQueryByJsonDict(jsonDict);
+            return Json(query.SaveToJsonDict());
         }
 
-        public IActionResult ApplyFilter(string queryJson, string optionsJson) {
-            var query = eqService.LoadQueryDict(queryJson.JsonToDictionary());
-            var lvo = optionsJson.ToListViewOptions();
+
+        /// <summary>
+        /// This action returns a custom list by different list request options (list name).
+        /// </summary>
+        /// <param name="jsonDict">GetList request options.</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
+        [HttpPost]
+        public IActionResult GetList([FromBody] JsonDict jsonDict) {
+            return Json(eqService.GetList(jsonDict));
+        }
+
+
+        /// <summary>
+        /// This action is called when user clicks on "Apply" button in FilterBar or other data-filtering widget
+        /// </summary>
+        /// <param name="jsonDict"></param>
+        /// <returns>IActionResult which contains a partial view with the filtered result set</returns>
+        public IActionResult ApplyFilter([FromBody] JsonDict jsonDict) {
+            var queryDict = jsonDict["query"] as JsonDict;
+            var optionsDict = jsonDict["options"] as JsonDict;
+            var query = eqService.GetQueryByJsonDict(queryDict);
+
+            var lvo = optionsDict.ToListViewOptions();
 
             var list = dbContext.Orders
                 .Include(c => c.Customer)
@@ -63,20 +95,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
                 .DynamicQuery<Order>(query, lvo.SortBy).ToPagedList(lvo.PageIndex, 20);
 
             return View("_OrderListPartial", list);
-
         }
 
-
-
-        /// <summary>
-        /// This action returns a custom list by different list request options (list name).
-        /// </summary>
-        /// <param name="options">List request options - an instance of <see cref="ListRequestOptions"/> type.</param>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult GetList(ListRequestOptions options) {
-            return Json(eqService.GetList(options )); //dbContext.Orders
-        }
 
     }
 }

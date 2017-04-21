@@ -1,4 +1,4 @@
-﻿;(function ($, window) {
+;(function ($, window) {
 
     //Ensure that global variables exist
     var EQ = window.EQ = window.EQ || {};
@@ -29,7 +29,7 @@
 
         _findControlById: function (controlId) {
             var result = $("#" + controlId);
-            if (result.length == 0)
+            if (result.length === 0)
                 result = null;
 
             return result;
@@ -116,7 +116,6 @@
                 this._funcs.loadQueryButtonClick = function () {
                     EQ.client.loadQuery({
                         queryId: "LastQuery",
-                        queryName: "LastQuery",
                         success: function (data) {
                             self._clearErrors();
                             self._clearResultPanel();
@@ -192,17 +191,6 @@
             var query = EQ.client.getQuery();
             query.addChangedCallback(this._funcs.queryChangedHandler);
 
-            /*
-            EQ.client.loadModel({
-                "modelName": "",
-                success: function (data) {
-                    if (options.applyFilterOnStart) {
-                        self.applyFilter();
-                    }
-                }
-            });
-            */
-
 
         },
 
@@ -249,6 +237,7 @@
 
         applyFilter: function (options) {
             var self = this;
+            var paging, pageNavigator;
             var query = EQ.client.getQuery();
             var resultProgressIndicator = $('<div></div>', { 'class': 'result-panel loader' });
 
@@ -258,14 +247,15 @@
                 options.page = pg.page;
             }
 
-            var requestData = { queryJson: query.toJSON(), optionsJson: JSON.stringify(options) };
+            var requestData = { "query": query.getQueryObject(), "options": options };
             var resultPanel = self._resultPanel;
 
             $.ajax({
                 type: "POST",
+                contentType: "application/json",
                 url: self.applyFilterUrl,
-                data: requestData,
-                //dataType: "json",
+                data: JSON.stringify(requestData),
+
                 beforeSend: function () {
                     if (resultPanel) {
                         resultPanel.animate({ opacity: '0.5' }, 200);
@@ -305,9 +295,9 @@
                                 }
 
                                 //paging
-                                var paging = result.paging;
+                                paging = result.paging;
                                 if (paging && paging.enabled && paging.pageCount > 1) {
-                                    var pageNavigator = EQ.view.renderPageNavigator({
+                                    pageNavigator = EQ.view.renderPageNavigator({
                                         pageIndex: paging.pageIndex,
                                         pageCount: paging.pageCount,
                                         pageSelectedCallback: function (pageNum) {
@@ -327,11 +317,11 @@
                             }
                             else {
                                 resultPanel.html(data);
-                                var paging = self.getCurrentPaging();
+                                paging = self.getCurrentPaging();
                                 if (paging.pageCount > 1) {
                                     var pageNavigatorPlaceholder = $("#PageNavigator");
                                     if (pageNavigatorPlaceholder.length > 0) {
-                                        var pageNavigator = EQ.view.renderPageNavigator({
+                                        pageNavigator = EQ.view.renderPageNavigator({
                                             pageIndex: paging.pageIndex,
                                             pageCount: paging.pageCount,
                                             pageSelectedCallback: function (pageNum) {
@@ -349,7 +339,7 @@
                             }
                         }
 			
-			            //result count
+                        //result count
                         if (result.resultCount) {
                             self._resultCountSpan.text(result.resultCount);
                             self._resultCountSpan.show();

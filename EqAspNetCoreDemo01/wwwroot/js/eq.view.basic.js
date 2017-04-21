@@ -1,4 +1,4 @@
-﻿;(function ($, window) {
+;(function ($, window) {
 
     //Ensure that global variables exist
     var EQ = window.EQ = window.EQ || {};
@@ -113,8 +113,8 @@
             if (!this._funcs.loadQueryButtonClick) {
                 this._funcs.loadQueryButtonClick = function () {
                     EQ.client.loadQuery({
-                        queryId: "LastQuery",
-                        queryName: "LastQuery",
+                        id: "LastQuery",
+
                         success: function (data) {
                             self._clearErrors();
                             self._clearResultPanel();

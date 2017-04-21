@@ -840,7 +840,7 @@
 .eqjs-qc-columns{
     overflow-y: auto;
     padding: 4px 0;
-#    position: relative;
+/*    position: relative; */
     white-space: nowrap;
 }
 

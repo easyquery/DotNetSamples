@@ -2,10 +2,9 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
-/bin
-/obj
-/bower_components
+.vs/
+bin/
+obj/
+bower_components/
 
-/EqAspNetCoreDemo01/.vs/config/applicationhost.config
-/EqAspNetCoreDemo01/.vs/EqAspNetCoreDemo01/v15/.suo
+

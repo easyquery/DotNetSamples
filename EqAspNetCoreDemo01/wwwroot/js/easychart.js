@@ -1,4 +1,4 @@
-﻿;(function ($, undefined) {
+; (function ($, undefined) {
 
     $.widget('eqjs.EasyChart', {
         _dataTable: null,

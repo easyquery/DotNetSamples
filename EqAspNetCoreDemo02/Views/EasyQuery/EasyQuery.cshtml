@@ -193,7 +193,7 @@
             © Copyright 2006-@(DateTime.Now.Year). <a href="https://korzh.com/" target="_blank">Korzh.com</a>
         </div>
         <div class="power-by">
-            Powered by <a href="http://devtools.korzh.com/easyquery/" target="_blank">EasyQuery</a>
+            Powered by <a href="https://korzh.com/easyquery" target="_blank">EasyQuery</a>
             | 
             <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
 
@@ -204,22 +204,16 @@
 
 
 @section Scripts {
-        <!-- EasyQuery script files -->
-    <environment names="Development">
-        <script src="@Url.Content("~/js/eq.all.js")" type="text/javascript"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="@Url.Content("~/js/eq.all.min.js")" type="text/javascript"></script>
-    </environment>
-
+    <!-- EasyQuery script files -->
+    <script src="@Url.Content("~/js/eq.all.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/js/eq.view.basic.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/js/easychart.js")" type="text/javascript"></script>
 
 
     <!-- Another option: use CDN versions of those files -->
     <!--
-        <script src="http://cdn.korzh.com/eq/3.8/eq.all.min.js" type="text/javascript"></script>
-        <script src="http://cdn.korzh.com/eq/3.8/eq.view.basic.js" type="text/javascript"></script>
+        <script src="//cdn.korzh.com/eq/3.8/eq.all.min.js" type="text/javascript"></script>
+        <script src="//cdn.korzh.com/eq/3.8/eq.view.basic.js" type="text/javascript"></script>
     -->
 
 
