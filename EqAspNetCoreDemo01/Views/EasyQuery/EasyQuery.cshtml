@@ -11,8 +11,8 @@
 
     <!-- Second option: EasyQuery CSS files from CDN -->
 <!--
-    <link href="//cdn.korzh.com/eq/3.8/themes/default/easyquery.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="//cdn.korzh.com/eq/3.8/themes/default/eqview.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="//cdn.korzh.com/eq/4.0/themes/default/easyquery.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="//cdn.korzh.com/eq/4.0/themes/default/eqview.css" rel="stylesheet" type="text/css" media="screen" />
 -->
 
 
@@ -149,10 +149,10 @@
                 <div class="menu-title">Menu</div>
                 <div class="menu-content">
                     <div id="ClearQueryButton" class="eqv-button clear-button">Clear query</div>
-                    @using (Html.BeginForm("LoadQueryFromFile", "EasyQuery", FormMethod.Post, new { id = "LoadQueryForm", enctype = "multipart/form-data" })) {
+                    <form id="LoadQueryForm" asp-controller="EasyQuery" asp-action="LoadQueryFromFile" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="queryToLoadModelId" name="modelId" />
                         <input type="file" id="LoadQueryFileInput" name="queryFile" style="display: none;" />
-                        <input type="submit" style="display: none;" />
-                    }
+                    </form>
 
                     <form id="SaveQueryForm" asp-controller="EasyQuery" asp-action="SaveQueryToFile" method="post">
                         <input type="hidden" id="queryToSaveJson" name="queryJson" />
@@ -229,8 +229,8 @@
 
     <!-- Another option: use CDN versions of those files -->
     <!--
-        <script src="//cdn.korzh.com/eq/3.8/eq.all.min.js" type="text/javascript"></script>
-        <script src="//cdn.korzh.com/eq/3.8/eq.view.basic.js" type="text/javascript"></script>
+        <script src="//cdn.korzh.com/eq/4.0/eq.all.min.js" type="text/javascript"></script>
+        <script src="//cdn.korzh.com/eq/4.0/eq.view.basic.js" type="text/javascript"></script>
     -->
 
 
@@ -272,6 +272,8 @@
 
 
             $('#LoadQueryFileInput').change(function () {
+                var query = EQ.client.getQuery();
+                $("#queryToLoadModelId").val(query.getModel().getId());
                 $('#LoadQueryForm').submit();
             });
 
@@ -286,6 +288,7 @@
                 $("#queryToSaveJson").val(queryJson);
                 $('#SaveQueryForm').submit();
             });
+
 
             var message = '@ViewBag.Message';
             if (message) {

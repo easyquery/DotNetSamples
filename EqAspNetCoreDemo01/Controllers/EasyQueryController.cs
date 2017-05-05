@@ -213,17 +213,17 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         /// <param name="queryFile"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult LoadQueryFromFile(string modelId, string queryId, IFormFile queryFile) {
+        public IActionResult LoadQueryFromFile(string modelId, IFormFile queryFile) {
             if (queryFile != null && queryFile.Length > 0)
                 try {
-                    var query = eqService.GetQuery(modelId, queryId);
+                    var query = eqService.GetQuery(modelId, null);
                     using (var fileStream = queryFile.OpenReadStream()) {
                         query.LoadFromStream(fileStream);
                     }
 
                     //saves loaded query into session so it will be loaded automatically after redirect
                     eqService.SyncQuery(query);
-                    return RedirectToAction("Index", new { queryId = queryId });
+                    return RedirectToAction("Index", new { queryId = query.ID });
                 }
                 catch {
                     //just do nothing  

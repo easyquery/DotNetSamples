@@ -1,4 +1,4 @@
-;(function ($, window) {
+﻿;(function ($, window) {
 
     //Ensure that global variables exist
     var EQ = window.EQ = window.EQ || {};
