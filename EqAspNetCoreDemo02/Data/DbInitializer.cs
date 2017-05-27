@@ -84,10 +84,11 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
         void LoadCustomers() {
             var tableName = "Customers";
             SetIdentityInsert(tableName, true);
-            XElement root = LoadFile("Customers.txt");
+            XElement root = LoadFile("Customers.xml");
             foreach (XElement element in root.Elements("Result")) {
                 Customer customer = new Customer {
                     Id = element.StringValue("CustomerID"),
+                    City = element.StringValue("City"),
                     CompanyName = element.StringValue("CompanyName"),
                     ContactName = element.StringValue("ContactName"),
                     ContactTitle = element.StringValue("ContactTitle"),
@@ -105,7 +106,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
         }
 
         void LoadProducts() {
-            XElement root = LoadFile("Products.txt");          
+            XElement root = LoadFile("Products.xml");          
             foreach (XElement element in root.Elements("Result")) {
                 Product product = new Product {
                     Id = element.IntValue("ProductID"),
@@ -128,7 +129,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
             SetIdentityInsert(tableName, true);
 
             Dictionary<int, int> d = new Dictionary<int, int>();
-            XElement root = LoadFile("Employees.txt");
+            XElement root = LoadFile("Employees.xml");
             foreach (XElement element in root.Elements("Result")) {
                 Employee employee = new Employee {
                     Id = element.IntValue("EmployeeID"),
@@ -159,7 +160,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
         }
 
         void LoadOrders() {
-            XElement root = LoadFile("Orders.txt");
+            XElement root = LoadFile("Orders.xml");
             int productId = 0;
             foreach (XElement element in root.Elements("Result")) {
                 string customerId = element.StringValue("CustomerID");
