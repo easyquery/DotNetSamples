@@ -27,10 +27,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
 
             eqService = new EqServiceProviderDb();
 
-
-
             eqService.ModelLoader = (model, modelName) => {
-                model.LoadFromType(typeof(Order));
+                model.LoadFromEntityType(typeof(Order));
                 model.SortEntities();
             };
             
@@ -73,7 +71,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
         /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
         public IActionResult GetList([FromBody] JsonDict jsonDict) {
-            return Json(eqService.GetList(jsonDict));
+            return Json(eqService.GetList(jsonDict, dbContext.Orders));
         }
 
 
