@@ -17,12 +17,12 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.0.1" />
 
-    <PackageReference Include="Korzh.EasyQuery" Version="4.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.Json" Version="4.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="4.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="4.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="4.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="4.0.0-beta9" />
+    <PackageReference Include="Korzh.EasyQuery" Version="4.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.Json" Version="4.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="4.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="4.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="4.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="4.0.0-rc1" />
 
   </ItemGroup>
   <ItemGroup>
