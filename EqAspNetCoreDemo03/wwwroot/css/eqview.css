@@ -1,0 +1,518 @@
+/*setting to all page */
+#main{
+    width:1174px;
+    background: #fff;
+    margin:auto;
+    padding-top:10px;
+}
+
+/* title */
+.title{
+    float: left;
+    background: url('images/logo.png') no-repeat center left;
+    padding: 0 0 0 35px;
+    color: #3A94D4;
+    font: bold 25px Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+/* sub-title*/
+.sub-title{
+    margin: 14px 0 0 10px;
+    float: left;
+    font: bold 11px Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color: #3a94d4;	
+}
+
+/* header */
+.header{
+    display:block;
+    height:40px;
+}
+
+.global-message {
+    display: none;
+    background-color: coral;
+    border-radius: 10px;
+    color: white;
+    float: right;
+    padding: 5px 10px 8px;
+}
+
+/* content */
+#content{
+    background: #f6f6f6;
+    border:2px solid #dedede;
+    padding:20px;
+}
+
+.hr{
+    height: 6px;
+    border: none;
+    margin: 0 0;
+    height: 7px !IE7;
+    border-color: transparent !IE7;
+    margin: -7px 0 !IE7;
+}
+
+/* entities panel */
+
+.entities-block{    
+    width: 20%;
+    float: left;
+    margin: 0 20px 0 0 !important;
+    background: #fff;
+    border: 1px solid silver;
+    position: relative;
+}
+
+.entities-hr{
+    background: #7BC4F8;
+}
+
+.entities-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #7BC4F8;
+    height: 38px;
+}
+
+.entities-panel-container {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom: 0;
+    top:44px;
+}
+
+/* conditions block */
+
+.query-panel-container {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom: 0;
+    top:44px;
+}
+
+
+.conditions-block{
+    background: white;
+    border: 1px solid silver;
+    height: 243px;
+    height: 230px !IE7;
+    position: relative;
+}
+
+.conditions-hr{
+    background: #1777B1;
+}
+
+.conditions-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #1777B1;
+    height: 38px;
+}
+
+
+/*-------- Deprecated START -------------*/
+.condition-block{
+    background: white;
+    border: 1px solid silver;
+    height: 240px;
+    height: 230px !IE7;
+
+}
+
+.condition-hr{
+    background: #1777B1;
+}
+
+.condition-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #1777B1;
+}
+
+.condition-content{
+    font: normal 14px Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+/*-------- Deprecated END -------------*/
+
+/* columns block */
+.columns-block{
+    background: white;
+    border: 1px solid silver;
+    height: 180px;
+    height: 190px !IE7;
+    margin: 0 0 20px 0;
+    margin: 0 0 10px 0 !IE7;
+    position: relative;
+}
+
+.columns-hr{
+    background: #1777B1;
+}
+
+.columns-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #1777B1;
+    height: 38px;
+}
+
+.columns-panel-container {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom: 0;
+    top:44px;
+}
+
+
+
+/* menu block */
+.menu-block{
+    width: 17%;
+    float: right;
+    background: #fff;
+    border: 1px solid silver;
+}
+
+/* menu block - top border */
+.menu-hr{
+    background: #AE67DF;
+}
+
+/* menu block - title */
+.menu-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #1777B1;
+}
+
+/* menu block - content */
+.menu-content{
+    padding: 10px;
+}
+
+.menu-content div{
+    margin: 10px 0;
+}
+
+/* menu block - buttons */
+.eqv-button {
+    width: 160px;
+    border: none;
+    font-family: Segoe UI;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 9px 9px 33px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+.clear-button{
+    background: url('images/clearButton.png') no-repeat;
+}
+
+.save-query-button{
+    background: url('images/saveButton.png') no-repeat;
+}
+
+.load-query-button{
+    background : url('images/loadButton.png') no-repeat center left;
+}
+
+.execute-button {
+    background: url('images/execute.png') no-repeat center;
+    margin: 30px 0px !important;  
+}
+/*
+.eqJs-language-block{
+    float: right;
+    margin: 10px 0 0 0;
+}
+*/
+
+/* sql panel */
+.sql-panel{
+    width: 25%;
+    border: 1px solid #C4D6E5;
+    background: white;
+    float: left;
+    position:relative;
+}
+
+/* sql panel - border -top */
+.sql-panel-hr{
+    background: #A8ABAD;
+}
+
+/* sql panel - title */
+.sql-panel-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #A8ABAD;
+    height: 38px;
+}
+
+/* sql panel - block */
+.sql-block{
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 44px;
+}
+
+/* sql panel - result block */
+.sql-panel-result{
+    padding: 7px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font: normal 11px Verdana;
+}
+
+/* result panel */
+.result-panel{
+    background: white;
+    position: relative;
+    border: 1px solid #C1D5E4;
+    width: 73%;
+    float: right;
+}
+
+/* result panel - border top */
+.result-panel-hr{
+    background: #237901;
+}
+
+/* result panel - title */
+.result-panel-title{
+    border-bottom: 1px solid #237901;
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #4F4F4F;
+    padding: 0 0 4px 10px;
+    background: #F8F7F7;
+    height: 38px;
+}
+.result-panel-title a {
+    font-family: Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    color: #333333;
+    text-decoration: none;
+    border-bottom: 1px dashed;
+    margin-right: 10px;
+}
+.result-panel-title a:hover {
+     color: #333333;
+     border-bottom: 1px solid;
+     text-decoration: none;
+}
+
+#ResultExportButtons {
+    display: none;
+    float: right;
+    margin-right: 5px;
+    margin-top: 3px;
+    font-size:12pt;
+    padding:4px;
+}
+
+
+/* result panel - content result */
+.result-panel-content{
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 44px;
+}
+
+.grid-panel {
+    padding: 0;
+    font: normal 15px Arial;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.chart-panel {
+    padding: 0px;
+    font: normal 14px Arial;   
+}
+
+.result-panel-content table{
+    font: normal 12px Calibri;
+}
+
+.result-panel-content table td{
+    padding: 5px;
+    color: #4F4F4F;
+    font: 10px Arial;
+    border-bottom: 1px solid #E4E4E4;
+}
+
+.result-panel-error{
+    color: Red;
+    font: normal 20px Calibri;
+    text-align: center;
+}
+
+.result-panel.loader{
+    background: url('images/ajax-loader.gif') no-repeat;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: none;
+}
+
+/* result table style */
+.result-grid-header td{
+    font: bold 14px Calibri;
+    border-bottom: 1px solid silver !important;
+}
+
+
+.result-grid-header th{
+    background-color: #F6F6F6;
+    color: #4F4F4F;
+    height: 30px;
+    font: bold 11px Arial !important;
+    border-bottom: 1px solid #E4E4E4;
+    text-align: left;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.pagination {
+    margin: 0;
+}
+
+.eqview-pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.eqview-pagination > li {
+    display: inline;
+}
+
+.eqview-pagination > li > a, .eqview-pagination > li > span {
+    font-size: 12px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #428bca;
+    float: left;
+    line-height: 1.42857;
+    margin-left: -1px;
+    padding: 5px 10px;
+    position: relative;
+    text-decoration: none;
+}
+
+.eqview-pagination > li > a:hover, .eqview-pagination > li > span:hover, .eqview-pagination > li > a:focus, .eqview-pagination > li > span:focus {
+    background-color: #eee;
+    border-color: #ddd;
+    color: #2a6496;
+}
+
+.eqview-pagination > .active > a, .eqview-pagination > .active > span, .eqview-pagination > .active > a:hover, .eqview-pagination > .active > span:hover, .eqview-pagination > .active > a:focus, .eqview-pagination > .active > span:focus {
+    background-color: #428bca;
+    border-color: #428bca;
+    color: #fff;
+    cursor: default;
+    z-index: 2;
+}
+
+.eqview-pagination > .disabled > span, .eqview-pagination > .disabled > span:hover, .eqview-pagination > .disabled > span:focus, .eqview-pagination > .disabled > a, .eqview-pagination > .disabled > a:hover, .eqview-pagination > .disabled > a:focus {
+    background-color: #fff;
+    border-color: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.eqview-pagination > li:first-child > a, .eqview-pagination > li:first-child > span {
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    margin-left: 0;
+}
+
+.eqview-pagination > li:last-child > a, .eqview-pagination > li:last-child > span {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+/* content - block min height */
+.header-panel{
+    height: 443px;
+    height: 440px !IE7;
+}
+.header-panel > div{
+    height: 443px;
+    height: 432px !IE7;
+    margin: 0 0 20px 0;
+}
+
+.bottom-panel{
+    height : 313px;
+}
+
+.bottom-panel > div{
+    height : 287px;
+    margin: 0 0 20px 0;
+}
+
+/* error text */
+.error, .error div{
+    color: Red;
+    font: normal 20px Calibri;
+}
+
+/* central block */
+.central-block{
+    width: 59%;
+    float: left;
+}
+
+/* copyright */
+#footer{
+    margin: 10px 0;
+    padding: 0 0 20px 0;
+    font: normal 12px Calibri;
+    color: #000;
+}
+
+.copyright{
+    float: left;
+}
+
+.power-by{
+    float: right;
+}
+
+.copyright a, .power-by a{
+    color: #237901;
+}
