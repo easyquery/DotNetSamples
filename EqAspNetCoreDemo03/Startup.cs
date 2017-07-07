@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Session;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 
 namespace Korzh.EasyQuery.AspNetCore.Demo03
@@ -32,6 +34,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
 
             // Add framework services.
             services.AddMvc();
+        //    services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Adds a default in-memory implementation of IDistributedCache.
             services.AddDistributedMemoryCache();
@@ -67,9 +70,9 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var scriptFilePath = "App_Data\\EqDemoDb.sql";
-            var dbInit = new EqAspNetCoreDemo03.Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
-            dbInit.EnsureCreated();
+           var scriptFilePath = "App_Data\\EqDemoDb.sql";
+           var dbInit = new EqAspNetCoreDemo03.Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
+           dbInit.EnsureCreated();
         }
     }
 }

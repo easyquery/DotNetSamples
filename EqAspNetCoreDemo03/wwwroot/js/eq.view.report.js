@@ -143,7 +143,7 @@
             if (!this._funcs.loadReportButtonClick) {
                 this._funcs.loadReportButtonClick = function () {
                     EQ.client.loadQuery({
-                        id: "LastQuery",
+                        queryName: "LastQuery",
                         sucess: function (data) {
 
                             self._clearErrors();
@@ -337,7 +337,7 @@
             if (!reportId) return;
             var self = this;
             EQ.client.loadQuery({
-                id: reportId,
+                queryName: reportId,
                 silent: false,
                 success: function() {
                     self.buildAndExecute();
