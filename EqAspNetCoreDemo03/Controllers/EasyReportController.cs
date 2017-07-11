@@ -115,25 +115,24 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
                 }
             };
 
-            eqService.QueryListResolver = (modelName) => {
-                List<QueryListItem> queryItems = HttpContext.Session.GetObject<List<QueryListItem>>("queryList");
+            //eqService.QueryListResolver = (modelId) => {
+            //    List<QueryListItem> queryItems = HttpContext.Session.GetObject<List<QueryListItem>>("queryList");
 
-                if (queryItems == null) {
-                    queryItems = eqService.DefaultQueryListResolver(modelName) as List<QueryListItem>;
+            //    if (queryItems == null) {
+            //        queryItems = eqService.DefaultQueryListResolver(modelId) as List<QueryListItem>;
 
-                    HttpContext.Session.SetObject("queryList", queryItems);
-                }
+            //        HttpContext.Session.SetObject("queryList", queryItems);
+            //    }
 
-                return queryItems;
-            };
+            //    return queryItems;
+            //};
 
             // --- end of overrided handlers ---
 
 
             //Uncomment in case you need to implement your own model loader or add some changes to existing one
-            // eqService.ModelLoader = (model, modelName) => {
+            // eqService.ModelLoader = (model, modelId) => {
             //   model.LoadFromConnection(eqService.Connection, FillModelOptions.Default);
-            //   model.
             // };
 
             //Custom lists resolver
@@ -170,9 +169,10 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
         /// <param name="modelName">The name.</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult GetModel(string modelName)
+        public IActionResult GetModel([FromBody] JsonDict jsonDict)
         {
-            var model = eqService.GetModel(modelName);
+            string modelId = jsonDict["modelId"].ToString();
+            var model = eqService.GetModel(modelId);
             return Json(model.SaveToJsonDict());
         }
 
@@ -195,19 +195,19 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
         /// <param name="queryName">The name.</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult GetQuery(string modelId,string queryName)
+        public ActionResult GetQuery(string modelId, string queryId)
         {
-            var query = eqService.GetQuery(modelId, queryName);
+            var query = eqService.GetQuery(modelId, queryId);
             return Json(query.SaveToJsonDict());
         }
 
 
-        [HttpGet]
-        public JsonResult GetQueryList(string modelName)
+        [HttpPost]
+        public JsonResult GetQueryList(string modelId)
         {
             try
             {
-                var queries = eqService.GetQueryList(modelName);
+                var queries = eqService.GetQueryList(modelId);
 
                 return Json(queries);
             }
@@ -220,7 +220,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
 
 
         [HttpPost]
-        public ActionResult NewQuery(string queryName)
+        public ActionResult NewQuery(string modelId, string queryName)
         {
             JsonDict Temp = new JsonDict();
             var query = eqService.SaveQueryDict(Temp, queryName);
