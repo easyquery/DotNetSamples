@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using System.Data.SqlClient;
-using System.IO;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,23 +17,21 @@ using Korzh.EasyQuery.AspNetCore.Demo03.Session;
 
 namespace Korzh.EasyQuery.AspNetCore.Demo03
 {
-    public class EasyReportController : Controller
-    {
+    public class EasyReportController : Controller {
         /*
             static EasyReportController()
             {
                 //The following section adds support for different types of databases you may use in your app.
                 //It's necessary for proper work of LoadFromConnection method of DbModel class
                 //Please note: for each used DbGate class you will need to reference a corresponding DbGate assembly
-            //    Korzh.EasyQuery.DataGates.OleDbGate.Register();
-             //   Korzh.EasyQuery.DataGates.SqlClientGate.Register();
-                //Korzh.EasyQuery.SqlCEDBGate.SqlCeGate.Register();
+                  Korzh.EasyQuery.DataGates.OleDbGate.Register();
+                  Korzh.EasyQuery.DataGates.SqlClientGate.Register();
+                  Korzh.EasyQuery.SqlCEDBGate.SqlCeGate.Register();
             }
             */
         private EqServiceProviderDb eqService;
 
-        public EasyReportController(IHostingEnvironment env, IConfiguration config)
-        {
+        public EasyReportController(IHostingEnvironment env, IConfiguration config) {
             eqService = new EqServiceProviderDb();
 
             eqService.Paging.Enabled = true;
@@ -70,14 +67,13 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             // --- begining of overrided handlers ---
 
             eqService.QuerySaver = (query, queryId) => {
-                if (!string.IsNullOrEmpty(queryId)) {
+                if (!string.IsNullOrEmpty(queryId)){
                     HttpContext.Session.SetString("query" + queryId, query.SaveToString());
 
                     List<QueryListItem> queries = HttpContext.Session.GetObject<List<QueryListItem>>("queryList");
-                    if (queries != null)
-                    {
+                    if (queries != null){
                         QueryListItem item = queries.Find(x => x.id.Equals(queryId));
-                        if (item == null) {
+                        if (item == null){
                             item = new QueryListItem(query.ID, query.QueryName);
                             queries.Add(item);
                         }
@@ -91,10 +87,9 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             };
 
             eqService.QueryLoader = (query, queryId) => {
-                if (!string.IsNullOrEmpty(queryId))
-                {
+                if (!string.IsNullOrEmpty(queryId)){
                     string queryString = HttpContext.Session.GetString("query" + queryId);
-                    if (String.IsNullOrWhiteSpace(queryString)) {
+                    if (String.IsNullOrWhiteSpace(queryString)){
                         eqService.DefaultQueryLoader(query, queryId);
                         HttpContext.Session.SetString("query" + queryId, query.SaveToString());
                     }
@@ -104,41 +99,41 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             };
 
             eqService.QueryRemover = (queryId) => {
-                if (!string.IsNullOrEmpty(queryId)) {
+                if (!string.IsNullOrEmpty(queryId)){
                     HttpContext.Session.Remove("query" + queryId);
 
                     List<QueryListItem> queries = HttpContext.Session.GetObject<List<QueryListItem>>("queryList");
-                    if (queries != null) {
+                    if (queries != null){
                         QueryListItem item = queries.Find(x => x.id.Equals(queryId));
                         if (item != null) queries.Remove(item);
                     }
                 }
             };
+            
+            eqService.QueryListResolver = (modelId) => {
+                List<QueryListItem> queryItems = HttpContext.Session.GetObject<List<QueryListItem>>("queryList");
 
-            //eqService.QueryListResolver = (modelId) => {
-            //    List<QueryListItem> queryItems = HttpContext.Session.GetObject<List<QueryListItem>>("queryList");
+                if (queryItems == null) {
+                    queryItems = eqService.DefaultQueryListResolver(modelId) as List<QueryListItem>;
 
-            //    if (queryItems == null) {
-            //        queryItems = eqService.DefaultQueryListResolver(modelId) as List<QueryListItem>;
+                    HttpContext.Session.SetObject("queryList", queryItems);
+                }
 
-            //        HttpContext.Session.SetObject("queryList", queryItems);
-            //    }
-
-            //    return queryItems;
-            //};
-
+                return queryItems;
+            }; 
+            
             // --- end of overrided handlers ---
 
 
             //Uncomment in case you need to implement your own model loader or add some changes to existing one
-            // eqService.ModelLoader = (model, modelId) => {
+            // eqService.ModelLoader = (model, modelName) => {
             //   model.LoadFromConnection(eqService.Connection, FillModelOptions.Default);
+            //   model.
             // };
 
             //Custom lists resolver
             eqService.ValueListResolver = (listname) => {
-                if (listname == "ListName")
-                {
+                if (listname == "ListName") {
                     return new List<ListItem> {
                             new ListItem("ID1","Item 1"),
                             new ListItem("ID2","Item 2")
@@ -164,81 +159,76 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
         #region public actions
 
         /// <summary>
-        /// Gets the model by its name
+        /// Gets the model by its modelId
         /// </summary>
-        /// <param name="modelName">The name.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public IActionResult GetModel([FromBody] JsonDict jsonDict)
-        {
+        public IActionResult GetModel([FromBody] JsonDict jsonDict) {
             string modelId = jsonDict["modelId"].ToString();
             var model = eqService.GetModel(modelId);
             return Json(model.SaveToJsonDict());
         }
 
-
         /// <summary>
         /// This action returns a custom list by different list request options (list name).
         /// </summary>
-        /// <param name="options">List request options - an instance of <see cref="ListRequestOptions"/> type.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public ActionResult GetList(JsonDict jsonDict)
-        {
-            //Точно не разобрался, как тут 
-            return Json(jsonDict.ToListViewOptions());
+        public IActionResult GetList([FromBody] JsonDict options) {
+            return Json(eqService.GetList(options));
         }
 
         /// <summary>
-        /// Gets the query by its name
+        /// Gets the query by its JsonDict
         /// </summary>
-        /// <param name="queryName">The name.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public ActionResult GetQuery(string modelId, string queryId)
-        {
-            var query = eqService.GetQuery(modelId, queryId);
+        public IActionResult GetQuery([FromBody] JsonDict jsonDict){
+            var query = eqService.GetQueryByJsonDict(jsonDict);
             return Json(query.SaveToJsonDict());
         }
 
-
+        /// <summary>
+        /// Gets the list of saved queries 
+        /// </summary>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns>IActionResult object</returns>
         [HttpPost]
-        public JsonResult GetQueryList(string modelId)
-        {
-            try
-            {
-                var queries = eqService.GetQueryList(modelId);
+        public JsonResult GetQueryList([FromBody] JsonDict jsonDict){
+            string modelId = jsonDict["modelId"].ToString();
+            var queries = eqService.GetQueryList(modelId);
 
-                return Json(queries);
-            }
-            catch (Exception ex)
-            {
-                return Json(ex.Message + "\n" + ex.StackTrace);
-            }
+            return Json(queries);
         }
 
-
-
+        /// <summary>
+        /// Creates new query.
+        /// </summary>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public ActionResult NewQuery(string modelId, string queryName)
-        {
+        public IActionResult NewQuery([FromBody] JsonDict jsonDict) {
+            string queryName = jsonDict["queryName"].ToString();
             JsonDict Temp = new JsonDict();
             var query = eqService.SaveQueryDict(Temp, queryName);
 
             return Json(query.SaveToJsonDict());
         }
 
-
         /// <summary>
         /// Saves the query.
         /// </summary>
-        /// <param name="queryJson">The JSON representation of the query .</param>
-        /// <param name="queryName">Query name.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public ActionResult SaveQuery(string queryJson, string queryName)
-        {
-            var query = eqService.SaveQueryDict(queryJson.ToJsonDict(), queryName);
+        public IActionResult SaveQuery([FromBody] JsonDict jsonDict){
+            var queryDict = jsonDict["query"] as JsonDict;
+            string queryName = jsonDict["queryName"].ToString();
+
+            var query = eqService.SaveQueryDict(queryDict, queryName);
 
             //we return a JSON object with one property "query" that contains the definition of saved query
             var dict = new Dictionary<string, object>();
@@ -246,33 +236,35 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             return Json(dict);
         }
 
-
+        /// <summary>
+        /// Removes the query
+        /// </summary>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public ActionResult RemoveQuery(string queryId)
-        {
+        public IActionResult RemoveQuery([FromBody] JsonDict jsonDict) {
+            string queryId = jsonDict["queryId"].ToString();
             eqService.RemoveQuery(queryId);
+
             var dict = new Dictionary<string, object>();
             dict.Add("result", "ok");
+
             return Json(dict);
         }
-
 
         /// <summary>
         /// It's called when it's necessary to synchronize query on client side with its server-side copy.
         /// Additionally this action can be used to return a generated SQL statement (or several statements) as JSON string
         /// </summary>
-        /// <param name="queryJson">The JSON representation of the query .</param>
-        /// <param name="optionsJson">The additional parameters which can be passed to this method to adjust query statement generation.</param>
-        /// <returns></returns>
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public ActionResult SyncQuery(string queryJson, string optionsJson)
-        {
-            JsonDict queryDict = queryJson.ToJsonDict();
-            var query = eqService.GetQueryByJsonDict(queryDict);
+        public IActionResult SyncQuery([FromBody] JsonDict jsonDict) {
+            var queryDict = jsonDict["query"];
+            var optionsDict = jsonDict["options"] as JsonDict;
 
-            eqService.SyncQuery(query);
-            if (!string.IsNullOrEmpty(query.ID))
-                eqService.SaveQuery(query);
+            var query = eqService.SyncQueryDict(queryDict as JsonDict);
+            var statement = eqService.BuildQuery(query, optionsDict);
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("result", "ok");
@@ -281,33 +273,31 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
 
 
         /// <summary>
-        /// Executes the query passed as JSON string and returns the result record set (again as JSON).
+        /// Executes the query and some options passed as JSON string and returns the result record set (again as JSON).
         /// </summary>
-        /// <param name="queryJson">The JSON representation of the query.</param>
-        /// <param name="optionsJson">Different options in JSON format</param>
-        /// <returns></returns>
-        
+        /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
-        public ActionResult ExecuteQuery(string queryJson, string optionsJson)
-        {
-            var optionsDict = optionsJson.ToJsonDict();
+        public IActionResult ExecuteQuery([FromBody] JsonDict jsonDict) { 
+            var queryDict = jsonDict["query"] as JsonDict;
+            var optionsDict = jsonDict["options"] as JsonDict;
 
-            var query = eqService.GetQueryByJsonDict(queryJson.ToJsonDict());
-            var statement = eqService.BuildQuery(query, optionsDict);
-            var resultSet = eqService.GetResultSetBySql(statement);
+           // eqService.LoadOptions(optionsDict);                
+
+            var query = eqService.GetQueryByJsonDict(queryDict);
+            var sql = eqService.BuildQuery(query, optionsDict);
+
+            var resultSet = eqService.ExecuteQuery(query, optionsDict);
+           // var resultSet = eqService.GetResultSetBySql(sql);
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
-            dict.Add("statement", statement);
+            dict.Add("statement", sql);
             dict.Add("resultSet", resultSet);
             dict.Add("paging", eqService.Paging.SaveToJsonDict());
-
             return Json(dict);
         }
-        
-       
 
-        public void ErrorResponse(string msg)
-        {
+        public void ErrorResponse(string msg) {
             Response.StatusCode = 400;
             Response.WriteAsync(msg);
         }
@@ -315,18 +305,15 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
 
 
         [HttpGet]
-        public void ExportToFileExcel()
-        {
-
+        public void ExportToFileExcel() {
 
         }
 
         [HttpGet]
-        public void ExportToFileCsv()
-        {
-
+        public void ExportToFileCsv() {
 
         }
+
         #endregion
 
 
