@@ -282,13 +282,12 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             var queryDict = jsonDict["query"] as JsonDict;
             var optionsDict = jsonDict["options"] as JsonDict;
 
-           // eqService.LoadOptions(optionsDict);                
+            eqService.LoadOptions(optionsDict);                
 
             var query = eqService.GetQueryByJsonDict(queryDict);
             var sql = eqService.BuildQuery(query, optionsDict);
 
             var resultSet = eqService.ExecuteQuery(query, optionsDict);
-           // var resultSet = eqService.GetResultSetBySql(sql);
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("statement", sql);
