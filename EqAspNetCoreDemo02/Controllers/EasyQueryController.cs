@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using System.Linq;
+using System.Data;
+using System.IO;
 using System.Text;
 
 using Microsoft.AspNetCore.Http;
@@ -11,10 +13,14 @@ using Microsoft.AspNetCore.Hosting;
 
 using Microsoft.EntityFrameworkCore;
 
+using System.Text.Encodings.Web;
+
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.EntityFrameworkCore;
+
+using Korzh.Utils;
 
 
 using Korzh.EasyQuery.AspNetCore.Demo02.Data;
@@ -189,6 +195,115 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
 
             return Json(dict);
         }
+
+        public void ErrorResponse(string msg){
+            Response.StatusCode = 400;
+            Response.WriteAsync(msg);
+        }
+
+        /// <summary>
+        /// Writes information to CSV file.
+        /// </summary>
+        /// <param name="queryJson">The string query which contains request parameters</param>
+        /// <param name="fileType">type of the file</param>
+        /// <returns></returns>
+        [HttpPost]
+        public void ExportToFile(string queryJson, string fileType){
+
+            var query = eqService.GetQueryByJsonDict(queryJson.ToJsonDict());
+            var sql = eqService.BuildQuery(query);
+
+            switch (fileType){
+                case "csv":
+                    ExportToFileCsv(sql);
+                    break;
+                case "excel/html":
+                    ExportToFileExcel(sql);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Writes information to Excel.Html file.
+        /// </summary>
+        /// <returns></returns>
+        private void ExportToFileExcel(string sql)
+        {
+            HttpContext.Response.Clear();
+
+            if (!string.IsNullOrEmpty(sql)){
+
+
+                using (var connection = eqService.ConnectionResolver()) {
+                    connection.Open();
+                    var command = connection.CreateCommand();
+
+                    command.CommandText = sql;
+                    command.CommandType = CommandType.Text;
+
+                    var dataset = command.ExecuteReader();
+
+                    if (dataset != null){
+                        HttpContext.Response.ContentType = "application/vnd.ms-excel";
+                        HttpContext.Response.Headers.Add("Content-Disposition",
+                            string.Format("attachment; filename=\"{0}\"", UrlEncoder.Default.Encode("report.xls")));
+                        StreamWriter dataStream = new StreamWriter(HttpContext.Response.Body);
+                        DbExport.ExportToExcelHtml(dataset, dataStream, HtmlFormats.Default);
+                    }
+                    else
+                        ErrorResponse("Empty dataset");
+
+                    eqService.ConnectionResolver().Close();
+                }
+
+            }
+            else
+                ErrorResponse("Empty query");
+        }
+
+        /// <summary>
+        /// Writes information to CSV file.
+        /// </summary>
+        /// <returns></returns>
+        private void ExportToFileCsv(string sql){
+            HttpContext.Response.Clear();
+
+            if (!string.IsNullOrEmpty(sql)){
+
+
+                using (var connection = eqService.ConnectionResolver()){
+                    connection.Open();
+                    var command = connection.CreateCommand();
+
+                    command.CommandText = sql;
+                    command.CommandType = CommandType.Text;
+
+                    var dataset = command.ExecuteReader();
+
+                    if (dataset != null)
+                    {
+                        HttpContext.Response.ContentType = "text/csv"; ;
+                        HttpContext.Response.Headers.Add("Content-Disposition",
+                            string.Format("attachment; filename=\"{0}\"", UrlEncoder.Default.Encode("report.csv")));
+                        StreamWriter dataStream = new StreamWriter(HttpContext.Response.Body);
+                        DbExport.ExportToCsv(dataset, dataStream, CsvFormats.Default);
+                    }
+                    else
+                        ErrorResponse("Empty dataset");
+
+                    eqService.ConnectionResolver().Close();
+                }
+
+            }
+            else
+                ErrorResponse("Empty query");
+        }
+
+
+
+
 
         #endregion
 

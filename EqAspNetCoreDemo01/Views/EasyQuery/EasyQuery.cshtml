@@ -177,7 +177,10 @@
                 </div>
             </div>
         </div>
-
+        <form id="ExportQueryResultForm" asp-controller="EasyQuery" asp-action="ExportToFile" method="post">
+            <input type="hidden" id="queryJsonExport" name="queryJson" />
+            <input type="hidden" id="exportFileType" name="fileType" />
+        </form>
         <div class="bottom-panel">
             <div class="sql-panel">
                 <hr class="sql-panel-hr hr" />
@@ -190,12 +193,11 @@
                 <hr class="result-panel-hr hr" />
                 <div class="result-panel-title">Result 
                     <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
-<!-- Not-Implemented-Yet functionality
                     <span id="ResultExportButtons"  >
-                         <a href="@Url.Action("ExportToFileExcel","EasyQuery")">Export to Excel</a>   
-                         <a href="@Url.Action("ExportToFileCsv","EasyQuery")">Export to CSV</a>
+                        <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
+                        <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
                     </span>
--->
+
                 </div>
                 <div id="ResultPanel" class="result-panel-content">
                 </div>
@@ -287,6 +289,24 @@
 
                 $("#queryToSaveJson").val(queryJson);
                 $('#SaveQueryForm').submit();
+            });
+
+            $('#ExportToCsv').click(function () {
+                var query = EQ.client.getQuery();
+                var queryJson = query.toJSON();
+
+                $("#queryJsonExport").val(queryJson);
+                $("#exportFileType").val("csv");
+                $('#ExportQueryResultForm').submit();
+            });
+
+            $('#ExportToExcel').click(function () {
+                var query = EQ.client.getQuery();
+                var queryJson = query.toJSON();
+
+                $("#queryJsonExport").val(queryJson);
+                $("#exportFileType").val("excel/html");
+                $('#ExportQueryResultForm').submit();
             });
 
 
