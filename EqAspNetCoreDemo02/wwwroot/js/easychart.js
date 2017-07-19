@@ -1,4 +1,3 @@
-﻿
 ; (function ($, undefined) {
 
     $.widget('eqjs.EasyChart', {
