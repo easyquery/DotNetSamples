@@ -143,9 +143,13 @@
                             <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
                                 <span class="glyphicon glyphicon-export"></span> <span class="caret"></span>
                             </button>
+                            <form id="ExportQueryResultForm" asp-controller="EasyReport" asp-action="ExportToFile" method="post">
+                                <input type="hidden" id="queryToSaveJson" name="queryJson"/>
+                                <input type="hidden" id="exportFileType" name="fileType" />
+                            </form>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("ExportToFileExcel","EasyReport")">Export to Excel</a></li>
-                                <li><a href="@Url.Action("ExportToFileCsv","EasyReport")">Export to CSV</a></li>
+                                <li><a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a></li>
+                                <li><a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a></li>
                             </ul>
                         </div> 
                     </div>
@@ -214,6 +218,24 @@
                 ],
                 "justsorted": []
             };
+
+            $('#ExportToCsv').click(function () {
+                var query = EQ.client.getQuery();
+                var queryJson = query.toJSON();
+
+                $("#queryToSaveJson").val(queryJson);
+                $("#exportFileType").val("csv");
+                $('#ExportQueryResultForm').submit();
+            });
+
+            $('#ExportToExcel').click(function () {
+                var query = EQ.client.getQuery();
+                var queryJson = query.toJSON();
+
+                $("#queryToSaveJson").val(queryJson);
+                $("#exportFileType").val("excel/html");
+                $('#ExportQueryResultForm').submit();
+            });
 
 
 /*

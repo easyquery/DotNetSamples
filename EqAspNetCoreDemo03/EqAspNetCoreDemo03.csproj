@@ -9,6 +9,7 @@
     <Description />
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Korzh.DbExport" Version="4.0.0-rc2" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.0.3" />
