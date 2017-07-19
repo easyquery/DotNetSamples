@@ -23,9 +23,6 @@ using Korzh.EasyQuery.AspNetCore.Demo03.Session;
 
 namespace Korzh.EasyQuery.AspNetCore.Demo03
 {
-    public class Kostul{
-        public static string lastSql;
-    }
 
     public class EasyReportController : Controller {
         /*
@@ -298,8 +295,6 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             var sql = eqService.BuildQuery(query, optionsDict);
 
             var resultSet = eqService.ExecuteQuery(query, optionsDict);
-
-            Kostul.lastSql = sql;
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("statement", sql);
