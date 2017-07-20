@@ -1,0 +1,31 @@
+﻿<Query id="02_Employee of the year" name="Empolyee of the year">
+  <Description />
+  <Columns>
+    <Column caption="First Name" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Employees.FirstName" />
+    </Column>
+    <Column caption="Last Name" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Employees.LastName" />
+    </Column>
+    <Column caption="Title" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Employees.Title" />
+    </Column>
+    <Column caption="Total sales" sorting="Descending" sortIndex="0">
+      <Expr class="AGGRFUNC" func="SUM" distinct="False">
+        <argument class="ENTATTR" id="Orders.Freight" />
+      </Expr>
+    </Column>
+    <Column caption="Employee Home phone" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Employees.HomePhone" />
+    </Column>
+  </Columns>
+  <JustSortedColumns />
+  <Conditions linking="All">
+    <Condition class="SMPL" enabled="True" readOnly="False">
+      <Operator id="DateWithinThisYear" />
+      <Expressions>
+        <Expr class="ENTATTR" id="Orders.OrderDate" />
+      </Expressions>
+    </Condition>
+  </Conditions>
+</Query>

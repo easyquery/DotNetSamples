@@ -79,12 +79,6 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
 
         }
 
-        public ActionResult Index() {
-
-            return View("EasyQuery");
-        }
-
-
 
         #region public actions
 
