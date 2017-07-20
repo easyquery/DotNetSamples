@@ -1,0 +1,15 @@
+﻿<Query id="LastQuery" name="">
+  <Description />
+  <Columns>
+    <Column caption="Client City" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Customer.City" />
+    </Column>
+    <Column caption="Order Freight Sum" sorting="None" sortIndex="-1">
+      <Expr class="AGGRFUNC" func="SUM" distinct="False">
+        <argument class="ENTATTR" id="Order.Freight" />
+      </Expr>
+    </Column>
+  </Columns>
+  <JustSortedColumns />
+  <Conditions linking="All" />
+</Query>
