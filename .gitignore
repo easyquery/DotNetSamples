@@ -5,6 +5,7 @@
 .vs/
 bin/
 obj/
-bower_components/
+bower_components
+packages/
 
 
