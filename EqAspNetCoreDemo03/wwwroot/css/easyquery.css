@@ -1420,7 +1420,6 @@ animation-delay: 1.25s;
     display:inline-block;
     margin: 2px;
     background-color: #999;
-    padding-left: 7px;
 }
 
 .eqjs-cb-expr-block {
@@ -1450,7 +1449,6 @@ animation-delay: 1.25s;
 }
 
 .eqjs-cb-row.active, .eqjs-cb-row:hover {
-    padding-right:50px;
     background-color: #666;
     padding-left: 0;
 }
@@ -1466,9 +1464,8 @@ animation-delay: 1.25s;
 
 }
 
-.eqjs-cb-button-placeholder {
-    margin: 2px 0 2px 2px;
-    display: none;
+.eqjs-cb-row .eqjs-button-placeholder {
+    margin: 2px 0 2px 1px;
 }
 
 .eqjs-cb-row.active .eqjs-cb-button-placeholder, .eqjs-cb-row:hover .eqjs-cb-button-placeholder {
