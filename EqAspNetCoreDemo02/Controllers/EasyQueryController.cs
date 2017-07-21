@@ -80,7 +80,9 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
         }
 
 
-        #region public actions
+        public IActionResult Index() {
+            return View("EasyQuery");
+        }
 
         /// <summary>
         /// Gets the model by its ID
@@ -295,11 +297,6 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
                 ErrorResponse("Empty query");
         }
 
-
-
-
-
-        #endregion
 
     }
 }

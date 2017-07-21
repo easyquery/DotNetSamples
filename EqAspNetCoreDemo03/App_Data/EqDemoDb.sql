@@ -1361,7 +1361,6 @@ SET IDENTITY_INSERT dbo.Orders OFF
 
 
 -- `dbo.Order_Details`
-SET IDENTITY_INSERT dbo.Order_Details ON
 INSERT dbo.Order_Details VALUES (10248, 11, 14.0000, 12, 0)
 INSERT dbo.Order_Details VALUES (10248, 42, 9.8000, 10, 0)
 INSERT dbo.Order_Details VALUES (10248, 72, 34.8000, 5, 0)
@@ -3519,4 +3518,3 @@ INSERT dbo.Order_Details VALUES (11077, 66, 17.0000, 1, 0)
 INSERT dbo.Order_Details VALUES (11077, 73, 15.0000, 2, 0.01)
 INSERT dbo.Order_Details VALUES (11077, 75, 7.7500, 4, 0)
 INSERT dbo.Order_Details VALUES (11077, 77, 13.0000, 2, 0)
-SET IDENTITY_INSERT dbo.Order_Details OFF
