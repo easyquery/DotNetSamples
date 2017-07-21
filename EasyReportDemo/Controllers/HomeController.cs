@@ -13,11 +13,6 @@ namespace EasyReportDemo.Controllers
             return View();
         }
 
-        public IActionResult EasyReport()
-        {
-            return View();
-        }
-
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

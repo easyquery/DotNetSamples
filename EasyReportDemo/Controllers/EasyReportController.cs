@@ -14,13 +14,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
+using Korzh.EasyQuery.EntityFrameworkCore;
+
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Db;
 
 using Korzh.Utils;
 
-using EasyReportDemo.Session;
+using EasyReportDemo.Data;
 
 namespace EasyReportDemo.Controllers
 {
@@ -38,15 +40,18 @@ namespace EasyReportDemo.Controllers
             }
             */
         private EqServiceProviderDb eqService;
+        private ApplicationDbContext _dbContext;
 
-        public EasyReportController(IHostingEnvironment env, IConfiguration config) {
+        public EasyReportController(IHostingEnvironment env, IConfiguration config, ApplicationDbContext dbContext) {
+
+            this._dbContext = dbContext;
             eqService = new EqServiceProviderDb();
 
             eqService.Paging.Enabled = true;
             eqService.DefaultModelId = "NWindSQL";
             eqService.UserId = "TestUser";
-            eqService.StoreModelInCache = true;
-            eqService.StoreQueryInCache = true;
+            eqService.StoreModelInCache = false;
+            eqService.StoreQueryInCache = false;
 
 
             //EqServiceProvider needs to know where to save/load queries to/from
@@ -58,7 +63,7 @@ namespace EasyReportDemo.Controllers
             eqService.DataPath = dataPath;
 
             eqService.ConnectionResolver = () => {
-                return new SqlConnection(config.GetConnectionString("EqDemoDb"));
+                return new SqlConnection(config.GetConnectionString("DefaultConnection"));
             };
 
 
@@ -66,14 +71,14 @@ namespace EasyReportDemo.Controllers
             //eqService.Connection = new SqlCeConnection("Data Source=" + System.IO.Path.Combine(dataPath, "Northwind.sdf"));
 
             //to support saving/loading models and queries to/from Session 
-            eqService.CacheGetter = (key) => HttpContext.Session.GetString(key);
-            eqService.CacheSetter = (key, value) => HttpContext.Session.SetString(key, value.ToString());
+            //  eqService.CacheGetter = (key) => HttpContext.Session.GetString(key);
+            //   eqService.CacheSetter = (key, value) => HttpContext.Session.SetString(key, value.ToString());
 
 
             //The following four handlers (QuerySaver, QueryLoader, QueryRemover and QueryListResolver) are overrided in order to don't save to the server the changes user make - all changed/added queries are stored in Session object 
             //This is for demo purpose only, you may freely delete this code or modify to your notice
             // --- begining of overrided handlers ---
-
+            /*
             eqService.QuerySaver = (query, queryId) => {
                 if (!string.IsNullOrEmpty(queryId)){
                     HttpContext.Session.SetString("query" + queryId, query.SaveToString());
@@ -130,14 +135,15 @@ namespace EasyReportDemo.Controllers
                 return queryItems;
             }; 
             
+            */
             // --- end of overrided handlers ---
 
 
             //Uncomment in case you need to implement your own model loader or add some changes to existing one
-            // eqService.ModelLoader = (model, modelName) => {
-            //   model.LoadFromConnection(eqService.Connection, FillModelOptions.Default);
-            //   model.
-            // };
+            eqService.ModelLoader = (model, modelName) => {
+                (model as DbModel).LoadFromDbContext(dbContext);
+            };
+
 
             //Custom lists resolver
             eqService.ValueListResolver = (listname) => {
@@ -163,6 +169,10 @@ namespace EasyReportDemo.Controllers
                 filterContext.ExceptionHandled = true;
             }
             */
+
+        public IActionResult Index() {
+            return View("EasyReport");
+        }
 
 
         #region public actions

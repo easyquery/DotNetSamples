@@ -1,0 +1,196 @@
+﻿
+*{
+    padding:0;
+    margin:0;
+}
+
+
+body {
+    padding-bottom: 20px;
+}
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top:64px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input[type="text"],
+input[type="password"] {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.btn-menu {
+    margin-bottom: 10px;
+}
+
+.footer {
+    margin-top: 4px;
+    padding:10px;
+    border-top: #808080 solid 1px;
+}
+
+/* panel title */
+.panel-title{
+    font: normal 18pt "Segoe UI Light", "Segoe Light", "Segoe UI", Arial, Helvetica, sans-serif;
+    padding: 4px 10px 4px 10px;
+}
+/*
+.panel-title a {
+    font-family: Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    color: #333333;
+    text-decoration: none;
+    border-bottom: 1px dashed;
+    margin-right: 10px;
+}
+.panel-title a:hover {
+     color: #333333;
+     border-bottom: 1px solid;
+     text-decoration: none;
+}
+    */
+
+.panel-buttons {
+    float:right;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.panel-buttons >.btn:first-child, .btn-group:first-child  {
+    margin-left: 0;
+}
+
+.panel-buttons>.btn, .btn-group {
+    position: relative;
+    float: left;
+    margin-right:4px;
+}
+
+.columns-panel {
+    padding:6px 4px 10px 8px;
+}
+
+/* conditions block */
+#QueryPanel{
+    background: #f9f9f9;
+    position: relative;
+    height: 186px;
+    height: 179px !IE7;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.query-panel{
+    font: normal 14px Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+    padding: 5px;
+}
+
+
+/* result panel */
+.result-panel{
+    background: white;
+    position: relative;
+    border: 1px solid #C1D5E4;
+}
+
+
+
+
+/* result panel - content result */
+.result-panel-content{
+    margin-top: 20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 370px;
+    height: 372px !IE7;
+}
+
+/*
+    padding: 0;
+    font: normal 15px Arial;
+*/
+
+.grid-panel {
+    height: 100%;
+    height: 224px !IE7;
+    overflow-x: auto;
+    overflow-y: auto;
+    
+}
+
+.chart-panel {
+    padding: 0px;
+    font: normal 14px Arial;   
+}
+
+/*
+.result-panel-content table{
+    font: normal 12px Calibri;
+}
+
+.result-panel-content table td{
+    padding: 5px;
+    color: #4F4F4F;
+    font: 10px Arial;
+    border-bottom: 1px solid #E4E4E4;
+}
+*/
+
+.result-panel-error{
+    color: Red;
+    font: normal 20px Calibri;
+    text-align: center;
+}
+
+.result-panel.loader{
+    background: url('images/ajax-loader.gif') no-repeat;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+
+.columns-caption {
+    font-weight: bold;
+}
+
+.columns-block {
+    padding: 6px 4px 10px 8px;
+}
+
+.pagination {
+    margin: 0;
+}

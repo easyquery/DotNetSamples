@@ -18,12 +18,10 @@ using Korzh.EasyQuery.AspNetCore;
 
 namespace EasyReportDemo
 {
-    public class Startup
-    {
+    public class Startup {
         private string _dataPath;
 
-        public Startup(IHostingEnvironment env)
-        {
+        public Startup(IHostingEnvironment env){
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -37,14 +35,12 @@ namespace EasyReportDemo
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+        public void ConfigureServices(IServiceCollection services) {
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(opts =>
-            {
+            services.AddIdentity<ApplicationUser, IdentityRole>(opts => {
                 opts.Password.RequiredLength = 5;   // минимальная длина
                 opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
                 opts.Password.RequireLowercase = false; // требуются ли символы в нижнем регистре
@@ -62,22 +58,21 @@ namespace EasyReportDemo
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            services.AddSingleton<IConfiguration>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory) {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
+            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
-            else
-            {
+            else {
                 app.UseExceptionHandler("/Home/Error");
             }
 
@@ -85,10 +80,10 @@ namespace EasyReportDemo
 
             app.UseIdentity();
 
+
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
 
-            app.UseMvc(routes =>
-            {
+            app.UseMvc(routes => {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
@@ -98,49 +93,11 @@ namespace EasyReportDemo
             var dbInit = new DbInitializer(dbContext, _dataPath);
             dbInit.CheckDb();
 
-            // инициализация базы данных
-            DatabaseInitialize(app.ApplicationServices).Wait();
+            // Adding Roles and Users to data base
+            UsersDbInitializer.RolesInitialize(app.ApplicationServices).Wait();
+            UsersDbInitializer.UsersInitialize(app.ApplicationServices).Wait();
 
         }
-
-        public async Task DatabaseInitialize(IServiceProvider serviceProvider)
-        {
-            UserManager<ApplicationUser> userManager =
-                serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            RoleManager<IdentityRole> roleManager =
-                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-            string emailJohn = "john.dow@easyquerybuilder.com";
-            string passwordJohn = "john1234";
-            string emailAlice = "alice.dow@easyquerybuilder.com";
-            string passwordAlice = "alice1234";
-            if (await roleManager.FindByNameAsync("admin") == null)
-            {
-                await roleManager.CreateAsync(new IdentityRole("admin"));
-            }
-            if (await roleManager.FindByNameAsync("user") == null)
-            {
-                await roleManager.CreateAsync(new IdentityRole("user"));
-            }
-            if (await userManager.FindByNameAsync(emailJohn) == null)
-            {
-                ApplicationUser admin = new ApplicationUser { Email = emailJohn, UserName = emailJohn };
-                IdentityResult result = await userManager.CreateAsync(admin, passwordJohn);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(admin, "admin");
-                }
-            }
-            if (await userManager.FindByNameAsync(emailAlice) == null)
-            {
-                ApplicationUser user = new ApplicationUser { Email = emailAlice, UserName = emailAlice };
-                IdentityResult result = await userManager.CreateAsync(user, passwordAlice);
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, "user");
-                }
-            }
-
-        }
+        
     }
 }
