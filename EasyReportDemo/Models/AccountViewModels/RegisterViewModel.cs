@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EasyReportDemo.Models.AccountViewModels
 {
-    public class RegisterViewModel {
+    public class RegisterViewModel
+    {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EasyReportDemo.Models.AccountViewModels
 {
-    public class LoginViewModel {
+    public class LoginViewModel
+    {
         [Required]
         [EmailAddress]
         public string Email { get; set; }

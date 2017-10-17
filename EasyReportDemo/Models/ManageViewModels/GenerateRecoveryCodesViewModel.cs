@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace EasyReportDemo.Models.ManageViewModels
 {
-    public class AddPhoneNumberViewModel {
-        [Required]
-        [Phone]
-        [Display(Name = "Phone number")]
-        public string PhoneNumber { get; set; }
+    public class GenerateRecoveryCodesViewModel
+    {
+        public string[] RecoveryCodes { get; set; }
     }
 }

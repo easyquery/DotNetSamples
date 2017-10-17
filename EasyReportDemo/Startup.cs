@@ -21,18 +21,12 @@ namespace EasyReportDemo
     public class Startup {
         private string _dataPath;
 
-        public Startup(IHostingEnvironment env){
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+        public Startup(IHostingEnvironment env, IConfiguration configuration){
             this._dataPath = System.IO.Path.Combine(env.ContentRootPath, "App_Data");
-
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
@@ -89,16 +83,24 @@ namespace EasyReportDemo
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-         
-            var dbContext = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
-            var dbInit = new DbInitializer(dbContext, _dataPath);
-            dbInit.CheckDb();
 
-            // Adding Roles and Users to data base
-            UsersDbInitializer.RolesInitialize(app.ApplicationServices).Wait();
-            UsersDbInitializer.UsersInitialize(app.ApplicationServices).Wait();
+
+            InitializeDb(app);
 
         }
-        
+
+        private void InitializeDb(IApplicationBuilder app) {
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var dbInit = new DbInitializer(dbContext, _dataPath);
+                dbInit.CheckDb();
+
+                // Adding Roles and Users to data base
+                UsersDbInitializer.RolesInitialize(scope.ServiceProvider).Wait();
+                UsersDbInitializer.UsersInitialize(scope.ServiceProvider).Wait();
+            }
+        }
+
     }
 }

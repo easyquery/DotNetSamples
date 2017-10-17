@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace EasyReportDemo.Models.AccountViewModels
 {
-    public class ResetPasswordViewModel {
+    public class ResetPasswordViewModel
+    {
         [Required]
         [EmailAddress]
         public string Email { get; set; }
