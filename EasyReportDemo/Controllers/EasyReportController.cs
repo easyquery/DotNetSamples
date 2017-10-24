@@ -82,8 +82,8 @@ namespace EasyReportDemo.Controllers
             eqService.ModelLoader = (model, modelName) => {
                 (model as DbModel).LoadFromDbContext(dbContext);
                  model.EntityRoot.Scan(ent => {
-                     //Make unvisible columns of AspNetCore
-                     if (ent.Name.StartsWith("Iden") || ent.Name.StartsWith("App") || ent.Name.StartsWith("Report")) {
+                     //Make unvisible columns of AspNetCore and Report Model
+                     if (ent.Name.StartsWith("Asp") || ent.Name == "Report") {
                          ent.UseInConditions = false;
                          ent.UseInResult = false;
                          ent.UseInSorting = false;
