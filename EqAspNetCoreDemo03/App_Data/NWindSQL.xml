@@ -41,23 +41,23 @@
     <Editor id="_DPDE" type="DATETIME" resType="Unknown" subType="Date" />
     <Editor id="_DPTE" type="DATETIME" resType="Unknown" subType="Time" />
     <Editor id="SQLLVE7" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT CategoryID, ProductName 
+      <SQL><![CDATA[SELECT DISTINCT ProductID, ProductName 
 FROM Products]]></SQL>
     </Editor>
     <Editor id="SQLLVE8" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT CustomerID, ShipName 
+      <SQL><![CDATA[SELECT DISTINCT OrderID, ShipName 
 FROM Orders]]></SQL>
     </Editor>
     <Editor id="SQLLVE9" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT EmployeeID, ShipName 
+      <SQL><![CDATA[SELECT DISTINCT OrderID, ShipName 
 FROM Orders]]></SQL>
     </Editor>
     <Editor id="SQLLVE10" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT ShipVia, ShipName 
+      <SQL><![CDATA[SELECT DISTINCT OrderID, ShipName 
 FROM Orders]]></SQL>
     </Editor>
     <Editor id="SQLLVE11" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT SupplierID, ProductName 
+      <SQL><![CDATA[SELECT DISTINCT ProductID, ProductName 
 FROM Products]]></SQL>
     </Editor>
   </Editors>
