@@ -194,3 +194,7 @@ input[type="checkbox"].input-validation-error {
 .pagination {
     margin: 0;
 }
+
+td, th {
+    padding: 0 5px;
+}
