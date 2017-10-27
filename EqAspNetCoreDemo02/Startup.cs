@@ -53,15 +53,15 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
+            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
-            else
-            {
+            else {
                 app.UseExceptionHandler("/Home/Error");
             }
+
 
             app.UseStaticFiles();
 
@@ -72,9 +72,11 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var dbContext = app.ApplicationServices.GetRequiredService<AppDbContext>();
-            var dbInit = new DbInitializer(dbContext, _dataPath);
-            dbInit.CheckDb();
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                var dbInit = new DbInitializer(dbContext, _dataPath);
+                dbInit.CheckDb();
+            }
         }
     }
 }
