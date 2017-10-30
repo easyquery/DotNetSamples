@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.IO;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +15,12 @@ using EasyReportDemo.Models;
 using EasyReportDemo.Models.AccountViewModels;
 using EasyReportDemo.Services;
 
+using Korzh.EasyQuery;
+using Korzh.EasyQuery.Services;
+using Korzh.EasyQuery.Db;
+
+using EasyReportDemo.Data;
+
 namespace EasyReportDemo.Controllers
 {
     [Authorize]
@@ -22,17 +29,20 @@ namespace EasyReportDemo.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _dbContext;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            ApplicationDbContext dbContext,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _dbContext = dbContext;
             _emailSender = emailSender;
             _logger = logger;
         }
@@ -224,6 +234,15 @@ namespace EasyReportDemo.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var xml = System.IO.File.ReadAllText(System.IO.Path.GetFullPath("App_Data//Test.xml"));
+                    Report NewReport = new Report() {
+                        Id = "test_model",
+                        UserId = user.Id,
+                        Name = "Test Report",
+                        QueryXML = xml
+                    };
+                    _dbContext.Reports.Add(NewReport);
+                    _dbContext.SaveChanges();
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
