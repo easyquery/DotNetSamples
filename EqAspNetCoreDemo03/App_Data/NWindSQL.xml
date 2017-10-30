@@ -1,4 +1,4 @@
-<DataModel name="Nwind" formatVersion="13" modelVersion="1" defQuery="" id="510125d7-49fe-4a3f-98e7-eafc6ab52784">
+<DataModel name="NwindSQL" formatVersion="13" modelVersion="1" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
   <Description />
   <CustomInfo />
   <DMEOptions />
@@ -14,25 +14,25 @@
     <Table class="db" alias="Order_Details" schema="dbo" db="" dsgnLayout="" priority="1000" name="Order_Details" hints="" quote="False" />
   </Tables>
   <Links>
-    <Link table1="Categories" table2="Products" type="Inner" QF="False">
+    <Link table1="Products" table2="Categories" type="Inner" QF="False">
       <Condition type="FF" expr1="CategoryID" expr2="CategoryID" op="=" />
     </Link>
-    <Link table1="Customers" table2="Orders" type="Inner" QF="False">
+    <Link table1="Orders" table2="Customers" type="Inner" QF="False">
       <Condition type="FF" expr1="CustomerID" expr2="CustomerID" op="=" />
     </Link>
-    <Link table1="Employees" table2="Orders" type="Inner" QF="False">
+    <Link table1="Orders" table2="Employees" type="Inner" QF="False">
       <Condition type="FF" expr1="EmployeeID" expr2="EmployeeID" op="=" />
     </Link>
-    <Link table1="Shippers" table2="Orders" type="Inner" QF="False">
-      <Condition type="FF" expr1="ShipperID" expr2="ShipVia" op="=" />
+    <Link table1="Orders" table2="Shippers" type="Inner" QF="False">
+      <Condition type="FF" expr1="ShipVia" expr2="ShipperID" op="=" />
     </Link>
-    <Link table1="Suppliers" table2="Products" type="Inner" QF="False">
+    <Link table1="Products" table2="Suppliers" type="Inner" QF="False">
       <Condition type="FF" expr1="SupplierID" expr2="SupplierID" op="=" />
     </Link>
-    <Link table1="Products" table2="Order_Details" type="Inner" QF="False">
+    <Link table1="Order_Details" table2="Products" type="Inner" QF="False">
       <Condition type="FF" expr1="ProductID" expr2="ProductID" op="=" />
     </Link>
-    <Link table1="Orders" table2="Order_Details" type="Inner" QF="False">
+    <Link table1="Order_Details" table2="Orders" type="Inner" QF="False">
       <Condition type="FF" expr1="OrderID" expr2="OrderID" op="=" />
     </Link>
   </Links>
@@ -41,24 +41,32 @@
     <Editor id="_DPDE" type="DATETIME" resType="Unknown" subType="Date" />
     <Editor id="_DPTE" type="DATETIME" resType="Unknown" subType="Time" />
     <Editor id="SQLLVE7" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT CategoryID, ProductName 
-FROM Products]]></SQL>
+      <SQL><![CDATA[SELECT DISTINCT "SupplierID", "CompanyName"
+FROM "Suppliers"]]></SQL>
     </Editor>
     <Editor id="SQLLVE8" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT CustomerID, ShipName 
-FROM Orders]]></SQL>
+      <SQL><![CDATA[SELECT DISTINCT "CategoryID", "CategoryName"
+FROM "Categories"]]></SQL>
     </Editor>
     <Editor id="SQLLVE9" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT EmployeeID, ShipName 
-FROM Orders]]></SQL>
+      <SQL><![CDATA[SELECT DISTINCT "CustomerID", "CompanyName"
+FROM "Customers"]]></SQL>
     </Editor>
     <Editor id="SQLLVE10" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT ShipVia, ShipName 
-FROM Orders]]></SQL>
+      <SQL><![CDATA[SELECT DISTINCT "EmployeeID", "LastName"
+FROM "Employees"]]></SQL>
     </Editor>
     <Editor id="SQLLVE11" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT SupplierID, ProductName 
-FROM Products]]></SQL>
+      <SQL><![CDATA[SELECT DISTINCT "ShipperID", "CompanyName"
+FROM "Shippers"]]></SQL>
+    </Editor>
+    <Editor id="SQLLVE12" type="SQLLIST" resType="Unknown">
+      <SQL><![CDATA[SELECT DISTINCT "OrderID", "ShipName"
+FROM "Orders"]]></SQL>
+    </Editor>
+    <Editor id="SQLLVE13" type="SQLLIST" resType="Unknown">
+      <SQL><![CDATA[SELECT DISTINCT "ProductID", "ProductName"
+FROM "Products"]]></SQL>
     </Editor>
   </Editors>
   <Operators>
@@ -207,8 +215,8 @@ FROM Products]]></SQL>
   </Operators>
   <Entities maxId="0">
     <Entity id="" name="Category" UIC="True" UIR="True" UIS="True">
-      <Attr id="Categories.CategoryID" kind="Data" expr="CategoryID" caption="Product" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE7" quote="False" UAL="True" aggr="False" tables="Categories">
-        <Operators>Equal,NotEqual,InList,NotInList</Operators>
+      <Attr id="Categories.CategoryID" kind="Data" expr="CategoryID" caption="CategoryID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Categories">
+        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
       <Attr id="Categories.CategoryName" kind="Data" expr="CategoryName" caption="Category name" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Categories">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
@@ -221,8 +229,8 @@ FROM Products]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Customer" UIC="True" UIR="True" UIS="True">
-      <Attr id="Customers.CustomerID" kind="Data" expr="CustomerID" caption="Order" type="String" size="5" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE8" quote="False" UAL="True" aggr="False" tables="Customers">
-        <Operators>Equal,NotEqual,InList,NotInList</Operators>
+      <Attr id="Customers.CustomerID" kind="Data" expr="CustomerID" caption="CustomerID" type="String" size="5" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
+        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
       </Attr>
       <Attr id="Customers.CompanyName" kind="Data" expr="CompanyName" caption="Company name" type="String" size="40" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
@@ -256,8 +264,8 @@ FROM Products]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Employee" UIC="True" UIR="True" UIS="True">
-      <Attr id="Employees.EmployeeID" kind="Data" expr="EmployeeID" caption="Order" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE9" quote="False" UAL="True" aggr="False" tables="Employees">
-        <Operators>Equal,NotEqual,InList,NotInList</Operators>
+      <Attr id="Employees.EmployeeID" kind="Data" expr="EmployeeID" caption="EmployeeID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
+        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
       <Attr id="Employees.LastName" kind="Data" expr="LastName" caption="Last name" type="String" size="20" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
@@ -312,8 +320,8 @@ FROM Products]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Shipper" UIC="True" UIR="True" UIS="True">
-      <Attr id="Shippers.ShipperID" kind="Data" expr="ShipperID" caption="Order" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE10" quote="False" UAL="True" aggr="False" tables="Shippers">
-        <Operators>Equal,NotEqual,InList,NotInList</Operators>
+      <Attr id="Shippers.ShipperID" kind="Data" expr="ShipperID" caption="ShipperID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Shippers">
+        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
       <Attr id="Shippers.CompanyName" kind="Data" expr="CompanyName" caption="Company name" type="String" size="40" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Shippers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
@@ -323,8 +331,8 @@ FROM Products]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Supplier" UIC="True" UIR="True" UIS="True">
-      <Attr id="Suppliers.SupplierID" kind="Data" expr="SupplierID" caption="Product" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE11" quote="False" UAL="True" aggr="False" tables="Suppliers">
-        <Operators>Equal,NotEqual,InList,NotInList</Operators>
+      <Attr id="Suppliers.SupplierID" kind="Data" expr="SupplierID" caption="SupplierID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Suppliers">
+        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
       <Attr id="Suppliers.CompanyName" kind="Data" expr="CompanyName" caption="Company name" type="String" size="40" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Suppliers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
@@ -361,7 +369,7 @@ FROM Products]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Product" UIC="True" UIR="True" UIS="True">
-      <Attr id="Products.ProductID" kind="Data" expr="ProductID" caption="Order  detail" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
+      <Attr id="Products.ProductID" kind="Data" expr="ProductID" caption="ProductID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
       <Attr id="Products.ProductName" kind="Data" expr="ProductName" caption="Product name" type="String" size="40" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
@@ -370,11 +378,11 @@ FROM Products]]></SQL>
       <Attr id="Products.Discontinued" kind="Data" expr="Discontinued" caption="Discontinued" type="Bool" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>IsTrue,NotTrue</Operators>
       </Attr>
-      <Attr id="Products.SupplierID" kind="Data" expr="SupplierID" caption="SupplierID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Products.SupplierID" kind="Data" expr="SupplierID" caption="Supplier" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE7" quote="False" UAL="True" aggr="False" tables="Products">
+        <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
       </Attr>
-      <Attr id="Products.CategoryID" kind="Data" expr="CategoryID" caption="CategoryID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Products.CategoryID" kind="Data" expr="CategoryID" caption="Category" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE8" quote="False" UAL="True" aggr="False" tables="Products">
+        <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
       </Attr>
       <Attr id="Products.QuantityPerUnit" kind="Data" expr="QuantityPerUnit" caption="Quantity per unit" type="String" size="20" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
@@ -393,14 +401,14 @@ FROM Products]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Order" UIC="True" UIR="True" UIS="True">
-      <Attr id="Orders.OrderID" kind="Data" expr="OrderID" caption="Order  detail" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
+      <Attr id="Orders.OrderID" kind="Data" expr="OrderID" caption="OrderID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
-      <Attr id="Orders.CustomerID" kind="Data" expr="CustomerID" caption="CustomerID" type="String" size="5" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Orders.CustomerID" kind="Data" expr="CustomerID" caption="Customer" type="String" size="5" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE9" quote="False" UAL="True" aggr="False" tables="Orders">
+        <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
       </Attr>
-      <Attr id="Orders.EmployeeID" kind="Data" expr="EmployeeID" caption="EmployeeID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Orders.EmployeeID" kind="Data" expr="EmployeeID" caption="Employee" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE10" quote="False" UAL="True" aggr="False" tables="Orders">
+        <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
       </Attr>
       <Attr id="Orders.OrderDate" kind="Data" expr="OrderDate" caption="Order date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
@@ -411,8 +419,8 @@ FROM Products]]></SQL>
       <Attr id="Orders.ShippedDate" kind="Data" expr="ShippedDate" caption="Shipped date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
       </Attr>
-      <Attr id="Orders.ShipVia" kind="Data" expr="ShipVia" caption="ShipVia" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Orders.ShipVia" kind="Data" expr="ShipVia" caption="ShipVia" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE11" quote="False" UAL="True" aggr="False" tables="Orders">
+        <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
       </Attr>
       <Attr id="Orders.Freight" kind="Data" expr="Freight" caption="Freight" type="Currency" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
@@ -437,11 +445,11 @@ FROM Products]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Order  detail" UIC="True" UIR="True" UIS="True">
-      <Attr id="Order_Details.OrderID" kind="Data" expr="OrderID" caption="OrderID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Order_Details">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
+      <Attr id="Order_Details.OrderID" kind="Data" expr="OrderID" caption="Order" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE12" quote="False" UAL="True" aggr="False" tables="Order_Details">
+        <Operators>Equal,NotEqual,InList,NotInList</Operators>
       </Attr>
-      <Attr id="Order_Details.ProductID" kind="Data" expr="ProductID" caption="ProductID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Order_Details">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
+      <Attr id="Order_Details.ProductID" kind="Data" expr="ProductID" caption="Product" type="Int" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="SQLLVE13" quote="False" UAL="True" aggr="False" tables="Order_Details">
+        <Operators>Equal,NotEqual,InList,NotInList</Operators>
       </Attr>
       <Attr id="Order_Details.UnitPrice" kind="Data" expr="UnitPrice" caption="Unit price" type="Currency" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Order_Details">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
