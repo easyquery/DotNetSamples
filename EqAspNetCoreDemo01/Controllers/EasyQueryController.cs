@@ -252,14 +252,14 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         public void ExportToFile(string queryJson, string fileType){
 
             var query = eqService.GetQueryByJsonDict(queryJson.ToJsonDict());
-            var sql = eqService.BuildQuery(query);
+            var result = eqService.BuildQuery(query);
 
             switch (fileType){
                 case "csv":
-                    ExportToFileCsv(sql);
+                    ExportToFileCsv(result.Statement);
                     break;
                 case "excel/html":
-                    ExportToFileExcel(sql);
+                    ExportToFileExcel(result.Statement);
                     break;
                 default:
                     break;
