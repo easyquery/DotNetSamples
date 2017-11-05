@@ -148,9 +148,9 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             var queryDict = jsonDict["query"];
             var optionsDict = jsonDict["options"] as JsonDict;
             var query = eqService.SyncQueryDict(queryDict as JsonDict);
-            var statement = eqService.BuildQuery(query, optionsDict);
+            var qbr = eqService.BuildQuery(query, optionsDict);
             Dictionary<string, object> dict = new Dictionary<string, object>();
-            dict.Add("statement", statement);
+            dict.Add("statement", qbr.Statement);
             return Json(dict);
         }
 
@@ -177,12 +177,12 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             var optionsDict = jsonDict["options"] as JsonDict;
 
             var query = eqService.GetQueryByJsonDict(queryDict);
-            var sql = eqService.BuildQuery(query, optionsDict);
+            var qbr = eqService.BuildQuery(query, optionsDict);
 
             var resultSet = eqService.ExecuteQuery(query, optionsDict);
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
-            dict.Add("statement", sql);
+            dict.Add("statement", qbr.Statement);
             dict.Add("resultSet", resultSet);
             dict.Add("resultCount", resultSet.RecordCount + " record(s) found");
 
@@ -252,14 +252,14 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
         public void ExportToFile(string queryJson, string fileType){
 
             var query = eqService.GetQueryByJsonDict(queryJson.ToJsonDict());
-            var result = eqService.BuildQuery(query);
+            var qbr = eqService.BuildQuery(query);
 
             switch (fileType){
                 case "csv":
-                    ExportToFileCsv(result.Statement);
+                    ExportToFileCsv(qbr.Statement);
                     break;
                 case "excel/html":
-                    ExportToFileExcel(result.Statement);
+                    ExportToFileExcel(qbr.Statement);
                     break;
                 default:
                     break;

@@ -82,7 +82,7 @@ namespace EasyReportDemo.Controllers
             eqService.ModelLoader = (model, modelName) => {
                 (model as DbModel).LoadFromDbContext(dbContext);
                  model.EntityRoot.Scan(ent => {
-                     //Make unvisible columns of AspNetCore and Report Model
+                     //Make invisible all entities started with "AspNetCore" and "Report"
                      if (ent.Name.StartsWith("Asp") || ent.Name == "Report") {
                          ent.UseInConditions = false;
                          ent.UseInResult = false;
@@ -309,7 +309,7 @@ namespace EasyReportDemo.Controllers
             var optionsDict = jsonDict["options"] as JsonDict;
 
             var query = eqService.SyncQueryDict(queryDict as JsonDict);
-            var statement = eqService.BuildQuery(query, optionsDict);
+            var qbr = eqService.BuildQuery(query, optionsDict);
 
             //Sync Report with Database
             if (!string.IsNullOrEmpty(query.ID)) {
@@ -350,12 +350,12 @@ namespace EasyReportDemo.Controllers
             eqService.LoadOptions(optionsDict);                
 
             var query = eqService.GetQueryByJsonDict(queryDict);
-            var sql = eqService.BuildQuery(query, optionsDict);
+            var qbr = eqService.BuildQuery(query, optionsDict);
 
             var resultSet = eqService.ExecuteQuery(query, optionsDict);
 
             Dictionary<string, object> dict = new Dictionary<string, object>();
-            dict.Add("statement", sql);
+            dict.Add("statement", qbr.Statement);
             dict.Add("resultSet", resultSet);
             dict.Add("paging", eqService.Paging.SaveToJsonDict());
 
