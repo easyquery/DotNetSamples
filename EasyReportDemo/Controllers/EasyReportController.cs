@@ -377,14 +377,14 @@ namespace EasyReportDemo.Controllers
         public void ExportToFile(string queryJson, string fileType){
             
             var query = eqService.GetQueryByJsonDict(queryJson.ToJsonDict());
-            var result = eqService.BuildQuery(query);
+            var qbr = eqService.BuildQuery(query);
 
             switch (fileType) {
                 case "csv":
-                    ExportToFileCsv(result.Statement);
+                    ExportToFileCsv(qbr.Statement);
                     break;
                 case "excel/html":
-                    ExportToFileExcel(result.Statement);
+                    ExportToFileExcel(qbr.Statement);
                     break;
                 default:
                     break;
