@@ -62,12 +62,10 @@ namespace EasyReportDemo.Controllers
             eqService.StoreModelInCache = false;
             eqService.StoreQueryInCache = false;
 
-
-            //EqServiceProvider needs to know where to save/load queries to/from
-
             eqService.Formats.SetDefaultFormats(FormatType.MsSqlServer);
             eqService.Formats.UseSchema = true;
 
+            //EqServiceProvider needs to know where to save/load queries to/from
             string dataPath = System.IO.Path.Combine(env.ContentRootPath, "App_Data");
             eqService.DataPath = dataPath;
 
