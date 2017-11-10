@@ -29,8 +29,6 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             services.AddSession();
 
             services.AddEasyQuery();
-
-            Korzh.EasyQuery.License.Key = "R4QZ2YQ1v0ReQcZrTRS5zq51rZLwymOK1OmezhorFFU=";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
