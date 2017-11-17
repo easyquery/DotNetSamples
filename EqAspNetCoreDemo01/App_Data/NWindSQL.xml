@@ -1,8 +1,16 @@
-<DataModel name="NwindSQL" formatVersion="13" modelVersion="1" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
+﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="8" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
   <Description />
   <CustomInfo />
-  <DMEOptions />
-  <DBParams />
+  <DMEOptions>
+    <listBoxTablesWidth>239</listBoxTablesWidth>
+    <FormWidth>1077</FormWidth>
+    <FormHeight>666</FormHeight>
+  </DMEOptions>
+  <DBParams>
+    <ConnectionString />
+    <LoginPrompt>False</LoginPrompt>
+    <GateClass>Korzh.EasyQuery.DataGates.OdbcGate</GateClass>
+  </DBParams>
   <Tables>
     <Table class="db" alias="Categories" schema="dbo" db="" dsgnLayout="" priority="1000" name="Categories" hints="" quote="False" />
     <Table class="db" alias="Customers" schema="dbo" db="" dsgnLayout="" priority="1000" name="Customers" hints="" quote="False" />
@@ -67,6 +75,18 @@ FROM "Orders"]]></SQL>
     <Editor id="SQLLVE13" type="SQLLIST" resType="Unknown">
       <SQL><![CDATA[SELECT DISTINCT "ProductID", "ProductName"
 FROM "Products"]]></SQL>
+    </Editor>
+    <Editor id="SQLLVE32" type="SQLLIST" resType="Unknown">
+      <SQL><![CDATA[SELECT DISTINCT Country, Country FROM Customers]]></SQL>
+    </Editor>
+    <Editor id="SQLLVE33" type="SQLLIST" resType="Unknown">
+      <SQL><![CDATA[SELECT DISTINCT Country, Country FROM Employees]]></SQL>
+    </Editor>
+    <Editor id="SQLLVE34" type="SQLLIST" resType="Unknown">
+      <SQL><![CDATA[SELECT DISTINCT Country, Country FROM Suppliers]]></SQL>
+    </Editor>
+    <Editor id="SQLLVE35" type="SQLLIST" resType="Unknown">
+      <SQL><![CDATA[SELECT DISTINCT ShipCountry, ShipCountry FROM Orders]]></SQL>
     </Editor>
   </Editors>
   <Operators>
@@ -214,7 +234,8 @@ FROM "Products"]]></SQL>
     </Operator>
   </Operators>
   <Entities maxId="0">
-    <Entity id="" name="Category" UIC="True" UIR="True" UIS="True">
+    <Entity id="" name="Category" UIC="False" UIR="False" UIS="False">
+      <UserData />
       <Attr id="Categories.CategoryID" kind="Data" expr="CategoryID" caption="CategoryID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Categories">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
@@ -229,41 +250,53 @@ FROM "Products"]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Customer" UIC="True" UIR="True" UIS="True">
+      <UserData />
       <Attr id="Customers.CustomerID" kind="Data" expr="CustomerID" caption="CustomerID" type="String" size="5" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
+        <Description />
       </Attr>
       <Attr id="Customers.CompanyName" kind="Data" expr="CompanyName" caption="Company name" type="String" size="40" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery</Operators>
+        <Description />
       </Attr>
-      <Attr id="Customers.ContactName" kind="Data" expr="ContactName" caption="Contact name" type="String" size="30" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
-      </Attr>
-      <Attr id="Customers.ContactTitle" kind="Data" expr="ContactTitle" caption="Contact title" type="String" size="30" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
-      </Attr>
-      <Attr id="Customers.Address" kind="Data" expr="Address" caption="Address" type="String" size="60" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Customers.Country" kind="Data" expr="Country" caption="Country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" editor="SQLLVE32" quote="False" UAL="True" aggr="False" tables="Customers">
+        <Operators>Equal,InList,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Customers.City" kind="Data" expr="City" caption="City" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Customers.Region" kind="Data" expr="Region" caption="Region" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
+      </Attr>
+      <Attr id="Customers.ContactName" kind="Data" expr="ContactName" caption="Contact name" type="String" size="30" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
+        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
+      </Attr>
+      <Attr id="Customers.ContactTitle" kind="Data" expr="ContactTitle" caption="Contact title" type="String" size="30" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
+        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
+      </Attr>
+      <Attr id="Customers.Address" kind="Data" expr="Address" caption="Address" type="String" size="60" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
+        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Customers.PostalCode" kind="Data" expr="PostalCode" caption="Postal code" type="String" size="10" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
-      </Attr>
-      <Attr id="Customers.Country" kind="Data" expr="Country" caption="Country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Customers.Phone" kind="Data" expr="Phone" caption="Phone" type="String" size="24" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Customers.Fax" kind="Data" expr="Fax" caption="Fax" type="String" size="24" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
       </Attr>
     </Entity>
     <Entity id="" name="Employee" UIC="True" UIR="True" UIS="True">
+      <UserData />
       <Attr id="Employees.EmployeeID" kind="Data" expr="EmployeeID" caption="EmployeeID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
@@ -297,8 +330,9 @@ FROM "Products"]]></SQL>
       <Attr id="Employees.PostalCode" kind="Data" expr="PostalCode" caption="Postal code" type="String" size="10" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
       </Attr>
-      <Attr id="Employees.Country" kind="Data" expr="Country" caption="Country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Employees.Country" kind="Data" expr="Country" caption="Country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" editor="SQLLVE33" quote="False" UAL="True" aggr="False" tables="Employees">
+        <Operators>Equal,InList,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Employees.HomePhone" kind="Data" expr="HomePhone" caption="Home phone" type="String" size="24" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
@@ -331,6 +365,7 @@ FROM "Products"]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Supplier" UIC="True" UIR="True" UIS="True">
+      <UserData />
       <Attr id="Suppliers.SupplierID" kind="Data" expr="SupplierID" caption="SupplierID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Suppliers">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
@@ -355,8 +390,9 @@ FROM "Products"]]></SQL>
       <Attr id="Suppliers.PostalCode" kind="Data" expr="PostalCode" caption="Postal code" type="String" size="10" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Suppliers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
       </Attr>
-      <Attr id="Suppliers.Country" kind="Data" expr="Country" caption="Country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Suppliers">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Suppliers.Country" kind="Data" expr="Country" caption="Country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" editor="SQLLVE34" quote="False" UAL="True" aggr="False" tables="Suppliers">
+        <Operators>Equal,InList,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Suppliers.Phone" kind="Data" expr="Phone" caption="Phone" type="String" size="24" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Suppliers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
@@ -369,6 +405,7 @@ FROM "Products"]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Product" UIC="True" UIR="True" UIS="True">
+      <UserData />
       <Attr id="Products.ProductID" kind="Data" expr="ProductID" caption="ProductID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
@@ -415,6 +452,7 @@ FROM "Products"]]></SQL>
       </Attr>
       <Attr id="Orders.RequiredDate" kind="Data" expr="RequiredDate" caption="Required date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Orders.ShippedDate" kind="Data" expr="ShippedDate" caption="Shipped date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
@@ -430,9 +468,11 @@ FROM "Products"]]></SQL>
       </Attr>
       <Attr id="Orders.ShipAddress" kind="Data" expr="ShipAddress" caption="Ship address" type="String" size="60" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Orders.ShipCity" kind="Data" expr="ShipCity" caption="Ship city" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Orders.ShipRegion" kind="Data" expr="ShipRegion" caption="Ship region" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
@@ -440,8 +480,9 @@ FROM "Products"]]></SQL>
       <Attr id="Orders.ShipPostalCode" kind="Data" expr="ShipPostalCode" caption="Ship postal code" type="String" size="10" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
       </Attr>
-      <Attr id="Orders.ShipCountry" kind="Data" expr="ShipCountry" caption="Ship country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Orders.ShipCountry" kind="Data" expr="ShipCountry" caption="Ship country" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" editor="SQLLVE35" quote="False" UAL="True" aggr="False" tables="Orders">
+        <Operators>Equal,InList,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
     </Entity>
     <Entity id="" name="Order  detail" UIC="True" UIR="True" UIS="True">
