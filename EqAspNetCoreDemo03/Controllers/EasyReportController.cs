@@ -250,7 +250,11 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
         /// <returns><see cref="IActionResult"/> object</returns>
         [HttpPost]
         public IActionResult RemoveQuery([FromBody] JsonDict jsonDict) {
-            string queryId = jsonDict["queryId"].ToString();
+            if (!jsonDict.TryGetValue("id", out object obj)) {
+                obj = jsonDict["queryId"];
+            }
+            var queryId = obj.ToString();
+
             eqService.RemoveQuery(queryId);
 
             var dict = new Dictionary<string, object>();
