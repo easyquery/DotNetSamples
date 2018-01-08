@@ -257,7 +257,9 @@ namespace EasyReportDemo.Controllers
             JsonDict Temp = new JsonDict();
             var query = eqService.SaveQueryDict(Temp, queryName);
 
-            return Json(query.SaveToJsonDict());
+            var resultDict = new JsonDict();
+            resultDict["query"] = query.SaveToJsonDict();
+            return Json(resultDict);
         }
 
         /// <summary>
