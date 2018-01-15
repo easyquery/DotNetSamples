@@ -25,9 +25,12 @@ namespace EasyReportDemo.Data
 
         public DbSet<Report> Reports { get; set; }
 
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<OrderDetail>().HasKey(od => new { od.OrderId, od.ProductId });
         }
 
     }

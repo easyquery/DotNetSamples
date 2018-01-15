@@ -24,8 +24,13 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderId, od.ProductId });
+        }
+
     }
-
-
 
 }

@@ -59,6 +59,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
             LoadEmployees();
             LoadProducts();
             LoadOrders();
+            LoadOrderDetails();
         }
 
         XElement LoadFile(string fileName) {
@@ -188,6 +189,25 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
             _dbContext.SaveChanges();
         }
 
+        void LoadOrderDetails() {
+            XElement root = LoadFile("Order_Details.xml");
+            foreach (XElement element in root.Elements("Result")) {
+                int orderId = element.IntValue("OrderID");
+                var order = _dbContext.Orders.Find(orderId);
+                int productId = element.IntValue("ProductID");
+                var product = _dbContext.Products.Find(productId);
+                OrderDetail orderDetail = new OrderDetail {
+                    Order = order,
+                    Product = product,
+                    UnitPrice = element.DecimalValue("UnitPrice"),
+                    Quantity = element.ShortValue("Quantity"),
+                    Discount = element.FloatValue("Discount")
+                };
+                _dbContext.OrderDetails.Add(orderDetail);
+            }
+            _dbContext.SaveChanges();
+        }
+
     }
 
 
@@ -224,6 +244,11 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Data
         public static short ShortValue(this XElement element, string name) {
             XElement child = element.Element(name);
             return child == null ? (short)0 : short.Parse(child.Value);
+        }
+
+        public static float FloatValue(this XElement element, string name) {
+            XElement child = element.Element(name);
+            return child == null ? 0 : float.Parse(child.Value, System.Globalization.CultureInfo.InvariantCulture);
         }
 
         public static DateTime DateTimeValue(this XElement element, string name) {
