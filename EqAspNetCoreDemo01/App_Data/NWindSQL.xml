@@ -1,12 +1,13 @@
-﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="8" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
+﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="12" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
   <Description />
   <CustomInfo />
   <DMEOptions>
     <listBoxTablesWidth>239</listBoxTablesWidth>
-    <FormWidth>1077</FormWidth>
-    <FormHeight>666</FormHeight>
+    <FormWidth>1548</FormWidth>
+    <FormHeight>876</FormHeight>
   </DMEOptions>
   <DBParams>
+    <SqlDialect>ANSI SQL</SqlDialect>
     <ConnectionString />
     <LoginPrompt>False</LoginPrompt>
     <GateClass>Korzh.EasyQuery.DataGates.OdbcGate</GateClass>
@@ -87,6 +88,9 @@ FROM "Products"]]></SQL>
     </Editor>
     <Editor id="SQLLVE35" type="SQLLIST" resType="Unknown">
       <SQL><![CDATA[SELECT DISTINCT ShipCountry, ShipCountry FROM Orders]]></SQL>
+    </Editor>
+    <Editor id="InRangeEditor" type="InRangeEditor" resType="Unknown">
+      <Data />
     </Editor>
   </Editors>
   <Operators>
@@ -230,6 +234,10 @@ FROM "Products"]]></SQL>
     </Operator>
     <Operator id="MaximumOfAttr" caption="is maximum of" expr="{expr1} = (SELECT MAX({expr2.field}) FROM {expr2.table})" format="{expr1} [[is equal to maximum of]] {expr2}" constFmt="{const}" kind="Attribute" caseIns="False" group="Other operators" cond="False">
       <Types>String,Byte,Word,Int,Int32,Int64,Bool,Float,Currency,BCD,Autoinc,Memo,FixedChar,Date,DateTime,Time</Types>
+      <Operands defType="Unknown" />
+    </Operator>
+    <Operator id="InRange" caption="is in range" expr="{expr1} BETWEEN {expr2[0]} AND {expr2[1]}" format="{expr1} [[is in range]] {expr2}" constFmt="{const}" kind="List" caseIns="False" editor="InRangeEditor" group="Other operators" cond="False">
+      <Types>Byte,Word,Int,Int32,Int64,Float</Types>
       <Operands defType="Unknown" />
     </Operator>
   </Operators>
@@ -428,7 +436,8 @@ FROM "Products"]]></SQL>
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
       </Attr>
       <Attr id="Products.UnitsInStock" kind="Data" expr="UnitsInStock" caption="Units in stock" type="Word" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Operators>Equal,Between,InRange,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Products.UnitsOnOrder" kind="Data" expr="UnitsOnOrder" caption="Units on order" type="Word" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
