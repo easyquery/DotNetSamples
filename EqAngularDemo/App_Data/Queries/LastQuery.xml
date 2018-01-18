@@ -1,0 +1,13 @@
+﻿<Query id="LastQuery" name="">
+  <Description />
+  <Columns>
+    <Column caption="Product Name" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="Product.Name" />
+    </Column>
+    <Column caption="Order detail Unit price" sorting="None" sortIndex="-1">
+      <Expr class="ENTATTR" id="OrderDetail.UnitPrice" />
+    </Column>
+  </Columns>
+  <JustSortedColumns />
+  <Conditions linking="All" />
+</Query>

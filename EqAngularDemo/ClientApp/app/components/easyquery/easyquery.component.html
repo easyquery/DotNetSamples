@@ -1,0 +1,115 @@
+<!--EasyQuery CSS files -->
+<link href="//cdn.korzh.com/eq/4.2/themes/default/easyquery.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="//cdn.korzh.com/eq/4.2/themes/default/eq-icons-default.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="//cdn.korzh.com/eq/4.2/themes/default/eqview.css" rel="stylesheet" type="text/css" />
+<link href="//cdn.korzh.com/eq/4.2/themes/default/easychart.css" rel="stylesheet" type="text/css" />
+
+<!-- Second option: EasyQuery CSS files from CDN -->
+<!--
+    <link href="//cdn.korzh.com/eq/3.8/themes/default/easyquery.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="//cdn.korzh.com/eq/3.8/themes/default/eqview.css" rel="stylesheet" type="text/css" media="screen" />
+-->
+<!-- EasyQuery widgets settings -->
+
+
+<div id="main">
+    <!--
+    <input id="QueryContentJson" type="hidden" value="@ViewBag.QueryJson" />
+    -->
+    <div class="header">
+        <div class="title">EasyQuery</div>
+        <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
+        <div class="global-message">@ViewBag.Message</div>
+    </div>
+    <div id="content">
+        <div class="header-panel">
+            <div class="entities-block">
+                <hr class="entities-hr hr" />
+                <div class="entities-title">Entities</div>
+                <div class="entities-panel-container">
+                    <!-- EntitiesPanel widget placeholder -->
+                    <div id="EntitiesPanel" onselectstart="return false"></div>
+                </div>
+            </div>
+
+            <div class="central-block">
+                <div class="columns-block">
+                    <hr class="columns-hr hr" />
+                    <div class="columns-title">Columns</div>
+                    <div class="columns-panel-container">
+                        <!-- ColumnsPanel widget placeholder -->
+                        <div id="ColumnsPanel"></div>
+                    </div>
+                </div>
+                <div class="conditions-block">
+                    <hr class="conditions-hr hr" />
+                    <div class="conditions-title">Conditions</div>
+                    <div class="query-panel-container">
+                        <!-- QueryPanel widget placeholder -->
+                        <div id="QueryPanel"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-block">
+                <hr class="menu-hr hr" />
+                <div class="menu-title">Menu</div>
+                <div class="menu-content">
+                    <div id="ClearQueryButton" class="eqv-button clear-button">Clear query</div>
+
+                    <div id="LoadQueryButton" class="eqv-button load-query-button">Load last query</div>
+                    <div id="SaveQueryButton" class="eqv-button save-query-button">Save query</div>
+
+                    <div id="ExecuteQueryButton" class="eqv-button execute-button">Execute</div>
+
+                    <div><p></p></div>
+                    <!-- Test button which perfoms different operation over query and model just for demonstration purposes -->
+                    <!-- Uncomment next line if would like to try -->
+                    <!--<div id="TestButton" class="eqv-button execute-button" style="display:block">Test</div>-->
+                </div>
+            </div>
+        </div>
+        <form id="ExportQueryResultForm" asp-controller="EasyQuery" asp-action="ExportToFile" method="post">
+            <input type="hidden" id="queryJsonExport" name="queryJson" />
+            <input type="hidden" id="exportFileType" name="fileType" />
+        </form>
+        <div class="bottom-panel">
+            <div class="sql-panel">
+                <hr class="sql-panel-hr hr" />
+                <div class="sql-panel-title">SQL</div>
+                <div id="SqlPanel" class="sql-block">
+                    <div class="sql-panel-result"></div>
+                </div>
+            </div>
+            <div class="result-panel">
+                <hr class="result-panel-hr hr" />
+                <div class="result-panel-title">
+                    Result
+                    <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
+                    <!-- Not supported yet
+                    <span id="ResultExportButtons">
+                        <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
+                        <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
+                    </span>
+                        -->
+                </div>
+                <div id="ResultPanel" class="result-panel-content">
+                </div>
+                <div class="result-panel-content-padding">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="footer">
+        <div class="copyright">
+            © Copyright 2006-2018 <a href="https://korzh.com/" target="_blank">Korzh.com</a>
+        </div>
+        <div class="power-by">
+            Powered by <a href="https://korzh.com/easyquery" target="_blank">EasyQuery</a>
+            |
+            <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
+
+        </div>
+    </div>
+</div>

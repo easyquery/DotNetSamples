@@ -1,0 +1,24 @@
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    // Load the Visualization API and the piechart package.
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(GoogleChartsLoaded);
+
+    function GoogleChartsLoaded() {
+       
+    }
+
+</script>
+<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
+
+
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
