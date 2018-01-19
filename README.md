@@ -14,7 +14,7 @@ To run these samples you will need:
  * Build and run.
  
  
-## Gettings started with command-line
+## Gettings started with the command-line
  * Clone repository to your hard drive
  * Run Command Prompt and change current directory to the project's folder for one of the demo projects (e.g. EasyReportDemo)
  * Type `dotnet build` to build the project
