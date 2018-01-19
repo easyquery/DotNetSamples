@@ -71,9 +71,55 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
 
                     };
                 }
+                if (listname.StartsWith("Cities")) {
+
+                    var connection = eqService.ConnectionResolver() as SqlConnection;
+                    var command = connection.CreateCommand();
+
+                    string entityCity = eqService.Model.EntityRoot.FindAttribute(EntityAttrProp.Expression, "Customers.City").Expr;
+                    string entityCountry = eqService.Model.EntityRoot.FindAttribute(EntityAttrProp.Expression, "Customers.Country").Expr;
+
+                    if (listname == "Cities.") {
+                        command.CommandText = string.Format("SELECT DISTINCT {0} FROM Customers", entityCity);
+                    }
+                    else {
+                        var param = listname.Substring(listname.IndexOf('.') + 1);
+                        command.CommandText = string.Format("SELECT DISTINCT {0} FROM Customers WHERE {1} IN ({2})", entityCity, entityCountry, AddQuotesForParams(param));
+                    }
+
+                    try {
+
+                        connection.Open();
+                        var dataReader = command.ExecuteReader();
+
+                        var valueList = new List<ListItem>();
+                        while (dataReader.Read()) {
+                            valueList.Add(new ListItem(dataReader[entityCity].ToString()));
+                        }
+
+                        dataReader.Close();
+                        connection.Close();
+
+                        return valueList;
+                    }
+                    finally {
+                        connection.Close();
+                    }
+
+                }
                 return Enumerable.Empty<ListItem>();
             };
 
+        }
+
+        private string AddQuotesForParams(string param) {
+            string[] Params = param.Split(',');
+            string result = "";
+            foreach (var p in Params) {
+                result += "'" + p + "',";
+            }
+            result = result.Remove(result.Length - 1);
+            return result;
         }
 
         public ActionResult Index(string queryId) {

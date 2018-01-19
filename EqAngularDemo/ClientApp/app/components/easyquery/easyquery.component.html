@@ -11,6 +11,16 @@
 -->
 <!-- EasyQuery widgets settings -->
 
+<style>
+    .entities-block, .menu-block {
+        height: 443px;
+    }
+    .bottom-panel {
+        padding-top: 0;
+    }
+   
+</style>
+
 
 <div id="main">
     <!--
@@ -69,10 +79,13 @@
                 </div>
             </div>
         </div>
-        <form id="ExportQueryResultForm" asp-controller="EasyQuery" asp-action="ExportToFile" method="post">
-            <input type="hidden" id="queryJsonExport" name="queryJson" />
-            <input type="hidden" id="exportFileType" name="fileType" />
-        </form>
+        <!--
+    <form id="ExportQueryResultForm" asp-controller="EasyQuery" asp-action="ExportToFile" method="post">
+        <input type="hidden" id="queryJsonExport" name="queryJson" />
+        <input type="hidden" id="exportFileType" name="fileType" />
+
+    </form>
+         -->
         <div class="bottom-panel">
             <div class="sql-panel">
                 <hr class="sql-panel-hr hr" />
@@ -87,11 +100,11 @@
                     Result
                     <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
                     <!-- Not supported yet
-                    <span id="ResultExportButtons">
-                        <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
-                        <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
-                    </span>
-                        -->
+                <span id="ResultExportButtons">
+                    <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
+                    <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
+                </span>
+                    -->
                 </div>
                 <div id="ResultPanel" class="result-panel-content">
                 </div>

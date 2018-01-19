@@ -1,10 +1,10 @@
-﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="12" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
+﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="14" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
   <Description />
   <CustomInfo />
   <DMEOptions>
     <listBoxTablesWidth>239</listBoxTablesWidth>
     <FormWidth>1548</FormWidth>
-    <FormHeight>876</FormHeight>
+    <FormHeight>896</FormHeight>
   </DMEOptions>
   <DBParams>
     <SqlDialect>ANSI SQL</SqlDialect>
@@ -92,6 +92,7 @@ FROM "Products"]]></SQL>
     <Editor id="InRangeEditor" type="InRangeEditor" resType="Unknown">
       <Data />
     </Editor>
+    <Editor id="CLVE41" type="CUSTOMLIST" resType="Unknown" name="Cities.{{Customers.Country}}" />
   </Editors>
   <Operators>
     <Operator id="Equal" caption="is equal to" expr="{expr1} = {expr2}" format="{expr1} [[is equal to]] {expr2}" constFmt="{const}" kind="Scalar" caseIns="False" group="Common operators" cond="False">
@@ -271,8 +272,8 @@ FROM "Products"]]></SQL>
         <Operators>Equal,InList,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
-      <Attr id="Customers.City" kind="Data" expr="City" caption="City" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Customers.City" kind="Data" expr="City" caption="City" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" editor="CLVE41" quote="False" UAL="True" aggr="False" tables="Customers">
+        <Operators>Equal,NotEqual,InList,NotInList,StartsWith,Contains,NotStartsWith,NotContains,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
       <Attr id="Customers.Region" kind="Data" expr="Region" caption="Region" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">

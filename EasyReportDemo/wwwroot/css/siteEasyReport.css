@@ -17,12 +17,6 @@ body {
     padding-top:64px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input[type="text"],
-input[type="password"] {
-    max-width: 280px;
-}
-
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
