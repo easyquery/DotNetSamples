@@ -35,17 +35,6 @@ namespace EasyReportDemo.Controllers
 {
     [Authorize]
     public class EasyReportController : Controller {
-        /*
-            static EasyReportController()
-            {
-                //The following section adds support for different types of databases you may use in your app.
-                //It's necessary for proper work of LoadFromConnection method of DbModel class
-                //Please note: for each used DbGate class you will need to reference a corresponding DbGate assembly
-                  Korzh.EasyQuery.DataGates.OleDbGate.Register();
-                  Korzh.EasyQuery.DataGates.SqlClientGate.Register();
-                  Korzh.EasyQuery.SqlCEDBGate.SqlCeGate.Register();
-            }
-            */
         private EqServiceProviderDb eqService;
         private ApplicationDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -90,10 +79,8 @@ namespace EasyReportDemo.Controllers
                 , null, false);
             };
 
-            //The following four handlers (QuerySaver, QueryLoader, QueryRemover and QueryListResolver) are overrided in order to don't save to all Reports in database 
-            //This is for demo purpose only, you may freely delete this code or modify to your notice
-            // --- begining of overrided handlers ---
-
+            // The following four handlers (QuerySaver, QueryLoader, QueryRemover and QueryListResolver) 
+            // demonstrate how to store queries to database and load them back on request
             eqService.QuerySaver = (query, queryId) => {
                 var CurrentUserId = GetCurrentUserId();
 
@@ -176,19 +163,6 @@ namespace EasyReportDemo.Controllers
             };
 
         }
-        /*
-            protected void OnException(ExceptionContext filterContext)
-            {
-                if (filterContext.ExceptionHandled)
-                {
-                    return;
-                }
-                filterContext.Result = new JsonResult("Error: " + filterContext.Exception.Message);
-
-                filterContext.ExceptionHandled = true;
-            }
-            */
-
         public IActionResult Index() {
             return View("EasyReport");
         }
