@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -31,6 +32,8 @@ namespace EqAngularDemo.Models
         public virtual Customer Customer { get; set; }
 
         public virtual Employee Employee { get; set; }
+
+        public virtual List<OrderDetail> Items { get; set; }
 
         [ScaffoldColumn(false)]
         public int? ShipVia { get; set; }
