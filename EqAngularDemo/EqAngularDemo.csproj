@@ -8,9 +8,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Korzh.DbExport" Version="4.2.*" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="4.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="4.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="4.2.0" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="4.3.0-beta1" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="4.3.0-beta1" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="4.3.0-beta1" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
@@ -39,7 +39,7 @@
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
       <DistFiles Include="wwwroot\dist\**; ClientApp\dist\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>
