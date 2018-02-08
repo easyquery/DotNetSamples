@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Customers - EasyQuery LINQ demo";
+}
+
+
+<script type="text/javascript">
+
+    window.easyQueryViewSettings = {
+        serviceUrl: getPrefix(),
+        useBootstrap: true,
+        useHighlightForTextSearch: true,
+    };
+
+    function getPrefix() {
+        var res = window.location.pathname;
+        if (res.charAt(res.length - 1) !== '/')
+            res = res + '/';
+        return res;
+    }
+</script>
+
+<h2>Customers</h2>
+
+<div class="row" style="padding-bottom: 10px">
+    <div class="col-md-7">
+        <input class="form-control" id="TextSearchInput" placeholder="Enter text for full text search and press Enter">
+    </div>
+    <div class="col-md-5">
+        <button class="btn btn-success" id="ApplyTextSearchButton">Search</button>
+        <button class="btn btn-default" id="ClearTextSearchButton">Clear</button>
+    </div>
+</div>
+
+<div id="ResultPanel"></div>
+
+
+@section scripts {
+    <!-- EasyQuery script files -->
+    <script src="//cdn.korzh.com/eq/4.3/eq.view.textsearch.min.js" type="text/javascript"></script>
+
+}
+

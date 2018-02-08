@@ -1,0 +1,75 @@
+﻿@using Korzh.EasyQuery.Services
+@model IPagedList<Customer>
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Contact name
+        </th>
+        <th>
+            Company name
+        </th>
+        <th>
+            Contact title
+        </th>
+        <th>
+            Street
+        </th>
+        <th>
+            City
+        </th>
+        <th>
+            Country
+        </th>
+        <th>
+            Fax
+        </th>
+        <th>
+            Phone
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.ContactName
+            </td>
+            <td>
+                @item.CompanyName
+            </td>
+            <td>
+                @item.ContactTitle
+            </td>
+            <td>
+                @item.Street
+            </td>
+            <td>
+                @item.City
+            </td>
+            <td>
+                @item.Country
+            </td>
+            <td>
+                @item.Fax
+            </td>
+            <td>
+                @item.Phone
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+
+@Html.PageNavigator(Model)
+

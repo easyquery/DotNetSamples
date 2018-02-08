@@ -80,7 +80,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
         /// </summary>
         /// <param name="jsonDict"></param>
         /// <returns>IActionResult which contains a partial view with the filtered result set</returns>
-        public IActionResult ApplyFilter([FromBody] JsonDict jsonDict) {
+        public IActionResult ApplyQueryFilter([FromBody] JsonDict jsonDict) {
             var queryDict = jsonDict["query"] as JsonDict;
             var optionsDict = jsonDict["options"] as JsonDict;
             var query = eqService.GetQueryByJsonDict(queryDict);
