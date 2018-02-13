@@ -24,7 +24,7 @@ To run these samples you will need:
  
  
 ## Sample database
-Most of these sample projects include some sample database. That database is created and initialized automatically at the first start. It may take some time (about 1-2 minutes) - so, please don't worry. Next time the app will be up and ready in a few seconds after launch.
+Most of these demo projects works with some sample database. That database is created and initialized automatically at the first start. It may take some time (about 1-2 minutes) - so, please don't worry. Next time the app will be up and ready in a few seconds after launch.
 
 The sample database is created in your SQL Express LocalDB instance by default. To change that you can modify the connection string in `appsettings.json` file in the project's folder.
  
