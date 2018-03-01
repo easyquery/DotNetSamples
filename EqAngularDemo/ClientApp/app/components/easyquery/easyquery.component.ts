@@ -33,22 +33,29 @@ export class EasyQueryComponent implements OnInit, AfterViewInit, OnDestroy{
         s = document.createElement("script");
         s.id = "eq-all";
         s.type = "text/javascript";
-        //s.src = "//cdn.korzh.com/eq/4.2/eq.all.min.js";
+        //s.src = "//cdn.korzh.com/eq/4.3/eq.all.min.js";
         s.src = "/js/eq.all.min.js";
         $("body").append(s);
 
         s = document.createElement("script");
         s.id = "eq-view";
         s.type = "text/javascript";
-        //s.src = "//cdn.korzh.com/eq/4.2/eq.view.basic.min.js";
+        //s.src = "//cdn.korzh.com/eq/4.3/eq.view.basic.min.js";
         s.src = "/js/eq.view.basic.min.js";
         $("body").append(s);
 
         s = document.createElement("script");
         s.id = "easychart";
         s.type = "text/javascript";
-        //s.src = "//cdn.korzh.com/eq/4.2/easychart.min.js";
+        //s.src = "//cdn.korzh.com/eq/4.3/easychart.min.js";
         s.src = "/js/easychart.min.js";
+        $("body").append(s);
+
+        s = document.createElement("script");
+        s.id = "google-chart";
+        s.type = "text/javascript";
+        //s.src = "//cdn.korzh.com/eq/4.3/easychart.google.min.js";
+        s.src = "/js/easychart.google.min.js";
         $("body").append(s);
         
     }  

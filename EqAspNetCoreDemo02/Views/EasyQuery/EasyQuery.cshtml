@@ -3,99 +3,99 @@
 }
 
 
-    <!--EasyQuery CSS files -->
-    <link href="//cdn.korzh.com/eq/4.3/themes/default/easyquery.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="//cdn.korzh.com/eq/4.3/themes/default/eq-icons-default.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="//cdn.korzh.com/eq/4.3/themes/default/eqview.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="//cdn.korzh.com/eq/4.3/themes/default/easychart.min.css" rel="stylesheet" type="text/css" media="screen" />
+<!--EasyQuery CSS files -->
+<link href="//cdn.korzh.com/eq/4.3/themes/default/easyquery.min.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="//cdn.korzh.com/eq/4.3/themes/default/eq-icons-default.min.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="//cdn.korzh.com/eq/4.3/themes/default/eqview.min.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="//cdn.korzh.com/eq/4.3/themes/default/easychart.min.css" rel="stylesheet" type="text/css" media="screen" />
 
 
 
-    <!-- EasyQuery widgets settings -->
-    <script type="text/javascript">
-        var __antiForgeryTokenInput = document.querySelector('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]');
-        var __antiForgeryToken = __antiForgeryTokenInput != null ? __antiForgeryTokenInput.value : "";
+<!-- EasyQuery widgets settings -->
+<script type="text/javascript">
+    var __antiForgeryTokenInput = document.querySelector('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]');
+    var __antiForgeryToken = __antiForgeryTokenInput != null ? __antiForgeryTokenInput.value : "";
 
 
-        window.easyQuerySettings = {
-            serviceUrl: "/EasyQuery",
-            loadDefaultModel: true,
-            loadQueryOnStart: true,
-            //locale: "fr",
-            entitiesPanel: {
-                showCheckboxes: true
-            },
-            columnsPanel: {
-                allowAggrColumns: true,
-                attrElementFormat: "{entity} {attr}",
-                showColumnCaptions: true,
-                adjustEntitiesMenuHeight: false,
-                menuOptions: {
-                    showSearchBoxAfter: 30,
-                    activateOnMouseOver: true
+    window.easyQuerySettings = {
+        serviceUrl: "/EasyQuery",
+        loadDefaultModel: true,
+        loadQueryOnStart: true,
+        //locale: "fr",
+        entitiesPanel: {
+            showCheckboxes: true
+        },
+        columnsPanel: {
+            allowAggrColumns: true,
+            attrElementFormat: "{entity} {attr}",
+            showColumnCaptions: true,
+            adjustEntitiesMenuHeight: false,
+            menuOptions: {
+                showSearchBoxAfter: 30,
+                activateOnMouseOver: true
+            }
+
+        },
+        queryPanel: {
+            showPoweredBy: false,
+            alwaysShowButtonsInPredicates: false,
+            //dateFormatValue: "dd.mm.yy",
+            //dateFormatDisplay: "dd M yy",
+            menuOptions: {
+                showSearchBoxAfter: 20,
+                activateOnMouseOver: true
+            }
+
+        },
+        syncQueryOptions: {
+            sqlOptions: { SelectDistinct: true }
+        },
+
+        listRequesHandler: function (params, onResult) {
+            var processed = true;
+            if (params.listName == "RegionList") {
+                var query = EQ.client.getQuery();
+                var country = query.getOneValueForAttr(query, "Customer.Country");
+                if (country == "Canada") {
+                    onResult([
+                        { id: "BC", text: "British Columbia" },
+                        { id: "Quebec", text: "Quebec" }
+                    ]);
+
                 }
-
-            },
-            queryPanel: {
-                showPoweredBy: false,
-                alwaysShowButtonsInPredicates: false,
-                //dateFormatValue: "dd.mm.yy",
-                //dateFormatDisplay: "dd M yy",
-                menuOptions: {
-                    showSearchBoxAfter: 20,
-                    activateOnMouseOver: true
+                else {
+                    onResult([
+                        { id: "CA", text: "California" },
+                        { id: "CO", text: "Colorado" },
+                        { id: "OR", text: "Oregon" },
+                        { id: "WA", text: "Washington" }
+                    ]);
                 }
+            }
+            else
+                processed = false;
 
-            },
-            syncQueryOptions: {
-                sqlOptions: {SelectDistinct:true}
-            },
+            return processed;
 
-            listRequesHandler: function (params, onResult) {
-                var processed = true;
-                if (params.listName == "RegionList") {
-                    var query = EQ.client.getQuery();
-                    var country = query.getOneValueForAttr(query, "Customer.Country");
-                    if (country == "Canada") {
-                        onResult([
-                            { id: "BC", text: "British Columbia" },
-                            { id: "Quebec", text: "Quebec" }
-                        ]);
+        },
 
-                    }
-                    else {
-                        onResult([
-                            { id: "CA", text: "California" },
-                            { id: "CO", text: "Colorado" },
-                            { id: "OR", text: "Oregon" },
-                            { id: "WA", text: "Washington" }
-                        ]);
-                    }
-                }
-                else
-                    processed = false;
+        antiForgeryToken: __antiForgeryToken
 
-                return processed;
+    };
 
-            },
+    window.easyQueryViewSettings = {
+        showChart: true,
+        useEasyChart: true
+    };
 
-            antiForgeryToken: __antiForgeryToken
+    function getPrefix() {
+        var res = window.location.pathname;
+        if (res.charAt(res.length - 1) !== '/')
+            res = res + '/';
+        return res;
+    }
 
-        };
-
-        window.easyQueryViewSettings = {
-            showChart: true,
-            useEasyChart: true
-        };
-
-        function getPrefix() {
-            var res = window.location.pathname;
-            if (res.charAt(res.length-1) !== '/')
-                res = res + '/';
-            return res;
-        }
-
-	</script>
+</script>
 
 
 <div id="main">
@@ -103,10 +103,10 @@
     <input id="QueryContentJson" type="hidden" value="@ViewBag.QueryJson" />
     -->
     <div class="header">
-            <div class="title">EasyQuery</div>
-            <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
-            <div class="global-message">@ViewBag.Message</div>
-        </div>
+        <div class="title">EasyQuery</div>
+        <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
+        <div class="global-message">@ViewBag.Message</div>
+    </div>
     <div id="content">
         <div class="header-panel">
             <div class="entities-block">
@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="menu-block">
                 <hr class="menu-hr hr" />
                 <div class="menu-title">Menu</div>
@@ -169,9 +169,10 @@
             </div>
             <div class="result-panel">
                 <hr class="result-panel-hr hr" />
-                <div class="result-panel-title">Result 
+                <div class="result-panel-title">
+                    Result
                     <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
-                    <span id="ResultExportButtons"  >
+                    <span id="ResultExportButtons">
                         <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
                         <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
                     </span>
@@ -190,7 +191,7 @@
         </div>
         <div class="power-by">
             Powered by <a href="https://korzh.com/easyquery" target="_blank">EasyQuery</a>
-            | 
+            |
             <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
 
         </div>
@@ -201,16 +202,25 @@
 
 @section Scripts {
 
-    
+
+    <!--ChartJS script file
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" type="text/javascript"></script>
+        -->
+    <!-- EasyQuery script files -->
     <script src="//cdn.korzh.com/eq/4.3/eq.all.min.js" type="text/javascript"></script>
     <script src="//cdn.korzh.com/eq/4.3/eq.view.basic.min.js" type="text/javascript"></script>
     <script src="//cdn.korzh.com/eq/4.3/easychart.min.js" type="text/javascript"></script>
-    
+    <script src="//cdn.korzh.com/eq/4.3/easychart.google.min.js" type="text/javascript"></script>
+    <!--You can use ChartJS library instead of Google Charts.
+        Uncomment ChartJS script file to use it
+     <script src="//cdn.korzh.com/eq/4.3/easychart.chartjs.min.js" type="text/javascript"></script>
+        -->
+
 
 
     <script type="text/javascript">
         // Load the Visualization API and the piechart package.
-        google.charts.load('current', { 'packages': ['corechart'] }); 
+        google.charts.load('current', { 'packages': ['corechart'] });
 
         // Set a callback to run when the Google Visualization API is loaded.
         google.charts.setOnLoadCallback(GoogleVisualizationLoaded);
@@ -232,10 +242,10 @@
 
 
 //                EQ.client.locale = 'ru';
-                //how to get current Query 
+                //how to get current Query
                 //var query = EQ.client.getQuery();
-            
-                //Here we show how to load another data model 
+
+                //Here we show how to load another data model
                 //EQ.client.loadModel({ modelName: "NWindSQL" });
                 //EQ.client.loadQuery({ queryName: "query6" });
 
