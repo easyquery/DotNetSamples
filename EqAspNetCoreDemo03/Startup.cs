@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
-
+using Microsoft.AspNetCore.NodeServices;
 
 namespace Korzh.EasyQuery.AspNetCore.Demo03
 {
@@ -22,6 +22,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
         }
 
         public IConfigurationRoot Configuration { get; }
+        public object NodeHostingModel { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,12 +31,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
 
             // Add framework services.
             services.AddMvc();
-        //    services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            // Adds a default in-memory implementation of IDistributedCache.
-            services.AddDistributedMemoryCache();
-
-            services.AddSession();
+            services.AddNodeServices(new NodeServicesOptions { HostingModel = NodeHostingModel.Socket });
 
             services.AddEasyQuery();
         }
