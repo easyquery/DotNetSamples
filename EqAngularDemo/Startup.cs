@@ -34,6 +34,9 @@ namespace EqAngularDemo {
             });
 
             services.AddMvc();
+            // Adds a default in-memory implementation of IDistributedCache.
+            services.AddDistributedMemoryCache();
+
             services.AddEasyQuery();
         }
 

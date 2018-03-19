@@ -1,7 +1,6 @@
 ﻿var __antiForgeryTokenInput = document.querySelector('#__AjaxAntiForgeryForm input[name=__RequestVerificationToken]');
 var __antiForgeryToken = __antiForgeryTokenInput != null ? __antiForgeryTokenInput.value : "";
 
-
 window.easyQuerySettings = {
     serviceUrl: "/EasyQuery",
     loadDefaultModel: true,
@@ -35,6 +34,8 @@ window.easyQuerySettings = {
     syncQueryOptions: {
         sqlOptions: { SelectDistinct: true }
     },
+
+    listCache: EQ.listcache.localstorage.getCacheObject(),
 
     listRequesHandler: function (params, onResult) {
         var processed = true;

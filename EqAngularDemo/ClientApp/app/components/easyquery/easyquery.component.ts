@@ -61,12 +61,13 @@ export class EasyQueryComponent implements OnInit, AfterViewInit, OnDestroy{
     }  
 
     ngAfterViewInit() {
+
         this.loadQueryFromLocalStorage();
     }
 
     ngOnDestroy() {
 
-        this.saveQueryToLocalStorage();
+       this.saveQueryToLocalStorage();
 
         //Remove all EasyQuery scripts
         $("#settings").remove();
