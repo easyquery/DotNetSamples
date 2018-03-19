@@ -32,8 +32,6 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             // Add framework services.
             services.AddMvc();
 
-            services.AddNodeServices(new NodeServicesOptions { HostingModel = NodeHostingModel.Socket });
-
             services.AddEasyQuery();
         }
 

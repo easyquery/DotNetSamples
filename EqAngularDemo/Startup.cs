@@ -35,8 +35,6 @@ namespace EqAngularDemo {
 
             services.AddMvc();
 
-            services.AddNodeServices(opts => opts.WatchFileExtensions = new string[] { });
-
             services.AddEasyQuery();
         }
 
