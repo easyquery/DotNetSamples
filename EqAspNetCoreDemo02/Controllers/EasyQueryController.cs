@@ -187,7 +187,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("statement", qbr.Statement);
             dict.Add("resultSet", resultSet);
-            dict.Add("resultCount", resultSet.RecordCount + " record(s) found");
+            dict.Add("resultCount", ((eqService.Paging.Enabled) ? eqService.Paging.TotalRecords : resultSet.RecordCount) + " record(s) found");
 
             return Json(dict);
         }
