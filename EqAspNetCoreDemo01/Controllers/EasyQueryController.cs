@@ -42,6 +42,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
 
             eqService.StoreQueryInCache = true;
 
+            eqService.Paging.Enabled = true;
+
             eqService.Formats.SetDefaultFormats(FormatType.MsSqlServer);
             eqService.Formats.UseSchema = true;
 
@@ -222,6 +224,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             var queryDict = jsonDict["query"] as JsonDict;
             var optionsDict = jsonDict["options"] as JsonDict;
 
+            eqService.LoadOptions(optionsDict);
+
             var query = eqService.GetQueryByJsonDict(queryDict);
             var qbr = eqService.BuildQuery(query, optionsDict);
 
@@ -230,6 +234,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             Dictionary<string, object> dict = new Dictionary<string, object>();
             dict.Add("statement", qbr.Statement);
             dict.Add("resultSet", resultSet);
+            dict.Add("paging", eqService.Paging.SaveToJsonDict());
             dict.Add("resultCount", ((eqService.Paging.Enabled) ? eqService.Paging.TotalRecords : resultSet.RecordCount) + " record(s) found");
 
             return Json(dict);
