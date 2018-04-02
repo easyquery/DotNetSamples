@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAspNetCoreDemo03", "EqAsp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyReportDemo", "EasyReportDemo\EasyReportDemo.csproj", "{423CA2DB-4D30-4F6A-AC47-40A5F6154EE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqAngularDemo", "EqAngularDemo\EqAngularDemo.csproj", "{5ACC2600-05BB-4164-9B8D-E7731305EC89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAngularDemo", "EqAngularDemo\EqAngularDemo.csproj", "{5ACC2600-05BB-4164-9B8D-E7731305EC89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqAzureDemo", "EqAzureDemo\EqAzureDemo.csproj", "{3F776442-5D0E-4A19-9B77-C256BA68F677}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,6 +118,24 @@ Global
 		{5ACC2600-05BB-4164-9B8D-E7731305EC89}.Release|x64.Build.0 = Release|Any CPU
 		{5ACC2600-05BB-4164-9B8D-E7731305EC89}.Release|x86.ActiveCfg = Release|Any CPU
 		{5ACC2600-05BB-4164-9B8D-E7731305EC89}.Release|x86.Build.0 = Release|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Debug|x64.Build.0 = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Debug|x86.Build.0 = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.DebugDeep|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.DebugDeep|Any CPU.Build.0 = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.DebugDeep|x64.ActiveCfg = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.DebugDeep|x64.Build.0 = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.DebugDeep|x86.ActiveCfg = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.DebugDeep|x86.Build.0 = Debug|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Release|x64.Build.0 = Release|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F776442-5D0E-4A19-9B77-C256BA68F677}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
