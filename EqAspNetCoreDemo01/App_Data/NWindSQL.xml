@@ -1,10 +1,10 @@
-﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="14" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
+﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="19" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
   <Description />
   <CustomInfo />
   <DMEOptions>
-    <listBoxTablesWidth>239</listBoxTablesWidth>
-    <FormWidth>1548</FormWidth>
-    <FormHeight>896</FormHeight>
+    <listBoxTablesWidth>232</listBoxTablesWidth>
+    <FormWidth>1048</FormWidth>
+    <FormHeight>702</FormHeight>
   </DMEOptions>
   <DBParams>
     <SqlDialect>ANSI SQL</SqlDialect>
@@ -241,6 +241,10 @@ FROM "Products"]]></SQL>
       <Types>Byte,Word,Int,Int32,Int64,Float</Types>
       <Operands defType="Unknown" />
     </Operator>
+    <Operator id="LastNMonth" caption="Last N months" expr="DATEDIFF(month, {expr1}, GETDATE()) &lt; {expr2}" format="{expr1} [[within last]] {expr2} months" constFmt="{const}" kind="Scalar" caseIns="False" group="Other operators" cond="False">
+      <Types>String,Byte,Word,Int,Int32,Int64,Bool,Float,Currency,BCD,Autoinc,Memo,FixedChar</Types>
+      <Operands defType="Int" />
+    </Operator>
   </Operators>
   <Entities maxId="0">
     <Entity id="" name="Category" UIC="False" UIR="False" UIS="False">
@@ -448,6 +452,7 @@ FROM "Products"]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Order" UIC="True" UIR="True" UIS="True">
+      <UserData />
       <Attr id="Orders.OrderID" kind="Data" expr="OrderID" caption="OrderID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
@@ -458,7 +463,8 @@ FROM "Products"]]></SQL>
         <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
       </Attr>
       <Attr id="Orders.OrderDate" kind="Data" expr="OrderDate" caption="Order date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
-        <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
+        <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,LastNMonth,MaximumOfAttr,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Orders.RequiredDate" kind="Data" expr="RequiredDate" caption="Required date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
