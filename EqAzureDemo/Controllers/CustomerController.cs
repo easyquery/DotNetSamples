@@ -29,7 +29,7 @@ namespace EqAzureDemo.Controllers
                 model.LoadFromEntityType(typeof(Customer));
                 model.SortEntities();
 
-                //This operators are not supported for OData queries
+                //These operators are not supported in OData queries - so we need to remove them
                 model.Operators.RemoveByIDs(model, "InList,NotInList,ListContains,Contains,NotContains");
             };
 
@@ -87,18 +87,19 @@ namespace EqAzureDemo.Controllers
 
             var lvo = optionsDict.ToListViewOptions();
 
-            //We can use odata query to get filtered information from Azure Storage
+            //We can use OData query to get filtered information from Azure Storage
             var odataBuilder = new ODataQueryBuilder(query);
             string filterString = odataBuilder.Build();
 
             var list = _context.Customers.Filter(filterString);
 
-            //
-            // In this case we don't build Odata query, so we can use all operators in our model. 
-            // But notice, that all data will be loaded on your server from storage.
+            // Here is another option of solving the same task
+            // In this case we don't build OData query, so we can use all operators in our model. 
+            // However, it will work well only if Customers implements IQueryable interface 
+            // Otherwise it will load the whole table content from the storage before applying the query.
             //
             // list = _context.Customers.GetAll().DynamicQuery<Customer>(query).OrderBy(d => d.Id);
-            //
+            // 
 
             return View("_CustomerListPartial", list);
         }
