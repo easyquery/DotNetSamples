@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-using Microsoft.WindowsAzure.Storage.Table;
 using Korzh.WindowsAzure.Storage;
 
 using EqAzureDemo.Models;
@@ -13,34 +10,34 @@ namespace EqAzureDemo.Repositories
 {
     public class CustomerRepository : IRepository<Customer> {
 
-        private readonly TableStorageService<Customer> _modelStorage;
+        private readonly AzureTable<Customer> _table;
 
         public CustomerRepository(AzureStorageContext azureStorageContext) {
-            _modelStorage = new TableStorageService<Customer>(azureStorageContext, "Customers");
+            _table = new AzureTable<Customer>(azureStorageContext, "Customers");
         }
 
         public void Add(Customer entity) {
-            var result = _modelStorage.InsertEntityAsync(entity).Result;
+            var result = _table.InsertEntityAsync(entity).Result;
         }
 
         public void Update(Customer entity) {
-            var result = _modelStorage.InsertOrUpdateEntityAsync(entity).Result;
+            var result = _table.InsertOrUpdateEntityAsync(entity).Result;
         }
 
         public void Delete(Customer entity) {
-            _modelStorage.DeleteEntityAsync(entity).Wait();
+            _table.DeleteEntityAsync(entity).Wait();
         }
 
         public Customer Get(string id) {
-            return _modelStorage.GetEntityByKeysAsync("Customer", id).Result;
+            return _table.GetEntityByKeysAsync("Customer", id).Result;
         }
 
         public IEnumerable<Customer> Filter(string filterString) {
-            return _modelStorage.GetEntitiesByFilterAsync(filterString).Result;
+            return _table.GetEntitiesByFilterAsync(filterString).Result;
         }
 
         public IEnumerable<Customer> GetAll() {
-            return _modelStorage.GetEntitiesByPartitionKeyAsync("Customer").Result;
+            return _table.GetEntitiesByPartitionKeyAsync("Customer").Result;
         }
 
     }
