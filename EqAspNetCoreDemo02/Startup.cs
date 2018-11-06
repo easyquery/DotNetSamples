@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
 using Korzh.EasyQuery.AspNetCore.Demo02.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Korzh.EasyQuery.AspNetCore.Demo02
 {
@@ -41,8 +43,16 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02
                 opts.UseSqlServer(connectionString);
             });
 
+            services.Configure<CookiePolicyOptions>(options => {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddEasyQuery();
         }
@@ -56,14 +66,16 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseMvc(routes =>
             {
