@@ -16,7 +16,7 @@
         var __antiForgeryToken = __antiForgeryTokenInput != null ? __antiForgeryTokenInput.value : "";
 
         window.easyQuerySettings = {
-            serviceUrl: "/EasyQuery",
+            serviceUrl: getPrefix() + "EasyQuery",
             loadDefaultModel: true,
             loadQueryOnStart: true,
             defaultQueryId: "@defaultQueryId",

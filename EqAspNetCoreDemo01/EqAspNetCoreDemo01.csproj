@@ -6,6 +6,7 @@
     <AssemblyName>Korzh.EasyQuery.AspNetCore.Demo01</AssemblyName>
     <RootNamespace>Korzh.EasyQuery.AspNetCore.Demo01</RootNamespace>
     <Description />
+    <UserSecretsId>74bf7864-d05b-4340-a889-9c5b0f0e3d1d</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="wwwroot\css\images\**" />
@@ -20,5 +21,13 @@
     <PackageReference Include="Korzh.EasyQuery.Json" Version="4.4.0-beta1" />
     <PackageReference Include="Korzh.EasyQuery.Db" Version="4.4.0-beta1" />
     <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="4.4.0-beta1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="App_Data\EqDemoDb.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="App_Data\NWindSQL.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
