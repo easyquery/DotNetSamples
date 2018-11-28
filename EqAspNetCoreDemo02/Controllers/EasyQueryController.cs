@@ -204,7 +204,8 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02.Controllers
         /// <param name="fileType">type of the file</param>
         /// <returns></returns>
         [HttpPost]
-        public void ExportToFile(string queryJson, string fileType){
+        public void ExportToFile(string queryJson, string fileType) {
+            eqService.Paging.Enabled = false;
 
             var query = eqService.GetQueryByJsonDict(queryJson.ToJsonDict());
             var qbr = eqService.BuildQuery(query);
