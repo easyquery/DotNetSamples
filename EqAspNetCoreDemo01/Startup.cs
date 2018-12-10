@@ -65,7 +65,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo01
             });
 
             var scriptFilePath = "App_Data\\EqDemoDb.sql";
-            var dbInit = new EqAspNetCoreDemo01.Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
+            var dbInit = new EqAspNetCoreDemo01.Data.DbInitializer(Configuration, "EqDemoDbMVC", scriptFilePath);
             dbInit.EnsureCreated();
         }
     }

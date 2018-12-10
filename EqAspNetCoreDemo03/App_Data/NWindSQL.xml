@@ -1,12 +1,13 @@
-﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="8" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
+﻿<DataModel name="NwindSQL" formatVersion="13" modelVersion="19" defQuery="" id="f93e0c94-3962-4f51-b134-4026acecb4b3">
   <Description />
   <CustomInfo />
   <DMEOptions>
-    <listBoxTablesWidth>239</listBoxTablesWidth>
-    <FormWidth>1077</FormWidth>
-    <FormHeight>666</FormHeight>
+    <listBoxTablesWidth>232</listBoxTablesWidth>
+    <FormWidth>1048</FormWidth>
+    <FormHeight>702</FormHeight>
   </DMEOptions>
   <DBParams>
+    <SqlDialect>ANSI SQL</SqlDialect>
     <ConnectionString />
     <LoginPrompt>False</LoginPrompt>
     <GateClass>Korzh.EasyQuery.DataGates.OdbcGate</GateClass>
@@ -88,6 +89,10 @@ FROM "Products"]]></SQL>
     <Editor id="SQLLVE35" type="SQLLIST" resType="Unknown">
       <SQL><![CDATA[SELECT DISTINCT ShipCountry, ShipCountry FROM Orders]]></SQL>
     </Editor>
+    <Editor id="InRangeEditor" type="InRangeEditor" resType="Unknown">
+      <Data />
+    </Editor>
+    <Editor id="CLVE41" type="CUSTOMLIST" resType="Unknown" name="Cities.{{Customers.Country}}" />
   </Editors>
   <Operators>
     <Operator id="Equal" caption="is equal to" expr="{expr1} = {expr2}" format="{expr1} [[is equal to]] {expr2}" constFmt="{const}" kind="Scalar" caseIns="False" group="Common operators" cond="False">
@@ -232,6 +237,14 @@ FROM "Products"]]></SQL>
       <Types>String,Byte,Word,Int,Int32,Int64,Bool,Float,Currency,BCD,Autoinc,Memo,FixedChar,Date,DateTime,Time</Types>
       <Operands defType="Unknown" />
     </Operator>
+    <Operator id="InRange" caption="is in range" expr="{expr1} BETWEEN {expr2[0]} AND {expr2[1]}" format="{expr1} [[is in range]] {expr2}" constFmt="{const}" kind="List" caseIns="False" editor="InRangeEditor" group="Other operators" cond="False">
+      <Types>Byte,Word,Int,Int32,Int64,Float</Types>
+      <Operands defType="Unknown" />
+    </Operator>
+    <Operator id="LastNMonth" caption="Last N months" expr="DATEDIFF(month, {expr1}, GETDATE()) &lt; {expr2}" format="{expr1} [[within last]] {expr2} months" constFmt="{const}" kind="Scalar" caseIns="False" group="Other operators" cond="False">
+      <Types>String,Byte,Word,Int,Int32,Int64,Bool,Float,Currency,BCD,Autoinc,Memo,FixedChar</Types>
+      <Operands defType="Int" />
+    </Operator>
   </Operators>
   <Entities maxId="0">
     <Entity id="" name="Category" UIC="False" UIR="False" UIS="False">
@@ -263,8 +276,8 @@ FROM "Products"]]></SQL>
         <Operators>Equal,InList,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
-      <Attr id="Customers.City" kind="Data" expr="City" caption="City" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+      <Attr id="Customers.City" kind="Data" expr="City" caption="City" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" editor="CLVE41" quote="False" UAL="True" aggr="False" tables="Customers">
+        <Operators>Equal,NotEqual,InList,NotInList,StartsWith,Contains,NotStartsWith,NotContains,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
       <Attr id="Customers.Region" kind="Data" expr="Region" caption="Region" type="String" size="15" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
@@ -428,7 +441,8 @@ FROM "Products"]]></SQL>
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
       </Attr>
       <Attr id="Products.UnitsInStock" kind="Data" expr="UnitsInStock" caption="Units in stock" type="Word" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
-        <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Operators>Equal,Between,InRange,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Products.UnitsOnOrder" kind="Data" expr="UnitsOnOrder" caption="Units on order" type="Word" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
@@ -438,6 +452,7 @@ FROM "Products"]]></SQL>
       </Attr>
     </Entity>
     <Entity id="" name="Order" UIC="True" UIR="True" UIS="True">
+      <UserData />
       <Attr id="Orders.OrderID" kind="Data" expr="OrderID" caption="OrderID" type="Int" size="0" UIC="False" UIR="False" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery</Operators>
       </Attr>
@@ -448,7 +463,8 @@ FROM "Products"]]></SQL>
         <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
       </Attr>
       <Attr id="Orders.OrderDate" kind="Data" expr="OrderDate" caption="Order date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
-        <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
+        <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,LastNMonth,MaximumOfAttr,IsNull,IsNotNull</Operators>
+        <Description />
       </Attr>
       <Attr id="Orders.RequiredDate" kind="Data" expr="RequiredDate" caption="Required date" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
