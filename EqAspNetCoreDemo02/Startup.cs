@@ -37,7 +37,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo02
         {
             services.AddSingleton<IConfiguration>(Configuration);
 
-            var connectionString = Configuration.GetConnectionString("EqDemoDb");
+            var connectionString = Configuration.GetConnectionString("EqDemoDbFiltering");
 
             services.AddDbContext<AppDbContext>(opts => {
                 opts.UseSqlServer(connectionString);
