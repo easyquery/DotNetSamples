@@ -57,7 +57,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             eqService.DataPath = dataPath;
 
             eqService.ConnectionResolver = () => {
-                return new SqlConnection(config.GetConnectionString("EqDemoDb"));
+                return new SqlConnection(config.GetConnectionString("EqDemoDbReporting"));
             };
 
 
