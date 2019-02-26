@@ -16,10 +16,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Korzh.EasyQuery" Version="4.4.2-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.Json" Version="4.4.2-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="4.4.2-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="4.4.2-beta1" />
+    <PackageReference Include="Korzh.EasyQuery" Version="4.4.2-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.Json" Version="4.4.2-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="4.4.2-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="4.4.2-beta2" />
     <PackageReference Include="Korzh.DbExport" Version="4.2.*" />
   </ItemGroup>
   <ItemGroup>
