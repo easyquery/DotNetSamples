@@ -32,6 +32,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
 
             services.Configure<CookiePolicyOptions>(options => {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                // NB: Here we return true like as user always gives their consent. It's not a correct behavior for a production mode!!! 
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
