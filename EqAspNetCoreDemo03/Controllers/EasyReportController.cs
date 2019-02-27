@@ -38,7 +38,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             */
         private EqServiceProviderDb eqService;
 
-        public EasyReportController(IHostingEnvironment env, IConfiguration config) {
+       public EasyReportController(IHostingEnvironment env, IConfiguration config) {
             eqService = new EqServiceProviderDb();
 
             eqService.Paging.Enabled = true;
