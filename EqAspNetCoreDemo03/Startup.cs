@@ -38,7 +38,7 @@ namespace Korzh.EasyQuery.AspNetCore.Demo03
             });
 
             services.AddSession();
-
+          
             // Add framework services.
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
