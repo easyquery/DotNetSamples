@@ -4,10 +4,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Korzh.EasyQuery" Version="5.0.0-beta3" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-beta3" />
-    <PackageReference Include="Korzh.EasyQuery.Json" Version="5.0.0-beta3" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.0.0-beta3" />
+    <PackageReference Include="Korzh.EasyQuery" Version="5.0.0-beta4" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-beta4" />
+    <PackageReference Include="Korzh.EasyQuery.Json" Version="5.0.0-beta4" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.0.0-beta4" />
     <PackageReference Include="Korzh.AzureStorage" Version="1.0.7" />
   </ItemGroup>
 </Project>
