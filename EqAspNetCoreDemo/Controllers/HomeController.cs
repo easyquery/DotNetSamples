@@ -20,6 +20,16 @@ namespace EqAspNetCoreDemo.Controllers
             return View();
         }
 
+        public IActionResult DataFiltering()
+        {
+            return View();
+        }
+
+        public IActionResult EasyReport()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

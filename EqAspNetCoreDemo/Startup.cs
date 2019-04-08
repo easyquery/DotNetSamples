@@ -41,6 +41,8 @@ namespace EqAspNetCoreDemo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb")));
+
             services.AddEasyQuery()
                     .UseSqlManager()
                     .RegisterDbGate<SqlClientGate>();
@@ -68,7 +70,8 @@ namespace EqAspNetCoreDemo
                 options.DefaultModelId = "NWindSQL";
                 options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
                 options.UseDbConnection<SqlConnection>();
-                options.UseDbConnectionModelLoader();
+                //uncomment this line if you want to load model directly from connection 
+                //options.UseDbConnectionModelLoader(); uncomment this line
                 options.UsePaging(10);
             });
 
@@ -83,7 +86,7 @@ namespace EqAspNetCoreDemo
             });
 
             app.UseEasyQuery(options => {
-                options.Endpoint = "/easyreport";
+                options.Endpoint = "/api-easyreport";
                 options.UseDbContext<AppDbContext>();
                 options.UseDbConnection<SqlConnection>();
                 options.UsePaging(10);

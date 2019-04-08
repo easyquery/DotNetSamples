@@ -1,7 +1,87 @@
 ﻿
 @{
-    ViewData["Title"] = "EasyReport";
+    ViewData["Title"] = "AdHocReport";
 }
 
-<h1>EasyReport</h1>
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-default" style="min-height:300px;">
+            <div class="panel-heading panel-title">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a id="NewReportButton" href="javascript:void(0)">New report</a></li>
+                        <li><a id="SaveReportButton" href="javascript:void(0)">Save as...</a></li>
+                        <li class="divider"></li>
+                        <li><a id="RemoveReportButton" href="javascript:void(0)">Remove report</a></li>
+                    </ul>
+                </div>
+                <span class="panel-title">Reports</span>
 
+            </div>
+            <div id="ReportList" class="panel-body">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div id="ReportPanel" class="panel panel-default" style="display:none;">
+            <div class="panel-heading panel-title">
+                <div class="panel-buttons">
+                    <button id="UpdateReportButton" type="button" class="btn btn-default btn-sm" title="Refresh result set">
+                        <span class="glyphicon glyphicon-refresh"></span>
+                    </button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-export"></span> <span class="caret"></span>
+                        </button>
+                        <!--
+                        <form id="ExportQueryResultForm" asp-controller="EasyReport" asp-action="ExportToFile" method="post">
+                            <input type="hidden" id="queryToSaveJson" name="queryJson" />
+                            <input type="hidden" id="exportFileType" name="fileType" />
+                        </form>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a></li>
+                            <li><a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a></li>
+                        </ul>
+                            --->
+                    </div>
+                </div>
+                <span id="ReportTitle">Sales by product</span>
+
+            </div>
+            <div class="columns-block">
+                <div class="columns-caption">Columns:</div>
+                <div id="ColumnsBar"></div>
+                <!-- <div id="ColumnsPanel"></div> -->
+            </div>
+
+            <div id="QueryPanel" class="query-panel"></div>
+            <div id="ResultPanel" class="result-panel-content">
+            </div>
+        </div>
+        <div id="NoReportPanel" style="display:none;height:300px;padding-top:100px;">
+            <h3 class="text-center">
+                No reports are defined. <a id="FirstReportButton" href="javascript:EQ.view.report.newReport()">Create a first one</a> to start.
+            </h3>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+    </script>
+
+    <script src="~/js/easyquery.js"></script>
+
+    }
