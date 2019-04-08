@@ -1,16 +1,22 @@
-﻿import { Component, ElementRef, AfterViewInit, OnInit} from '@angular/core';
+import { Component, ElementRef, AfterViewInit, OnInit} from '@angular/core';
 
-declare var $: any;
-declare var EQ: any;
+import { EqContext, EqContextOptions } from '@easyquery/core';
+import { EqServerBroker } from '@easyquery/broker-eqs';
+import { AdvancedSearchViewJQuery } from '@easyquery/ui-jquery';
+import { EqViewOptions } from '@easyquery/ui';
 
 @Component({
     selector: 'easyquery',
     templateUrl: './easyquery.component.html'
 })
 
-export class EasyQueryComponent implements OnInit, AfterViewInit{
+export class EasyQueryComponent implements OnInit {
 
     private QUERY_KEY = 'easyquerycomponent-query';
+
+    private context: EqContext;
+
+    private view: AdvancedSearchViewJQuery;
 
     constructor() {
       
@@ -18,81 +24,110 @@ export class EasyQueryComponent implements OnInit, AfterViewInit{
    
 
     ngOnInit() {
-       
-        //Add EasyQuery scripts dynamically
-        //This script contains the settings for EasyQuery widgets
-        if ($("#settings").length === 0) {
-            var s = document.createElement("script");
-            s.id = "settings";
-            s.type = "text/javascript";
-            s.src = "/js/eq.settings.js";
-            $("body").prepend(s);
-            console.log("settings created");
+
+      const options:EqViewOptions = {
+        context: {
+          loadModelOnStart: true,
+          loadQueryOnStart: true,
+          defaultQueryId: "test-query",
+          defaultModelId: "NWindSQL",
+          handlers: {
+            onError: (error) => {
+              console.error(error.type + " error:\n" + error.text);
+            },
+            listRequestHandler: (params, onResult) => {
+              let processed = true;
+              if (params.listName == "RegionList") {
+                  let query = this.context.getQuery();
+                  let country = query.getOneValueForAttr("Customer.Country");
+                  if (country == "Canada") {
+                      onResult([
+                          { id: "BC", text: "British Columbia" },
+                          { id: "Quebec", text: "Quebec" }
+                      ]);
+                  }
+                  else {
+                      onResult([
+                          { id: "CA", text: "California" },
+                          { id: "CO", text: "Colorado" },
+                          { id: "OR", text: "Oregon" },
+                          { id: "WA", text: "Washington" }
+                      ]);
+                  }
+              }
+              else
+                  processed = false;
+              return processed;
+            }
+          },
+          broker: {
+            serviceUrl: "/EasyQuery",
+          },
+          widgets: {
+            entitiesPanel: {
+              showCheckboxes: true
+            },
+            columnsPanel: {
+              allowAggrColumns: true,
+              allowCustomExpressions: true,
+              attrElementFormat: "{entity} {attr}",
+              titleElementFormat: "{attr}",
+              showColumnCaptions: true,
+              adjustEntitiesMenuHeight: false,
+              customExpressionText: 2,
+              showPoweredBy: false,
+              menuOptions: {
+                  showSearchBoxAfter: 30,
+                  activateOnMouseOver: true
+              }
+            },
+            queryPanel: {
+              showPoweredBy: false,
+              alwaysShowButtonsInPredicates: false,
+              allowParameterization: true,
+              allowInJoinConditions: true,
+              autoEditNewCondition: true,
+              buttons: {
+                  condition: ["menu"],
+                  predicate: ["addCondition", "addPredicate", "enable", "delete"]
+              },
+              menuOptions: {
+                  showSearchBoxAfter: 20,
+                  activateOnMouseOver: true
+              }
+            },
+          }
+        },
+        showChart: true,
+
+      }
+
+        this.view = new AdvancedSearchViewJQuery();
+        options.context.handlers.onInit = () => {
+          //here we need to add query autosave
+          let query = this.context.getQuery();
+
+          query.addChangedCallback(() => {
+              let queryJson = query.toJSON();
+              localStorage.setItem(this.QUERY_KEY, queryJson);
+              console.log("Query saved", query);
+          });
+
+          //add load query from local storage
+          this.loadQueryFromLocalStorage();
         }
+        this.view.init(options);
 
-        if ($("#eq-all").length === 0) {
-            //Load main EasyQuery JS scripts 
-            //(optionally, you can load them from CDN)
-            s = document.createElement("script");
-            s.id = "eq-all";
-            s.type = "text/javascript";
-            //s.src = "//cdn.korzh.com/eq/4.3/eq.all.min.js";
-            s.src = "/js/eq.all.min.js";
-            $("body").append(s);
-        }
+        this.context = this.view.getContext();
+     }  
 
-        if ($("#eq-view").length === 0) {
-            s = document.createElement("script");
-            s.id = "eq-view";
-            s.type = "text/javascript";
-            //s.src = "//cdn.korzh.com/eq/4.3/eq.view.basic.min.js";
-            s.src = "/js/eq.view.basic.min.js";
-            $("body").append(s);
-        } else {
-            EQ.view.basic.init();
-        }
-
-        if ($("#easychart").length === 0) {
-            s = document.createElement("script");
-            s.id = "easychart";
-            s.type = "text/javascript";
-            //s.src = "//cdn.korzh.com/eq/4.3/easychart.min.js";
-            s.src = "/js/easychart.min.js";
-            $("body").append(s);
-        }
-
-        if ($("#google-chart") === 0) {
-            s = document.createElement("script");
-            s.id = "google-chart";
-            s.type = "text/javascript";
-            //s.src = "//cdn.korzh.com/eq/4.3/easychart.google.min.js";
-            s.src = "/js/easychart.google.min.js";
-            $("body").append(s);
-        }
-
-        
-    }  
-
-    ngAfterViewInit() {
-        this.loadQueryFromLocalStorage();
-
-        let query = EQ.client.getQuery();
-        let self = this;
-
-        query.addChangedCallback(() => {
-            let queryJson = query.toJSON();
-            localStorage.setItem(self.QUERY_KEY, queryJson);
-        });
-    }    
-
-    loadQueryFromLocalStorage() {
+    private loadQueryFromLocalStorage() {
         let queryJson = localStorage.getItem(this.QUERY_KEY);
         if (queryJson) {
-            EQ.client.onInit = function () {
-                let query = EQ.client.getQuery();
-                query.setObject(queryJson);
-            };
+          let query = this.context.getQuery();
+          query.setData(queryJson);
         }
     };
+
     
 }

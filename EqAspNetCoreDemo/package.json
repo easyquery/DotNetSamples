@@ -6,10 +6,10 @@
   "license": "ISC",
   "dependencies": {
     "require": "^2.4.20",
-    "@easyquery/core": "^5.0.0-beta3",
-    "@easyquery/broker-eqs": "^5.0.0-beta3",
-    "@easyquery/ui": "^5.0.0-beta3",
-    "@easyquery/ui-jquery": "^5.0.0-beta3"
+    "@easyquery/core": "^5.0.0-beta4",
+    "@easyquery/broker-eqs": "^5.0.0-beta4",
+    "@easyquery/ui": "^5.0.0-beta4",
+    "@easyquery/ui-jquery": "^5.0.0-beta4"
   },
   "scripts": {
     "test": "test",

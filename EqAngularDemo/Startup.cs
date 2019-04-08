@@ -1,41 +1,35 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 
+using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.AspNetCore;
-
-using EqAngularDemo.Data;
 
 namespace EqAngularDemo {
     public class Startup {
-        public Startup(IHostingEnvironment env, IConfiguration configuration) {
+        public Startup(IConfiguration configuration) {
             Configuration = configuration;
-            this._dataPath = System.IO.Path.Combine(env.ContentRootPath, "App_Data");
         }
 
         public IConfiguration Configuration { get; }
-        private string _dataPath;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            var connectionString = Configuration.GetConnectionString("EqAngularDemoDb");
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => {
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddDbContext<AppDbContext>(opts => {
-                opts.UseSqlServer(connectionString);
-            });
+            services.AddJsonDictConverter();
 
-            services.AddEasyQuery();
+            services.AddEasyQuery()
+                .UseSqlManager();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,10 +39,20 @@ namespace EqAngularDemo {
             }
             else {
                 app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseEasyQuery(options => {
+                options.Endpoint = "/EasyQuery";
+                options.DefaultModelId = "NWindSQL";
+                options.UseDbConnection<System.Data.SqlClient.SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
+                options.UsePaging(10);
+            });
 
             app.UseMvc(routes => {
                 routes.MapRoute(
@@ -67,11 +71,9 @@ namespace EqAngularDemo {
                 }
             });
 
-            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                var dbInit = new DbInitializer(dbContext, _dataPath);
-                dbInit.CheckDb();
-            }
+            var scriptFilePath = "App_Data\\EqDemoDb.sql";
+            var dbInit = new EqAngularDemo.Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
+            dbInit.EnsureCreated();
         }
     }
 }

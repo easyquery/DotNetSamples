@@ -28,7 +28,7 @@ import { EasyQueryComponent } from './easyquery/easyquery.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'easyquery', component: EasyQueryComponent }
+      { path: 'easy-query', component: EasyQueryComponent }
     ])
   ],
   providers: [],
