@@ -67,6 +67,7 @@ namespace EqAspNetCoreDemo
             app.UseCookiePolicy();
 
             app.UseEasyQuery(options => {
+                options.BuildQueryOnSync = true;
                 options.DefaultModelId = "NWindSQL";
                 options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
                 options.UseDbConnection<SqlConnection>();
@@ -82,13 +83,15 @@ namespace EqAspNetCoreDemo
                                                            .Include(o => o.Customer)
                                                            .Include(o => o.Employee)
                                                            .AsQueryable());
-                options.UsePaging(20);
+                options.UsePaging(10);
             });
 
             app.UseEasyQuery(options => {
+                options.SaveQueryOnSync = true;
                 options.Endpoint = "/api-easyreport";
                 options.UseDbContext<AppDbContext>();
-                options.UseDbConnection<SqlConnection>();
+                options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
+                options.UseQueryStore((_) => new FileQueryStore(_dataPath));
                 options.UsePaging(10);
             });
 
