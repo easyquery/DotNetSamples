@@ -1,9 +1,9 @@
-import { EqReportViewJQuery } from "@easyquery/ui-jquery"
-import { EqReportViewOptions } from "@easyquery/ui";
+import { ReportViewJQuery } from "@easyquery/ui-jquery"
+import { ReportViewOptions } from "@easyquery/ui";
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    let options: EqReportViewOptions = {
+    let options: ReportViewOptions = {
         syncReportOnChange: true,
         showChart: true,
         paging: {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     };
     
-    let reportView = new EqReportViewJQuery();
+    let reportView = new ReportViewJQuery();
     reportView.init(options);
     document['easyQueryView'] = reportView;
 });
