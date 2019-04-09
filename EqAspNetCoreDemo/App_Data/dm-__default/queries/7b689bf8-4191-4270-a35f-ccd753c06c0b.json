@@ -1,0 +1,22 @@
+﻿{
+  "id": "7b689bf8-4191-4270-a35f-ccd753c06c0b",
+  "name": "New report",
+  "desc": null,
+  "cols": [
+    {
+      "cptn": "Company Name",
+      "srt": 0,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "kind": 2,
+        "id": "Customer.CompanyName"
+      }
+    }
+  ],
+  "justsortcols": [],
+  "root": {
+    "linking": 3,
+    "conds": []
+  }
+}
