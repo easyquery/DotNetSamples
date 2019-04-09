@@ -1,4 +1,4 @@
-import { EqReportViewJQuery } from "@easyquery/ui-jquery"
+import { ReportViewJQuery } from "@easyquery/ui-jquery"
 import { EqReportViewOptions } from "@easyquery/ui";
 
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     };
     
-    let reportView = new EqReportViewJQuery();
+    let reportView = new ReportViewJQuery();
     reportView.init(options);
     document['easyQueryView'] = reportView;
 });
