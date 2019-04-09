@@ -3,81 +3,60 @@
     ViewData["Title"] = "AdHocReport";
 }
 
+
 @section Styles {
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css">
 }
 
-
-<div class="row">
+<div class="row" style="height: 100%;">
     <div class="col-md-3">
-        <div class="panel panel-default" style="min-height:300px;">
-            <div class="panel-heading panel-title">
-                <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a id="NewReportButton" href="javascript:void(0)">New report</a></li>
-                        <li><a id="SaveReportButton" href="javascript:void(0)">Save as...</a></li>
-                        <li class="divider"></li>
-                        <li><a id="RemoveReportButton" href="javascript:void(0)">Remove report</a></li>
-                    </ul>
+        <div class="card" style="min-height:300px;">
+            <div class="card-header" style="height:50px;">
+                <div class="card-title float-left">Reports</div>
+                <div class="dropdown float-right">
+                    <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" id="NewReportButton" href="javascript:void(0)">New report</a>
+                        <a class="dropdown-item" id="SaveReportButton" href="javascript:void(0)">Save as...</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="RemoveReportButton" href="javascript:void(0)">Remove report</a>
+                    </div>
                 </div>
-                <span class="panel-title">Reports</span>
-
             </div>
-            <div id="ReportList" class="panel-body">
+            <div class="card-body">
+                <div id="ReportList" class="panel-body">
+                </div>
             </div>
         </div>
     </div>
 
     <div class="col-md-9">
-        <div id="ReportPanel" class="panel panel-default" style="display:none;">
-            <div class="panel-heading panel-title">
-                <div class="panel-buttons">
+        <div id="ReportPanel" class="card" style="display:none;">
+            <div class="card-header" style="height:50px;">
+                <div id="ReportTitle" class="card-title float-left">Sales by product</div>
+                <div class="float-right">
                     <button id="UpdateReportButton" type="button" class="btn btn-default btn-sm" title="Refresh result set">
-                        <span class="glyphicon glyphicon-refresh"></span>
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
                     </button>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-export"></span> <span class="caret"></span>
-                        </button>
-                        <!--
-                        <form id="ExportQueryResultForm" asp-controller="EasyReport" asp-action="ExportToFile" method="post">
-                            <input type="hidden" id="queryToSaveJson" name="queryJson" />
-                            <input type="hidden" id="exportFileType" name="fileType" />
-                        </form>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a></li>
-                            <li><a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a></li>
-                        </ul>
-                            --->
-                    </div>
                 </div>
-                <span id="ReportTitle">Sales by product</span>
-
             </div>
-            <div class="columns-block">
-                <div class="columns-caption">Columns:</div>
-                <div id="ColumnsBar"></div>
-                <!-- <div id="ColumnsPanel"></div> -->
-            </div>
-
-            <div id="QueryPanel" class="query-panel"></div>
-            <div id="ResultPanel" class="result-panel-content">
+            <div class="card-body">
+                <div class="columns-block" style="height:70px;">
+                    <div class="columns-caption">Columns:</div>
+                    <div id="ColumnsBar"></div>
+                    <!-- <div id="ColumnsPanel"></div> -->
+                </div>
+                <div id="QueryPanel" class="query-panel" style="height:130px;"></div>
+                <div id="ResultPanel" class="result-panel-content"></div>
             </div>
         </div>
         <div id="NoReportPanel" style="display:none;height:300px;padding-top:100px;">
             <h3 class="text-center">
-                No reports are defined. <a id="FirstReportButton" href="javascript:EQ.view.report.newReport()">Create a first one</a> to start.
+                No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportViewJQuery'].newReport()">Create a first one</a> to start.
             </h3>
         </div>
-
-
     </div>
-
-
 </div>
 
 

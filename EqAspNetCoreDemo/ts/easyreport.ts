@@ -1,11 +1,11 @@
 import { ReportViewJQuery } from "@easyquery/ui-jquery"
-import { EqReportViewOptions } from "@easyquery/ui";
+import { ReportViewOptions } from "@easyquery/ui";
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    let options: EqReportViewOptions = {
+    let options: ReportViewOptions = {
         syncReportOnChange: true,
-        showChart: true,
+        showChart: false,
         paging: {
             useBootstrap: true,
             maxButtonCount: 10,
@@ -37,11 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         activateOnMouseOver: true
                     }
                 },
+                eqResultGrid: {
+                    tableClass: "table table-sm"
+                }
             }
         },
     };
     
     let reportView = new ReportViewJQuery();
     reportView.init(options);
-    document['easyQueryView'] = reportView;
+    document['ReportViewJQuery'] = reportView;
 });
