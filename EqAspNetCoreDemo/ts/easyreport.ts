@@ -5,7 +5,7 @@ import { ReportViewOptions } from "@easyquery/ui";
 document.addEventListener('DOMContentLoaded', () => {
     let options: ReportViewOptions = {
         syncReportOnChange: true,
-        showChart: true,
+        showChart: false,
         paging: {
             useBootstrap: true,
             maxButtonCount: 10,
@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         activateOnMouseOver: true
                     }
                 },
+                eqResultGrid: {
+                    tableClass: "table table-sm"
+                }
             }
         },
     };

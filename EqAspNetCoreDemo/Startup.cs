@@ -92,7 +92,7 @@ namespace EqAspNetCoreDemo
                 options.UseDbContext<AppDbContext>();
                 options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
                 options.UseQueryStore((_) => new FileQueryStore(_dataPath));
-               // options.UsePaging(10);
+                options.UsePaging(10);
             });
 
 
