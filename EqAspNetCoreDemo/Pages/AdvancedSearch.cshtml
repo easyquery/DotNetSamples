@@ -1,0 +1,221 @@
+﻿@page
+@model EqAspNetCoreDemo.Pages.AdvancedSearchModel
+@{
+    ViewData["Title"] = "AdvancedSearch";
+    Layout = "_Layout";
+}
+
+@section Styles {
+
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.view.min.css">
+}
+
+<div id="main">
+
+    <!--
+    <input id="QueryContentJson" type="hidden" value="@ViewBag.QueryJson" />
+    -->
+    <div class="header">
+        <div class="title">EasyQuery</div>
+        <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
+        <div class="global-message">@ViewBag.Message</div>
+    </div>
+    <div id="content">
+        <div class="header-panel">
+            <div class="entities-block">
+                <hr class="entities-hr hr" />
+                <div class="entities-title">Entities</div>
+                <div class="entities-panel-container">
+                    <!-- EntitiesPanel widget placeholder -->
+                    <div id="EntitiesPanel" onselectstart="return false"></div>
+                </div>
+            </div>
+
+            <div class="central-block">
+                <div class="columns-block">
+                    <hr class="columns-hr hr" />
+                    <div class="columns-title">Columns</div>
+                    <div class="columns-panel-container">
+                        <!-- ColumnsPanel widget placeholder -->
+                        <div id="ColumnsPanel"></div>
+                    </div>
+                </div>
+                <div class="conditions-block">
+                    <hr class="conditions-hr hr" />
+                    <div class="conditions-title">Conditions</div>
+                    <div class="query-panel-container">
+                        <!-- QueryPanel widget placeholder -->
+                        <div id="QueryPanel"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-block">
+                <hr class="menu-hr hr" />
+                <div class="menu-title">Menu</div>
+                <div class="menu-content">
+                    <div id="ClearQueryButton" class="eqv-button clear-button">Clear query</div>
+                    <!-- Unimplemented yet
+                    <form id="LoadQueryForm" asp-controller="EasyQuery" asp-action="LoadQueryFromFile" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="queryToLoadModelId" name="modelId" />
+                        <input type="file" id="LoadQueryFileInput" name="queryFile" style="display: none;" />
+                    </form>
+
+                    <form id="SaveQueryForm" asp-controller="EasyQuery" asp-action="SaveQueryToFile" method="post">
+                        <input type="hidden" id="queryToSaveJson" name="queryJson" />
+                    </form>
+
+                    <div id="LoadQueryFileButton" class="eqv-button load-query-button">Load query file</div>
+                    <div id="SaveQueryToFileButton" class="eqv-button load-query-button">Save to file</div>
+                    -->
+
+
+                    <div id="ExecuteQueryButton" class="eqv-button execute-button">Execute</div>
+
+                    <div><p></p></div>
+
+                </div>
+            </div>
+        </div>
+        <form id="ExportQueryResultForm" asp-controller="EasyQuery" asp-action="ExportToFile" method="post">
+            <input type="hidden" id="queryJsonExport" name="queryJson" />
+            <input type="hidden" id="exportFileType" name="fileType" />
+        </form>
+        <div class="bottom-panel">
+            <div class="sql-panel">
+                <hr class="sql-panel-hr hr" />
+                <div class="sql-panel-title">SQL</div>
+                <div id="StatementPanel" class="sql-block">
+                    <div class="sql-panel-result"></div>
+                </div>
+            </div>
+            <div class="result-panel">
+                <hr class="result-panel-hr hr" />
+                <div class="result-panel-title">
+                    Result
+                    <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
+                    <span id="ResultExportButtons">
+                        <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
+                        <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
+                    </span>
+
+                </div>
+                <div id="ResultPanel" class="result-panel-content">
+                </div>
+                <div class="result-panel-content-padding">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="footer">
+        <div class="copyright">
+            © Copyright 2006-@(DateTime.Now.Year). <a href="https://korzh.com/" target="_blank">Korzh.com</a>
+        </div>
+        <div class="power-by">
+            Powered by <a href="https://korzh.com/easyquery" target="_blank">EasyQuery</a>
+            |
+            <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <!--ChartJS script file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+    </script>
+
+    <!-- Add EasyQuery All scripts file -->
+    <script src="https://cdn.korzh.com/eq/5.0.0/eq.all.min.js" type="text/javascript"></script>
+
+    <!-- Add EasyQuery functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let options = {
+                context: {
+                    loadModelOnStart: true,
+                    loadQueryOnStart: true,
+                    defaultQueryId: "testQuery",
+                    defaultModelId: "NWindSQL",
+                    handlers: {
+                        onError: (error) => {
+                            console.error(error.type + " error:\n" + error.text);
+                        },
+                        listRequestHandler: (params, onResult) => {
+                            let processed = true;
+                            if (params.listName == "RegionList") {
+                                let query = this.context.getQuery();
+                                let country = query.getOneValueForAttr("Customer.Country");
+                                if (country == "Canada") {
+                                    onResult([
+                                        { id: "BC", text: "British Columbia" },
+                                        { id: "Quebec", text: "Quebec" }
+                                    ]);
+                                }
+                                else {
+                                    onResult([
+                                        { id: "CA", text: "California" },
+                                        { id: "CO", text: "Colorado" },
+                                        { id: "OR", text: "Oregon" },
+                                        { id: "WA", text: "Washington" }
+                                    ]);
+                                }
+                            }
+                            else
+                                processed = false;
+                            return processed;
+                        }
+                    },
+                    widgets: {
+                        entitiesPanel: {
+                            showCheckboxes: true
+                        },
+                        columnsPanel: {
+                            allowAggrColumns: true,
+                            allowCustomExpressions: true,
+                            attrElementFormat: "{entity} {attr}",
+                            titleElementFormat: "{attr}",
+                            showColumnCaptions: true,
+                            adjustEntitiesMenuHeight: false,
+                            customExpressionText: 2,
+                            showPoweredBy: false,
+                            menuOptions: {
+                                showSearchBoxAfter: 30,
+                                activateOnMouseOver: true
+                            }
+                        },
+                        queryPanel: {
+                            showPoweredBy: false,
+                            alwaysShowButtonsInPredicates: false,
+                            allowParameterization: true,
+                            allowInJoinConditions: true,
+                            autoEditNewCondition: true,
+                            buttons: {
+                                condition: ["menu"],
+                                predicate: ["addCondition", "addPredicate", "enable", "delete"]
+                            },
+                            menuOptions: {
+                                showSearchBoxAfter: 20,
+                                activateOnMouseOver: true
+                            }
+                        },
+                    }
+                },
+                showChart: true,
+
+            }
+
+            this.view = new easyquery.AdvancedSearchViewJQuery();
+            view.init(options);
+            document['AdvancedSearchViewJQuery'] = view;
+        });
+    </script>
+}
