@@ -60,9 +60,6 @@ export class EasyQueryComponent implements OnInit {
               return processed;
             }
           },
-          broker: {
-            serviceUrl: "/EasyQuery",
-          },
           widgets: {
             entitiesPanel: {
               showCheckboxes: true

@@ -5,20 +5,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
-using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.AspNetCore;
 
-namespace EqAngularDemo {
-    public class Startup {
-        public Startup(IConfiguration configuration) {
+namespace EqAngularDemo
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<AppDbContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb"));
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory
@@ -33,7 +40,8 @@ namespace EqAngularDemo {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
@@ -48,10 +56,8 @@ namespace EqAngularDemo {
             app.UseSpaStaticFiles();
 
             app.UseEasyQuery(options => {
-                options.Endpoint = "/EasyQuery";
-                options.DefaultModelId = "NWindSQL";
-                options.UseDbConnection<System.Data.SqlClient.SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
-                options.UsePaging(10);
+                options.UseDbContext<AppDbContext>();
+                options.UsePaging(25);
             });
 
             app.UseMvc(routes => {

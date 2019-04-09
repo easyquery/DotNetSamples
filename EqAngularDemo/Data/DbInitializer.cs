@@ -14,13 +14,15 @@ namespace EqAngularDemo.Data
         private SqlConnection _connection;
         private string _scriptFilePath;
 
-        public DbInitializer(IConfiguration config, string dbName, string scriptFilePath) {
+        public DbInitializer(IConfiguration config, string dbName, string scriptFilePath)
+        {
             _connectionString = config.GetConnectionString(dbName);
             _connection = new SqlConnection(_connectionString);
             _scriptFilePath = scriptFilePath;
         }
 
-        public void EnsureCreated() {
+        public void EnsureCreated()
+        {
             bool dbExists = false;
             try {
                 _connection.Open();
@@ -37,7 +39,8 @@ namespace EqAngularDemo.Data
             }
         }
 
-        private void CreateDb() {
+        private void CreateDb()
+        {
             var connectionStringBuilder = new SqlConnectionStringBuilder(_connectionString) { InitialCatalog = "master" };
             connectionStringBuilder.Remove("AttachDBFilename");
 
@@ -56,7 +59,8 @@ namespace EqAngularDemo.Data
             TryToOpenNewDb();
         }
 
-        private void TryToOpenNewDb() {
+        private void TryToOpenNewDb()
+        {
             int N = 0;
             Exception lastException = null;
             do {
@@ -76,7 +80,8 @@ namespace EqAngularDemo.Data
             }
         }
 
-        private void FillDb() {
+        private void FillDb()
+        {
             string script = System.IO.File.ReadAllText(_scriptFilePath);
 
             var fillDbCommand = _connection.CreateCommand();
