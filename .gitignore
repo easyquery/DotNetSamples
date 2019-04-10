@@ -13,3 +13,5 @@ packages/
 
 PublishProfiles/
 /EqAspNetCoreDemo/node_modules
+/EqAspNetCoreDemo/wwwroot/js/easyreport.js
+/EqAspNetCoreDemo/wwwroot/js/easyreport.js.map
