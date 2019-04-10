@@ -102,12 +102,9 @@ namespace EqAspNetCoreDemo
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-
-            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                var dbInit = new DbInitializer(dbContext, _dataPath);
-                dbInit.CheckDb();
-            }
+            var scriptFilePath = "App_Data\\EqDemoDb.sql";
+            var dbInit = new Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
+            dbInit.EnsureCreated();
         }
     }
 }

@@ -7,10 +7,11 @@ using Korzh.EasyQuery;
 namespace EqAspNetCoreDemo.Models
 {
     [DisplayColumn("FirstName")]
-    public class Employee {
-
+    public class Employee
+    {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int EmployeeID { get; set; }
+        [Column("EmployeeID")]
+        public int Id { get; set; }
 
         [Required]
         [Display(Name = "Last name")]

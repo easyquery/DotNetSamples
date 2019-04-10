@@ -4,7 +4,7 @@ var ui_jquery_1 = require("@easyquery/ui-jquery");
 document.addEventListener('DOMContentLoaded', function () {
     var options = {
         syncReportOnChange: true,
-        showChart: true,
+        showChart: false,
         paging: {
             useBootstrap: true,
             maxButtonCount: 10,
@@ -35,10 +35,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         activateOnMouseOver: true
                     }
                 },
+                eqResultGrid: {
+                    tableClass: "table table-sm"
+                }
             }
         },
     };
     var reportView = new ui_jquery_1.ReportViewJQuery();
     reportView.init(options);
-    document['easyQueryView'] = reportView;
+    document['ReportViewJQuery'] = reportView;
 });

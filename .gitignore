@@ -12,3 +12,4 @@ packages/
 /EqAzureDemo/wwwroot/lib
 
 PublishProfiles/
+/EqAspNetCoreDemo/node_modules

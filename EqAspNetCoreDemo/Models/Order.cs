@@ -7,15 +7,16 @@ using Korzh.EasyQuery;
 namespace EqAspNetCoreDemo.Models
 {
     [DisplayColumn("Name")]
-    public class Order {
-
+    public class Order
+    {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int OrderID { get; set; }
+        [Column("OrderID")]
+        public int Id { get; set; }
 
         [NotMapped]
         public string Name {
             get {
-                return string.Format("{0:0000}-{1:yyyy-MM-dd}", this.OrderID, this.OrderDate);
+                return string.Format("{0:0000}-{1:yyyy-MM-dd}", this.Id, this.OrderDate);
             }
         }
         
