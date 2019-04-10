@@ -23,16 +23,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            //Options for DataFilterViewJQuery
             let options = {
+
+                //Paging options
                 paging: {
+                    //Use bootstrap v4 styles
                     useBootstrap: true,
                 },
+
+                 //Context options
                 context: {
+
+                    //Load model on start
                     loadModelOnStart: true,
+
+                    //Broker options
                     broker: {
+
+                        //Middleware endpoint 
                         serviceUrl: "/orders",
                     },
+
+                    //Different widgets options
                     widgets: {
+
+                        //FilterBar options
                         filterBar: {
                             queryPanel: {
                                 attrElementFormat: "{entity} {attr}"

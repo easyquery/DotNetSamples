@@ -138,17 +138,34 @@
 
     <!-- Add EasyQuery functionality -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+
+            //Options for AdvancedSearchViewJQuery
             let options = {
+
+                //Context options
                 context: {
+
+                    //Load model on start
                     loadModelOnStart: true,
+
+                    //Load query on start
                     loadQueryOnStart: true,
+
+                    //Default query id
                     defaultQueryId: "testQuery",
+
+                    //Default model id
                     defaultModelId: "NWindSQL",
+
+                    //Handlers 
                     handlers: {
+                        //Error handler
                         onError: (error) => {
                             console.error(error.type + " error:\n" + error.text);
                         },
+
+                        //Client-side list resolver
                         listRequestHandler: (params, onResult) => {
                             let processed = true;
                             if (params.listName == "RegionList") {
@@ -174,10 +191,16 @@
                             return processed;
                         }
                     },
+
+                    //Widgets options
                     widgets: {
+
+                        //EntityiesPanel options
                         entitiesPanel: {
                             showCheckboxes: true
                         },
+
+                        //CloumnsPanel options
                         columnsPanel: {
                             allowAggrColumns: true,
                             allowCustomExpressions: true,
@@ -192,6 +215,8 @@
                                 activateOnMouseOver: true
                             }
                         },
+
+                        //Querypanel options
                         queryPanel: {
                             showPoweredBy: false,
                             alwaysShowButtonsInPredicates: false,
@@ -209,6 +234,8 @@
                         },
                     }
                 },
+
+                //Show EasyChart
                 showChart: true,
 
             }

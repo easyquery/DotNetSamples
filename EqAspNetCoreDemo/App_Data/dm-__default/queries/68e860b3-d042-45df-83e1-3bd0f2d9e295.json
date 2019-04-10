@@ -1,0 +1,22 @@
+﻿{
+  "id": "68e860b3-d042-45df-83e1-3bd0f2d9e295",
+  "name": "New report 2",
+  "desc": null,
+  "cols": [
+    {
+      "cptn": "Company Name",
+      "srt": 0,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "kind": 2,
+        "id": "Customer.CompanyName"
+      }
+    }
+  ],
+  "justsortcols": [],
+  "root": {
+    "linking": 3,
+    "conds": []
+  }
+}
