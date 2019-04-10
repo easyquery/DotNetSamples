@@ -6,10 +6,11 @@ using Korzh.EasyQuery;
 namespace EqAspNetCoreDemo.Models
 {
     [DisplayColumn("Name")]
-    public class Product {
-
+    public class Product
+    {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ProductID { get; set; }
+        [Column("ProductID")]
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

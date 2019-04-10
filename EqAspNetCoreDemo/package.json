@@ -5,7 +5,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "require": "^2.4.20"
+    "@easyquery/core": "^5.0.0-beta5",
+    "@easyquery/broker-eqs": "^5.0.0-beta5",
+    "@easyquery/ui": "^5.0.0-beta5",
+    "@easyquery/ui-jquery": "^5.0.0-beta5"
   },
   "scripts": {
     "test": "test",
@@ -14,6 +17,7 @@
     "dev": "webpack --mode=development"
   },
   "devDependencies": {
+    "require": "^2.4.20",
     "onchange": "^5.2.0",
     "ts-loader": "^5.3.3",
     "typescript": "^3.3.3",

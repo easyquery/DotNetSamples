@@ -11,8 +11,8 @@ namespace EqAspNetCoreDemo
 {
 
     
-    public class AppDbContext : DbContext {
-
+    public class AppDbContext : DbContext
+    {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         { }
@@ -27,10 +27,11 @@ namespace EqAspNetCoreDemo
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderID, od.ProductID });
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderDetail>()
+                .ToTable("Order_Details")
+                .HasKey(od => new { od.OrderID, od.ProductID });
         }
-
     }
-
 }

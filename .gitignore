@@ -12,7 +12,4 @@ packages/
 /EqAzureDemo/wwwroot/lib
 
 PublishProfiles/
-/EqAspNetCoreDemo/wwwroot/lib
 /EqAspNetCoreDemo/node_modules
-/EqAspNetCoreDemo/ts/easyreport.js
-/EqAspNetCoreDemo/wwwroot/js

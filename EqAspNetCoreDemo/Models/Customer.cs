@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Korzh.EasyQuery;
 
 namespace EqAspNetCoreDemo.Models
@@ -6,8 +7,10 @@ namespace EqAspNetCoreDemo.Models
 
     [DisplayColumn("Name")]
     [EqEntity(DisplayName = "Client")]
-    public class Customer {
-        public string CustomerID { get; set; }
+    public class Customer
+    {
+        [Column("CustomerID")]
+        public string Id { get; set; }
 
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
