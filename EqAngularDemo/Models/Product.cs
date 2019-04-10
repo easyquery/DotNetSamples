@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EqAngularDemo.Models
 {
     [DisplayColumn("Name")]
-    public class Product {
-
+    public class Product
+    {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column("ProductID")]
         public int Id { get; set; }
 
         public string Name { get; set; }
+
 
         [ScaffoldColumn(false)]
         public int? SupplierId { get; set; }

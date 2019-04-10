@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 using Korzh.EasyQuery;
 
 namespace EqAngularDemo.Models
@@ -7,7 +7,9 @@ namespace EqAngularDemo.Models
 
     [DisplayColumn("Name")]
     [EqEntity(DisplayName = "Client")]
-    public class Customer {
+    public class Customer
+    {
+        [Column("CustomerID")]
         public string Id { get; set; }
 
         [Display(Name = "Company Name")]

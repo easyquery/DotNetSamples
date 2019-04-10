@@ -6,9 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EqAngularDemo.Models
 {
     [DisplayColumn("Name")]
-    public class Order {
-
+    public class Order
+    {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column("OrderID")]
         public int Id { get; set; }
 
         [NotMapped]

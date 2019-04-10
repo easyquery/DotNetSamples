@@ -7,9 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 using EqAngularDemo.Models;
 
-namespace EqAngularDemo.Data
-{
-    public class AppDbContext : DbContext {
+namespace EqAngularDemo
+{    
+    public class AppDbContext : DbContext
+    {
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -26,7 +27,9 @@ namespace EqAngularDemo.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<OrderDetail>().HasKey(od => new { od.OrderId, od.ProductId });
+            modelBuilder.Entity<OrderDetail>()
+                .ToTable("Order_Details")
+                .HasKey(od => new { od.OrderID, od.ProductID });
         }
 
     }

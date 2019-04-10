@@ -8,9 +8,10 @@ using Korzh.EasyQuery;
 namespace EqAngularDemo.Models
 {
     [DisplayColumn("FirstName")]
-    public class Employee {
-
+    public class Employee
+    {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column("EmployeeID")]
         public int Id { get; set; }
 
         [Required]
