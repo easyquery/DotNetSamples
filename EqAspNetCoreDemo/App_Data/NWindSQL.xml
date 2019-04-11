@@ -8,7 +8,7 @@
     <Table class="db" alias="Employees" schema="" db="" dsgnLayout="" priority="1000" name="Employees" hints="" quote="False" />
     <Table class="db" alias="Orders" schema="" db="" dsgnLayout="" priority="1000" name="Orders" hints="" quote="False" />
     <Table class="db" alias="Products" schema="" db="" dsgnLayout="" priority="1000" name="Products" hints="" quote="False" />
-    <Table class="db" alias="OrderDetails" schema="" db="" dsgnLayout="" priority="1000" name="OrderDetails" hints="" quote="False" />
+    <Table class="db" alias="OrderDetails" schema="" db="" dsgnLayout="" priority="1000" name="Order_Details" hints="" quote="False" />
   </Tables>
   <Links>
     <Link table1="Orders" table2="Customers" type="Inner" QF="False">
