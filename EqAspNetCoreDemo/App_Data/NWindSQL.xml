@@ -242,7 +242,7 @@
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
-      <Attr id="Customer.Street" kind="Data" expr="Street" caption="Street" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
+      <Attr id="Customer.Address" kind="Data" expr="Address" caption="Address" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Customers">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
@@ -308,7 +308,7 @@
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
-      <Attr id="Employee.Street" kind="Data" expr="Street" caption="Street" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
+      <Attr id="Employee.Address" kind="Data" expr="Address" caption="Address" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Employees">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
@@ -326,7 +326,7 @@
         <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
-      <Attr id="Order.EmployeeId" kind="Data" expr="EmployeeId" caption="Employee" type="Int32" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="VE_Order.EmployeeId" quote="False" UAL="True" aggr="False" tables="Orders">
+      <Attr id="Order.EmployeeID" kind="Data" expr="EmployeeID" caption="Employee" type="Int32" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="VE_Order.EmployeeId" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>Equal,NotEqual,InList,NotInList</Operators>
         <Description />
       </Attr>
@@ -336,10 +336,6 @@
       </Attr>
       <Attr id="Order.OrderDate" kind="Data" expr="OrderDate" caption="Ordered" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
         <Operators>DateWithinToday,DateWithinThisWeek,DateWithinPrevWeek,DateWithinThisMonth,DateWithinPrevMonth,DateWithinThisYear,DateWithinPrevYear,DateBeforePrecise,DateAfterPrecise,DatePeriodPrecise,MaximumOfAttr,IsNull,IsNotNull</Operators>
-        <Description />
-      </Attr>
-      <Attr id="Order.ProductID" kind="Data" expr="ProductID" caption="Product" type="Int32" size="0" UIC="True" UIR="False" UIS="True" customFunc="" editor="VE_Order.ProductID" quote="False" UAL="True" aggr="False" tables="Orders">
-        <Operators>Equal,NotEqual,InList,NotInList,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
       <Attr id="Order.RequiredDate" kind="Data" expr="RequiredDate" caption="Required" type="DateTime" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Orders">
@@ -410,11 +406,7 @@
         <Operators>IsTrue,NotTrue</Operators>
         <Description />
       </Attr>
-      <Attr id="Product.EnglishName" kind="Data" expr="EnglishName" caption="English name" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
-        <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
-        <Description />
-      </Attr>
-      <Attr id="Product.Name" kind="Data" expr="Name" caption="Name" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
+      <Attr id="Product.ProductName" kind="Data" expr="Name" caption="Name" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
@@ -426,7 +418,7 @@
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
-      <Attr id="Product.SupplierId" kind="Data" expr="SupplierId" caption="Supplier id" type="Int32" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
+      <Attr id="Product.SupplierID" kind="Data" expr="SupplierID" caption="Supplier ID" type="Int32" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>Equal,Between,LessThan,LessOrEqual,GreaterThan,GreaterOrEqual,InList,NotEqual,NotBetween,NotInList,MaximumOfAttr,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>

@@ -31,8 +31,14 @@ namespace EqAspNetCoreDemo.Models
 
         public decimal? Freight { get; set; }
 
+        public string CustomerID { get; set; }
+
+        [ForeignKey("CustomerID")]
         public virtual Customer Customer { get; set; }
 
+        public int? EmployeeID { get; set; }
+
+        [ForeignKey("EmployeeID")]
         public virtual Employee Employee { get; set; }
 
         public virtual List<OrderDetail> Items { get; set; }
@@ -51,11 +57,5 @@ namespace EqAspNetCoreDemo.Models
         public string ShipPostalCode { get; set; }
 
         public string ShipCountry { get; set; }
-
-        public virtual Product Product { get; set; }
-
-        public int EmployeeId { get; internal set; }
     }
-
-
 }

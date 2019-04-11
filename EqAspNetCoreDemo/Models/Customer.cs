@@ -14,8 +14,8 @@ namespace EqAspNetCoreDemo.Models
 
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
-        
-        public string Street { get; set; }
+
+        public string Address { get; set; }
 
         public string City { get; set; }
 

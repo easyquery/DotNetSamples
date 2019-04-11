@@ -12,13 +12,11 @@ namespace EqAspNetCoreDemo.Models
         [Column("ProductID")]
         public int Id { get; set; }
 
+        [Column("ProductName")]
         public string Name { get; set; }
 
-
         [ScaffoldColumn(false)]
-        public int? SupplierId { get; set; }
-
-        public string EnglishName { get; set; }
+        public int? SupplierID { get; set; }
 
         public string QuantityPerUnit { get; set; }
 
