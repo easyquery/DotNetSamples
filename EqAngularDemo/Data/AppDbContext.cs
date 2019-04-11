@@ -26,7 +26,8 @@ namespace EqAngularDemo
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<OrderDetail>()
                 .ToTable("Order_Details")
                 .HasKey(od => new { od.OrderID, od.ProductID });

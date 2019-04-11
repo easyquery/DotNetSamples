@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EqAngularDemo.Models
+using Korzh.EasyQuery;
+
+namespace EqAspNetCoreDemo.Models
 {
     [DisplayColumn("Name")]
     public class Product
@@ -10,13 +12,11 @@ namespace EqAngularDemo.Models
         [Column("ProductID")]
         public int Id { get; set; }
 
+        [Column("ProductName")]
         public string Name { get; set; }
 
-
         [ScaffoldColumn(false)]
-        public int? SupplierId { get; set; }
-
-        public string EnglishName { get; set; }
+        public int? SupplierID { get; set; }
 
         public string QuantityPerUnit { get; set; }
 

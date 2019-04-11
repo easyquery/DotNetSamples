@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Korzh.EasyQuery;
 
-namespace EqAngularDemo.Models
+namespace EqAspNetCoreDemo.Models
 {
 
     [DisplayColumn("Name")]
@@ -14,8 +14,8 @@ namespace EqAngularDemo.Models
 
         [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
-        
-        public string Street { get; set; }
+
+        public string Address { get; set; }
 
         public string City { get; set; }
 

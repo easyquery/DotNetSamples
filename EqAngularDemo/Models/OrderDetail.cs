@@ -1,7 +1,7 @@
 
 
-namespace EqAngularDemo.Models
-{ 
+namespace EqAspNetCoreDemo.Models {
+    
     public class OrderDetail
     {
         public int OrderID { get; set; }

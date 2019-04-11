@@ -199,6 +199,14 @@
       <Types>String,Byte,Word,Int32,Int64,Bool,Float,Currency,BCD,Autoinc,Memo,FixedChar</Types>
       <Operands defType="Unknown" />
     </Operator>
+    <Operator id="InRange" caption="is in range" expr="{expr1} BETWEEN {expr2[0]} AND {expr2[1]}" format="{expr1} [[is in range]] {expr2}" constFmt="{const}" kind="List" caseIns="False" editor="InRangeEditor" group="Other operators" cond="False">
+      <Types>Byte,Word,Int,Int32,Int64,Float</Types>
+      <Operands defType="Unknown" />
+    </Operator>
+    <Operator id="LastNMonth" caption="Last N months" expr="DATEDIFF(month, {expr1}, GETDATE()) &lt; {expr2}" format="{expr1} [[within last]] {expr2} months" constFmt="{const}" kind="Scalar" caseIns="False" group="Other operators" cond="False">
+      <Types>String,Byte,Word,Int32,Int64,Bool,Float,Currency,BCD,Autoinc,Memo,FixedChar</Types>
+      <Operands defType="Int32" />
+    </Operator>
   </Operators>
   <Entities maxId="0">
     <Entity id="Customer" name="Client" UIC="True" UIR="True" UIS="True">
