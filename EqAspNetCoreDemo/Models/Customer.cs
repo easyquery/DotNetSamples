@@ -35,7 +35,4 @@ namespace EqAspNetCoreDemo.Models
         public string Fax { get; set; }
 
     }
-
-
-
 }

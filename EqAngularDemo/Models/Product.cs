@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 using Korzh.EasyQuery;
 
-namespace EqAspNetCoreDemo.Models
+namespace EqAngularDemo.Models
 {
     [DisplayColumn("Name")]
     public class Product
