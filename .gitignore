@@ -17,3 +17,6 @@ PublishProfiles/
 /EqAspNetCoreDemo/wwwroot/js/easyreport.js.map
 /EqAspNetCoreDemo/wwwroot/lib
 /EqAspNetCoreDemo/ts/easyreport.js
+/EqAspNetCoreDemo/wwwroot/css/eq.core.min.css
+/EqAspNetCoreDemo/wwwroot/css/eq.view.min.css
+/EqAspNetCoreDemo/Pages/AdvancedSearch.cshtml.bak
