@@ -102,7 +102,7 @@ namespace EqAspNetCoreDemo
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            var scriptFilePath = "App_Data\\EqDemoDb.sql";
+            var scriptFilePath = System.IO.Path.Combine(_dataPath, "EqDemoDb.sql");
             var dbInit = new Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
             dbInit.EnsureCreated();
         }
