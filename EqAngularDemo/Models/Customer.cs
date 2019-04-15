@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Korzh.EasyQuery;
 
-namespace EqAspNetCoreDemo.Models
+namespace EqAngularDemo.Models
 {
 
     [DisplayColumn("Name")]
@@ -35,7 +35,4 @@ namespace EqAspNetCoreDemo.Models
         public string Fax { get; set; }
 
     }
-
-
-
 }

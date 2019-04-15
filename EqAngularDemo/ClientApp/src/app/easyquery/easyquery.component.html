@@ -5,60 +5,60 @@
   <!--
   <input id="QueryContentJson" type="hidden" value="@ViewBag.QueryJson" />
   -->
-  <div class="header">
-    <div class="title">EasyQuery</div>
-    <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
-    <div class="global-message">@ViewBag.Message</div>
-  </div>
-  <div id="content">
-    <div class="header-panel">
-      <div class="entities-block">
-        <hr class="entities-hr hr" />
-        <div class="entities-title">Entities</div>
-        <div class="entities-panel-container">
-          <!-- EntitiesPanel widget placeholder -->
-          <div id="EntitiesPanel" onselectstart="return false"></div>
-        </div>
-      </div>
-
-      <div class="central-block">
-        <div class="columns-block">
-          <hr class="columns-hr hr" />
-          <div class="columns-title">Columns</div>
-          <div class="columns-panel-container">
-            <!-- ColumnsPanel widget placeholder -->
-            <div id="ColumnsPanel"></div>
-          </div>
-        </div>
-        <div class="conditions-block">
-          <hr class="conditions-hr hr" />
-          <div class="conditions-title">Conditions</div>
-          <div class="query-panel-container">
-            <!-- QueryPanel widget placeholder -->
-            <div id="QueryPanel"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-block">
-        <hr class="menu-hr hr" />
-        <div class="menu-title">Menu</div>
-        <div class="menu-content">
-          <div id="ClearQueryButton" class="eqv-button clear-button">Clear query</div>
-
-          <!--
-          <div id="LoadQueryButton" class="eqv-button load-query-button">Load last query</div>
-          <div id="SaveQueryButton" class="eqv-button save-query-button">Save query</div>
-          -->
-          <div id="ExecuteQueryButton" class="eqv-button execute-button">Execute</div>
-
-          <div><p></p></div>
-          <!-- Test button which perfoms different operation over query and model just for demonstration purposes -->
-          <!-- Uncomment next line if would like to try -->
-          <!--<div id="TestButton" class="eqv-button execute-button" style="display:block">Test</div>-->
-        </div>
-      </div>
+    <div class="eqv-header">
+        <div class="eqv-title">EasyQuery</div>
+        <div class="eqv-sub-title">Friendly ad-hoc query builder for your web-site</div>
+        <div class="eqv-global-message">@ViewBag.Message</div>
     </div>
+    <div id="eqv-content">
+        <div class="eqv-header-panel">
+            <div class="eqv-entities-block">
+                <hr class="eqv-entities-hr eqv-hr" />
+                <div class="eqv-entities-title">Entities</div>
+                <div class="eqv-entities-panel-container">
+                    <!-- EntitiesPanel widget placeholder -->
+                    <div id="EntitiesPanel" onselectstart="return false"></div>
+                </div>
+            </div>
+
+            <div class="eqv-central-block">
+                <div class="eqv-columns-block">
+                    <hr class="eqv-columns-hr eqv-hr" />
+                    <div class="eqv-columns-title">Columns</div>
+                    <div class="eqv-columns-panel-container">
+                        <!-- ColumnsPanel widget placeholder -->
+                        <div id="ColumnsPanel"></div>
+                    </div>
+                </div>
+                <div class="eqv-conditions-block">
+                    <hr class="eqv-conditions-hr eqv-hr" />
+                    <div class="eqv-conditions-title">Conditions</div>
+                    <div class="eqv-query-panel-container">
+                        <!-- QueryPanel widget placeholder -->
+                        <div id="QueryPanel"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="eqv-menu-block">
+                <hr class="eqv-menu-hr eqv-hr" />
+                <div class="eqv-menu-title">Menu</div>
+                <div class="eqv-menu-content">
+                    <div id="ClearQueryButton" class="eqv-button eqv-clear-button">Clear query</div>
+
+					<!--
+					<div id="LoadQueryButton" class="eqv-button load-query-button">Load last query</div>
+					<div id="SaveQueryButton" class="eqv-button save-query-button">Save query</div>
+	          		-->
+	                <div id="ExecuteQueryButton" class="eqv-button eqv-execute-button">Execute</div>
+
+					<div><p></p></div>
+					<!-- Test button which perfoms different operation over query and model just for demonstration purposes -->
+					<!-- Uncomment next line if would like to try -->
+					<!--<div id="TestButton" class="eqv-button execute-button" style="display:block">Test</div>-->
+                </div>
+            </div>
+        </div>
     <!--
     <form id="ExportQueryResultForm" asp-controller="EasyQuery" asp-action="ExportToFile" method="post">
         <input type="hidden" id="queryJsonExport" name="queryJson" />
@@ -66,36 +66,36 @@
 
     </form>
          -->
-    <div class="bottom-panel">
-      <div class="sql-panel">
-        <hr class="sql-panel-hr hr" />
-        <div class="sql-panel-title">SQL</div>
-        <div id="StatementPanel" class="sql-block">
-          <div class="sql-panel-result"></div>
-        </div>
-      </div>
-      <div class="result-panel">
-        <hr class="result-panel-hr hr" />
-        <div class="result-panel-title">
-          Result
-          <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
+        <div class="eqv-bottom-panel">
+            <div class="eqv-sql-panel">
+                <hr class="eqv-sql-panel-hr eqv-hr" />
+                <div class="eqv-sql-panel-title">SQL</div>
+                <div id="StatementPanel" class="eqv-sql-block">
+                    <div class="sql-panel-result"></div>
+                </div>
+            </div>
+            <div class="eqv-result-panel">
+                <hr class="eqv-result-panel-hr eqv-hr" />
+                <div class="eqv-result-panel-title">
+                    Result
+                    <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
           <!-- Not supported yet
           <span id="ResultExportButtons">
               <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
               <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
           </span>
               -->
-        </div>
-        <div id="ResultPanel" class="result-panel-content">
-        </div>
-        <div class="result-panel-content-padding">
-        </div>
-      </div>
+                </div>
+                <div id="ResultPanel" class="eqv-result-panel-content">
+                </div>
+                <div class="eqv-result-panel-content-padding">
+                </div>
+            </div>
 
     </div>
   </div>
-  <div id="footer">
-    <div class="copyright">
+    <div id="eqv-footer">
+        <div class="eqv-copyright">
       (c) Copyright 2006-2019 <a href="https://korzh.com/" target="_blank">Korzh.com</a>
     </div>
     <div class="power-by">

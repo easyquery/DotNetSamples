@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using Korzh.EasyQuery;
-namespace EqAspNetCoreDemo.Models
+
+namespace EqAngularDemo.Models
 {
     [DisplayColumn("FirstName")]
     public class Employee

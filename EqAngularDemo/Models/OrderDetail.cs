@@ -1,6 +1,7 @@
 
 
-namespace EqAspNetCoreDemo.Models {
+namespace EqAngularDemo.Models
+{
     
     public class OrderDetail
     {
