@@ -2,7 +2,7 @@
 @model EqAspNetCoreDemo.Pages.AdvancedSearchModel
 @{
     ViewData["Title"] = "AdvancedSearch";
-    Layout = "_Layout";
+    Layout = "_LayoutRoot";
 }
 
 @section Styles {
@@ -20,11 +20,6 @@
     <!--
     <input id="QueryContentJson" type="hidden" value="@ViewBag.QueryJson" />
     -->
-    <div class="eqv-header">
-        <div class="eqv-title">EasyQuery</div>
-        <div class="eqv-sub-title">Friendly ad-hoc query builder for your web-site</div>
-        <div class="eqv-global-message">@ViewBag.Message</div>
-    </div>
     <div id="eqv-content">
         <div class="eqv-header-panel">
             <div class="eqv-entities-block">
