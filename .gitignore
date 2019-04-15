@@ -20,3 +20,4 @@ PublishProfiles/
 /EqAspNetCoreDemo/wwwroot/css/eq.core.min.css
 /EqAspNetCoreDemo/wwwroot/css/eq.view.min.css
 /EqAspNetCoreDemo/Pages/AdvancedSearch.cshtml.bak
+/EqAspNetCoreDemo/wwwroot/js/eq.all.min.js
