@@ -1,0 +1,18 @@
+{
+  "name": "easyquery.ancsamples",
+  "version": "1.0.0",
+  "description": "ASP.NET Core 2.0 projects which demonstrate how to use EasyQuery in different web-application scenarios.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://korzhdev.visualstudio.com/DefaultCollection/EasyQuery/_git/EasyQuery.AncSamples"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "fs-extra": "7.0.1"
+  }
+}
