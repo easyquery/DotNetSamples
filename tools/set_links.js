@@ -4,7 +4,7 @@
 // Due to an obscure Mac bug, do not start this title with any symbol.
 process.title = 'setlinks';
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 let unlink = process.argv.length > 2 ? process.argv[2] == "unlink" : false;
@@ -16,6 +16,10 @@ let brokerPath = path.resolve(__dirname, "../../EasyQuery.JS/packs/broker-eqs");
 let uiPath = path.resolve(__dirname, "../../EasyQuery.JS/packs/ui");
 let uijqPath = path.resolve(__dirname, "../../EasyQuery.JS/packs/ui-jquery");
 
+
+if (!unlink) {
+	fs.removeSync("../EqAspNetCoreDemo/node_modules/@easyquery"); 
+}
 
 // -------------- demo projects --------------
 
@@ -45,7 +49,7 @@ function link(to, from) {
 		if (!fs.existsSync(eqDir)) {
 			fs.mkdirSync(eqDir, {recursive: true});
 		}
-
+		
 		try {
 			fs.symlinkSync(to, from, 'junction');
 		} catch (err) {
