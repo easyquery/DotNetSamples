@@ -76,15 +76,15 @@ namespace EqAspNetCoreDemo
                 options.UsePaging(10);
             });
 
-            app.UseEasyQuery(options => {
-                options.Endpoint = "/orders";
-                options.UseEntity((services, _) => services.GetService<AppDbContext>()
-                                                           .Orders
-                                                           .Include(o => o.Customer)
-                                                           .Include(o => o.Employee)
-                                                           .AsQueryable());
-                options.UsePaging(10);
-            });
+            //app.UseEasyQuery(options => {
+            //    options.Endpoint = "/orders";
+            //    options.UseEntity((services, _) => services.GetService<AppDbContext>()
+            //                                               .Orders
+            //                                               .Include(o => o.Customer)
+            //                                               .Include(o => o.Employee)
+            //                                               .AsQueryable());
+            //    options.UsePaging(10);
+            //});
 
             app.UseEasyQuery(options => {
                 options.SaveQueryOnSync = true;

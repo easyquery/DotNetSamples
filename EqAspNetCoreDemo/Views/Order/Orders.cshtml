@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Orders - EasyQuery LINQ demo";
+}
+
+<link href="//cdn.korzh.com/eq/4.3/themes/default/easyquery.min.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="//cdn.korzh.com/eq/4.3/themes/default/eq-icons-default.min.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="//cdn.korzh.com/eq/4.3/themes/default/eqview.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+
+
+<script type="text/javascript">
+
+    window.easyQuerySettings = {
+        serviceUrl: "/Orders",
+        loadDefaultModel: true,
+        useBootstrap: true,
+        filterBar: {
+            queryPanel: {
+                attrElementFormat: "{entity} {attr}"
+            }
+        }
+    };
+		
+    function getPrefix() {
+        var res = window.location.pathname;
+        if (res.charAt(res.length - 1) !== '/')
+            res = res + '/';
+        return res;
+    }
+</script>
+
+<h2>Orders</h2>
+
+@Html.FilterBar()
+
+
+<div id="ResultPanel"></div>
+
+
+@section scripts {
+<!-- EasyQuery script files -->
+<script src="/js/eq-filter.js"></script>
+ 
+}
