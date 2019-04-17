@@ -7,8 +7,27 @@
 @section Styles {
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css">
+    <!--<link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css">-->
+    <link rel="stylesheet" href="~/css/root.css" />
+
+    <style>
+        .eqv-result-panel-content {
+            position: initial !important;
+            overflow: initial !important;
+            display: flex !important;
+            top: auto !important;
+            bottom: auto !important;
+            left: auto !important;
+            right: auto !important;
+        }
+    </style>
 }
+
+<div class="col-md-12 header my-2">
+    <div class="logo-title">EasyQuery</div>
+    <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
+    <div class="global-message"></div>
+</div>
 
 <div class="row" style="height: 100%;">
     <div class="col-md-3">
@@ -49,7 +68,7 @@
                     <!-- <div id="ColumnsPanel"></div> -->
                 </div>
                 <div id="QueryPanel" class="query-panel" style="height:130px;"></div>
-                <div id="ResultPanel" class="result-panel-content"></div>
+                <div id="ResultPanel" class="eqv-result-panel-content mt-5"></div>
             </div>
         </div>
         <div id="NoReportPanel" style="display:none;height:300px;padding-top:100px;">

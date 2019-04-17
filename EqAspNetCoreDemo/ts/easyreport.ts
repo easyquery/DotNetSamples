@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         syncReportOnChange: true,
 
         //Show EasyChart
-        showChart: false,
+        showChart: true,
 
         //Paging options
         paging: {
