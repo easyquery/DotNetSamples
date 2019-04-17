@@ -12,6 +12,9 @@
             Customer name
         </th>
         <th>
+            Customer country
+        </th>
+        <th>
             Employee
         </th>
         <th>
@@ -21,25 +24,26 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+<tr>
 
-        <td>
-           @item.OrderDate.Value.ToString("yyyy-MM-dd")
-        </td>
-        <td>
-            @item.Customer.CompanyName
-        </td>
-        <td>
-            @item.Employee.FullName
-        </td>
+    <td>
+        @(item.OrderDate != null ? item.OrderDate.Value.ToString("yyyy-MM-dd") : "")
+    </td>
+    <td>
+        @item.Customer?.CompanyName
+    </td>
+    <td>
+        @item.Customer.Country
+    </td>
+    <td>
+        @item.Employee.FullName
+    </td>
 
-        <td>
-            @item.Freight
-        </td>
-        <td>
-
-        </td>
-    </tr>
+    <td>
+        @item.Freight
+    </td>
+    <td></td>
+</tr>
 }
 
 </table>

@@ -76,6 +76,7 @@ namespace EqAspNetCoreDemo
                 options.UsePaging(10);
             });
 
+            //uncomment to test another approach for data filtering (available by /data-filtering2)
             //app.UseEasyQuery(options => {
             //    options.Endpoint = "/orders";
             //    options.UseEntity((services, _) => services.GetService<AppDbContext>()
