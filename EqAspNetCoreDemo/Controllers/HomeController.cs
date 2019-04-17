@@ -22,8 +22,8 @@ namespace EqAspNetCoreDemo.Controllers
             return View();
         }
 
-        [Route("/data-filtering")]
-        public IActionResult DataFiltering()
+        [Route("/data-filtering2")]
+        public IActionResult DataFiltering2()
         {
             return View();
         }

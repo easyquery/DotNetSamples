@@ -1,28 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Orders - EasyQuery LINQ demo";
+    Layout = "_LayoutRoot";
+    ViewBag.Title = "Data filtering demo";
 }
-
-<script type="text/javascript">
-
-    window.easyQuerySettings = {
-        serviceUrl: "/Orders",
-        loadDefaultModel: true,
-        useBootstrap: true,
-        filterBar: {
-            queryPanel: {
-                attrElementFormat: "{entity} {attr}"
-            }
-        }
-    };
-		
-    function getPrefix() {
-        var res = window.location.pathname;
-        if (res.charAt(res.length - 1) !== '/')
-            res = res + '/';
-        return res;
-    }
-</script>
 
 <h2>Orders</h2>
 
@@ -30,34 +10,39 @@
 
 <div id="ResultPanel"></div>
 
-@section scripts {
-<script src="//cdn.korzh.com/eq/5.0.0/eq.all.min.js"></script>
+@section Styles  {
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css" />
+}
 
-<!-- EasyQuery script files -->
-<script>
-    window.addEventListener('load', () => {
-        let options = {
-            paging: {
-                useBootstrap: true
-            },
-            context: {
-                loadModelOnStart: true,
-                clearResultOnQueryChange: false,
-                broker: {
-                    serviceUrl: "/Order"
+
+@section scripts {
+    <script src="//cdn.korzh.com/eq/5.0.0/eq.all.min.js"></script>
+
+    <!-- EasyQuery script files -->
+    <script>
+        window.addEventListener('load', () => {
+            let options = {
+                paging: {
+                    useBootstrap: true
                 },
-                widgets: {
-                    filterBar: {
-                        queryPanel: {
-                            attrElementFormat: "{entity} {attr}"
+                context: {
+                    loadModelOnStart: true,
+                    clearResultOnQueryChange: false,
+                    broker: {
+                        endpoint: "/data-filtering"
+                    },
+                    widgets: {
+                        filterBar: {
+                            queryPanel: {
+                                attrElementFormat: "{entity} {attr}"
+                            }
                         }
                     }
                 }
             }
-        }
-        //let basicView = new easyquery.HtmlDataFilterView();
-        //basicView.init(options);
-    });
+            let basicView = new easyquery.HtmlDataFilterView();
+            basicView.init(options);
+        });
 
-</script> 
+    </script>
 }

@@ -18,7 +18,7 @@ using EqAspNetCoreDemo.Models;
 
 namespace EqAspNetCoreDemo.Controllers
 {    
-    [Route("Order")]
+    [Route("data-filtering")]
     public class OrderController : Controller
     {
         EasyQueryManagerLinq<Order> _eqManager;
@@ -56,17 +56,17 @@ namespace EqAspNetCoreDemo.Controllers
         }
 
 
-        ///// <summary>
-        ///// This action returns a custom list by different list request options (list name).
-        ///// </summary>
-        ///// <param name="jsonDict">GetList request options.</param>
-        ///// <returns><see cref="IActionResult"/> object</returns>
-        //[HttpGet("models/{modelId}/valuelists/{editorId}")]
-        //public IActionResult GetList(string modelId, string editorId)
-        //{
-        //    var list = _eqManager.GetValueList(modelId, editorId);
-        //    return Json(list);
-        //}
+        /// <summary>
+        /// This action returns a custom list by different list request options (list name).
+        /// </summary>
+        /// <param name="jsonDict">GetList request options.</param>
+        /// <returns><see cref="IActionResult"/> object</returns>
+        [HttpGet("models/{modelId}/valuelists/{editorId}")]
+        public IActionResult GetList(string modelId, string editorId)
+        {
+            var list = _eqManager.GetValueList(modelId, editorId);
+            return Json(list);
+        }
 
         /// <summary>
         /// This action is called when user clicks on "Apply" button in FilterBar or other data-filtering widget
@@ -80,7 +80,7 @@ namespace EqAspNetCoreDemo.Controllers
             var list = _dbContext.Orders
                 .Include(c => c.Customer)
                 .Include(c => c.Employee)
-                .DynamicQuery<Order>(query).ToPagedList((int)_eqManager.Paging.PageIndex, 20);
+                .DynamicQuery<Order>(query).ToPagedList(_eqManager.Paging.PageIndex, 15);
 
             return View("_OrderListPartial", list);
         }
