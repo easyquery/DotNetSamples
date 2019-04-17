@@ -1,0 +1,73 @@
+﻿.card-header {
+    background-image: -webkit-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%);
+    background-image: linear-gradient(to bottom,#f5f5f5 0,#e8e8e8 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+    padding: 0 .75rem;
+}
+
+.card-title {
+    font-size: 18pt;
+}
+
+.card-header {
+    height: 42px;
+}
+
+.card-body {
+    padding: .7rem;
+}
+
+.eqv-result-panel-content {
+    position: initial !important;
+    overflow: initial !important;
+    display: flex !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+}
+
+.eqjs-qp-conditions-root {
+    min-height: 40px;
+    max-height: 300px;
+}
+
+#QueryPanel, #ColumnsBar {
+    background: #f9f9f9;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: .5rem;
+}
+
+#ColumnsBar {
+    padding-bottom: 0;
+}
+
+.eqjs-cb-addrow {
+    left: 12px !important;
+    top: 13px !important;
+}
+
+.block-caption {
+    font-weight: 500;
+}
+
+.card-header-button {
+    padding-top: .3rem;
+}
+
+.list-group-item.active {
+    border-radius: .25rem;
+}
+
+.btn-default {
+    background-image: -webkit-linear-gradient(top,#fff 0,#e0e0e0 100%);
+    background-image: linear-gradient(to bottom,#fff 0,#e0e0e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #dbdbdb;
+    text-shadow: 0 1px 0 #fff;
+    border-color: #ccc;
+}
