@@ -31,10 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             //Load model on start
             loadModelOnStart: true,
 
+            //Default model's ID (we use it here just for a nice folder name in App_Data folder)
+            defaultModelId: "adhoc-reporting",
+
             //Broker options
             broker: {
                 //Middleware endpoint 
-                serviceUrl: "/api-easyreport"
+                serviceUrl: "/api/adhoc-reporting"
             },
 
             //Different widgets options
