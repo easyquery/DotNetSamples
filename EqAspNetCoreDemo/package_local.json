@@ -5,6 +5,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@easyquery/ui": "file:../../EasyQuery.JS/packs/ui",
+    "@easyquery/ui-jquery": "file:../../EasyQuery.JS/packs/ui-jquery"
   },
   "scripts": {
     "test": "test",
