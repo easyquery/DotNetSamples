@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Linq;
 using Korzh.EasyQuery.AspNetCore;
+using Korzh.EasyQuery.EntityFrameworkCore;
 
 using EqAspNetCoreDemo.Models;
 
@@ -77,10 +78,12 @@ namespace EqAspNetCoreDemo.Controllers
         public IActionResult ApplyQueryFilter(string modelId, [FromBody] JObject jObject) {
             var query = _eqManager.LoadQueryWithOptionsFromJson(jObject);
 
-            var list = _dbContext.Orders
-                .Include(c => c.Customer)
-                .Include(c => c.Employee)
-                .DynamicQuery<Order>(query).ToPagedList(_eqManager.Paging.PageIndex, 15);
+            var queryable = _dbContext.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Employee)
+                .DynamicQuery<Order>(query);
+
+            var list = queryable.ToPagedList(_eqManager.Paging.PageIndex, 15);
 
             return View("_OrderListPartial", list);
         }
