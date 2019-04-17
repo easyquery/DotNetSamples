@@ -1,13 +1,13 @@
 const path = require("path");
 
 module.exports = {
-    entry: ["./ts/styles.js", "./ts/easyreport.ts"],
+    entry: ["./ts/styles.js", "./ts/adhoc-reporting.ts"],
     stats: {warnings:false},
 	devtool: "source-map",
     output: {
         library: 'easyreport',
         path: path.resolve(__dirname, 'wwwroot/js'),
-        filename: "easyreport.js"
+        filename: "adhoc-reporting.js"
     },
     resolve: {
         extensions: [".js", ".ts"]

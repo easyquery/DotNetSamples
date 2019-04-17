@@ -12,5 +12,4 @@ wwwroot/
 PublishProfiles/
 
 /EqAspNetCoreDemo/ts/easyreport.js
-/App_Data/dm-*
-/EqAspNetCoreDemo/App_Data/dm-__default/queries/95dca586-62bb-4dba-8d9b-888f1d954a42.json
+App_Data/dm-*__default/

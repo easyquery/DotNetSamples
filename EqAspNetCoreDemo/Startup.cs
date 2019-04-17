@@ -89,7 +89,7 @@ namespace EqAspNetCoreDemo
 
             app.UseEasyQuery(options => {
                 options.SaveQueryOnSync = true;
-                options.Endpoint = "/api-easyreport";
+                options.Endpoint = "/api/adhoc-reporting";
                 options.UseDbContext<AppDbContext>();
                 options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
                 options.UseQueryStore((_) => new FileQueryStore(_dataPath));

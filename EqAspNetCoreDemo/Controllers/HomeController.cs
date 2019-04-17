@@ -29,7 +29,7 @@ namespace EqAspNetCoreDemo.Controllers
         }
 
         [Route("/adhoc-reporting")]
-        public IActionResult EasyReport()
+        public IActionResult AdhocReporting()
         {
             return View();
         }
