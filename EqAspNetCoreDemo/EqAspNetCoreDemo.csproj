@@ -9,11 +9,11 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.0.0-beta9" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.0.0-beta9" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.0.0-rc1" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.0.0-rc1" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="call npm install&#xD;&#xA;call webpack --mode=development" />
