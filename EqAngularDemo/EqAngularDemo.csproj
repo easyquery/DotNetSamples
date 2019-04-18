@@ -12,8 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-beta8" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.0.0-beta8" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-beta9" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.0.0-beta9" />
     <PackageReference Include="Korzh.DbExport" Version="4.2.0" />
     <PackageReference Include="Korzh.Utils" Version="1.0.1" />
   </ItemGroup>
