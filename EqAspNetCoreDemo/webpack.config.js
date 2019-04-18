@@ -1,4 +1,5 @@
 const path = require("path");
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 module.exports = {
     entry: ["./ts/styles.js", "./ts/adhoc-reporting.ts"],
@@ -31,6 +32,16 @@ module.exports = {
 			}
         ]
     },
+	plugins: [
+		new FileManagerPlugin({
+			onEnd: {
+				copy: [
+				  { source: './node_modules/@easyquery/ui-jquery/dist/browser/*.min.css', destination: './wwwroot/css' },
+				  { source: './node_modules/@easyquery/ui-jquery/dist/browser/*.min.js', destination: './wwwroot/js' }
+				]
+			}
+		})
+	],
 	watchOptions: {
 		aggregateTimeout: 2000
 	}

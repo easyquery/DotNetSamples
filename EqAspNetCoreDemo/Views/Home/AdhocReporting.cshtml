@@ -7,73 +7,67 @@
 @section Styles {
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css">-->
     <link rel="stylesheet" href="~/css/root.css" />
     <link rel="stylesheet" href="~/css/adhoc.css" />
 }
 
-<div class="col-md-12 header my-2">
-    <div class="logo-title">EasyQuery</div>
-    <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
-    <div class="global-message"></div>
-</div>
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-header">
-                <div class="card-title float-left">Reports</div>
-                <div class="dropdown float-right card-header-button">
-                    <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" id="NewReportButton" href="javascript:void(0)">New report</a>
-                        <a class="dropdown-item" id="SaveReportButton" href="javascript:void(0)">Save as...</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" id="RemoveReportButton" href="javascript:void(0)">Remove report</a>
+<div class="container-fluid px-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title float-left">Reports</div>
+                    <div class="dropdown float-right card-header-button">
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="NewReportButton" href="javascript:void(0)">New report</a>
+                            <a class="dropdown-item" id="SaveReportButton" href="javascript:void(0)">Save as...</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" id="RemoveReportButton" href="javascript:void(0)">Remove report</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="ReportList" class="panel-body">
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div id="ReportList" class="panel-body">
-                </div>
-            </div>
         </div>
-    </div>
 
-    <div class="col-md-9">
-        <div id="ReportPanel" class="card" style="display:none;">
-            <div class="card-header">
-                <div id="ReportTitle" class="card-title float-left">Sales by product</div>
-                <div class="float-right card-header-button">
-                    <button id="UpdateReportButton" type="button" class="btn btn-default btn-sm" title="Refresh result set">
-                        <i class="fa fa-refresh" aria-hidden="true"></i>
-                    </button>
+        <div class="col-md-9">
+            <div id="ReportPanel" class="card" style="display:none;">
+                <div class="card-header">
+                    <div id="ReportTitle" class="card-title float-left">Sales by product</div>
+                    <div class="float-right card-header-button">
+                        <button id="UpdateReportButton" type="button" class="btn btn-default btn-sm" title="Refresh result set">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="columns-block mb-3">
+                        <div class="block-caption">Columns:</div>
+                        <div id="ColumnsBar"></div>
+                        <!-- <div id="ColumnsPanel"></div> -->
+                    </div>
+                    <div class="conditions-block mb-3">
+                        <div class="block-caption">Conditions:</div>
+                        <div id="QueryPanel" class="query-panel"></div>
+                    </div>
+                    <div class="result-block">
+                        <div class="block-caption">Result:</div>
+                        <div id="ResultPanel" class="eqv-result-panel-content"></div>
+                    </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="columns-block mb-3">
-                    <div class="block-caption">Columns:</div>
-                    <div id="ColumnsBar"></div>
-                    <!-- <div id="ColumnsPanel"></div> -->
-                </div>
-                <div class="conditions-block mb-3">
-                    <div class="block-caption">Conditions:</div>
-                    <div id="QueryPanel" class="query-panel"></div>
-                </div>
-                <div class="result-block">
-                    <div class="block-caption">Result:</div>
-                    <div id="ResultPanel" class="eqv-result-panel-content"></div>
-                </div>
+            <div id="NoReportPanel" style="display:none;height:300px;padding-top:100px;">
+                <h3 class="text-center">
+                    No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportViewJQuery'].newReport()">Create a first one</a> to start.
+                </h3>
             </div>
-        </div>
-        <div id="NoReportPanel" style="display:none;height:300px;padding-top:100px;">
-            <h3 class="text-center">
-                No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportViewJQuery'].newReport()">Create a first one</a> to start.
-            </h3>
         </div>
     </div>
 </div>
-
 
 @section Scripts {
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

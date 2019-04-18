@@ -1,22 +1,28 @@
 ﻿
 @{
-    Layout = "_LayoutRoot";
     ViewBag.Title = "Data filtering demo";
 }
 
-<h2>Orders</h2>
+    <div class="container">
+        <h4>Orders</h4>
 
-@Html.FilterBar()
+        @Html.FilterBar()
 
-<div id="ResultPanel"></div>
+        <div id="ResultPanel"></div>
+    </div>
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css" />
+    <link rel="stylesheet" href="/css/eq.core.min.css">
+    <style>
+        .table td, .table th {
+            padding: .25rem .75rem;
+        }
+    </style>
 }
 
 
 @section scripts {
-    <script src="//cdn.korzh.com/eq/5.0.0/eq.all.min.js"></script>
+    <script src="/js/eq.all.min.js" type="text/javascript"></script>
 
     <!-- EasyQuery script files -->
     <script>

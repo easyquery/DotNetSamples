@@ -2,7 +2,7 @@ import { ReportViewJQuery } from "@easyquery/ui-jquery"
 import { ReportViewOptions } from "@easyquery/ui";
 
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
 
     //Options for ReportViewJQuery
     let options: ReportViewOptions = {

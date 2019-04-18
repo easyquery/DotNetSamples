@@ -16,6 +16,7 @@ using Korzh.EasyQuery.AspNetCore;
 using Korzh.EasyQuery.EntityFrameworkCore;
 
 using EqAspNetCoreDemo.Models;
+using Newtonsoft.Json;
 
 namespace EqAspNetCoreDemo.Controllers
 {    
@@ -53,9 +54,9 @@ namespace EqAspNetCoreDemo.Controllers
         public async Task<IActionResult> GetModel(string modelId)
         {
             var model = _eqManager.GetModel(modelId);
-            return Ok(await model.SaveToJsonStringForClientAsync());
+            var modelJson = await model.SaveToJsonStringForClientAsync();
+            return Ok("{\"result\":\"ok\", \"model\":" + modelJson + "}");
         }
-
 
         /// <summary>
         /// This action returns a custom list by different list request options (list name).
@@ -66,7 +67,8 @@ namespace EqAspNetCoreDemo.Controllers
         public IActionResult GetList(string modelId, string editorId)
         {
             var list = _eqManager.GetValueList(modelId, editorId);
-            return Json(list);
+            var valuesJson = JsonConvert.SerializeObject(list);
+            return Ok("{\"result\":\"ok\", \"values\":" + valuesJson + "}");
         }
 
         /// <summary>
@@ -76,7 +78,7 @@ namespace EqAspNetCoreDemo.Controllers
         /// <returns>IActionResult which contains a partial view with the filtered result set</returns>
         [HttpPost("models/{modelId}/queries/execute")]
         public IActionResult ApplyQueryFilter(string modelId, [FromBody] JObject jObject) {
-            var query = _eqManager.LoadQueryWithOptionsFromJson(jObject);
+            var query = _eqManager.LoadQueryWithOptionsFromJson(modelId, jObject);
 
             var queryable = _dbContext.Orders
                 .Include(o => o.Customer)
