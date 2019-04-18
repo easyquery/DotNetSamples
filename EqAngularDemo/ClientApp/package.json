@@ -32,10 +32,10 @@
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26",
-    "@easyquery/core": "^5.0.0-beta8",
-    "@easyquery/broker-eqs": "^5.0.0-beta8",
-    "@easyquery/ui": "^5.0.0-beta8",
-    "@easyquery/ui-jquery": "^5.0.0-beta8"
+    "@easyquery/core": "^5.0.0-beta9",
+    "@easyquery/broker-eqs": "^5.0.0-beta9",
+    "@easyquery/ui": "^5.0.0-beta9",
+    "@easyquery/ui-jquery": "^5.0.0-beta9"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.0",
