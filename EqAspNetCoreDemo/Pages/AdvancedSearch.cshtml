@@ -3,7 +3,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "AdvancedSearch";
-    Layout = "_LayoutRoot";
+    Layout = "_Layout";
 }
 
 @section Styles {
@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.view.min.css">
 }
 
-<partial name="EasyQuery/_AdvancedSearch" />
+    <div class="container">
+        <partial name="EasyQuery/_AdvancedSearch" />
+    </div>
 
 @section Scripts {
     <!-- ChartJS script -->
