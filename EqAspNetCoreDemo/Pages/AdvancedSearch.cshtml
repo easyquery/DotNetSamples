@@ -30,11 +30,10 @@
         google.charts.load('current', { 'packages': ['corechart'] });
     </script>
 
-    <!-- Add EasyQuery All scripts file -->
-    <!--<script src="https://cdn.korzh.com/eq/5.0.0/eq.all.min.js" type="text/javascript"></script>-->
-    <script src="/js/eq.all.min.js" type="text/javascript"></script>
+    <!-- Add EasyQuery script file -->
+    <script src="https://cdn.korzh.com/eq/5.0.0/eq.all.min.js"></script>
 
-    <!-- Add EasyQuery functionality -->
+    <!-- Initialize EasyQuery view -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -93,12 +92,12 @@
                     //Widgets options
                     widgets: {
 
-                        //EntityiesPanel options
+                        //EntitiesPanel options
                         entitiesPanel: {
                             showCheckboxes: true
                         },
 
-                        //CloumnsPanel options
+                        //ColumnsPanel options
                         columnsPanel: {
                             allowAggrColumns: true,
                             allowCustomExpressions: true,
@@ -114,7 +113,7 @@
                             }
                         },
 
-                        //Querypanel options
+                        //QueryPanel options
                         queryPanel: {
                             showPoweredBy: false,
                             alwaysShowButtonsInPredicates: false,

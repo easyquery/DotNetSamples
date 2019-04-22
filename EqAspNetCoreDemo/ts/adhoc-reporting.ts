@@ -37,7 +37,7 @@ window.addEventListener('load', () => {
             //Broker options
             broker: {
                 //Middleware endpoint 
-                serviceUrl: "/api/adhoc-reporting"
+                endpoint: "/api/adhoc-reporting"
             },
 
             //Different widgets options
