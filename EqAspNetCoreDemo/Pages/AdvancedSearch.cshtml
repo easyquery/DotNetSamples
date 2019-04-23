@@ -7,18 +7,13 @@
 }
 
 @section Styles {
-
-    <!--
     <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css">
     <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.view.min.css">
-    -->
-    <link rel="stylesheet" href="/css/eq.core.min.css">
-    <link rel="stylesheet" href="/css/eq.view.min.css">
 }
 
-    <div class="container">
-        <partial name="EasyQuery/_AdvancedSearch" />
-    </div>
+<div class="container">
+    <partial name="EasyQuery/_AdvancedSearch" />
+</div>
 
 @section Scripts {
     <!--ChartJS script file -->
@@ -30,11 +25,10 @@
         google.charts.load('current', { 'packages': ['corechart'] });
     </script>
 
-    <!-- Add EasyQuery All scripts file -->
-    <!--<script src="https://cdn.korzh.com/eq/5.0.0/eq.all.min.js" type="text/javascript"></script>-->
-    <script src="/js/eq.all.min.js" type="text/javascript"></script>
+    <!-- Add EasyQuery script file -->
+    <script src="https://cdn.korzh.com/eq/5.0.0/eq.all.min.js"></script>
 
-    <!-- Add EasyQuery functionality -->
+    <!-- Initialize EasyQuery view -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
@@ -93,12 +87,12 @@
                     //Widgets options
                     widgets: {
 
-                        //EntityiesPanel options
+                        //EntitiesPanel options
                         entitiesPanel: {
                             showCheckboxes: true
                         },
 
-                        //CloumnsPanel options
+                        //ColumnsPanel options
                         columnsPanel: {
                             allowAggrColumns: true,
                             allowCustomExpressions: true,
@@ -114,7 +108,7 @@
                             }
                         },
 
-                        //Querypanel options
+                        //QueryPanel options
                         queryPanel: {
                             showPoweredBy: false,
                             alwaysShowButtonsInPredicates: false,
@@ -135,7 +129,6 @@
 
                 //Show EasyChart
                 showChart: true,
-
             }
 
             this.view = new easyquery.AdvancedSearchViewJQuery();

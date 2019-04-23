@@ -28,14 +28,14 @@
     "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
     "jquery": "^3.3.1",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26",
-    "@easyquery/core": "^5.0.0-beta9",
-    "@easyquery/broker-eqs": "^5.0.0-beta9",
-    "@easyquery/ui": "^5.0.0-beta9",
-    "@easyquery/ui-jquery": "^5.0.0-beta9"
+    "@easyquery/core": "^5.0.0-rc1",
+    "@easyquery/broker-eqs": "^5.0.0-rc1",
+    "@easyquery/ui": "^5.0.0-rc1",
+    "@easyquery/ui-jquery": "^5.0.0-rc1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.6.0",
