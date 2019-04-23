@@ -47,13 +47,13 @@
       <SQL><![CDATA[SELECT DISTINCT [EmployeeID], [FirstName] FROM [Employees] ORDER BY 1]]></SQL>
     </Editor>
     <Editor id="VE_Order.ProductID" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT [ProductID], [Name] FROM [Products] ORDER BY 1]]></SQL>
+      <SQL><![CDATA[SELECT DISTINCT [ProductID], [ProductName] FROM [Products] ORDER BY 1]]></SQL>
     </Editor>
     <Editor id="VE_OrderDetail.OrderID" type="SQLLIST" resType="Unknown">
       <SQL><![CDATA[SELECT DISTINCT [OrderID], [ShipName] FROM [Orders] ORDER BY 1]]></SQL>
     </Editor>
     <Editor id="VE_OrderDetail.ProductID" type="SQLLIST" resType="Unknown">
-      <SQL><![CDATA[SELECT DISTINCT [ProductID], [Name] FROM [Products] ORDER BY 1]]></SQL>
+      <SQL><![CDATA[SELECT DISTINCT [ProductID], [ProductName] FROM [Products] ORDER BY 1]]></SQL>
     </Editor>
   </Editors>
   <Operators>
