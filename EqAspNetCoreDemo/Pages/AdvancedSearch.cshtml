@@ -2,7 +2,7 @@
 @model EqAspNetCoreDemo.Pages.AdvancedSearchModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "AdvancedSearch";
+    ViewData["Title"] = "Advanced Search demo";
     Layout = "_Layout";
 }
 
@@ -11,26 +11,20 @@
     <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.view.min.css">
 }
 
-<div class="container">
-    <partial name="EasyQuery/_AdvancedSearch" />
-</div>
+    <div class="container">
+        <partial name="EasyQuery/_AdvancedSearch" />
+    </div>
 
 @section Scripts {
-    <!--ChartJS script file -->
+    <!-- ChartJS script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <script>
-        google.charts.load('current', { 'packages': ['corechart'] });
-    </script>
-
-    <!-- Add EasyQuery script file -->
+    <!-- EasyQuery script -->
     <script src="https://cdn.korzh.com/eq/5.0.0/eq.all.min.js"></script>
 
-    <!-- Initialize EasyQuery view -->
+    <!-- EasyQuery Advanced Search view initialization -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('load', () => {
 
             //Options for AdvancedSearchViewJQuery
             let options = {
@@ -41,10 +35,10 @@
                 //Load query on start
                 loadQueryOnStart: true,
 
-                //Default query id
+                //Default query ID
                 defaultQueryId: "testQuery",
 
-                //Default model id
+                //Default model ID
                 defaultModelId: "NWindSQL",
 
                 //Handlers
@@ -124,8 +118,8 @@
                 },
                 result: {
                     //Show EasyChart
-                    showChart: true,
-                },
+                    showChart: true
+                }
             }
 
             this.view = new easyquery.AdvancedSearchViewJQuery();
