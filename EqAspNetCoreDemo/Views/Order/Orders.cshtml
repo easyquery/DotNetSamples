@@ -28,24 +28,25 @@
     <script>
         window.addEventListener('load', () => {
             let options = {
-                paging: {
-                    useBootstrap: true
+                loadModelOnStart: true,
+                clearResultOnQueryChange: false,
+                broker: {
+                    endpoint: "/data-filtering"
                 },
-                context: {
-                    loadModelOnStart: true,
-                    clearResultOnQueryChange: false,
-                    broker: {
-                        endpoint: "/data-filtering"
-                    },
-                    widgets: {
-                        filterBar: {
-                            queryPanel: {
-                                attrElementFormat: "{entity} {attr}"
-                            }
+                widgets: {
+                    filterBar: {
+                        queryPanel: {
+                            attrElementFormat: "{entity} {attr}"
                         }
                     }
+                },
+                result: {
+                    paging: {
+                        useBootstrap: true
+                    }
                 }
-            }
+            };
+
             let basicView = new easyquery.HtmlDataFilterView();
             basicView.init(options);
         });

@@ -56,50 +56,42 @@
         document.addEventListener('DOMContentLoaded', () => {
             //Options for DataFilterViewJQuery
             let options = {
+                //Load model on start
+                loadModelOnStart: true,
 
-                //Paging options
-                paging: {
-                    //Use bootstrap v4 styles
-                    useBootstrap: true,
+                //don't clear result on each query change event
+                clearResultOnQueryChange: false,
+
+                //hadlers
+                handlers: {
+                    //override error handler
+                    onError: (message) => {
+                        $("#error-title").text(message.type);
+                        $("#error-content").text(message.text);
+                        $('#errorModel').modal('show');
+                    }
                 },
 
-                //Context options
-                context: {
+                //Broker options
+                broker: {
+                    //Middleware endpoint
+                    endpoint: "/orders",
+                },
 
-                    //Load model on start
-                    loadModelOnStart: true,
-
-                    //don't clear result on each query change event
-                    clearResultOnQueryChange: false,
-
-                    //hadlers
-                    handlers: {
-
-                        //override error handler
-                        onError: (message) => {
-
-                            $("#error-title").text(message.type);
-                            $("#error-content").text(message.text);
-                            $('#errorModel').modal('show');
+                //Different widgets options
+                widgets: {
+                    //FilterBar options
+                    filterBar: {
+                        queryPanel: {
+                            attrElementFormat: "{entity} {attr}"
                         }
-                    },
-
-                    //Broker options
-                    broker: {
-
-                        //Middleware endpoint
-                        endpoint: "/orders",
-                    },
-
-                    //Different widgets options
-                    widgets: {
-
-                        //FilterBar options
-                        filterBar: {
-                            queryPanel: {
-                                attrElementFormat: "{entity} {attr}"
-                            }
-                        }
+                    }
+                },
+                result: {
+                    //Paging options
+                    paging: {
+                        //Use bootstrap v4 styles
+                        useBootstrap: true,
                     }
                 }
             };

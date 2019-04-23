@@ -26,81 +26,80 @@ export class EasyQueryComponent implements OnInit {
     ngOnInit() {
 
       const options:EqViewOptions = {
-        context: {
-          loadModelOnStart: true,
-          loadQueryOnStart: true,
-          defaultQueryId: "test-query",
-          defaultModelId: "NWindSQL",
-          handlers: {
-            onError: (error) => {
-              console.error(error.type + " error:\n" + error.text);
-            },
-            listRequestHandler: (params, onResult) => {
-              let processed = true;
-              if (params.listName == "RegionList") {
-                  let query = this.context.getQuery();
-                  let country = query.getOneValueForAttr("Customer.Country");
-                  if (country == "Canada") {
-                      onResult([
-                          { id: "BC", text: "British Columbia" },
-                          { id: "Quebec", text: "Quebec" }
-                      ]);
-                  }
-                  else {
-                      onResult([
-                          { id: "CA", text: "California" },
-                          { id: "CO", text: "Colorado" },
-                          { id: "OR", text: "Oregon" },
-                          { id: "WA", text: "Washington" }
-                      ]);
-                  }
-              }
-              else
-                  processed = false;
-              return processed;
-            }
+        loadModelOnStart: true,
+        loadQueryOnStart: true,
+        defaultQueryId: "test-query",
+        defaultModelId: "NWindSQL",
+        handlers: {
+          onError: (error) => {
+            console.error(error.type + " error:\n" + error.text);
           },
-          widgets: {
-            entitiesPanel: {
-              showCheckboxes: true
-            },
-            columnsPanel: {
-              allowAggrColumns: true,
-              allowCustomExpressions: true,
-              attrElementFormat: "{entity} {attr}",
-              titleElementFormat: "{attr}",
-              showColumnCaptions: true,
-              adjustEntitiesMenuHeight: false,
-              customExpressionText: 2,
-              showPoweredBy: false,
-              menuOptions: {
-                  showSearchBoxAfter: 30,
-                  activateOnMouseOver: true
-              }
-            },
-            queryPanel: {
-              showPoweredBy: false,
-              alwaysShowButtonsInPredicates: false,
-              allowParameterization: true,
-              allowInJoinConditions: true,
-              autoEditNewCondition: true,
-              buttons: {
-                  condition: ["menu"],
-                  predicate: ["addCondition", "addPredicate", "enable", "delete"]
-              },
-              menuOptions: {
-                  showSearchBoxAfter: 20,
-                  activateOnMouseOver: true
-              }
-            },
+          listRequestHandler: (params, onResult) => {
+            let processed = true;
+            if (params.listName == "RegionList") {
+                let query = this.context.getQuery();
+                let country = query.getOneValueForAttr("Customer.Country");
+                if (country == "Canada") {
+                    onResult([
+                        { id: "BC", text: "British Columbia" },
+                        { id: "Quebec", text: "Quebec" }
+                    ]);
+                }
+                else {
+                    onResult([
+                        { id: "CA", text: "California" },
+                        { id: "CO", text: "Colorado" },
+                        { id: "OR", text: "Oregon" },
+                        { id: "WA", text: "Washington" }
+                    ]);
+                }
+            }
+            else
+                processed = false;
+            return processed;
           }
         },
-        showChart: true,
-
+        widgets: {
+          entitiesPanel: {
+            showCheckboxes: true
+          },
+          columnsPanel: {
+            allowAggrColumns: true,
+            allowCustomExpressions: true,
+            attrElementFormat: "{entity} {attr}",
+            titleElementFormat: "{attr}",
+            showColumnCaptions: true,
+            adjustEntitiesMenuHeight: false,
+            customExpressionText: 2,
+            showPoweredBy: false,
+            menuOptions: {
+                showSearchBoxAfter: 30,
+                activateOnMouseOver: true
+            }
+          },
+          queryPanel: {
+            showPoweredBy: false,
+            alwaysShowButtonsInPredicates: false,
+            allowParameterization: true,
+            allowInJoinConditions: true,
+            autoEditNewCondition: true,
+            buttons: {
+                condition: ["menu"],
+                predicate: ["addCondition", "addPredicate", "enable", "delete"]
+            },
+            menuOptions: {
+                showSearchBoxAfter: 20,
+                activateOnMouseOver: true
+            }
+          }
+        },
+        result: {
+          showChart: true
+        }
       }
 
         this.view = new AdvancedSearchViewJQuery();
-        options.context.handlers.onInit = () => {
+        options.handlers.onInit = () => {
           //here we need to add query autosave
           let query = this.context.getQuery();
 
