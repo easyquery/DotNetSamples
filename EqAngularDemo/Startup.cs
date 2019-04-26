@@ -36,6 +36,7 @@ namespace EqAngularDemo
             services.AddJsonDictConverter();
 
             services.AddEasyQuery()
+                .AddDefaultExporters()
                 .UseSqlManager();
         }
 

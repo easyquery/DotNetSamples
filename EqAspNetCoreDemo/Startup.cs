@@ -45,6 +45,7 @@ namespace EqAspNetCoreDemo
 
             services.AddEasyQuery()
                     .UseSqlManager()
+                    .AddDefaultExporters()
                     .RegisterDbGate<SqlClientGate>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

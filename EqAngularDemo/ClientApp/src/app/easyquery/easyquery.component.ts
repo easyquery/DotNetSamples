@@ -25,7 +25,8 @@ export class EasyQueryComponent implements OnInit {
 
     ngOnInit() {
 
-      const options:EqViewOptions = {
+      const options: EqViewOptions = {
+        enableExport: true,
         loadModelOnStart: true,
         loadQueryOnStart: true,
         defaultQueryId: "test-query",
