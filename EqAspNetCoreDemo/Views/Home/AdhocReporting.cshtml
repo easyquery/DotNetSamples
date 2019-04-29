@@ -6,12 +6,17 @@
 
 @section Styles {
 
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/root.css" />
     <link rel="stylesheet" href="~/css/adhoc.css" />
+
+    <style>
+        .eqv-grid-panel {
+            max-height: 450px;
+        }
+    </style>
 }
 
-<div class="eqjs-process-bar" id="ProcessBar"></div>
 <div class="container-fluid px-5">
     <div class="row">
         <div class="col-md-3">
@@ -19,7 +24,7 @@
                 <div class="card-header">
                     <div class="card-title float-left">Reports</div>
                     <div class="dropdown float-right card-header-button">
-                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cog"></i></button>
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" id="NewReportButton" href="javascript:void(0)">New report</a>
                             <a class="dropdown-item" id="SaveReportButton" href="javascript:void(0)">Save as...</a>
@@ -41,8 +46,13 @@
                     <div id="ReportTitle" class="card-title float-left">Sales by product</div>
                     <div class="float-right card-header-button">
                         <button id="UpdateReportButton" type="button" class="btn btn-default btn-sm" title="Refresh result set">
-                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                            <i class="fas fa-sync-alt" aria-hidden="true"></i>
                         </button>
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" title="Export the result" id="ResultExportButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-download"></i></button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportMenuButton">
+                            <a class="dropdown-item eqjs-export" href="javascript:void(0)" data-format="excel-html"><i class="fas fa-file-excel mr-2"></i>Export to Excel</a>
+                            <a class="dropdown-item eqjs-export" href="javascript:void(0)" data-format="csv"><i class="fas fa-file-csv mr-2"></i>Export to CSV</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">

@@ -7,21 +7,42 @@ window.addEventListener('load', () => {
     //Options for ReportViewJQuery
     let options: ReportViewOptions = {
 
+        //Saves report on each change
+        syncReportOnChange: true,
+
+        result: {
+            //Show EasyChart
+            showChart: true,
+
+            //Paging options
+            paging: {
+                //Use bootstrap v4 styles
+                useBootstrap: true,
+
+                //max count of displayed buttons
+                maxButtonCount: 10,
+
+                //paging css class
+                cssClass: 'pagination-sm'
+            }
+        },
+
         //Load model on start
         loadModelOnStart: true,
 
         //Default model's ID (we use it here just for a nice folder name in App_Data folder)
-        defaultModelId: "adhoc-reporting",
+        defaultModelId: 'adhoc-reporting',
 
         //Broker options
         broker: {
             //Middleware endpoint 
-            endpoint: "/api/adhoc-reporting"
+            endpoint: '/api/adhoc-reporting'
         },
+
+        enableExport: true,
 
         //Different widgets options
         widgets: {
-
             //ColumnBar options
             columnsBar: {
                 accentActiveColumn: false,
@@ -50,25 +71,7 @@ window.addEventListener('load', () => {
             eqResultGrid: {
                 tableClass: "table table-sm"
             }
-        },
-        result: {
-            //Show EasyChart
-            showChart: true,
-
-            //Paging options
-            paging: {
-                //Use bootstrap v4 styles
-                useBootstrap: true,
-
-                //max count of displayed buttons
-                maxButtonCount: 10,
-
-                //paging css class
-                cssClass: 'pagination-sm'
-            },
-        },
-        //Saves report on each change
-        syncReportOnChange: true
+        }
     };
     
     let reportView = new ReportViewJQuery();

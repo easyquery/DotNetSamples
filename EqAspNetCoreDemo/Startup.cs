@@ -73,8 +73,8 @@ namespace EqAspNetCoreDemo
                 options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
                 options.UseDbConnection<SqlConnection>();
                 //uncomment this line if you want to load model directly from connection 
-                //options.UseDbConnectionModelLoader(); uncomment this line
-                options.UsePaging(10);
+                options.UseDbConnectionModelLoader();
+                options.UsePaging(30);
             });
 
             //uncomment to test another approach for data filtering (available by /data-filtering2)
@@ -94,7 +94,7 @@ namespace EqAspNetCoreDemo
                 options.UseDbContext<AppDbContext>();
                 options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
                 options.UseQueryStore((_) => new FileQueryStore(_dataPath));
-                options.UsePaging(10);
+                options.UsePaging(30);
             });
 
 

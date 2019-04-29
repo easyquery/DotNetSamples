@@ -14,6 +14,7 @@
     <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.0.0-rc3" />
     <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.0.0-rc3" />
     <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.0.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.0.0-rc3" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="call npm install&#xD;&#xA;call webpack --mode=development" />
