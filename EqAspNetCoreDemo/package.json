@@ -5,10 +5,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@easyquery/core": "^5.0.0-rc2",
-    "@easyquery/broker-eqs": "^5.0.0-rc2",
-    "@easyquery/ui": "^5.0.0-rc2",
-    "@easyquery/ui-jquery": "^5.0.0-rc2"
+    "@easyquery/core": "^5.0.0-rc4",
+    "@easyquery/broker-eqs": "^5.0.0-rc4",
+    "@easyquery/ui": "^5.0.0-rc4",
+    "@easyquery/ui-jquery": "^5.0.0-rc4"
   },
   "scripts": {
     "test": "test",

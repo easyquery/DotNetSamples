@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
@@ -9,11 +9,11 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-rc2" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.0.0-rc2" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.0.0-rc2" />
-    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.0.0-rc2" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.0.0-rc2" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-rc4" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.0.0-rc4" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.0.0-rc4" />
+    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.0.0-rc4" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.0.0-rc4" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="call npm install&#xD;&#xA;call webpack --mode=development" />
