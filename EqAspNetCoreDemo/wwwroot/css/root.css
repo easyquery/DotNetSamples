@@ -30,3 +30,13 @@
     display: block;
     height: 40px;
 }
+
+.project-dropdown > a {
+    font-size: 18pt;
+    color: #4f4f4f;
+}
+
+.project-menu > .dropdown-item {
+    font-size: 18pt;
+    color: #4f4f4f;
+}

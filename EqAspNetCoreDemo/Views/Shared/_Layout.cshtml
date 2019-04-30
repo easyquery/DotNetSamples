@@ -18,15 +18,27 @@
 </head>
 <body>
 
-    <div class="border-bottom mb-3">
-        <div class="container-fluid px-5">
-            <div class="col-md-12 header my-2">
-                <div class="logo-title">EasyQuery</div>
-                <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
-                <div class="global-message"></div>
+    <header class="navbar border-bottom mb-3 p-0 container-fluid px-5">
+        <div class="header my-2">
+            <div class="logo-title">EasyQuery</div>
+            <div class="sub-title">User-friendly ad-hoc query builder for your web-site</div>
+        </div>
+        <div class="nav-item dropdown project-dropdown">
+            <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @ViewData["Title"]
+            </a>
+            <div class="dropdown-menu dropdown-menu-right project-menu" aria-labelledby="bd-versions">
+                <a class="dropdown-item" href="/">Index</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/advanced-search">Advanced Search demo</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/adhoc-reporting">Ad-hoc reporting demo</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/data-filtering">Data Filtering demo</a>
             </div>
         </div>
-    </div>
+    </header>
+    <div class="global-message"></div>
 
     @RenderBody()
 

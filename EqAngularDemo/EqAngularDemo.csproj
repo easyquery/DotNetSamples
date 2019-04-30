@@ -10,11 +10,12 @@
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.0.0-rc3" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0-rc4" />
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.0.0-rc4" />
-    <PackageReference Include="Korzh.DbExport" Version="4.2.0" />
+    <PackageReference Include="Korzh.DbExport" Version="5.0.0" />
     <PackageReference Include="Korzh.Utils" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
@@ -41,7 +42,7 @@
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
       <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>

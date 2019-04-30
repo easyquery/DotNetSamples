@@ -1,6 +1,6 @@
 <!--EasyQuery CSS files -->
 
-
+<div class="eqjs-process-bar" id="ProcessBar"></div>
 <div id="main">
   <!--
   <input id="QueryContentJson" type="hidden" value="@ViewBag.QueryJson" />
@@ -77,14 +77,12 @@
             <div class="eqv-result-panel">
                 <hr class="eqv-result-panel-hr eqv-hr" />
                 <div class="eqv-result-panel-title">
-                    Result
-                    <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
-          <!-- Not supported yet
-          <span id="ResultExportButtons">
-              <a id="ExportToExcel" href="javascript:void(0)">Export to Excel</a>
-              <a id="ExportToCsv" href="javascript:void(0)">Export to CSV</a>
-          </span>
-              -->
+                  Result
+                  <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
+                  <span class="eqv-export-buttons">
+                    <a class="eqjs-export" href="javascript:void(0)" data-format="excel-html">Export to Excel</a>
+                    <a class="eqjs-export" href="javascript:void(0)" data-format="csv">Export to CSV</a>
+                  </span>
                 </div>
                 <div id="ResultPanel" class="eqv-result-panel-content">
                 </div>

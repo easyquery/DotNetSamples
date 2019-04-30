@@ -1,8 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Data filtering demo";
+    ViewBag.Title = "Data Filtering demo";
 }
-
+    <div class="eqjs-process-bar" id="ProcessBar"></div>
     <div class="container">
         <h4>Orders</h4>
 
@@ -45,10 +45,9 @@
                         useBootstrap: true
                     }
                 }
-            };
-
-            let basicView = new easyquery.HtmlDataFilterView();
-            basicView.init(options);
+            }
+            let view = new easyquery.HtmlDataFilterView();
+            view.init(options);
         });
 
     </script>
