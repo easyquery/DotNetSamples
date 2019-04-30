@@ -76,8 +76,8 @@ namespace EqAspNetCoreDemo.Controllers
         /// </summary>
         /// <param name="jsonDict"></param>
         /// <returns>IActionResult which contains a partial view with the filtered result set</returns>
-        [HttpPost("models/{modelId}/queries/execute")]
-        public IActionResult ApplyQueryFilter(string modelId, [FromBody] JObject jObject) {
+        [HttpPost("models/{modelId}/queries/{queryId}/execute")]
+        public IActionResult ApplyQueryFilter(string modelId, string queryId, [FromBody] JObject jObject) {
             var query = _eqManager.LoadQueryWithOptionsFromJson(modelId, jObject);
 
             var queryable = _dbContext.Orders
