@@ -40,3 +40,7 @@
     font-size: 18pt;
     color: #4f4f4f;
 }
+
+.table td, .table th {
+    padding: .25rem .75rem;
+}
