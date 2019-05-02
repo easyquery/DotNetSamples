@@ -16,7 +16,7 @@ namespace EqAspNetCoreDemo.Pages
         [BindProperty(SupportsGet = true)]
         public int CurrentPage { get; set; } = 1;
         public int Count { get; set; }
-        public int PageSize { get; set; } = 10;
+        public int PageSize { get; set; } = 20;
         public int MaxButtonCount { get; set; } = 5;
 
         [BindProperty(SupportsGet = true)]

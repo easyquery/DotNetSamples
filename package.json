@@ -1,6 +1,6 @@
 {
     "name":  "easyquery.ancsamples",
-    "version":  "5.0.0-rc2",
+    "version":  "5.0.0",
     "description":  "ASP.NET Core 2.0 projects which demonstrate how to use EasyQuery in different web-application scenarios.",
     "main":  "index.js",
     "scripts":  {
