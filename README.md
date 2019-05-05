@@ -57,3 +57,9 @@ All of these demo projects work with some sample database. That database is crea
 
 The sample database is created in your SQL Express LocalDB instance by default. To change that you can modify the connection string in `appsettings.json` file in the project's folder.
  
+
+## Links
+ - [EasyQuery home page](https://korzh.com/easyquery)
+ - [EasyQuery documentation](https://korzh.com/easyquery/docs)
+ - [EasyQuery live demos](http://demo.easyquerybuilder.com)
+ 
