@@ -67,26 +67,16 @@ namespace EqAspNetCoreDemo
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            //The middleware which handles the Advances Search scenario
             app.UseEasyQuery(options => {
                 options.BuildQueryOnSync = true;
                 options.DefaultModelId = "NWindSQL";
                 options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
                 options.UseDbConnection<SqlConnection>();
                 //uncomment this line if you want to load model directly from connection 
-                options.UseDbConnectionModelLoader();
+                //options.UseDbConnectionModelLoader();
                 options.UsePaging(30);
             });
-
-            //uncomment to test another approach for data filtering (available by /data-filtering2)
-            //app.UseEasyQuery(options => {
-            //    options.Endpoint = "/orders";
-            //    options.UseEntity((services, _) => services.GetService<AppDbContext>()
-            //                                               .Orders
-            //                                               .Include(o => o.Customer)
-            //                                               .Include(o => o.Employee)
-            //                                               .AsQueryable());
-            //    options.UsePaging(10);
-            //});
 
             app.UseEasyQuery(options => {
                 options.SaveQueryOnSync = true;
@@ -97,6 +87,16 @@ namespace EqAspNetCoreDemo
                 options.UsePaging(30);
             });
 
+            //uncomment to test another approach for data filtering (available by /data-filtering2)
+            //app.UseEasyQuery(options => {
+            //    options.Endpoint = "/api/data-filtering2";
+            //    options.UseEntity((services, _) => services.GetService<AppDbContext>()
+            //                                               .Orders
+            //                                               .Include(o => o.Customer)
+            //                                               .Include(o => o.Employee)
+            //                                               .AsQueryable());
+            //    options.UsePaging(10);
+            //});
 
             app.UseMvc(routes => {
                 routes.MapRoute(
