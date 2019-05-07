@@ -54,7 +54,7 @@ namespace EqVueDemo
             {
                 options.DefaultModelId = "NWindSQL";
                 options.UseDbConnection<System.Data.SqlClient.SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
-                options.UsePaging(20);
+                options.UsePaging(30);
             });
 
             app.UseMvc(routes =>
