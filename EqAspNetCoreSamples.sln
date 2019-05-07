@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAngularDemo", "EqAngularD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqReactDemo", "EqReactDemo\EqReactDemo.csproj", "{11BE2137-6E12-4F75-8C61-19384FE078D9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqVueDemo", "EqVueDemo\EqVueDemo.csproj", "{3CCDBF68-5C14-4049-94C6-13C8FB654D06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,24 @@ Global
 		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|x64.Build.0 = Release|Any CPU
 		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|x86.ActiveCfg = Release|Any CPU
 		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|x86.Build.0 = Release|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Debug|x64.Build.0 = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Debug|x86.Build.0 = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.DebugDeep|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.DebugDeep|Any CPU.Build.0 = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.DebugDeep|x64.ActiveCfg = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.DebugDeep|x64.Build.0 = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.DebugDeep|x86.ActiveCfg = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.DebugDeep|x86.Build.0 = Debug|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|x64.ActiveCfg = Release|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|x64.Build.0 = Release|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|x86.ActiveCfg = Release|Any CPU
+		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

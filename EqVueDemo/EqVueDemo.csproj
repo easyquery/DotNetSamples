@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <TypeScriptToolsVersion>3.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.0.0" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.0.0" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="VueCliMiddleware" Version="2.2.0" />
+  </ItemGroup>
+
+</Project>
