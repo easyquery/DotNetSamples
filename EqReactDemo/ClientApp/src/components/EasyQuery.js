@@ -6,6 +6,8 @@ import  AdvancedSearchHtml  from './EasyQueryHtml';
 export class EasyQuery extends Component {
     static displayName = EasyQuery.name;
 
+    QUERY_KEY = 'easyquerycomponent-query';
+
     view = new AdvancedSearchViewJQuery();
 
     componentDidMount() {
@@ -21,8 +23,8 @@ export class EasyQuery extends Component {
               },
               listRequestHandler: (params, onResult) => {
                 let processed = true;
-                if (params.listName == "RegionList") {
-                    let query = this.context.getQuery();
+                  if (params.listName == "RegionList") {
+                      let query = this.view.getContext().getQuery();
                     let country = query.getOneValueForAttr("Customer.Country");
                     if (country == "Canada") {
                         onResult([
