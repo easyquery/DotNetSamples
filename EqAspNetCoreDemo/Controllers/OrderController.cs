@@ -30,11 +30,12 @@ namespace EqAspNetCoreDemo.Controllers
             this._dbContext = dbContext;
 
             var options = new EasyQueryOptions(services);
-            options.UseEntity((_, __) => _dbContext
-                                            .Orders
-                                            .Include(o => o.Customer)
-                                            .Include(o => o.Employee)
-                                            .AsQueryable());
+            options.UseEntity((_, __) => 
+                _dbContext
+                    .Orders
+                    .Include(o => o.Customer)
+                    .Include(o => o.Employee)
+                    .AsQueryable());
 
             _eqManager = new EasyQueryManagerLinq<Order>(services, options);           
         }
