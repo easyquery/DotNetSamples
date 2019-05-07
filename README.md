@@ -15,41 +15,41 @@ To run these samples you will need:
  * Build and run.
  
  
-## Gettings started with command-line
+## Gettings started with the command-line
  * Clone the repository
- * Run Command Prompt and change current directory to the project's folder for one of the demo projects (e.g. EasyReportDemo)
+ * Run Command Prompt and change the current directory to the project's folder for one of the demo projects (e.g. EasyReportDemo)
  * Type `dotnet build` to build the project
  * Type `dotnet run` to run it
  * Open `localhost:5000` in your browser.
 
 
 ## EqAspNetCoreDemo project
-This project implements several the most usual scenarios of using EasyQuery. We tried to combine all these cases in one application for two reasons:
- * to simplify the demonstration process since it's more easy to setup and run one project instead of several different projects.
- * to show how to configure difrerent scenarios of using EasyQuery in a one application.
+This project implements several of the most usual scenarios of using EasyQuery. We tried to combine all these cases in one application for two reasons:
+ * to simplify the demonstration process since it's more easy to set up and run one project instead of several different projects.
+ * to show how to configure different scenarios of using EasyQuery in one application.
 
-So, when you start this sample project you will see an index page which leads your to the following demo pages:
+So, when you start this sample project you will see an index page which leads you to the following demo pages:
 
 ### Advanced search
-The page itself is implemented as a Razor Page (`Pages/AdvancedSearch.cshtml`). The scripts and CSS files are take directly from our CDN and the initializaiton of the client-side code was done right in the `Scripts` section of .cshtml file.
-The middleware for this scenario (the first `UseEasyQuery` call in `Startup.Configure`) is listening for requests on default endpoint `/api/easyquery`. The most is loaded from the XML file `App_Data/NWindSQL.xml` but you can easily switch to loading it directly from DB connection (just uncomment one line in middleware's configuration).
+The page itself is implemented as a Razor Page (`Pages/AdvancedSearch.cshtml`). The scripts and CSS files are taken directly from our CDN and the initialization of the client-side code was done right in the `Scripts` section of .cshtml file.
+The middleware for this scenario (the first `UseEasyQuery` call in `Startup.Configure`) is listening for requests on default endpoint `/api/easyquery`. The model is loaded from the XML file `App_Data/NWindSQL.xml` but you can easily switch to loading it directly from DB connection (just uncomment one line in middleware's configuration).
 
 ### Ad-hoc reporting
-This is the page which demostrates full capabilities of EasyQuery library: columns editing (with `ColumnsBar` widget), saving/loading of the queries to some server-side storage and loading the data model directly from a DbContext.
+This is the page which demonstrates full capabilities of EasyQuery library: columns editing (with `ColumnsBar` widget), saving/loading of the queries to some server-side storage and loading the data model directly from a DbContext.
 The page is available at `Views/Home/AdhocReporting.cshtml`. As for the JavaScript part - we use a different approach here. The code that we need to run this page is placed into a TypeScript file at `ts/adhoc-reporting.ts`. The necessary NPM packages (`@easyquery/core` and others) are listed in `package.json` file and everything is build with the help of WebPack using `npm run build` command. 
-The result file (`adhoc-reporting.js`) is placed to `wwwroot/js` folder and then included to our view.
+The result file (`adhoc-reporting.js`) is placed to `wwwroot/js` folder and then included in our view.
 
 
 ### Data filtering
-To implement this scenario we used a totally different approach. The EasyQuery middleware and the most of our client-side widgets are not used here. The page which is repsonsible for implementation of this scenario is available at `Views/Order/Orders.cshtml`. The only widget, added on that page is `FilterBar`. As in previous case the necessary script (eq.all.min.js) and CSS file (eq.core.min.css) are bundled with WebPack and placed to `wwwroot` folders.
+To implement this scenario we used a totally different approach. The EasyQuery middleware and most of our client-side widgets are not used here. The page which is responsible for the implementation of this scenario is available at `Views/Order/Orders.cshtml`. The only widget added on that page is `FilterBar`. As in the previous case the necessary script (eq.all.min.js) and CSS file (eq.core.min.css) are bundled with WebPack and placed to `wwwroot` folders.
 The server side part is implemented in `Controllers/OrderController.cs` file. Basically, in addition to `Index` action it contains only 3 extra methods which handles the requests from EasyQuery client-side code: `GetModel` (returns the model), `GetList` (returns the lists of values for lookup columns) and `ApplyQueryFilter` which executes the query (filter) over `Orders` DbSet using `DynamicQuery` extension method and passes the result lost of orders to `_OrderListPartial` partial view for rendering.
 
 This is a great demonstration of using EasyQuery components without the middleware part.
  
 ### Full-text search
-The last scenario is even simpler that the previous one. It demostrates how quickly you can implement a full-text search over your database with only one usefull extension function provided by EasyQuery: `FullTextSearchQuery`.
-The view is implementated as a Razor page (`Pages/FullTextSearch`) and does not contain any EasyQuery JavaScript at all. All the magic happens on the code-behind class in `OnGet` method: we just call our `FullTextSearchQuery` function over the `Customers` DB set. 
-On the page we also use `eq-highlight-text` tag helper to highlight the found parts of the text inside the data table.
+The last scenario is even simpler than the previous one. It demonstrates how quickly you can implement a full-text search over your database with only one useful extension function provided by EasyQuery: `FullTextSearchQuery`.
+The view is implemented as a Razor page (`Pages/FullTextSearch`) and does not contain any EasyQuery JavaScript at all. All the magic happens on the code-behind class in `OnGet` method: we just call our `FullTextSearchQuery` function over the `Customers` DB set. 
+On the page, we also use `eq-highlight-text` tag helper to highlight the found parts of the text inside the data table.
 
  
 ## Sample database
