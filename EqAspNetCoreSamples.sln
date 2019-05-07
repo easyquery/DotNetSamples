@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAspNetCoreDemo", "EqAspNe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAngularDemo", "EqAngularDemo\EqAngularDemo.csproj", "{C5538322-4CB5-4A52-AAF6-221CC3F1488B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqReactDemo", "EqReactDemo\EqReactDemo.csproj", "{11BE2137-6E12-4F75-8C61-19384FE078D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,24 @@ Global
 		{C5538322-4CB5-4A52-AAF6-221CC3F1488B}.Release|x64.Build.0 = Release|Any CPU
 		{C5538322-4CB5-4A52-AAF6-221CC3F1488B}.Release|x86.ActiveCfg = Release|Any CPU
 		{C5538322-4CB5-4A52-AAF6-221CC3F1488B}.Release|x86.Build.0 = Release|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Debug|x64.Build.0 = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Debug|x86.Build.0 = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.DebugDeep|Any CPU.ActiveCfg = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.DebugDeep|Any CPU.Build.0 = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.DebugDeep|x64.ActiveCfg = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.DebugDeep|x64.Build.0 = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.DebugDeep|x86.ActiveCfg = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.DebugDeep|x86.Build.0 = Debug|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|x64.ActiveCfg = Release|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|x64.Build.0 = Release|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|x86.ActiveCfg = Release|Any CPU
+		{11BE2137-6E12-4F75-8C61-19384FE078D9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
