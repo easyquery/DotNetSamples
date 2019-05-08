@@ -12,9 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 
 using Korzh.EasyQuery.DbGates;
 using Korzh.EasyQuery.Services;
+using Korzh.EasyQuery.AspNetCore;
 
 namespace EqAspNetCoreDemo
 {
@@ -42,6 +45,17 @@ namespace EqAspNetCoreDemo
             });
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb")));
+            services.AddDefaultIdentity<IdentityUser>(opts => {
+                //Password options
+                opts.Password.RequiredLength = 5;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            })
+             .AddRoles<IdentityRole>()
+             .AddDefaultUI(UIFramework.Bootstrap4)
+             .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddEasyQuery()
                     .UseSqlManager()
@@ -67,6 +81,8 @@ namespace EqAspNetCoreDemo
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseAuthentication();
+
             //The middleware which handles the Advances Search scenario
             app.UseEasyQuery(options => {
                 options.BuildQueryOnSync = true;
@@ -84,7 +100,26 @@ namespace EqAspNetCoreDemo
                 options.UseDbContext<AppDbContext>();
                 options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
                 options.UseQueryStore((_) => new FileQueryStore(_dataPath));
+                options.UseModelTuner((model) =>
+                {
+                    model.EntityRoot.Scan(ent => {
+                        //Make invisible all entities started with "AspNetCore" and "Report"
+                        if (ent.Name.StartsWith("Asp") || ent.Name == "Report")
+                        {
+                            ent.UseInConditions = false;
+                            ent.UseInResult = false;
+                            ent.UseInSorting = false;
+                        }
+                    }
+                    , null, false);
+                });
                 options.UsePaging(30);
+                //options.usedefaultauthprovider((provider) =>
+                //{
+                //    //by default it is required eqmanager role 
+                //    provider.requireauthorization(eqaction.newquery, eqaction.savequery, eqaction.removequery);
+                //    //provider.requirerole(defaulteqauthprovider.eqmanagerrole, eqaction.newquery, eqaction.savequery, eqaction.removequery);
+                //});
             });
 
             //uncomment to test another approach for data filtering (available by /data-filtering2)
@@ -104,9 +139,17 @@ namespace EqAspNetCoreDemo
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            //Init test database
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var scopedServices = scope.ServiceProvider;
+                var dbContext = scopedServices.GetRequiredService<AppDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
+
             var scriptFilePath = System.IO.Path.Combine(_dataPath, "EqDemoDb.sql");
             var dbInit = new Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
-            dbInit.EnsureCreated();
+            dbInit.AddTestData();
         }
     }
 }

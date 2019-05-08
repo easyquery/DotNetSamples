@@ -39,6 +39,8 @@ namespace EqAspNetCoreDemo.Models
         [MaxLength(30)]
         public string Title { get; set; }
 
+        public string TitleOfCourtesy { get; set; }
+
         [Display(Name = "Birth date")]
         public DateTime? BirthDate { get; set; }
 
@@ -63,6 +65,8 @@ namespace EqAspNetCoreDemo.Models
 
         [ScaffoldColumn(false)]
         public byte[] Photo { get; set; }
+
+        public string PhotoPath { get; set; }
 
         public string Notes { get; set; }
 

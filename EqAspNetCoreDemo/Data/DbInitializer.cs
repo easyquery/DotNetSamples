@@ -21,63 +21,35 @@ namespace EqAspNetCoreDemo.Data
             _scriptFilePath = scriptFilePath;
         }
 
-        public void EnsureCreated()
+        public void AddTestData()
         {
-            bool dbExists = false;
-            try {
+            try
+            {
                 _connection.Open();
+
+                if (IsEmptyDb()) {
+                    FillDb();
+                }
+
                 _connection.Close();
-                dbExists = true;
             }
-            catch {
-
+            catch (Exception ex) {
+                Console.WriteLine(ex);
             }
-
-            if (!dbExists) {
-                CreateDb();
-                FillDb();
-            }
+          
         }
 
-        private void CreateDb()
+        private bool IsEmptyDb()
         {
-            var connectionStringBuilder = new SqlConnectionStringBuilder(_connectionString) { InitialCatalog = "master" };
-            connectionStringBuilder.Remove("AttachDBFilename");
+            string script = "SELECT * FROM dbo.Employees";
 
-            using (var masterConnnection = new SqlConnection(connectionStringBuilder.ConnectionString)) {
-                masterConnnection.Open();
+            var fillDbCommand = _connection.CreateCommand();
 
-                var createDbCommand = masterConnnection.CreateCommand();
-                createDbCommand.CommandText = "CREATE DATABASE " + _connection.Database;
+            fillDbCommand.CommandText = script;
 
-                createDbCommand.ExecuteScalar();
-                masterConnnection.Close();
-            }
+            var rows = fillDbCommand.ExecuteNonQuery();
 
-            Task.Delay(2000).Wait();
-
-            TryToOpenNewDb();
-        }
-
-        private void TryToOpenNewDb()
-        {
-            int N = 0;
-            Exception lastException = null;
-            do {
-                try {
-                    _connection.Open();
-                }
-                catch (Exception ex) {
-                    lastException = ex;
-                    Task.Delay(2000).Wait();
-                }
-                N++;
-            }
-            while (_connection.State != ConnectionState.Open && N < 3);
-
-            if (_connection.State != ConnectionState.Open) {
-                throw lastException;
-            }
+            return rows < 1;
         }
 
         private void FillDb()
