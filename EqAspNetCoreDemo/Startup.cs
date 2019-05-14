@@ -19,6 +19,8 @@ using Korzh.EasyQuery.DbGates;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.AspNetCore;
 
+using EqAspNetCoreDemo.Services;
+
 namespace EqAspNetCoreDemo
 {
     public class Startup
@@ -95,11 +97,16 @@ namespace EqAspNetCoreDemo
             });
 
             app.UseEasyQuery(options => {
+                options.DefaultModelId = "adhoc-reporting";
                 options.SaveQueryOnSync = true;
                 options.Endpoint = "/api/adhoc-reporting";
                 options.UseDbContext<AppDbContext>();
                 options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
-                options.UseQueryStore((_) => new FileQueryStore(_dataPath));
+
+                // here we add our custom query store
+                options.UseQueryStore((services) => new ReportStore(services));
+
+
                 options.UseModelTuner((model) =>
                 {
                     model.EntityRoot.Scan(ent => {
@@ -113,13 +120,14 @@ namespace EqAspNetCoreDemo
                     }
                     , null, false);
                 });
+
                 options.UsePaging(30);
-                //options.usedefaultauthprovider((provider) =>
-                //{
-                //    //by default it is required eqmanager role 
-                //    provider.requireauthorization(eqaction.newquery, eqaction.savequery, eqaction.removequery);
-                //    //provider.requirerole(defaulteqauthprovider.eqmanagerrole, eqaction.newquery, eqaction.savequery, eqaction.removequery);
-                //});
+                options.UseDefaultAuthProvider((provider) =>
+                {
+                    //by default it is required eqmanager role 
+                    provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+                    //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+                });
             });
 
             //uncomment to test another approach for data filtering (available by /data-filtering2)
