@@ -64,6 +64,9 @@ namespace EqAspNetCoreDemo
                     .AddDefaultExporters()
                     .RegisterDbGate<SqlClientGate>();
 
+            // add default reports generatir
+            services.AddScoped<DefaultReportGeneratorService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

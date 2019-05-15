@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
+using EqAspNetCoreDemo.Services;
+
 namespace EqAspNetCoreDemo.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
@@ -20,16 +22,20 @@ namespace EqAspNetCoreDemo.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        private readonly DefaultReportGeneratorService _reportGenerator;
+
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            DefaultReportGeneratorService reportGenerator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _reportGenerator = reportGenerator;
         }
 
         [BindProperty]
@@ -83,6 +89,10 @@ namespace EqAspNetCoreDemo.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    // generate default reports
+                    await _reportGenerator.GenerateAsync(user);
+
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)

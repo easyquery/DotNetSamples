@@ -25,10 +25,6 @@ namespace EqAspNetCoreDemo.Services
 
         private AppDbContext _dbContext;
 
-        //this is an example storage to load example reports
-        private IQueryStore _exampleStore;
-
-
         public ReportStore(IServiceProvider services)
         {
             Services = services;
@@ -39,9 +35,6 @@ namespace EqAspNetCoreDemo.Services
                 throw new NullReferenceException("Can't get HttpContextAccessor or the current user");
             }
             _dbContext = Services.GetRequiredService<AppDbContext>();
-
-            var env = Services.GetRequiredService<IHostingEnvironment>();
-            _exampleStore = new FileQueryStore(Path.Combine(env.ContentRootPath, "App_Data"));
         }
 
         public async Task<bool> AddQueryAsync(Query query)
@@ -73,20 +66,12 @@ namespace EqAspNetCoreDemo.Services
 
         }
 
-        public async Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId)
-        {
-            var result = ApplyUserGuard(_dbContext.Reports).Where(r => r.ModelId == modelId)
-                .Select(r => new QueryListItem(r.Id, r.Name, r.Description)).AsEnumerable();
+        public Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId)
+            => Task.FromResult(ApplyUserGuard(_dbContext.Reports)
+                               .Where(r => r.ModelId == modelId)
+                               .Select(r => new QueryListItem(r.Id, r.Name, r.Description))
+                               .AsEnumerable());
 
-            var examples = await _exampleStore.GetAllQueriesAsync(modelId);
-
-            var resultIds = result.Select(r => r.id);
-
-            //Add example queries
-            result = result.Concat(examples.Where(r => !resultIds.Contains(r.id)));
-
-            return result;
-        }
 
         public async Task<bool> LoadQueryAsync(Query query, string queryId)
         {
@@ -97,12 +82,6 @@ namespace EqAspNetCoreDemo.Services
                 query.ID = report.Id;
 
                 return true;
-            }
-
-            // this is to create example queries for user
-            var result = await _exampleStore.LoadQueryAsync(query, queryId);
-            if (result) {
-                await AddQueryAsync(query);
             }
 
             return false;
