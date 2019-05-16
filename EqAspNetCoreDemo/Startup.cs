@@ -73,6 +73,9 @@ namespace EqAspNetCoreDemo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var appPathBase = Configuration["appPathBase"] ?? "/";
+            app.UsePathBase(appPathBase);
+
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }

@@ -1,9 +1,12 @@
 ﻿@page "/advanced-search"
 @model EqAspNetCoreDemo.Pages.AdvancedSearchModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
 @{
     ViewData["Title"] = "Advanced Search demo";
     Layout = "_Layout";
+    var appPathBase = Configuration["appPathBase"] ?? "";
 }
 
 @section Styles {
@@ -28,10 +31,6 @@
 
             //Options for AdvancedSearchViewJQuery
             let options = {
-
-                //enables export functionality
-                enableExport: true,
-
                 //Load model on start
                 loadModelOnStart: true,
 
@@ -43,6 +42,12 @@
 
                 //Default model ID
                 defaultModelId: "NWindSQL",
+
+                enableExport: true,
+
+                broker: {
+                    endpoint: "@(appPathBase)/api/easyquery"
+                },
 
                 //Handlers
                 handlers: {
@@ -127,6 +132,7 @@
 
             this.view = new easyquery.AdvancedSearchViewJQuery();
             view.init(options);
+
             document['AdvancedSearchViewJQuery'] = view;
         });
     </script>

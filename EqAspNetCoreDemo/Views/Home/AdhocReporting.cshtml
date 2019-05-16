@@ -1,6 +1,8 @@
-﻿
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
 @{
     ViewData["Title"] = "Ad-hoc reporting demo";
+    var appPathBase = Configuration["appPathBase"] ?? "";
 }
 
 
@@ -82,6 +84,9 @@
 </div>
 
 @section Scripts {
+    <script>
+        window._appPathBase = "@appPathBase";
+    </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script>
