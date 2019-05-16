@@ -18,6 +18,15 @@ namespace EqAspNetCoreDemo.Models
         [ScaffoldColumn(false)]
         public int? SupplierID { get; set; }
 
+
+        [ForeignKey("SupplierID")]
+        public virtual Supplier Supplier { get; set; }
+
+        public int? CategoryID { get; set; }
+
+        [ForeignKey("CategoryID")]
+        public virtual Category Category { get; set; }
+
         public string QuantityPerUnit { get; set; }
 
         public decimal? UnitPrice { get; set; }
