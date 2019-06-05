@@ -1,9 +1,15 @@
 ﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 @{
-    ViewBag.Title = "Data Filtering demo";
+    ViewData["Title"] = "Data Filtering demo";
+    ViewData["MenuTitle"] = "Data Filtering";
     var appPathBase = Configuration["appPathBase"] ?? "";
 }
+
+@section Styles  {
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.0/eq.core.min.css">
+}
+
 <div class="eqjs-process-bar" id="ProcessBar"></div>
 <div class="container">
     <h4>Orders</h4>
@@ -13,13 +19,11 @@
     <div id="ResultPanel"></div>
 </div>
 
-@section Styles  {
-    <link rel="stylesheet" href="~/css/eq.core.min.css">
-}
 
+@section Scripts {
 
-@section scripts {
-    <script src="~/js/eq.all.min.js" type="text/javascript"></script>
+    <!-- EasyQuery script -->
+    <script src="https://cdn.korzh.com/eq/5.1.0/eq.all.min.js"></script>
 
     <!-- EasyQuery script files -->
     <script>
@@ -43,7 +47,7 @@
                     }
                 }
             }
-            let view = new easyquery.HtmlDataFilterView();
+            let view = new easyquery.ui.HtmlDataFilterView();
             view.init(options);
         });
 

@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+
+using Korzh.EasyQuery.Services;
 
 using EqAspNetCoreDemo.Services;
 
@@ -22,14 +25,14 @@ namespace EqAspNetCoreDemo.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        private readonly DefaultReportGeneratorService _reportGenerator;
+        private readonly DefaultReportGenerator _reportGenerator;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            DefaultReportGeneratorService reportGenerator)
+            DefaultReportGenerator reportGenerator)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -77,6 +80,12 @@ namespace EqAspNetCoreDemo.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    //add new user to "eq-manager" role
+                    result = await _userManager.AddToRoleAsync(user, DefaultEqAuthProvider.EqManagerRole);
+                    if (result.Succeeded) {
+                        _logger.LogInformation("User has beed added to role: " + DefaultEqAuthProvider.EqManagerRole);
+                    }
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(

@@ -101,7 +101,7 @@ namespace EqAspNetCoreDemo.Services
             return false;
         }
 
-        public async Task<bool> SaveQueryAsync(Query query)
+        public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExist = true)
         {
             var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.ID);
             if (report != null)
@@ -115,6 +115,9 @@ namespace EqAspNetCoreDemo.Services
                 await _dbContext.SaveChangesAsync();
 
                 return true;
+            }
+            else if (createIfNotExist) {
+                return await AddQueryAsync(query);
             }
 
             return false;
