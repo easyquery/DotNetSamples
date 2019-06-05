@@ -105,8 +105,15 @@ namespace EqAspNetCoreDemo
                 //uncomment this line if you want to load model directly from connection 
                 //options.UseDbConnectionModelLoader();
 
-                //options.UseQueryStore((services) => new FileQueryStore("App_Data"));
-                options.UseQueryStore((services) => new SessionQueryStore(services));
+                if (Configuration.GetValue<string>("queryStore") == "session")
+                {
+                    options.UseQueryStore((services) => new SessionQueryStore(services));
+                }
+                else {
+
+                    options.UseQueryStore((services) => new FileQueryStore("App_Data"));
+                }
+   
                 options.UsePaging(30);
             });
 
