@@ -14,7 +14,7 @@ export class EasyQuery extends Component {
         const options = {
             enableExport: true,
             loadModelOnStart: true,
-            loadQueryOnStart: true,
+            loadQueryOnStart: false,
             defaultQueryId: "test-query",
             defaultModelId: "NWindSQL",
             handlers: {
@@ -85,29 +85,29 @@ export class EasyQuery extends Component {
             }
         }
 
-        options.handlers.onInit = () => {
+        this.view.getContext().addEventListener('ready', () => {
             //here we need to add query autosave
             let query = this.view.getContext().getQuery();
-  
+
             query.addChangedCallback(() => {
                 let queryJson = query.toJSON();
                 localStorage.setItem(this.QUERY_KEY, queryJson);
-                console.log("Query saved", query);
+                //console.log("Query saved", query);
             });
-  
+
             //add load query from local storage
             this.loadQueryFromLocalStorage();
-        }
+        });
 
         this.view.init(options);
 
     }
 
     loadQueryFromLocalStorage() {
-        let queryJson = localStorage.getItem(this.QUERY_KEY);
+        const queryJson = localStorage.getItem(this.QUERY_KEY);
         if (queryJson) {
-            let query = this.view.getContext().getQuery();
-            query.setData(queryJson);
+            const query = this.view.getContext().getQuery();
+            query.loadFromDataOrJson(queryJson);
         }
     };
 

@@ -13,14 +13,14 @@ using EqAspNetCoreDemo.Models;
 
 namespace EqAspNetCoreDemo.Services
 {
-    public class DefaultReportGeneratorService
+    public class DefaultReportGenerator
     {
         private string _dataPath;
         private AppDbContext _dbContext;
 
         private const string _modelId = "adhoc-reporting";
 
-        public DefaultReportGeneratorService(IHostingEnvironment env, AppDbContext dbContext)
+        public DefaultReportGenerator(IHostingEnvironment env, AppDbContext dbContext)
         {
             _dbContext = dbContext;
             _dataPath = Path.Combine(env.ContentRootPath, $"App_Data\\dm-{_modelId}\\queries");
@@ -31,14 +31,16 @@ namespace EqAspNetCoreDemo.Services
             var reportJsons = GetReportJsons();
             foreach (var json in reportJsons) {
                 var jobject = JObject.Parse(json);
+                var reportId = Guid.NewGuid().ToString();
+                jobject["id"] = reportId;
                 var report = new Report
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = reportId,
                     OwnerId = user.Id,
                     Name = jobject["name"]?.ToString(),
                     Description = jobject["desc"]?.ToString(),
                     ModelId = _modelId,
-                    QueryJson = json
+                    QueryJson = jobject.ToString()
                 };
 
                 await _dbContext.AddAsync(report);

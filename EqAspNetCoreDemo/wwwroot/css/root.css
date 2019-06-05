@@ -31,16 +31,90 @@
     height: 40px;
 }
 
+.navbar-nav {
+    flex-direction:row;
+}
+
+.nav-item-user {
+    padding: 10px 0;
+}
+
+.navbar-nav .nav-link {
+    margin: 0 12px;
+}
+
 .project-dropdown > a {
-    font-size: 18pt;
+    font-size: 14pt;
     color: #4f4f4f;
+    padding-right:0;
 }
 
 .project-menu > .dropdown-item {
-    font-size: 18pt;
+    font-size: 14pt;
     color: #4f4f4f;
 }
 
 .table td, .table th {
     padding: .25rem .75rem;
+}
+
+
+.user-hello {
+    flex-grow: 100;
+}
+
+.user-hello > .user-email {
+    display: flex;
+    flex-direction:row-reverse;
+    flex-grow: 100;
+}
+
+.user-hello > .user-logout .btn {
+    color: #3a94d4
+}
+
+.user-hello > .user-delimiter {
+    line-height: 2rem;
+    font-size: 33px;
+    font-weight: 100;
+    color: #ccc9c9;
+    margin: 0 20px;
+}
+
+@media (max-width: 1100px) {
+    .user-hello > .user-delimiter {
+        display: none;
+    }
+}
+
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 80px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #5a6268;
+    color: white;
+    font-weight: 100;
+}
+
+.footer a {
+    color: white;
+    font-weight: 700
 }

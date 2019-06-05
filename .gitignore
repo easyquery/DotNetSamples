@@ -13,3 +13,4 @@ PublishProfiles/
 
 /EqAspNetCoreDemo/ts/easyreport.js
 App_Data/dm-*__default/
+/EqAspNetCoreDemo/App_Data/dm-NWindSQL/queries

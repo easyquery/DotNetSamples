@@ -28,12 +28,12 @@ export class EasyQueryComponent implements OnInit {
       const options: EqViewOptions = {
         enableExport: true,
         loadModelOnStart: true,
-        loadQueryOnStart: true,
+        loadQueryOnStart: false,
         defaultQueryId: "test-query",
         defaultModelId: "NWindSQL",
         handlers: {
           onError: (error) => {
-            console.error(error.type + " error:\n" + error.text);
+            console.error(error.action + " error:\n" + error.text);
           },
           listRequestHandler: (params, onResult) => {
             let processed = true;
@@ -99,30 +99,29 @@ export class EasyQueryComponent implements OnInit {
         }
       }
 
-        this.view = new AdvancedSearchViewJQuery();
-        options.handlers.onInit = () => {
-          //here we need to add query autosave
-          let query = this.context.getQuery();
+      this.view = new AdvancedSearchViewJQuery();
+      this.context = this.view.getContext();
+      this.context.addEventListener('ready', () => {
+        const query = this.context.getQuery();
 
-          query.addChangedCallback(() => {
-              let queryJson = query.toJSON();
-              localStorage.setItem(this.QUERY_KEY, queryJson);
-              console.log("Query saved", query);
-          });
+        query.addChangedCallback(() => {
+          const queryJson = query.toJSON();
+          localStorage.setItem(this.QUERY_KEY, queryJson);
+          console.log("Query saved", query);
+        });
 
-          //add load query from local storage
-          this.loadQueryFromLocalStorage();
-        }
+        //add load query from local storage
+        this.loadQueryFromLocalStorage();
+      });
         this.view.init(options);
 
-        this.context = this.view.getContext();
      }  
 
     private loadQueryFromLocalStorage() {
-        let queryJson = localStorage.getItem(this.QUERY_KEY);
+        const queryJson = localStorage.getItem(this.QUERY_KEY);
         if (queryJson) {
-          let query = this.context.getQuery();
-          query.setData(queryJson);
+          const query = this.context.getQuery();
+          query.loadFromDataOrJson(queryJson);
         }
     };
 

@@ -104,7 +104,7 @@
             const options: EqViewOptions = {
                 enableExport: true,
                 loadModelOnStart: true,
-                loadQueryOnStart: true,
+                loadQueryOnStart: false,
                 defaultQueryId: 'test-query',
                 defaultModelId: 'NWindSQL',
                 handlers: {
@@ -176,19 +176,19 @@
                 },
             };
 
-            options.handlers.onInit = () => {
-                // here we need to add query autosave
+            this.view.getContext().addEventListener('ready', () => {
+                  // here we need to add query autosave
                 const query = this.view.getContext().getQuery();
 
                 query.addChangedCallback(() => {
                     const queryJson = query.toJSON();
                     localStorage.setItem(this.QUERY_KEY, queryJson);
-                    console.log('Query saved', query);
+                    //console.log('Query saved', query);
                 });
 
                 // add load query from local storage
                 this.loadQueryFromLocalStorage();
-            };
+            });
 
             this.view.init(options);
 
@@ -198,7 +198,7 @@
             const queryJson = localStorage.getItem(this.QUERY_KEY);
             if (queryJson) {
                 const query = this.view.getContext().getQuery();
-                query.setData(queryJson);
+                query.loadFromDataOrJson(queryJson);
             }
         }
 

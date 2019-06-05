@@ -1,5 +1,5 @@
 import { ReportViewJQuery } from "@easyquery/ui-jquery"
-import { ReportViewOptions } from "@easyquery/ui";
+import { ReportViewOptions, GoogleChartProvider } from "@easyquery/ui";
 
 
 window.addEventListener('load', () => {
@@ -13,6 +13,8 @@ window.addEventListener('load', () => {
         result: {
             //Show EasyChart
             showChart: true,
+
+            chartProviderResolver: () => { return new GoogleChartProvider() },
 
             //Paging options
             paging: {

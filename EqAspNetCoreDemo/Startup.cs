@@ -20,6 +20,7 @@ using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.AspNetCore;
 
 using EqAspNetCoreDemo.Services;
+using EqAspNetCoreDemo.Models;
 
 namespace EqAspNetCoreDemo
 {
@@ -42,14 +43,14 @@ namespace EqAspNetCoreDemo
         {
             services.Configure<CookiePolicyOptions>(options => {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false; // TO DO: true
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb")));
             services.AddDefaultIdentity<IdentityUser>(opts => {
                 //Password options
-                opts.Password.RequiredLength = 5;
+                opts.Password.RequiredLength = 4;
                 opts.Password.RequireNonAlphanumeric = false;
                 opts.Password.RequireLowercase = false;
                 opts.Password.RequireUppercase = false;
@@ -59,13 +60,16 @@ namespace EqAspNetCoreDemo
              .AddDefaultUI(UIFramework.Bootstrap4)
              .AddEntityFrameworkStores<AppDbContext>();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
             services.AddEasyQuery()
                     .UseSqlManager()
                     .AddDefaultExporters()
                     .RegisterDbGate<SqlClientGate>();
 
             // add default reports generatir
-            services.AddScoped<DefaultReportGeneratorService>();
+            services.AddScoped<DefaultReportGenerator>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -89,6 +93,7 @@ namespace EqAspNetCoreDemo
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSession();
             app.UseAuthentication();
 
             //The middleware which handles the Advances Search scenario
@@ -99,6 +104,16 @@ namespace EqAspNetCoreDemo
                 options.UseDbConnection<SqlConnection>();
                 //uncomment this line if you want to load model directly from connection 
                 //options.UseDbConnectionModelLoader();
+
+                if (Configuration.GetValue<string>("queryStore") == "session")
+                {
+                    options.UseQueryStore((services) => new SessionQueryStore(services));
+                }
+                else {
+
+                    options.UseQueryStore((services) => new FileQueryStore("App_Data"));
+                }
+   
                 options.UsePaging(30);
             });
 
@@ -106,32 +121,27 @@ namespace EqAspNetCoreDemo
                 options.DefaultModelId = "adhoc-reporting";
                 options.SaveQueryOnSync = true;
                 options.Endpoint = "/api/adhoc-reporting";
-                options.UseDbContext<AppDbContext>();
+
+                //Ignore identity classes
+                options.UseDbContextWithOutIdentity<AppDbContext>(loaderOptions => {
+
+                    //Ignore the "Reports" DbSet as well
+                    loaderOptions.AddFilter(entity => entity.ClrType != typeof(Report));
+                });
+
                 options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
 
                 // here we add our custom query store
-                options.UseQueryStore((services) => new ReportStore(services));
-
-
-                options.UseModelTuner((model) =>
-                {
-                    model.EntityRoot.Scan(ent => {
-                        //Make invisible all entities started with "AspNetCore" and "Report"
-                        if (ent.Name.StartsWith("Asp") || ent.Name == "Report")
-                        {
-                            ent.UseInConditions = false;
-                            ent.UseInResult = false;
-                            ent.UseInSorting = false;
-                        }
-                    }
-                    , null, false);
-                });
+                options.UseQueryStore((services) => new ReportStore(services));   
 
                 options.UsePaging(30);
                 options.UseDefaultAuthProvider((provider) =>
                 {
-                    //by default it is required eqmanager role 
-                    provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+                    //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eqmanager' role 
+                    //here you can remove that requirement and make those actions available for all authorized users
+                    //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+
+                    //here is an example how you can make some actions accessible only by users with a particular role.
                     //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
                 });
             });
@@ -159,11 +169,11 @@ namespace EqAspNetCoreDemo
                 var scopedServices = scope.ServiceProvider;
                 var dbContext = scopedServices.GetRequiredService<AppDbContext>();
                 dbContext.Database.EnsureCreated();
-            }
 
-            var scriptFilePath = System.IO.Path.Combine(_dataPath, "EqDemoDb.sql");
-            var dbInit = new Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
-            dbInit.AddTestData();
+                var scriptFilePath = System.IO.Path.Combine(_dataPath, "EqDemoDb.sql");
+                var dbInit = new Data.DbInitializer(scopedServices, Configuration, "EqDemoDb", scriptFilePath);
+                dbInit.AddTestData();
+            }
         }
     }
 }

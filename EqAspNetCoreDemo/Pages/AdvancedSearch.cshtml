@@ -5,25 +5,91 @@
 
 @{
     ViewData["Title"] = "Advanced Search demo";
+    ViewData["MenuTitle"] = "Advanced Search demo";
+
     Layout = "_Layout";
     var appPathBase = Configuration["appPathBase"] ?? "";
 }
-
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.0.0/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.0/eq.view.min.css">
+
+    <style>
+        .eqjs-menu-levelDiv {
+            background-color: #e6e6e6 !important;
+            -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+            -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+            box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+        }
+
+        .eqjs-menu-itemDiv {
+            min-width: 158px;
+        }
+
+            .eqjs-menu-itemDiv:hover {
+                background-color: white;
+            }
+    </style>
+
+
+    <style>
+        .eqv-drop-button {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .eqv-dropdown-container {
+            width: 100%;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .eqv-dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 160px;
+            z-index: 1;
+            background-color: #e6e6e6 !important;
+            -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+            -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+            box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+            margin-top: 0 !important;
+            border: 1px solid silver;
+        }
+
+            /* Links inside the dropdown */
+            .eqv-dropdown-content a {
+                font-size: 14px;
+                color: #333333;
+                padding: 5px 14px;
+                text-decoration: none;
+                display: block;
+            }
+
+                /* Change color of dropdown links on hover */
+                .eqv-dropdown-content a:hover {
+                    background-color: white;
+                }
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {
+            display: block;
+        }
+    </style>
 }
 
-    <div class="container">
-        <partial name="EasyQuery/_AdvancedSearch" />
-    </div>
+<div class="container">
+    <partial name="EasyQuery/_AdvancedSearch" />
+</div>
 
 @section Scripts {
     <!-- ChartJS script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" type="text/javascript"></script>
 
     <!-- EasyQuery script -->
-    <script src="https://cdn.korzh.com/eq/5.0.0/eq.all.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/5.1.0/eq.all.min.js"></script>
 
     <!-- EasyQuery Advanced Search view initialization -->
     <script>
@@ -35,7 +101,7 @@
                 loadModelOnStart: true,
 
                 //Load query on start
-                loadQueryOnStart: true,
+                loadQueryOnStart: false,
 
                 //Default query ID
                 defaultQueryId: "testQuery",
@@ -130,7 +196,9 @@
                 }
             }
 
-            this.view = new easyquery.AdvancedSearchViewJQuery();
+            this.view = new easyquery.ui.AdvancedSearchViewJQuery();
+            //basic jquery dialog service implementation
+            //view.setDialogService(new easyquery.ui.JQueryDialogService());
             view.init(options);
 
             document['AdvancedSearchViewJQuery'] = view;
