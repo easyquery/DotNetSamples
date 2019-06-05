@@ -43,7 +43,7 @@ namespace EqAspNetCoreDemo
         {
             services.Configure<CookiePolicyOptions>(options => {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false; // TO DO: true
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -59,6 +59,9 @@ namespace EqAspNetCoreDemo
              .AddRoles<IdentityRole>()
              .AddDefaultUI(UIFramework.Bootstrap4)
              .AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             services.AddEasyQuery()
                     .UseSqlManager()
@@ -90,6 +93,7 @@ namespace EqAspNetCoreDemo
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSession();
             app.UseAuthentication();
 
             //The middleware which handles the Advances Search scenario
@@ -101,7 +105,8 @@ namespace EqAspNetCoreDemo
                 //uncomment this line if you want to load model directly from connection 
                 //options.UseDbConnectionModelLoader();
 
-                options.UseQueryStore((services) => new FileQueryStore("App_Data"));
+                //options.UseQueryStore((services) => new FileQueryStore("App_Data"));
+                options.UseQueryStore((services) => new SessionQueryStore(services));
                 options.UsePaging(30);
             });
 
