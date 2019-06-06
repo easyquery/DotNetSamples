@@ -123,7 +123,7 @@ namespace EqAspNetCoreDemo
                 options.Endpoint = "/api/adhoc-reporting";
 
                 //Ignore identity classes
-                options.UseDbContextWithOutIdentity<AppDbContext>(loaderOptions => {
+                options.UseDbContextWithoutIdentity<AppDbContext>(loaderOptions => {
 
                     //Ignore the "Reports" DbSet as well
                     loaderOptions.AddFilter(entity => entity.ClrType != typeof(Report));
