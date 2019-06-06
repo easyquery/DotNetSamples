@@ -16,66 +16,20 @@
 
     <style>
         .eqjs-menu-levelDiv {
-            background-color: #e6e6e6 !important;
-            -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-            -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-            box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+            border: 1px solid silver;
+            border-radius: 0 0 4px 4px;
+            padding: 6px 0;
+            box-shadow: 4px 8px 15px 0px rgba(0,0,0,.16);
         }
 
         .eqjs-menu-itemDiv {
             min-width: 158px;
+            font-size: 0.9rem;
         }
 
-            .eqjs-menu-itemDiv:hover {
-                background-color: white;
-            }
-    </style>
-
-
-    <style>
-        .eqv-drop-button {
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-        }
-
-        /* The container <div> - needed to position the dropdown content */
-        .eqv-dropdown-container {
-            width: 100%;
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Dropdown Content (Hidden by Default) */
-        .eqv-dropdown-content {
-            display: none;
-            position: absolute;
-            min-width: 160px;
-            z-index: 1;
-            background-color: #e6e6e6 !important;
-            -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-            -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-            box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
-            margin-top: 0 !important;
-            border: 1px solid silver;
-        }
-
-            /* Links inside the dropdown */
-            .eqv-dropdown-content a {
-                font-size: 14px;
-                color: #333333;
-                padding: 5px 14px;
-                text-decoration: none;
-                display: block;
-            }
-
-                /* Change color of dropdown links on hover */
-                .eqv-dropdown-content a:hover {
-                    background-color: white;
-                }
-
-        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-        .show {
-            display: block;
+        .eqjs-menu-itemDiv:hover {
+            background-color: #ecf3f5 !important;
+            color: #1776b1;
         }
     </style>
 }
@@ -119,7 +73,7 @@
                 handlers: {
                     //Error handler
                     onError: (error) => {
-                        console.error(error.type + " error:\n" + error.text);
+                        console.error(error.action + " error:\n" + error.text);
                     },
 
                     //Client-side list resolver
