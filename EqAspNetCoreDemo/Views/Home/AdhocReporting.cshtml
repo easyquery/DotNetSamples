@@ -9,9 +9,9 @@
     var appPathBase = Configuration["appPathBase"] ?? "";
     Boolean isDefaultUser = User.Identity.Name == "demo@korzh.com";
     string tooltipContent = @"
-You are logged in as demo user. Demo user is not allowed to manage the reports.<br />
-To get these options worked log out and create a new user
-";
+        You are logged in as a demo user. Demo user is not allowed to manage the reports.<br />
+        To test that functionlity - please log out first and create a new user.
+    ";
 }
 
 
@@ -19,7 +19,7 @@ To get these options worked log out and create a new user
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/root.css" />
-    <link rel="stylesheet" href="~/css/adhoc.css" />
+    <link rel="stylesheet" href="~/css/adhoc-reporting.css" />
 
     <style>
         .eqv-grid-panel {
