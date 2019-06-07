@@ -122,6 +122,7 @@ export class EasyQueryComponent implements OnInit {
         if (queryJson) {
           const query = this.context.getQuery();
           query.loadFromDataOrJson(queryJson);
+          setTimeout(() => this.view.executeQuery(), 100);
         }
     };
 

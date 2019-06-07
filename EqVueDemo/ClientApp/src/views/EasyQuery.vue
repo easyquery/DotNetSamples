@@ -199,6 +199,7 @@
             if (queryJson) {
                 const query = this.view.getContext().getQuery();
                 query.loadFromDataOrJson(queryJson);
+                setTimeout(() => this.view.executeQuery(), 100);
             }
         }
 
