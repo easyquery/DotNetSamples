@@ -19,6 +19,6 @@
 
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="call npm install&#xD;&#xA;call webpack --mode=development" />
+    <Exec Command="npm run build-all" />
   </Target>
 </Project>
