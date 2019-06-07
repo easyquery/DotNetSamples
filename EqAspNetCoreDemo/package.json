@@ -14,7 +14,8 @@
     "test": "test",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch",
-    "dev": "webpack --mode=development"
+    "dev": "webpack --mode=development",
+    "build-all": "npm install && webpack --mode=development"
   },
   "devDependencies": {
     "require": "^2.4.20",
