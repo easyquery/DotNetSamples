@@ -1,0 +1,6 @@
+*.cs  linguist-detectable=true
+*.js  linguist-detectable=true
+*.ts  linguist-detectable=true
+*.csproj  linguist-detectable=true
+*.sql linguist-detectable=false
+*.json  linguist-detectable=false
