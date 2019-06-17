@@ -414,7 +414,7 @@
         <Operators>IsTrue,NotTrue</Operators>
         <Description />
       </Attr>
-      <Attr id="Product.ProductName" kind="Data" expr="Name" caption="Name" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
+      <Attr id="Product.ProductName" kind="Data" expr="ProductName" caption="Name" type="String" size="0" UIC="True" UIR="True" UIS="True" customFunc="" quote="False" UAL="True" aggr="False" tables="Products">
         <Operators>StartsWith,Contains,Equal,InList,NotStartsWith,NotContains,NotEqual,NotInList,InSubQuery,NotInSubQuery,IsNull,IsNotNull</Operators>
         <Description />
       </Attr>
