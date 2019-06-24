@@ -29,8 +29,7 @@ export class EasyQueryComponent implements OnInit {
         enableExport: true,
         loadModelOnStart: true,
         loadQueryOnStart: false,
-        defaultQueryId: "test-query",
-        defaultModelId: "NWindSQL",
+
         handlers: {
           onError: (error) => {
             console.error(error.action + " error:\n" + error.text);
@@ -101,6 +100,7 @@ export class EasyQueryComponent implements OnInit {
 
       this.view = new AdvancedSearchViewJQuery();
       this.context = this.view.getContext();
+
       this.context.addEventListener('ready', () => {
         const query = this.context.getQuery();
 
@@ -113,8 +113,7 @@ export class EasyQueryComponent implements OnInit {
         //add load query from local storage
         this.loadQueryFromLocalStorage();
       });
-        this.view.init(options);
-
+      this.view.init(options);
      }  
 
     private loadQueryFromLocalStorage() {
