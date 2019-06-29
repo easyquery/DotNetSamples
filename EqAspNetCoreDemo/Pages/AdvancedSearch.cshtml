@@ -50,7 +50,7 @@
         window.addEventListener('load', () => {
 
             //Options for AdvancedSearchViewJQuery
-            let options = {
+            var options = {
                 //Load model on start
                 loadModelOnStart: true,
 
@@ -150,7 +150,7 @@
                 }
             }
 
-            this.view = new easyquery.ui.AdvancedSearchViewJQuery();
+            var view = new easyquery.ui.AdvancedSearchViewJQuery();
             //basic jquery dialog service implementation
             //view.setDialogService(new easyquery.ui.JQueryDialogService());
             view.init(options);
