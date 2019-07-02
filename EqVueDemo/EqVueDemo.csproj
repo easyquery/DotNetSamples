@@ -9,12 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.1.0" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.1.0" />
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="5.1.0" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.1.2" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.1.2" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="5.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="VueCliMiddleware" Version="2.2.0" />
+    <PackageReference Include="VueCliMiddleware" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>
