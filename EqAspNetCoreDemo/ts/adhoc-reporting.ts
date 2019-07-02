@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
         //Broker options
         broker: {
             //Middleware endpoint 
-            endpoint: '/api/adhoc-reporting'
+            endpoint: window["_appPathBase"] + '/api/adhoc-reporting'
         },
 
         enableExport: true,

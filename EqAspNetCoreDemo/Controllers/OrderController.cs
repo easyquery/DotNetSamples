@@ -52,11 +52,11 @@ namespace EqAspNetCoreDemo.Controllers
         /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
         /// <returns><see cref="IActionResult"/> object with JSON representation of the model</returns>
         [HttpGet("models/{modelId}")]
-        public async Task<IActionResult> GetModel(string modelId)
+        public IActionResult GetModel(string modelId)
         {
             var model = _eqManager.GetModel(modelId);
-            var modelJson = await model.SaveToJsonStringForClientAsync();
-            return Ok("{\"result\":\"ok\", \"model\":" + modelJson + "}");
+
+            return this.EqOk(new { Model = model });
         }
 
         /// <summary>
@@ -69,22 +69,23 @@ namespace EqAspNetCoreDemo.Controllers
         {
             var list = _eqManager.GetValueList(modelId, editorId);
             var valuesJson = JsonConvert.SerializeObject(list);
-            return Ok("{\"result\":\"ok\", \"values\":" + valuesJson + "}");
+
+            return this.EqOk(new { Values = list });
         }
 
         /// <summary>
         /// This action is called when user clicks on "Apply" button in FilterBar or other data-filtering widget
         /// </summary>
-        /// <param name="jsonDict"></param>
         /// <returns>IActionResult which contains a partial view with the filtered result set</returns>
         [HttpPost("models/{modelId}/queries/{queryId}/execute")]
-        public IActionResult ApplyQueryFilter(string modelId, string queryId, [FromBody] JObject jObject) {
-            var query = _eqManager.LoadQueryWithOptionsFromJson(modelId, jObject);
+        public async Task<IActionResult> ApplyQueryFilter(string modelId, string queryId)
+        {
+            await _eqManager.ReadRequestContentFromStreamAsync(modelId, Request.Body);
 
             var queryable = _dbContext.Orders
                 .Include(o => o.Customer)
                 .Include(o => o.Employee)
-                .DynamicQuery<Order>(query);
+                .DynamicQuery<Order>(_eqManager.Query);
 
             var list = queryable.ToPagedList(_eqManager.Paging.PageIndex, 15);
 

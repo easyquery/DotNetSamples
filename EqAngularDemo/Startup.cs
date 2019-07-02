@@ -33,8 +33,6 @@ namespace EqAngularDemo
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddJsonDictConverter();
-
             services.AddEasyQuery()
                 .AddDefaultExporters()
                 .UseSqlManager();
