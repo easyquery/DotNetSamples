@@ -11,7 +11,7 @@
     var appPathBase = Configuration["appPathBase"] ?? "";
 }
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1./5eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.5/eq.core.min.css">
     <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.5/eq.view.min.css">
 
     <style>
@@ -152,7 +152,7 @@
 
             var view = new easyquery.ui.AdvancedSearchViewJQuery();
             //basic jquery dialog service implementation
-            //view.setDialogService(new easyquery.ui.JQueryDialogService());
+            view.setDialogService(new easyquery.ui.JQueryDialogService());
             view.init(options);
 
             document['AdvancedSearchViewJQuery'] = view;
