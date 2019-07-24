@@ -7,12 +7,12 @@
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="5.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.1.2" />
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.1.2" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="5.1.2" />
     <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.1.2" />
     <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.1.2" />
     <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.1.2" />
