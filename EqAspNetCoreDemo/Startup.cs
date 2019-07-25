@@ -15,12 +15,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 
+using Korzh.DbUtils;
+
 using Korzh.EasyQuery.DbGates;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.AspNetCore;
 
 using EqAspNetCoreDemo.Services;
 using EqAspNetCoreDemo.Models;
+
+
 
 namespace EqAspNetCoreDemo
 {
@@ -163,17 +167,8 @@ namespace EqAspNetCoreDemo
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //Init test database
-            using (var scope = app.ApplicationServices.CreateScope())
-            {
-                var scopedServices = scope.ServiceProvider;
-                var dbContext = scopedServices.GetRequiredService<AppDbContext>();
-                dbContext.Database.EnsureCreated();
-
-                var scriptFilePath = System.IO.Path.Combine(_dataPath, "EqDemoDb.sql");
-                var dbInit = new Data.DbInitializer(scopedServices, Configuration, "EqDemoDb", scriptFilePath);
-                dbInit.AddTestData();
-            }
+            //Init demo database (if necessary)
+            app.EnsureDbInitialized(Configuration, env);
         }
     }
 }

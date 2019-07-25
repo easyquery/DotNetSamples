@@ -91,7 +91,6 @@
     import { Component, Vue } from 'vue-property-decorator';
     import { AdvancedSearchViewJQuery } from '@easyquery/ui-jquery';
     import { EqViewOptions } from '@easyquery/ui';
-    import { Message } from '@easyquery/core';
 
     @Component({})
     export default class EasyQueryView extends Vue {
@@ -108,21 +107,20 @@
                 defaultQueryId: 'test-query',
                 defaultModelId: 'NWindSQL',
                 handlers: {
-                    onError: (error: Message) => {
-                       // console.error(error.type + ' error:\n' + error.text);
+                    onError: (error) => {
+                       // console.error(error.action + ' error:\n' + error.text);
                     },
                     listRequestHandler: (params: any, onResult: any) => {
                         let processed = true;
                         if (params.listName === 'RegionList') {
                             const query = this.view.getContext().getQuery();
-                            const country = query.getOneValueForAttr("Customer.Country");
-                            if (country == 'Canada') {
+                            const country = query.getOneValueForAttr('Customer.Country');
+                            if (country === 'Canada') {
                                 onResult([
                                     { id: 'BC', text: 'British Columbia' },
-                                    { id: 'Quebec', text: 'Quebec' }
+                                    { id: 'Quebec', text: 'Quebec' },
                                 ]);
-                            }
-                            else {
+                            } else {
                                 onResult([
                                     { id: 'CA', text: 'California' },
                                     { id: 'CO', text: 'Colorado' },
@@ -130,8 +128,7 @@
                                     { id: 'WA', text: 'Washington' },
                                 ]);
                             }
-                        }
-                        else {
+                        } else {
                             processed = false;
                         }
                         return processed;
@@ -162,7 +159,7 @@
                         allowInJoinConditions: true,
                         autoEditNewCondition: true,
                         buttons: {
-                            condition: ["menu"],
+                            condition: ['menu'],
                             predicate: ['addCondition', 'addPredicate', 'enable', 'delete'],
                         },
                         menuOptions: {
@@ -183,7 +180,7 @@
                 query.addChangedCallback(() => {
                     const queryJson = query.toJSON();
                     localStorage.setItem(this.QUERY_KEY, queryJson);
-                    //console.log('Query saved', query);
+                    // console.log('Query saved', query);
                 });
 
                 // add load query from local storage

@@ -22,8 +22,11 @@ namespace EqAspNetCoreDemo.Services
 
         protected readonly IServiceProvider Services;
 
-        public SessionQueryStore(IServiceProvider services)
+        private string fileStoreDataPath;
+
+        public SessionQueryStore(IServiceProvider services, string dataPath = "App_Data")
         {
+            fileStoreDataPath = dataPath;
             Services = services;
             _httpContext = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext 
                            ?? throw new ArgumentNullException("IHttpContextAccessor or HttpContext is null.");
@@ -78,8 +81,19 @@ namespace EqAspNetCoreDemo.Services
         private List<QueryListItem> GetQueryListItems(string modelId)
         {
             var json = _httpContext.Session.GetString(_keyPrefixItem + modelId);
-            if (json == null)
-                return new List<QueryListItem>();
+            if (json == null) {
+                FileQueryStore initialQueryStore = new FileQueryStore(fileStoreDataPath);
+
+                List<QueryListItem> initialQueryList = initialQueryStore.GetAllQueriesAsync(modelId).Result.ToList();
+
+                initialQueryList.ForEach(delegate (QueryListItem item) {
+                    //_httpContext.Session.SetString(_keyPrefixQuery + item.id, initialQueryStore.GetQueryFileText(initialModelId, item.id));
+                });
+
+                SaveQueryListItems(modelId, initialQueryList);
+
+                return initialQueryList;
+            }
 
             var queryItemObj = new
             {
