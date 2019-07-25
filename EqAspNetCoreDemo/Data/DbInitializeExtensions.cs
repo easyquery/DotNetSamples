@@ -13,7 +13,7 @@ using Korzh.EasyQuery.Services;
 
 namespace EqAspNetCoreDemo.Services
 {
-    public static class DbInitializeExtension
+    public static class DbInitializeExtensions
     {
         public static void EnsureDbInitialized(this IApplicationBuilder app, IConfiguration config, IHostingEnvironment env)
         {
