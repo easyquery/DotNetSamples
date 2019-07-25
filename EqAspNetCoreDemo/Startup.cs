@@ -167,17 +167,8 @@ namespace EqAspNetCoreDemo
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //Init demo database
-            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            using (var context = scope.ServiceProvider.GetService<AppDbContext>()) {
-                if (context.Database.EnsureCreated()) { 
-                    Korzh.DbUtils.DbInitializer.Create(options => {
-                        options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb")); 
-                        options.UseZipPacker(System.IO.Path.Combine(env.ContentRootPath, "App_Data", "EqDemoData.zip")); 
-                    })
-                    .Seed();
-                }
-            }
+            //Init demo database (if necessary)
+            app.EnsureDbInitialized(Configuration, env);
         }
     }
 }
