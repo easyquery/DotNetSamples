@@ -111,17 +111,16 @@ namespace EqAspNetCoreDemo
                 options.BuildQueryOnSync = true;
                 options.DefaultModelId = "NWindSQL";
                 options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
-
-                options.UseManager<CustomEasyQueryManagerSql>();
                 options.UseDbConnection<SqlConnection>();
 
-                if (Configuration.GetValue<string>("queryStore") == "session")
-                {
+                //an example of using customer manager
+                options.UseManager<CustomEasyQueryManagerSql>();
+
+                //defining different query store depending on configuration
+                if (Configuration.GetValue<string>("queryStore") == "session") {
                     options.UseQueryStore(services => new SessionQueryStore(services, "App_Data"));
                 }
-                else
-                {
-
+                else {
                     options.UseQueryStore(services => new FileQueryStore("App_Data"));
                 }
 
@@ -136,14 +135,6 @@ namespace EqAspNetCoreDemo
                 //                 .AddTableFilter(tableInfo => !(tableInfo.Name.StartsWith("Asp") || tableInfo.Name.StartsWith("__EF")))
 
                 //);
-
-                options.UseModelTuner(model => {
-                    var dbModel = model as DbModel;
-                    var table1 = dbModel.Tables.FindByName("Customers");
-                    var table2 = dbModel.Tables.FindByName("Orders");
-                    var link = dbModel.Links.FindByTables(table1, table2);
-                    link.LnkType = TableLinkType.Left;
-                });
 
                 options.UseSqlFormats(FormatType.MsSqlServer);
 
@@ -177,10 +168,11 @@ namespace EqAspNetCoreDemo
                     //here is an example how you can make some actions accessible only by users with a particular role.
                     //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
                 });
+
                 options.AddPreExecuteTunningWithHttpContext((manager, context) => {
-                    string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                    userId = "1"; //just for testing
-                    manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
+                    //the next two lines demonstrate how to add to each generated query a condition that filters data by the current user
+                    //string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
                 });
             });
 
