@@ -20,8 +20,8 @@
     <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.2.0-rc2" />
     <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.2.0-rc1" />
     <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.2.0-rc2" />
-    <PackageReference Include="Korzh.DbUtils.Import" Version="1.1.1" />
-    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Korzh.DbUtils.Import" Version="1.1.4" />
+    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.1.4" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App_Data\EqDemoData.zip">
