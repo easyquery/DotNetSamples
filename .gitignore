@@ -19,3 +19,4 @@ App_Data/dm-*__default/
 /SetEqNugetVersionInCsproj.ps1
 /SetEqNpmVersionInPackageJson.ps1
 /test_exclude.ps1
+/EqAspNetCoreDemo/package-lock.json
