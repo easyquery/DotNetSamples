@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,12 +21,10 @@ using Korzh.DbUtils;
 
 using Korzh.EasyQuery.DbGates;
 using Korzh.EasyQuery.Services;
-using Korzh.EasyQuery.AspNetCore;
+using Korzh.EasyQuery.Db;
 
 using EqAspNetCoreDemo.Services;
 using EqAspNetCoreDemo.Models;
-
-
 
 namespace EqAspNetCoreDemo
 {
@@ -47,7 +47,7 @@ namespace EqAspNetCoreDemo
         {
             services.Configure<CookiePolicyOptions>(options => {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => false; // TO DO: true
+                options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
@@ -93,6 +93,12 @@ namespace EqAspNetCoreDemo
                 app.UseHsts();
             }
 
+            //Disable all Identity/Account/Manage actions
+            var redirectOptions = new RewriteOptions()
+                .AddRedirect("(?i:identity/account/forgotpassword(/.*)?$)", "/")
+                .AddRedirect("(?i:identity/account/manage(/.*)?$)", "/");
+            app.UseRewriter(redirectOptions);
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
@@ -105,19 +111,46 @@ namespace EqAspNetCoreDemo
                 options.BuildQueryOnSync = true;
                 options.DefaultModelId = "NWindSQL";
                 options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
+
+                options.UseManager<CustomEasyQueryManagerSql>();
                 options.UseDbConnection<SqlConnection>();
-                //uncomment this line if you want to load model directly from connection 
-                //options.UseDbConnectionModelLoader();
 
                 if (Configuration.GetValue<string>("queryStore") == "session")
                 {
-                    options.UseQueryStore((services) => new SessionQueryStore(services));
+                    options.UseQueryStore(services => new SessionQueryStore(services, "App_Data"));
                 }
-                else {
+                else
+                {
 
-                    options.UseQueryStore((services) => new FileQueryStore("App_Data"));
+                    options.UseQueryStore(services => new FileQueryStore("App_Data"));
                 }
-   
+
+                options.UseModelTuner(model => {
+                    model.SortEntities();
+                });
+
+                //uncomment this line if you want to load model directly from connection 
+                //options.UseDbConnectionModelLoader(loaderOptions => 
+                //    loaderOptions.IgnoreViews()
+                //                 //.DoNotReplaceToSingularNames()
+                //                 .AddTableFilter(tableInfo => !(tableInfo.Name.StartsWith("Asp") || tableInfo.Name.StartsWith("__EF")))
+
+                //);
+
+                options.UseModelTuner(model => {
+                    var dbModel = model as DbModel;
+                    var table1 = dbModel.Tables.FindByName("Customers");
+                    var table2 = dbModel.Tables.FindByName("Orders");
+                    var link = dbModel.Links.FindByTables(table1, table2);
+                    link.LnkType = TableLinkType.Left;
+                });
+
+                options.UseSqlFormats(FormatType.MsSqlServer);
+
+                //The next line allows you to set SELECT DISTINCT for each generated query
+                //options.AddBuilderTuner(builder => {
+                //    (builder as SqlQueryBuilder).Extras.SelectDistinct = true;
+                //});
                 options.UsePaging(30);
             });
 
@@ -126,27 +159,28 @@ namespace EqAspNetCoreDemo
                 options.SaveQueryOnSync = true;
                 options.Endpoint = "/api/adhoc-reporting";
 
-                //Ignore identity classes
                 options.UseDbContextWithoutIdentity<AppDbContext>(loaderOptions => {
-
                     //Ignore the "Reports" DbSet as well
-                    loaderOptions.AddFilter(entity => entity.ClrType != typeof(Report));
+                    loaderOptions.AddFilter(entity => {
+                        return entity.ClrType != typeof(Report);
+                    });
                 });
 
-                options.UseDbConnection<SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
-
                 // here we add our custom query store
-                options.UseQueryStore((services) => new ReportStore(services));   
-
+                options.UseQueryStore((services) => new ReportStore(services));
                 options.UsePaging(30);
-                options.UseDefaultAuthProvider((provider) =>
-                {
-                    //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eqmanager' role 
+                options.UseDefaultAuthProvider((provider) => {
+                    //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
                     //here you can remove that requirement and make those actions available for all authorized users
                     //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
 
                     //here is an example how you can make some actions accessible only by users with a particular role.
                     //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+                });
+                options.AddPreExecuteTunningWithHttpContext((manager, context) => {
+                    string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                    userId = "1"; //just for testing
+                    manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
                 });
             });
 
@@ -167,8 +201,17 @@ namespace EqAspNetCoreDemo
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //Init demo database (if necessary)
-            app.EnsureDbInitialized(Configuration, env);
+            //Init demo database
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (var context = scope.ServiceProvider.GetService<AppDbContext>()) {
+                if (context.Database.EnsureCreated()) { 
+                    Korzh.DbUtils.DbInitializer.Create(options => {
+                        options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb")); 
+                        options.UseZipPacker(System.IO.Path.Combine(env.ContentRootPath, "App_Data", "EqDemoData.zip")); 
+                    })
+                    .Seed();
+                }
+            }
         }
     }
 }
