@@ -24,9 +24,9 @@ namespace EqAspNetCoreDemo.Services
 
         private string fileStoreDataPath;
 
-        public SessionQueryStore(IServiceProvider services, string dataPath = "App_Data")
+        public SessionQueryStore(IServiceProvider services, string initialStoreDataPath = "App_Data")
         {
-            fileStoreDataPath = dataPath;
+            fileStoreDataPath = initialStoreDataPath;
             Services = services;
             _httpContext = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext 
                            ?? throw new ArgumentNullException("IHttpContextAccessor or HttpContext is null.");
@@ -87,7 +87,7 @@ namespace EqAspNetCoreDemo.Services
                 List<QueryListItem> initialQueryList = initialQueryStore.GetAllQueriesAsync(modelId).Result.ToList();
 
                 initialQueryList.ForEach(delegate (QueryListItem item) {
-                    //_httpContext.Session.SetString(_keyPrefixQuery + item.id, initialQueryStore.GetQueryFileText(initialModelId, item.id));
+                    _httpContext.Session.SetString(_keyPrefixQuery + item.id, initialQueryStore.GetQueryFileText(modelId, item.id));
                 });
 
                 SaveQueryListItems(modelId, initialQueryList);
@@ -144,7 +144,7 @@ namespace EqAspNetCoreDemo.Services
         private void RemoveQueryListItem(string modelId, string itemId)
         {
             var items = GetQueryListItems(modelId);
-            items.Remove(items.FirstOrDefault(item => item.id == item.id));
+            items.Remove(items.FirstOrDefault(item => item.id == itemId));
             SaveQueryListItems(modelId, items);
         }
     }

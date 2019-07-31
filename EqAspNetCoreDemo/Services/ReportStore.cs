@@ -19,44 +19,43 @@ namespace EqAspNetCoreDemo.Services
 {
     public class ReportStore : IQueryStore
     {
+        private IHttpContextAccessor _httpContextAccessor;
+        private AppDbContext _dbContext;
 
         protected IServiceProvider Services;
-        protected ClaimsPrincipal User;
-
-        private AppDbContext _dbContext;
 
         public ReportStore(IServiceProvider services)
         {
             Services = services;
-            var httpContextAccessor = Services.GetRequiredService<IHttpContextAccessor>();
-            User = httpContextAccessor?.HttpContext?.User;
-            if (User == null)
-            {
+            _httpContextAccessor = Services.GetRequiredService<IHttpContextAccessor>();
+            _dbContext = Services.GetRequiredService<AppDbContext>();
+        }
+
+        private string GetUserId() {
+            var user = _httpContextAccessor?.HttpContext?.User;
+            if (user == null) {
                 throw new NullReferenceException("Can't get HttpContextAccessor or the current user");
             }
-            _dbContext = Services.GetRequiredService<AppDbContext>();
+            return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
 
         public async Task<bool> AddQueryAsync(Query query)
         {
-            if (string.IsNullOrEmpty(query.ID))
-            {
+            if (string.IsNullOrEmpty(query.ID)) {
                 query.ID = Guid.NewGuid().ToString();
             }
 
-            var report = new Report
-            {
+            var report = new Report {
                 Id = query.ID,
                 Name = query.Name,
                 Description = query.Description,
                 ModelId = query.Model.ID,
                 QueryJson = await query.SaveToJsonStringAsync(),
-                OwnerId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                OwnerId = GetUserId()
             };
 
 
-            if (report.OwnerId == null)
-            {
+            if (report.OwnerId == null) {
                 throw new ArgumentNullException(nameof(report.OwnerId));
             }
 
@@ -67,10 +66,14 @@ namespace EqAspNetCoreDemo.Services
         }
 
         public Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId)
-            => Task.FromResult(ApplyUserGuard(_dbContext.Reports)
-                               .Where(r => r.ModelId == modelId)
-                               .Select(r => new QueryListItem(r.Id, r.Name, r.Description))
-                               .AsEnumerable());
+        {
+            return Task.FromResult(ApplyUserGuard(_dbContext.Reports)
+                                   .Where(r => r.ModelId == modelId)
+                                   .OrderBy(r => r.Name)
+                                   .Select(r => new QueryListItem(r.Id, r.Name, r.Description))
+                                   .AsNoTracking()
+                                   .AsEnumerable());
+        }
 
 
         public async Task<bool> LoadQueryAsync(Query query, string queryId)
@@ -101,11 +104,10 @@ namespace EqAspNetCoreDemo.Services
             return false;
         }
 
-        public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExist = true)
+        public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true)
         {
             var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.ID);
-            if (report != null)
-            {
+            if (report != null) {
                 report.Name = query.Name;
                 report.Description = query.Description;
                 report.ModelId = query.Model.ID;
@@ -116,7 +118,7 @@ namespace EqAspNetCoreDemo.Services
 
                 return true;
             }
-            else if (createIfNotExist) {
+            else if (createIfNotExists) {
                 return await AddQueryAsync(query);
             }
 
@@ -125,9 +127,8 @@ namespace EqAspNetCoreDemo.Services
 
         private IQueryable<Report> ApplyUserGuard(IQueryable<Report> filter)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userId = GetUserId();
             return filter.Where(r => r.OwnerId == userId);
         }
-
     }
 }
