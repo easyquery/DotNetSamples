@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VueCliMiddleware;
 
+using Korzh.EasyQuery.Services;
+
 namespace EqVueDemo
 {
     public class Startup

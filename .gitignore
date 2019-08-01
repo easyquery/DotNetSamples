@@ -10,12 +10,13 @@ packages/
 node_modules/
 wwwroot/
 PublishProfiles/
+package-lock.json
 
 /EqAspNetCoreDemo/ts/easyreport.js
 App_Data/dm-*__default/
-/EqAspNetCoreDemo/App_Data/dm-NWindSQL/queries
 /SetEqVersionsForFolder.ps1
 /SetEqScriptsVersionInCshtml.ps1
 /SetEqNugetVersionInCsproj.ps1
 /SetEqNpmVersionInPackageJson.ps1
 /test_exclude.ps1
+/nuget.config

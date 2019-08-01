@@ -17,9 +17,6 @@
     <Link table1="Orders" table2="Employees" type="Inner" QF="False">
       <Condition type="FF" expr1="EmployeeId" expr2="EmployeeID" op="=" />
     </Link>
-    <Link table1="Orders" table2="Products" type="Inner" QF="False">
-      <Condition type="FF" expr1="ProductID" expr2="ProductID" op="=" />
-    </Link>
     <Link table1="OrderDetails" table2="Orders" type="Inner" QF="False">
       <Condition type="FF" expr1="OrderID" expr2="OrderID" op="=" />
     </Link>

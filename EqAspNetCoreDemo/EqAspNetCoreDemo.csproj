@@ -1,10 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
     <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+    <UserSecretsId>936abaa1-5778-483b-b279-2f8a83337b96</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -12,15 +13,15 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.1.2" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.1.2" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="5.1.2" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.1.2" />
-    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.1.2" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.1.2" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.1.2" />
-    <PackageReference Include="Korzh.DbUtils.Import" Version="1.1.1" />
-    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.DbUtils.Import" Version="1.1.4" />
+    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.1.4" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App_Data\EqDemoData.zip">

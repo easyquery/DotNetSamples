@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
-using Korzh.EasyQuery.AspNetCore;
+using Korzh.EasyQuery.Services;
 
 namespace EqAngularDemo
 {

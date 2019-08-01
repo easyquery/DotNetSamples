@@ -52,9 +52,9 @@ namespace EqAspNetCoreDemo.Controllers
         /// <param name="jsonDict">The JsonDict object which contains request parameters</param>
         /// <returns><see cref="IActionResult"/> object with JSON representation of the model</returns>
         [HttpGet("models/{modelId}")]
-        public IActionResult GetModel(string modelId)
+        public async Task<IActionResult> GetModelAsync(string modelId)
         {
-            var model = _eqManager.GetModel(modelId);
+            var model = await _eqManager.GetModelAsync(modelId);
 
             return this.EqOk(new { Model = model });
         }
@@ -65,9 +65,9 @@ namespace EqAspNetCoreDemo.Controllers
         /// <param name="jsonDict">GetList request options.</param>
         /// <returns><see cref="IActionResult"/> object</returns>
         [HttpGet("models/{modelId}/valuelists/{editorId}")]
-        public IActionResult GetList(string modelId, string editorId)
+        public async Task<IActionResult> GetListAsync(string modelId, string editorId)
         {
-            var list = _eqManager.GetValueList(modelId, editorId);
+            var list = await _eqManager.GetValueListAsync(modelId, editorId);
             var valuesJson = JsonConvert.SerializeObject(list);
 
             return this.EqOk(new { Values = list });
