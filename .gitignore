@@ -10,6 +10,7 @@ packages/
 node_modules/
 wwwroot/
 PublishProfiles/
+package-lock.json
 
 /EqAspNetCoreDemo/ts/easyreport.js
 App_Data/dm-*__default/
@@ -19,5 +20,4 @@ App_Data/dm-*__default/
 /SetEqNugetVersionInCsproj.ps1
 /SetEqNpmVersionInPackageJson.ps1
 /test_exclude.ps1
-/EqAspNetCoreDemo/package-lock.json
 /nuget.config
