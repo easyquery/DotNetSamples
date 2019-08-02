@@ -1,16 +1,17 @@
 ﻿{
-  "id": "bb0b3e5a-294e-4088-acaa-1ff1f3731843",
-  "name": "Sales by product (this year)",
+  "id": "fee014cd-ad47-4a33-9c16-4cdf903bfbd2",
+  "name": "Sales by countries (last year)",
   "desc": null,
   "cols": [
     {
-      "cptn": "Name",
-      "srt": 0,
+      "cptn": "Country",
+      "srt": 1,
+      "srtidx": 0,
       "expr": {
         "tag": 2,
         "dtype": 1,
         "kind": 2,
-        "id": "Product.ProductName"
+        "id": "Customer.Country"
       }
     },
     {
@@ -39,32 +40,13 @@
     "conds": [
       {
         "tag": 1,
-        "op": "DateWithinThisYear",
+        "op": "DateWithinPrevYear",
         "exprs": [
           {
             "tag": 2,
             "dtype": 12,
             "kind": 2,
             "id": "Order.OrderDate"
-          }
-        ]
-      },
-      {
-        "tag": 1,
-        "op": "Equal",
-        "exprs": [
-          {
-            "tag": 2,
-            "dtype": 1,
-            "kind": 2,
-            "id": "Customer.Country"
-          },
-          {
-            "tag": 1,
-            "dtype": 1,
-            "kind": 0,
-            "val": "USA",
-            "txt": "USA"
           }
         ]
       }

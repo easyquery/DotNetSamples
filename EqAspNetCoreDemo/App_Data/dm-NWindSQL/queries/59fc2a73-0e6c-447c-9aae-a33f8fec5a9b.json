@@ -1,21 +1,52 @@
 ﻿{
-  "id": "bb0b3e5a-294e-4088-acaa-1ff1f3731843",
-  "name": "Sales by product (this year)",
+  "id": "59fc2a73-0e6c-447c-9aae-a33f8fec5a9b",
+  "name": "Empolyee of the year",
   "desc": null,
   "cols": [
     {
-      "cptn": "Name",
+      "cptn": "First name",
       "srt": 0,
       "expr": {
         "tag": 2,
         "dtype": 1,
         "kind": 2,
-        "id": "Product.ProductName"
+        "id": "Employee.FirstName"
       }
     },
     {
-      "cptn": "Freight Sum",
+      "cptn": "Last name",
       "srt": 0,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "kind": 2,
+        "id": "Employee.LastName"
+      }
+    },
+    {
+      "cptn": "Title",
+      "srt": 0,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "kind": 2,
+        "id": "Employee.Title"
+      }
+    },
+    {
+      "cptn": "Home phone",
+      "srt": 0,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "kind": 2,
+        "id": "Employee.HomePhone"
+      }
+    },
+    {
+      "cptn": "Unit price Sum",
+      "srt": 2,
+      "srtidx": 0,
       "expr": {
         "tag": 4,
         "dtype": 8,
@@ -27,7 +58,7 @@
             "tag": 2,
             "dtype": 8,
             "kind": 2,
-            "id": "Order.Freight"
+            "id": "OrderDetail.UnitPrice"
           }
         ]
       }
@@ -39,7 +70,7 @@
     "conds": [
       {
         "tag": 1,
-        "op": "DateWithinThisYear",
+        "op": "DateWithinPrevYear",
         "exprs": [
           {
             "tag": 2,
