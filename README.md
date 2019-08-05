@@ -3,7 +3,7 @@
 ## Packages
 |NuGet Stable|NuGet Preview|NPM Latest|
 |---|---|---|
-|[![NuGet](https://img.shields.io/nuget/v/Korzh.EasyQuery)](https://www.nuget.org/packages/Korzh.EasyQuery)|[![NuGet](https://img.shields.io/nuget/vpre/Korzh.EasyQuery)](https://www.nuget.org/packages/Korzh.EasyQuery)|[![Npm](https://img.shields.io/npm/v/@easyquery/ui/latest)](https://www.npmjs.com/package/@easyquery/ui)|
+|[![NuGet](https://img.shields.io/nuget/v/Korzh.EasyQuery.AspNetCore)](https://www.nuget.org/packages/Korzh.EasyQuery.AspNetCore)|[![NuGet](https://img.shields.io/nuget/vpre/Korzh.EasyQuery.AspNetCore)](https://www.nuget.org/packages/Korzh.EasyQuery.AspNetCore)|[![Npm](https://img.shields.io/npm/v/@easyquery/ui/latest)](https://www.npmjs.com/package/@easyquery/ui)|
 
 ## Browsers support
 
