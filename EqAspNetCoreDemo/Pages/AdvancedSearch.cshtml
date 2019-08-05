@@ -47,7 +47,7 @@
 
     <!-- EasyQuery Advanced Search view initialization -->
     <script>
-        window.addEventListener('load', () => {
+        window.addEventListener('load', function () {
 
             //Options for AdvancedSearchViewJQuery
             var options = {
@@ -72,16 +72,16 @@
                 //Handlers
                 handlers: {
                     //Error handler
-                    onError: (error) => {
+                    onError: function (error) {
                         console.error(error.action + " error:\n" + error.text);
                     },
 
                     //Client-side list resolver
-                    listRequestHandler: (params, onResult) => {
-                        let processed = true;
+                    listRequestHandler: function (params, onResult) {
+                        var processed = true;
                         if (params.listName == "RegionList") {
-                            let query = this.context.getQuery();
-                            let country = query.getOneValueForAttr("Customer.Country");
+                            var query =  document['AdvancedSearchViewJQuery'].getContext().getQuery();
+                            var country = query.getOneValueForAttr("Customer.Country");
                             if (country == "Canada") {
                                 onResult([
                                     { id: "BC", text: "British Columbia" },
