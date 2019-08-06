@@ -80,7 +80,7 @@
                     listRequestHandler: function(params, onResult) {
                         var processed = true;
                         if (params.listName == "RegionList") {
-                            var query = this.context.getQuery();
+                            var query =  document['AdvancedSearchViewJQuery'].getContext().getQuery();
                             var country = query.getOneValueForAttr("Customer.Country");
                             if (country == "Canada") {
                                 onResult([
