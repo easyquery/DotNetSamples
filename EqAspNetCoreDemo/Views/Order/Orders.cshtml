@@ -27,7 +27,7 @@
 
     <!-- EasyQuery components initialization -->
     <script>
-        window.addEventListener('load', () => {
+        window.addEventListener('load', function() {
             let options = {
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
@@ -38,7 +38,8 @@
                     filterBar: {
                         queryPanel: {
                             attrElementFormat: "{entity} {attr}"
-                        }
+                        },
+                        //autoEditNewCondition: true
                     }
                 },
                 result: {

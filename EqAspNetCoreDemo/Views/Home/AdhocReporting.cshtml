@@ -21,25 +21,6 @@
     <link rel="stylesheet" href="~/css/root.css" />
     <link rel="stylesheet" href="~/css/adhoc-reporting.css" />
 
-    <style>
-        .eqv-grid-panel {
-            max-height: 450px;
-        }
-
-        #NoReportPanel {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            height: 300px;
-        }
-
-        .tooltip-inner {
-            text-align: left;
-        }
-    </style>
 }
 
 <div class="container-fluid px-5">
@@ -52,7 +33,7 @@
                         <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></button>
                         @if (isDefaultUser)
                         {
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-toggle="tooltip" data-html="true" data-placement="bottom" 
                                  title="@tooltipContent">
                                 <a class="dropdown-item disabled" href="javascript:void(0)">New report</a>
                                 <a class="dropdown-item disabled" href="javascript:void(0)">Save as...</a>

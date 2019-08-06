@@ -47,15 +47,14 @@
 
     <!-- EasyQuery Advanced Search view initialization -->
     <script>
-        window.addEventListener('load', () => {
-
+        window.addEventListener('load', function() {
             //Options for AdvancedSearchViewJQuery
             var options = {
                 //Load model on start
                 loadModelOnStart: true,
 
                 //Load query on start
-                loadQueryOnStart: false,
+                loadQueryOnStart: true,
 
                 //Default query ID
                 defaultQueryId: "testQuery",
@@ -65,6 +64,7 @@
 
                 enableExport: true,
 
+                locale: 'en',
                 broker: {
                     endpoint: "@(appPathBase)/api/easyquery"
                 },
@@ -72,16 +72,16 @@
                 //Handlers
                 handlers: {
                     //Error handler
-                    onError: (error) => {
+                    onError: function(error) {
                         console.error(error.action + " error:\n" + error.text);
                     },
 
                     //Client-side list resolver
-                    listRequestHandler: (params, onResult) => {
-                        let processed = true;
+                    listRequestHandler: function(params, onResult) {
+                        var processed = true;
                         if (params.listName == "RegionList") {
-                            let query = this.context.getQuery();
-                            let country = query.getOneValueForAttr("Customer.Country");
+                            var query = this.context.getQuery();
+                            var country = query.getOneValueForAttr("Customer.Country");
                             if (country == "Canada") {
                                 onResult([
                                     { id: "BC", text: "British Columbia" },
@@ -143,6 +143,11 @@
                             activateOnMouseOver: true
                         }
                     },
+                    resultGrid: {
+                        formatGridCell: function(dataSet, rowIndex, colIndex, value) {
+                            return value;
+                        }
+                    }
                 },
                 result: {
                     //Show EasyChart
