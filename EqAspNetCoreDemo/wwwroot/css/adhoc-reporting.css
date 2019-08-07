@@ -4,14 +4,11 @@
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
     padding: 0 .75rem;
+    height: 2rem;
 }
 
 .card-title {
-    font-size: 18pt;
-}
-
-.card-header {
-    height: 42px;
+    font-size: 1.2rem;
 }
 
 .card-body {
@@ -19,8 +16,8 @@
 }
 
 .eqv-result-panel-content {
-    position: initial !important;
-    overflow: initial !important;
+    position: static !important;
+    overflow: auto !important;
     display: flex !important;
     top: auto !important;
     bottom: auto !important;
@@ -54,7 +51,11 @@
 }
 
 .card-header-button {
-    padding-top: .3rem;
+    padding-top: 0.1rem;
+}
+
+.card-header-button button {
+    height: 1.7rem;
 }
 
 .list-group-item.active {
@@ -70,4 +71,22 @@
     border-color: #dbdbdb;
     text-shadow: 0 1px 0 #fff;
     border-color: #ccc;
+}
+
+.eqv-grid-panel {
+    max-height: 450px;
+}
+
+#NoReportPanel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 300px;
+}
+
+.tooltip-inner {
+    text-align: left;
 }
