@@ -12,9 +12,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.2.0-rc3" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.2.0-rc3" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.2.0-rc3" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.2.0" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.2.0" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.2.0" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->

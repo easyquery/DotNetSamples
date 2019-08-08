@@ -1,4 +1,4 @@
-﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 @{
     ViewData["Title"] = "Data Filtering demo";
@@ -7,7 +7,7 @@
 }
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.6/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.8/eq.core.min.css">
 }
 
 <div class="eqjs-process-bar" id="ProcessBar"></div>
@@ -23,12 +23,12 @@
 @section Scripts {
 
     <!-- EasyQuery script -->
-    <script src="https://cdn.korzh.com/eq/5.1.6/eq.all.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/5.1.8/eq.all.min.js"></script>
 
     <!-- EasyQuery components initialization -->
     <script>
-        window.addEventListener('load', () => {
-            let options = {
+        window.addEventListener('load', function () {
+            var options = {
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
                 broker: {
@@ -38,7 +38,8 @@
                     filterBar: {
                         queryPanel: {
                             attrElementFormat: "{entity} {attr}"
-                        }
+                        },
+                        //autoEditNewCondition: true
                     }
                 },
                 result: {
@@ -47,7 +48,7 @@
                     }
                 }
             }
-            let view = new easyquery.ui.HtmlDataFilterView();
+            var view = new easyquery.ui.HtmlDataFilterView();
             view.init(options);
         });
 

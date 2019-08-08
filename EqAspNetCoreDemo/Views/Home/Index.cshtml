@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = "_Layout";
     ViewData["Title"] = "Home Page";
     ViewData["MenuTitle"] = "Menu";
@@ -13,7 +13,7 @@
                 Here we demonstrate several common scenarios of EasyQuery usage with different layouts, database connections, 
 		front-end frameworks, and other settings. 
                 All demos were made with the help of <a href="https://korzh.com/easyquery">EasyQuery library version 5.x</a> 
-                and can be easily <a href="https://korzh.com/easyquery/docs/getting-started/version-5-x">reproduced in your own projects</a>.
+                and can be easily <a href="https://korzh.com/easyquery/docs/getting-started">reproduced in your own projects</a>.
             </p>
         </div>
     </div>
@@ -80,3 +80,16 @@
     </div>
 
 </div>
+
+
+@section Styles  {
+    <style>
+        .card-body {
+            -ms-overflow-x: hidden;
+        }
+
+        .card-body p {
+            width: 100%;
+        }
+    </style>
+}

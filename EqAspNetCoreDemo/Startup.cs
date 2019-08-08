@@ -147,6 +147,7 @@ namespace EqAspNetCoreDemo
 
             app.UseEasyQuery(options => {
                 options.DefaultModelId = "adhoc-reporting";
+                options.SaveNewQuery = true;
                 options.SaveQueryOnSync = true;
                 options.Endpoint = "/api/adhoc-reporting";
 

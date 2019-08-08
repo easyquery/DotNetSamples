@@ -1,14 +1,14 @@
-﻿{
+{
   "name": "mainpagescripts",
   "version": "1.0.0",
   "description": "",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@easyquery/core": "5.1.6",
-    "@easyquery/broker-eqs": "5.1.6",
-    "@easyquery/ui": "5.1.6",
-    "@easyquery/ui-jquery": "5.1.6"
+    "@easyquery/core": "5.1.8",
+    "@easyquery/broker-eqs": "5.1.8",
+    "@easyquery/ui": "5.1.8",
+    "@easyquery/ui-jquery": "5.1.8"
   },
   "scripts": {
     "test": "test",

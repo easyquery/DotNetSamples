@@ -1,4 +1,4 @@
-﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 
 @{
     ViewData["Title"] = "Data Filtering LINQ Demo";
@@ -8,8 +8,8 @@
 
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.6/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.6/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.8/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.8/eq.view.min.css">
 }
 <h2>Orders</h2>
 
@@ -47,10 +47,10 @@
 @section Scripts {
 
     <!-- Add EasyQuery All scripts file -->
-    <script src="https://cdn.korzh.com/eq/5.1.6/eq.all.min.js" type="text/javascript"></script>
+    <script src="https://cdn.korzh.com/eq/5.1.8/eq.all.min.js" type="text/javascript"></script>
     <script>
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function () {
             //Options for DataFilterViewJQuery
             let options = {
 
@@ -69,15 +69,15 @@
                     //don't clear result on each query change event
                     clearResultOnQueryChange: false,
 
-                //hadlers
-                handlers: {
-                    //override error handler
-                    onError: (message) => {
-                        $("#error-title").text(message.type);
-                        $("#error-content").text(message.text);
-                        $('#errorModel').modal('show');
-                    }
-                },
+                    //hadlers
+                    handlers: {
+                        //override error handler
+                        onError: function (message) {
+                            $("#error-title").text(message.type);
+                            $("#error-content").text(message.text);
+                            $('#errorModel').modal('show');
+                        }
+                    },
 
                     //Broker options
                     broker: {
@@ -85,6 +85,7 @@
                         //Middleware endpoint
                         endpoint: "@(appPathBase)/api/data-filtering2",
                     },
+                },
 
                 //Different widgets options
                 widgets: {
@@ -104,9 +105,9 @@
                 }
             };
 
-            let dataFilterView = new easyquery.DataFilterViewJQuery();
+            var dataFilterView = new easyquery.DataFilterViewJQuery();
             dataFilterView.init(options);
             document['DataFilterViewJQuery'] = dataFilterView;
-        });
+       });
     </script>
 }

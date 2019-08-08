@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "asp-net-core-vue-starter",
   "version": "0.1.0",
   "private": true,
@@ -8,10 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@easyquery/broker-eqs": "5.1.6",
-    "@easyquery/core": "5.1.6",
-    "@easyquery/ui": "5.1.6",
-    "@easyquery/ui-jquery": "5.1.6",
+    "@easyquery/broker-eqs": "5.1.8",
+    "@easyquery/core": "5.1.8",
+    "@easyquery/ui": "5.1.8",
+    "@easyquery/ui-jquery": "5.1.8",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",

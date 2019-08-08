@@ -1,12 +1,12 @@
-﻿{
+{
   "name": "EqRemoDemo",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@easyquery/broker-eqs": "5.1.6",
-    "@easyquery/core": "5.1.6",
-    "@easyquery/ui": "5.1.6",
-    "@easyquery/ui-jquery": "5.1.6",
+    "@easyquery/broker-eqs": "5.1.8",
+    "@easyquery/core": "5.1.8",
+    "@easyquery/ui": "5.1.8",
+    "@easyquery/ui-jquery": "5.1.8",
     "bootstrap": "^4.3.1",
     "jquery": "3.3.1",
     "react": "^16.0.0",
