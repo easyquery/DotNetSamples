@@ -21,7 +21,7 @@ To run these samples you will need:
 
 * [.NET Core 2.0](https://www.microsoft.com/net/core)
 * [SQL Server Express LocalDB](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express) (it's installed automatically with Visual Studio)
-* Node.js (to run Angular project)
+* Node.js (to run Angular, Vue or React projects)
 * Visual Studio 2017 or higher (optional)
 
 
