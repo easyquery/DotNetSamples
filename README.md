@@ -43,7 +43,7 @@ To run these samples you will need:
 
 ## EqAspNetCoreDemo project
 
-This project implements several of the most usual scenarios of using EasyQuery. We tried to combine all these cases in one application for two reasons:
+This project implements several of the most usual scenarios of using EasyQuery in an ASP.NET Core web application. We tried to combine all these cases in one application for two reasons:
  * to simplify the demonstration process since it's more easy to set up and run one project instead of several different projects.
  * to show how to configure different scenarios of using EasyQuery in one application.
 

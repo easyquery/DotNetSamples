@@ -143,9 +143,17 @@
                             activateOnMouseOver: true
                         }
                     },
+                    
+                    //ResultGrid options
                     resultGrid: {
-                        formatGridCell: function(dataSet, rowIndex, colIndex, value) {
-                            return value;
+                        formatGridCell: function (dataTable, rowIndex, colIndex, value) {
+                            var props = dataTable.getColumnProperties(colIndex);
+                            if (props.dataType == 'Decimal') {
+                                return "$" + value;
+                            }
+                            else {
+                                return value;
+                            }
                         }
                     }
                 },
