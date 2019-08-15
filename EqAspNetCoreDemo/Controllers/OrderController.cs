@@ -37,7 +37,7 @@ namespace EqAspNetCoreDemo.Controllers
                     .Include(o => o.Employee)
                     .AsQueryable());
 
-            _eqManager = new EasyQueryManagerLinq<Order>(services, options);           
+            _eqManager = new EasyQueryManagerLinq<Order>(services, options);    
         }
 
         // GET: /Order/

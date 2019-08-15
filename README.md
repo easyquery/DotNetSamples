@@ -2,13 +2,13 @@
 
 This repository contains several ASP.NET Core 2.x projects which demonstrate how to use [EasyQuery library](https://korzh.com/easyquery) in different web-application scenarios.
 
-## Packages
+## EasyQuery packages
 
 |NuGet Stable|NuGet Preview|NPM Latest|
 |---|---|---|
 |[![NuGet](https://img.shields.io/nuget/v/Korzh.EasyQuery.AspNetCore)](https://www.nuget.org/packages/Korzh.EasyQuery.AspNetCore)|[![NuGet](https://img.shields.io/nuget/vpre/Korzh.EasyQuery.AspNetCore)](https://www.nuget.org/packages/Korzh.EasyQuery.AspNetCore)|[![Npm](https://img.shields.io/npm/v/@easyquery/ui/latest)](https://www.npmjs.com/package/@easyquery/ui)|
 
-## Browsers support
+## EasyQuery.JS browsers support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
 | --------- | --------- | --------- | --------- |
@@ -21,7 +21,7 @@ To run these samples you will need:
 
 * [.NET Core 2.0](https://www.microsoft.com/net/core)
 * [SQL Server Express LocalDB](https://www.microsoft.com/en-us/sql-server/sql-server-editions-express) (it's installed automatically with Visual Studio)
-* Node.js (to run Angular project)
+* Node.js (to run Angular, Vue or React projects)
 * Visual Studio 2017 or higher (optional)
 
 
@@ -43,7 +43,7 @@ To run these samples you will need:
 
 ## EqAspNetCoreDemo project
 
-This project implements several of the most usual scenarios of using EasyQuery. We tried to combine all these cases in one application for two reasons:
+This project implements several of the most usual scenarios of using EasyQuery in an ASP.NET Core web application. We tried to combine all these cases in one application for two reasons:
  * to simplify the demonstration process since it's more easy to set up and run one project instead of several different projects.
  * to show how to configure different scenarios of using EasyQuery in one application.
 

@@ -69,9 +69,18 @@ window.addEventListener('load', () => {
                 }
             },
 
-            //EqResultGrid options
-            eqResultGrid: {
-                tableClass: "table table-sm"
+            //ResultGrid options
+            resultGrid: {
+                tableClass: "table table-sm",
+                formatGridCell: function (dataTable, rowIndex, colIndex, value) {
+                    var props = dataTable.getColumnProperties(colIndex);
+                    if (props.dataType == 'Decimal') {
+                        return "$" + value;
+                    }
+                    else {
+                        return value;
+                    }
+                }
             }
         }
     };
