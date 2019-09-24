@@ -1,0 +1,106 @@
+@page "/fulltext-search"
+@model EqAspNetCoreDemo.Pages.FullTextSearchModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Korzh.EasyQuery.AspNetCore
+@{
+    ViewData["Title"] = "Full-text Search";
+    ViewData["MenuTitle"] = "Full-text Search";
+    Layout = "_Layout";
+}
+
+<div class="container-fluid px-5">
+    <h4>Customers</h4>
+    <form style="padding-bottom: 10px" method="get">
+        <div class="row">
+            <div class="col-md-8">
+                <input class="form-control" asp-for="@Model.Text" placeholder="Enter text for full text search and press Enter">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-success">Search</button>
+                <a asp-page="/FullTextSearch" class="btn btn-secondary">Clear</a>
+            </div>
+        </div>
+    </form>
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Contact name
+            </th>
+            <th>
+                Company name
+            </th>
+            <th>
+                Contact title
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                Country
+            </th>
+            <th>
+                Fax
+            </th>
+            <th>
+                Phone
+            </th>
+        </tr>
+        @foreach (var item in Model.Data)
+        {
+            <tr>
+                <td>
+                    <eq-highlight-text value="@item.Id" text="@Model.Text"></eq-highlight-text>
+                </td>
+                <td>
+                    <eq-highlight-text value="@item.ContactName" text="@Model.Text"></eq-highlight-text>
+                </td>
+                <td>
+                    <eq-highlight-text value="@item.CompanyName" text="@Model.Text"></eq-highlight-text>
+                </td>
+                <td>
+                    <eq-highlight-text value="@item.ContactTitle" text="@Model.Text"></eq-highlight-text>
+                </td>
+                <td>
+                    <eq-highlight-text value="@item.City" text="@Model.Text"></eq-highlight-text>
+                </td>
+                <td>
+                    <eq-highlight-text value="@item.Country" text="@Model.Text"></eq-highlight-text>
+                </td>
+                <td>
+                    <eq-highlight-text value="@item.Fax" text="@Model.Text"></eq-highlight-text>
+                </td>
+                <td>
+                    <eq-highlight-text value="@item.Phone" text="@Model.Text"></eq-highlight-text>
+                </td>
+            </tr>
+        }
+    </table>
+    <div>
+        <ul class="pagination">
+            <li class="page-item @(!Model.EnablePrevious ? "disabled" : "")">
+                <a asp-page="/FullTextSearch" asp-route-currentpage="@(Model.FirstPageIndex - 1)" asp-route-text="@Model.Text" class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            @for (var i = Model.FirstPageIndex; i <= Model.LastPageIndex; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a asp-page="/FullTextSearch" asp-route-currentpage="@i" asp-route-text="@Model.Text" class="page-link">@i</a>
+                </li>
+            }
+            <li class="page-item  @(!Model.EnableNext ? "disabled" : "")">
+                <a asp-page="/FullTextSearch" asp-route-currentpage="@(Model.LastPageIndex + 1)" asp-route-text="@Model.Text" class="page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqReactDemo", "EqReactDemo\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqVueDemo", "EqVueDemo\EqVueDemo.csproj", "{3CCDBF68-5C14-4049-94C6-13C8FB654D06}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAspNetCoreDemo2.2", "EqAspNetCoreDemo2.2\EqAspNetCoreDemo2.2.csproj", "{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,24 @@ Global
 		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|x64.Build.0 = Release|Any CPU
 		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|x86.ActiveCfg = Release|Any CPU
 		{3CCDBF68-5C14-4049-94C6-13C8FB654D06}.Release|x86.Build.0 = Release|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Debug|x64.Build.0 = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Debug|x86.Build.0 = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.DebugDeep|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.DebugDeep|Any CPU.Build.0 = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.DebugDeep|x64.ActiveCfg = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.DebugDeep|x64.Build.0 = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.DebugDeep|x86.ActiveCfg = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.DebugDeep|x86.Build.0 = Debug|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|x64.ActiveCfg = Release|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|x64.Build.0 = Release|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|x86.ActiveCfg = Release|Any CPU
+		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
