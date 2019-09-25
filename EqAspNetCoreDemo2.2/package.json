@@ -1,0 +1,32 @@
+{
+  "name": "mainpagescripts",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@easyquery/core": "5.1.12",
+    "@easyquery/broker-eqs": "5.1.12",
+    "@easyquery/ui": "5.1.12",
+    "@easyquery/ui-jquery": "5.1.12"
+  },
+  "scripts": {
+    "test": "test",
+    "build": "webpack --mode=production",
+    "watch": "webpack --mode=development --watch",
+    "dev": "webpack --mode=development",
+    "build-all": "npm install && webpack --mode=development"
+  },
+  "devDependencies": {
+    "require": "^2.4.20",
+    "filemanager-webpack-plugin": "2.0.5",
+    "onchange": "^5.2.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "css-loader": "2.1.1",
+    "style-loader": "0.23.1",
+    "es6-promise": "^4.2.6"
+  }
+}

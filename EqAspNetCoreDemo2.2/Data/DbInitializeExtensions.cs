@@ -15,7 +15,7 @@ namespace EqAspNetCoreDemo.Services
 {
     public static class DbInitializeExtensions
     {
-        public static void EnsureDbInitialized(this IApplicationBuilder app, IConfiguration config, IWebHostEnvironment env)
+        public static void EnsureDbInitialized(this IApplicationBuilder app, IConfiguration config, IHostingEnvironment env)
         {
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             using (var context = scope.ServiceProvider.GetService<AppDbContext>()) {
