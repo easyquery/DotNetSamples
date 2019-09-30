@@ -1,6 +1,6 @@
 # EasyQuery ASP.NET Core Samples
 
-This repository contains several ASP.NET Core 2.x projects which demonstrate how to use [EasyQuery library](https://korzh.com/easyquery) in different web-application scenarios.
+This repository contains several ASP.NET Core 2.x and 3.0 projects which demonstrate how to use [EasyQuery library](https://korzh.com/easyquery) in different web-application scenarios.
 
 ## EasyQuery packages
 
