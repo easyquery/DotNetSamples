@@ -1,29 +1,27 @@
-import { Component, ElementRef, AfterViewInit, OnInit} from '@angular/core';
+import { Component, AfterViewInit} from '@angular/core';
 
-import { EqContext, EqContextOptions } from '@easyquery/core';
-import { EqServerBroker } from '@easyquery/broker-eqs';
-import { AdvancedSearchViewJQuery } from '@easyquery/ui-jquery';
-import { EqViewOptions } from '@easyquery/ui';
+import { EqContext } from '@easyquery/core';
+import { EqViewOptions, AdvancedSearchView } from '@easyquery/ui';
 
 @Component({
     selector: 'easyquery',
     templateUrl: './easyquery.component.html'
 })
 
-export class EasyQueryComponent implements OnInit {
+export class EasyQueryComponent implements AfterViewInit {
 
     private QUERY_KEY = 'easyquerycomponent-query';
 
     private context: EqContext;
 
-    private view: AdvancedSearchViewJQuery;
+    private view: AdvancedSearchView;
 
     constructor() {
       
     }
    
 
-    ngOnInit() {
+    ngAfterViewInit() {
 
       const options: EqViewOptions = {
         enableExport: true,
@@ -98,7 +96,7 @@ export class EasyQueryComponent implements OnInit {
         }
       }
 
-      this.view = new AdvancedSearchViewJQuery();
+      this.view = new AdvancedSearchView();
       this.context = this.view.getContext();
 
       this.context.addEventListener('ready', () => {
@@ -121,6 +119,8 @@ export class EasyQueryComponent implements OnInit {
         if (queryJson) {
           const query = this.context.getQuery();
           query.loadFromDataOrJson(queryJson);
+          query.fireChangedEvent();
+          
           setTimeout(() => this.view.executeQuery(), 100);
         }
     };
