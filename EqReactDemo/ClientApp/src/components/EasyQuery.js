@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 
-import { AdvancedSearchViewJQuery } from '@easyquery/ui-jquery';
+import { AdvancedSearchView } from '@easyquery/ui';
 import  AdvancedSearchHtml  from './EasyQueryHtml';
 
 export class EasyQuery extends Component {
@@ -8,7 +8,7 @@ export class EasyQuery extends Component {
 
     QUERY_KEY = 'easyquerycomponent-query';
 
-    view = new AdvancedSearchViewJQuery();
+    view = new AdvancedSearchView();
 
     componentDidMount() {
         const options = {
@@ -108,6 +108,7 @@ export class EasyQuery extends Component {
         if (queryJson) {
             const query = this.view.getContext().getQuery();
             query.loadFromDataOrJson(queryJson);
+            query.fireChangedEvent();
             setTimeout(() => this.view.executeQuery(), 100);
         }
     };

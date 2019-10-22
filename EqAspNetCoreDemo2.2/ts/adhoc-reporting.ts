@@ -1,5 +1,4 @@
-import { ReportViewJQuery } from "@easyquery/ui-jquery"
-import { ReportViewOptions, GoogleChartProvider } from "@easyquery/ui";
+import { ReportViewOptions, GoogleChartProvider, ReportView } from "@easyquery/ui";
 
 
 window.addEventListener('load', () => {
@@ -85,7 +84,7 @@ window.addEventListener('load', () => {
         }
     };
     
-    let reportView = new ReportViewJQuery();
+    let reportView = new ReportView();
     reportView.init(options);
-    document['ReportViewJQuery'] = reportView;
+    document['ReportView'] = reportView;
 });

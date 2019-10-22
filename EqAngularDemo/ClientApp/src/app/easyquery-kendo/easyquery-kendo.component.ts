@@ -30,7 +30,7 @@ export class EqKendoGridComponent extends Grid  {
   }
 
     protected render() {
-      this.context.resultSet.setDataDisplayFormatterOptions();
+      this.context.resultSet.setDisplayFormats();
       this.pageSize = this.context.paging.pageSize,
       this.skip =  this.pageSize * (this.context.paging.pageIndex - 1);
       this.columns = this.createColumnDefs();
@@ -80,11 +80,11 @@ export class EqKendoGridComponent extends Grid  {
   public pageChange(event: PageChangeEvent) {
     const pageNum = event.skip / this.pageSize + 1;
     if (pageNum !== this.context.paging.pageIndex) {
-        this.context.paging.pageSelectedCallback(pageNum, false, () => {
-            this.context.resultSet.setDataDisplayFormatterOptions();
+        this.context.paging.pageSelectedCallback(pageNum, () => {
+            this.context.resultSet.setDisplayFormats();
             this.gridData = this.createRowData();
             this.skip =  this.pageSize * (this.context.paging.pageIndex - 1);
-        });
+        }, false);
     }
   }
 

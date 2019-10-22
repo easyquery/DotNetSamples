@@ -11,8 +11,8 @@
     var appPathBase = Configuration["appPathBase"] ?? "";
 }
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.12/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.12/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.2.0-beta3/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.2.0-beta3/eq.view.min.css">
 
     <style>
         .eqjs-menu-levelDiv {
@@ -43,7 +43,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" type="text/javascript"></script>
 
     <!-- EasyQuery script -->
-    <script src="https://cdn.korzh.com/eq/5.1.12/eq.all.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/5.2.0-beta3/eq.all.min.js"></script>
 
     <!-- EasyQuery Advanced Search view initialization -->
     <script>
@@ -54,10 +54,7 @@
                 loadModelOnStart: true,
 
                 //Load query on start
-                loadQueryOnStart: true,
-
-                //Default query ID
-                defaultQueryId: "testQuery",
+                loadQueryOnStart: false,
 
                 //Default model ID
                 defaultModelId: "NWindSQL",
@@ -80,7 +77,7 @@
                     listRequestHandler: function(params, onResult) {
                         var processed = true;
                         if (params.listName == "RegionList") {
-                            var query =  document['AdvancedSearchViewJQuery'].getContext().getQuery();
+                            var query =  document['AdvancedSearchView'].getContext().getQuery();
                             var country = query.getOneValueForAttr("Customer.Country");
                             if (country == "Canada") {
                                 onResult([
@@ -163,12 +160,10 @@
                 }
             }
 
-            var view = new easyquery.ui.AdvancedSearchViewJQuery();
-            //basic jquery dialog service implementation
-            view.setDialogService(new easyquery.ui.JQueryDialogService());
+            var view = new easyquery.ui.AdvancedSearchView();
             view.init(options);
 
-            document['AdvancedSearchViewJQuery'] = view;
+            document['AdvancedSearchView'] = view;
         });
     </script>
 }

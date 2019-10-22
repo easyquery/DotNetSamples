@@ -89,13 +89,12 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import { AdvancedSearchViewJQuery } from '@easyquery/ui-jquery';
-    import { EqViewOptions } from '@easyquery/ui';
+    import { AdvancedSearchView, EqViewOptions } from '@easyquery/ui';
 
     @Component({})
     export default class EasyQueryView extends Vue {
 
-        private view = new AdvancedSearchViewJQuery();
+        private view = new AdvancedSearchView();
         private QUERY_KEY = 'easyqueryview-query';
 
 
@@ -196,6 +195,8 @@
             if (queryJson) {
                 const query = this.view.getContext().getQuery();
                 query.loadFromDataOrJson(queryJson);
+                query.fireChangedEvent();
+
                 setTimeout(() => this.view.executeQuery(), 100);
             }
         }
