@@ -3,6 +3,8 @@ import { Component, AfterViewInit} from '@angular/core';
 import { EqContext } from '@easyquery/core';
 import { EqViewOptions, AdvancedSearchView } from '@easyquery/ui';
 
+import '@easyquery/enterprise'
+
 @Component({
     selector: 'easyquery',
     templateUrl: './easyquery.component.html'
@@ -99,6 +101,8 @@ export class EasyQueryComponent implements AfterViewInit {
       this.view = new AdvancedSearchView();
       this.context = this.view.getContext();
 
+      this.context.useEnterprise('Input your license key here');
+
       this.context.addEventListener('ready', () => {
         const query = this.context.getQuery();
 
@@ -111,6 +115,7 @@ export class EasyQueryComponent implements AfterViewInit {
         //add load query from local storage
         this.loadQueryFromLocalStorage();
       });
+
       this.view.init(options);
      }  
 

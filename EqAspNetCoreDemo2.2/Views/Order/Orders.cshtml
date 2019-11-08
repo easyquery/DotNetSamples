@@ -7,7 +7,7 @@
 }
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.12/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/6.0.0-beta2/eq.core.min.css">
 }
 
 <div class="eqjs-process-bar" id="ProcessBar"></div>
@@ -22,8 +22,9 @@
 
 @section Scripts {
 
-    <!-- EasyQuery script -->
-    <script src="https://cdn.korzh.com/eq/5.1.12/eq.all.min.js"></script>
+    <!-- EasyQuery scripts -->
+    <script src="https://cdn.korzh.com/eq/6.0.0-beta2/eq.community.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/6.0.0-beta2/eq.enterprise.min.js"></script>
 
     <!-- EasyQuery components initialization -->
     <script>
@@ -49,6 +50,7 @@
                 }
             }
             var view = new easyquery.ui.HtmlDataFilterView();
+            view.getContext().useEnterprise('Input your license key here');
             view.init(options);
         });
 

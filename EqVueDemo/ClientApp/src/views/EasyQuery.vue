@@ -90,6 +90,7 @@
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
     import { AdvancedSearchView, EqViewOptions } from '@easyquery/ui';
+    import '@easyquery/enterprise'
 
     @Component({})
     export default class EasyQueryView extends Vue {
@@ -172,6 +173,7 @@
                 },
             };
 
+            this.view.getContext().useEnterprise('Input your license key here');
             this.view.getContext().addEventListener('ready', () => {
                   // here we need to add query autosave
                 const query = this.view.getContext().getQuery();

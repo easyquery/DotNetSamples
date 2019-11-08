@@ -1,4 +1,5 @@
-import { ReportViewOptions, GoogleChartProvider, ReportView } from "@easyquery/ui";
+import { ReportViewOptions, GoogleChartWidget, ReportView } from "@easyquery/ui";
+import '@easyquery/enterprise';
 
 
 window.addEventListener('load', () => {
@@ -13,7 +14,7 @@ window.addEventListener('load', () => {
             //Show EasyChart
             showChart: true,
 
-            chartProviderResolver: () => { return new GoogleChartProvider() },
+            chartWidgetResolver: (slot) => { return new GoogleChartWidget(slot) },
 
             //Paging options
             paging: {
@@ -85,6 +86,7 @@ window.addEventListener('load', () => {
     };
 
     let reportView = new ReportView();
+    reportView.getContext().useEnterprise('Input your license key here');
     reportView.init(options);
     document['ReportView'] = reportView;
 });

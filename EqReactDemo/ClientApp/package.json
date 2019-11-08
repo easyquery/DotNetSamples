@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@easyquery/broker-eqs": "^5.2.0-beta3",
-    "@easyquery/core": "^5.2.0-beta3",
-    "@easyquery/ui": "^5.2.0-beta3",
+    "@easyquery/core": "^6.0.0-beta2",
+    "@easyquery/ui": "^6.0.0-beta2",
+    "@easyquery/enterprise": "^6.0.0-beta2",
     "bootstrap": "^4.3.1",
     "jquery": "3.3.1",
     "react": "^16.0.0",

@@ -3,6 +3,8 @@ import { Component, AfterViewInit, OnInit, ViewChild} from '@angular/core';
 import { EqContext } from '@easyquery/core';
 import { EqViewOptions, AdvancedSearchView, Grid } from '@easyquery/ui';
 
+import '@easyquery/enterprise';
+
 import { PageChangeEvent } from '@progress/kendo-angular-grid';
 
 @Component({
@@ -191,6 +193,8 @@ export class EasyQueryKendoComponent implements AfterViewInit {
   
         this.view = new AdvancedSearchView();
         this.context = this.view.getContext();
+
+        this.context.useEnterprise('Input your license key here');
   
         this.context.addEventListener('ready', () => {
           const query = this.context.getQuery();

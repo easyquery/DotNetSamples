@@ -1,6 +1,8 @@
 ﻿import React, { Component } from 'react';
 
 import { AdvancedSearchView } from '@easyquery/ui';
+import '@easyquery/enterprise'
+
 import  AdvancedSearchHtml  from './EasyQueryHtml';
 
 export class EasyQuery extends Component {
@@ -98,6 +100,9 @@ export class EasyQuery extends Component {
             //add load query from local storage
             this.loadQueryFromLocalStorage();
         });
+
+        this.view.getContext().useEnterprise('Input your license key here');
+
 
         this.view.init(options);
 
