@@ -173,7 +173,7 @@
                 },
             };
 
-            this.view.getContext().useEnterprise('Input your license key here');
+            this.view.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wXKY6G5Y6");
             this.view.getContext().addEventListener('ready', () => {
                   // here we need to add query autosave
                 const query = this.view.getContext().getQuery();

@@ -86,7 +86,7 @@ window.addEventListener('load', () => {
     };
 
     let reportView = new ReportView();
-    reportView.getContext().useEnterprise('Input your license key here');
+    reportView.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wXKY6G5Y6");
     reportView.init(options);
     document['ReportView'] = reportView;
 });

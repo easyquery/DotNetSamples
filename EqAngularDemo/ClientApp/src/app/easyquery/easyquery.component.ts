@@ -101,7 +101,7 @@ export class EasyQueryComponent implements AfterViewInit {
       this.view = new AdvancedSearchView();
       this.context = this.view.getContext();
 
-      this.context.useEnterprise('Input your license key here');
+      this.context.useEnterprise("AlzWbvUgrkISH9AEAEoV7wXKY6G5Y6");
 
       this.context.addEventListener('ready', () => {
         const query = this.context.getQuery();

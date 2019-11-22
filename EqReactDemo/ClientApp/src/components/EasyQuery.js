@@ -101,7 +101,7 @@ export class EasyQuery extends Component {
             this.loadQueryFromLocalStorage();
         });
 
-        this.view.getContext().useEnterprise('Input your license key here');
+        this.view.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wXKY6G5Y6");
 
 
         this.view.init(options);
