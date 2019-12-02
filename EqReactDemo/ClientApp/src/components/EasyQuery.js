@@ -101,7 +101,7 @@ export class EasyQuery extends Component {
             this.loadQueryFromLocalStorage();
         });
 
-        this.view.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wXKY6G5Y6");
+        this.view.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wBKJXGX14");
 
 
         this.view.init(options);

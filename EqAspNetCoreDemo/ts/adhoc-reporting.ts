@@ -86,7 +86,7 @@ window.addEventListener('load', () => {
     };
 
     let reportView = new ReportView();
-    reportView.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wXKY6G5Y6");
+    reportView.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wBKJXGX14");
     reportView.init(options);
     document['ReportView'] = reportView;
 });

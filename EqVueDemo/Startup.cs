@@ -14,6 +14,8 @@ namespace EqVueDemo
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Korzh.EasyQuery.AspNetCore.License.Key = "w5T2jSxvpyT39qaz5N6wegDBUV7YVI";
         }
 
         public IConfiguration Configuration { get; }
