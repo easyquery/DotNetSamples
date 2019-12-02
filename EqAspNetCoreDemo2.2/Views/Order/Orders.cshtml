@@ -32,9 +32,10 @@
             var options = {
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
-                broker: {
-                    endpoint: "@(appPathBase)/data-filtering"
-                },
+
+                // Middleware endpoint
+                endpoint: "@(appPathBase)/data-filtering",
+
                 widgets: {
                     filterBar: {
                         queryPanel: {

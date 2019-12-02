@@ -19,33 +19,13 @@ export class EasyQuery extends Component {
             loadQueryOnStart: false,
             defaultQueryId: "test-query",
             defaultModelId: "NWindSQL",
+
+            //Middlewares endpoint
+            endpoint: '/api/easyquery',
+
             handlers: {
               onError: (error) => {
                 console.error(error.type + " error:\n" + error.text);
-              },
-              listRequestHandler: (params, onResult) => {
-                let processed = true;
-                  if (params.listName == "RegionList") {
-                      let query = this.view.getContext().getQuery();
-                    let country = query.getOneValueForAttr("Customer.Country");
-                    if (country == "Canada") {
-                        onResult([
-                            { id: "BC", text: "British Columbia" },
-                            { id: "Quebec", text: "Quebec" }
-                        ]);
-                    }
-                    else {
-                        onResult([
-                            { id: "CA", text: "California" },
-                            { id: "CO", text: "Colorado" },
-                            { id: "OR", text: "Oregon" },
-                            { id: "WA", text: "Washington" }
-                        ]);
-                    }
-                }
-                else
-                    processed = false;
-                return processed;
               }
             },
             widgets: {

@@ -63,41 +63,15 @@
                 enableExport: true,
 
                 locale: 'en',
-                broker: {
-                    endpoint: "@(appPathBase)/api/easyquery"
-                },
+
+                // Middleware endpoint
+                endpoint: "@(appPathBase)/api/easyquery",
 
                 //Handlers
                 handlers: {
                     //Error handler
                     onError: function(error) {
                         console.error(error.action + " error:\n" + error.text);
-                    },
-
-                    //Client-side list resolver
-                    listRequestHandler: function(params, onResult) {
-                        var processed = true;
-                        if (params.listName == "RegionList") {
-                            var query =  document['AdvancedSearchView'].getContext().getQuery();
-                            var country = query.getOneValueForAttr("Customer.Country");
-                            if (country == "Canada") {
-                                onResult([
-                                    { id: "BC", text: "British Columbia" },
-                                    { id: "Quebec", text: "Quebec" }
-                                ]);
-                            }
-                            else {
-                                onResult([
-                                    { id: "CA", text: "California" },
-                                    { id: "CO", text: "Colorado" },
-                                    { id: "OR", text: "Oregon" },
-                                    { id: "WA", text: "Washington" }
-                                ]);
-                            }
-                        }
-                        else
-                            processed = false;
-                        return processed;
                     }
                 },
 

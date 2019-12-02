@@ -35,11 +35,8 @@ window.addEventListener('load', () => {
         //Default model's ID (we use it here just for a nice folder name in App_Data folder)
         defaultModelId: 'adhoc-reporting',
 
-        //Broker options
-        broker: {
-            //Middleware endpoint 
-            endpoint: window["_appPathBase"] + '/api/adhoc-reporting'
-        },
+        //Middleware endpoint 
+        endpoint: window["_appPathBase"] + '/api/adhoc-reporting',
 
         enableExport: true,
 
