@@ -60,6 +60,9 @@ namespace EqAngularDemo
                 options.BuildQueryOnSync = true;
                 options.UseDbContext<AppDbContext>();
                 options.UsePaging(25);
+
+                //to save queries in file system
+                options.UseQueryStore(services => new FileQueryStore("App_Data"));
             });
 
             app.UseMvc(routes => {

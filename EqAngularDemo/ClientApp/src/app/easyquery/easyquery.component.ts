@@ -86,9 +86,11 @@ export class EasyQueryComponent implements AfterViewInit {
         const query = this.context.getQuery();
 
         query.addChangedCallback(() => {
-          const queryJson = query.toJSON();
-          localStorage.setItem(this.QUERY_KEY, queryJson);
-          console.log("Query saved", query);
+          const data = JSON.stringify({
+            modified: query.isModified(),
+            query: query.toJSONData()
+          });
+          localStorage.setItem(this.QUERY_KEY, data);
         });
 
         //add load query from local storage
@@ -99,11 +101,18 @@ export class EasyQueryComponent implements AfterViewInit {
      }  
 
     private loadQueryFromLocalStorage() {
-        const queryJson = localStorage.getItem(this.QUERY_KEY);
-        if (queryJson) {
+      const dataJson = localStorage.getItem(this.QUERY_KEY);
+      if (dataJson) {
+          const data = JSON.parse(dataJson);
           const query = this.context.getQuery();
-          query.loadFromDataOrJson(queryJson);
-          query.fireChangedEvent();
+          query.loadFromDataOrJson(data.query);
+          if (data.modified) {
+            query.fireChangedEvent();
+          }
+          else {
+            this.view.getContext().refreshWidgets();
+            this.view.syncQuery();
+          }
           
           setTimeout(() => this.view.executeQuery(), 100);
         }
