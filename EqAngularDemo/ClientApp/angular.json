@@ -26,8 +26,10 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@easyquery/ui/dist/assets/css/easyquery.css",
+              "node_modules/@easyquery/ui/dist/assets/css/easyquery-mobile.css",
               "node_modules/@easyquery/ui/dist/assets/css/eq-icons-default.css",
               "node_modules/@easyquery/ui/dist/assets/css/eqview.css",
+              "node_modules/@easyquery/ui/dist/assets/css/easychart.css",
               "node_modules/@progress/kendo-theme-default/dist/all.css",
               "src/styles.css"
             ],
