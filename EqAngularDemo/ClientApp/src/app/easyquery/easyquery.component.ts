@@ -1,62 +1,41 @@
-import { Component, ElementRef, AfterViewInit, OnInit} from '@angular/core';
+import { Component, AfterViewInit} from '@angular/core';
 
-import { EqContext, EqContextOptions } from '@easyquery/core';
-import { EqServerBroker } from '@easyquery/broker-eqs';
-import { AdvancedSearchViewJQuery } from '@easyquery/ui-jquery';
-import { EqViewOptions } from '@easyquery/ui';
+import { EqContext } from '@easyquery/core';
+import { EqViewOptions, AdvancedSearchView } from '@easyquery/ui';
+
+import '@easyquery/enterprise'
 
 @Component({
     selector: 'easyquery',
     templateUrl: './easyquery.component.html'
 })
 
-export class EasyQueryComponent implements OnInit {
+export class EasyQueryComponent implements AfterViewInit {
 
     private QUERY_KEY = 'easyquerycomponent-query';
 
     private context: EqContext;
 
-    private view: AdvancedSearchViewJQuery;
+    private view: AdvancedSearchView;
 
     constructor() {
       
     }
    
 
-    ngOnInit() {
+    ngAfterViewInit() {
 
       const options: EqViewOptions = {
         enableExport: true,
         loadModelOnStart: true,
         loadQueryOnStart: false,
 
+        //Middlewares endpoint
+        endpoint: '/api/easyquery',
+
         handlers: {
           onError: (error) => {
             console.error(error.action + " error:\n" + error.text);
-          },
-          listRequestHandler: (params, onResult) => {
-            let processed = true;
-            if (params.listName == "RegionList") {
-                let query = this.context.getQuery();
-                let country = query.getOneValueForAttr("Customer.Country");
-                if (country == "Canada") {
-                    onResult([
-                        { id: "BC", text: "British Columbia" },
-                        { id: "Quebec", text: "Quebec" }
-                    ]);
-                }
-                else {
-                    onResult([
-                        { id: "CA", text: "California" },
-                        { id: "CO", text: "Colorado" },
-                        { id: "OR", text: "Oregon" },
-                        { id: "WA", text: "Washington" }
-                    ]);
-                }
-            }
-            else
-                processed = false;
-            return processed;
           }
         },
         widgets: {
@@ -98,29 +77,43 @@ export class EasyQueryComponent implements OnInit {
         }
       }
 
-      this.view = new AdvancedSearchViewJQuery();
+      this.view = new AdvancedSearchView();
       this.context = this.view.getContext();
+
+      this.context.useEnterprise("AlzWbvUgrkISH9AEAEoV7wBKJXGX14");
 
       this.context.addEventListener('ready', () => {
         const query = this.context.getQuery();
 
         query.addChangedCallback(() => {
-          const queryJson = query.toJSON();
-          localStorage.setItem(this.QUERY_KEY, queryJson);
-          console.log("Query saved", query);
+          const data = JSON.stringify({
+            modified: query.isModified(),
+            query: query.toJSONData()
+          });
+          localStorage.setItem(this.QUERY_KEY, data);
         });
 
         //add load query from local storage
         this.loadQueryFromLocalStorage();
       });
+
       this.view.init(options);
      }  
 
     private loadQueryFromLocalStorage() {
-        const queryJson = localStorage.getItem(this.QUERY_KEY);
-        if (queryJson) {
+      const dataJson = localStorage.getItem(this.QUERY_KEY);
+      if (dataJson) {
+          const data = JSON.parse(dataJson);
           const query = this.context.getQuery();
-          query.loadFromDataOrJson(queryJson);
+          query.loadFromDataOrJson(data.query);
+          if (data.modified) {
+            query.fireChangedEvent();
+          }
+          else {
+            this.view.getContext().refreshWidgets();
+            this.view.syncQuery();
+          }
+          
           setTimeout(() => this.view.executeQuery(), 100);
         }
     };

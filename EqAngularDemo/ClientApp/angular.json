@@ -21,21 +21,20 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/assets",
-              { "glob": "**/*", "input": "/node_modules/@easyquery/ui-jquery/dist/assets/css/images", "output": "/images" }
+              "src/assets"
             ] ,
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@easyquery/ui-jquery/dist/assets/css/easyquery.css",
-              "node_modules/@easyquery/ui-jquery/dist/assets/css/eq-icons-default.css",
-              "node_modules/@easyquery/ui-jquery/dist/assets/css/eqview.css",
-              "node_modules/@easyquery/ui-jquery/dist/assets/css/easychart.css",
+              "node_modules/@easyquery/ui/dist/assets/css/easyquery.css",
+              "node_modules/@easyquery/ui/dist/assets/css/easyquery-mobile.css",
+              "node_modules/@easyquery/ui/dist/assets/css/eq-icons-default.css",
+              "node_modules/@easyquery/ui/dist/assets/css/eqview.css",
+              "node_modules/@easyquery/ui/dist/assets/css/easychart.css",
+              "node_modules/@progress/kendo-theme-default/dist/all.css",
               "src/styles.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.min.js",
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/jquery-ui-dist/jquery-ui.min.js"
             ]
           },
           "configurations": {

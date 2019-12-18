@@ -89,13 +89,13 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import { AdvancedSearchViewJQuery } from '@easyquery/ui-jquery';
-    import { EqViewOptions } from '@easyquery/ui';
+    import { AdvancedSearchView, EqViewOptions } from '@easyquery/ui';
+    import '@easyquery/enterprise'
 
     @Component({})
     export default class EasyQueryView extends Vue {
 
-        private view = new AdvancedSearchViewJQuery();
+        private view = new AdvancedSearchView();
         private QUERY_KEY = 'easyqueryview-query';
 
 
@@ -106,33 +106,14 @@
                 loadQueryOnStart: false,
                 defaultQueryId: 'test-query',
                 defaultModelId: 'NWindSQL',
+
+                //Middlewares endpoint
+                endpoint: '/api/easyquery',
+
                 handlers: {
                     onError: (error) => {
                        // console.error(error.action + ' error:\n' + error.text);
-                    },
-                    listRequestHandler: (params: any, onResult: any) => {
-                        let processed = true;
-                        if (params.listName === 'RegionList') {
-                            const query = this.view.getContext().getQuery();
-                            const country = query.getOneValueForAttr('Customer.Country');
-                            if (country === 'Canada') {
-                                onResult([
-                                    { id: 'BC', text: 'British Columbia' },
-                                    { id: 'Quebec', text: 'Quebec' },
-                                ]);
-                            } else {
-                                onResult([
-                                    { id: 'CA', text: 'California' },
-                                    { id: 'CO', text: 'Colorado' },
-                                    { id: 'OR', text: 'Oregon' },
-                                    { id: 'WA', text: 'Washington' },
-                                ]);
-                            }
-                        } else {
-                            processed = false;
-                        }
-                        return processed;
-                    },
+                    }
                 },
                 widgets: {
                     entitiesPanel: {
@@ -173,6 +154,7 @@
                 },
             };
 
+            this.view.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wBKJXGX14");
             this.view.getContext().addEventListener('ready', () => {
                   // here we need to add query autosave
                 const query = this.view.getContext().getQuery();
@@ -196,6 +178,8 @@
             if (queryJson) {
                 const query = this.view.getContext().getQuery();
                 query.loadFromDataOrJson(queryJson);
+                query.fireChangedEvent();
+
                 setTimeout(() => this.view.executeQuery(), 100);
             }
         }

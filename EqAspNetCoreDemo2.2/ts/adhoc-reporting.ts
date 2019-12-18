@@ -1,6 +1,5 @@
-import { ReportViewJQuery } from "@easyquery/ui-jquery"
-import { ReportViewOptions, GoogleChartProvider } from "@easyquery/ui";
-
+import { ReportViewOptions, GoogleChartWidget, ReportView } from "@easyquery/ui";
+import '@easyquery/enterprise'
 
 window.addEventListener('load', () => {
 
@@ -14,7 +13,7 @@ window.addEventListener('load', () => {
             //Show EasyChart
             showChart: true,
 
-            chartProviderResolver: () => { return new GoogleChartProvider() },
+            chartWidgetResolver: (slot) => { return new GoogleChartWidget(slot) },
 
             //Paging options
             paging: {
@@ -35,11 +34,8 @@ window.addEventListener('load', () => {
         //Default model's ID (we use it here just for a nice folder name in App_Data folder)
         defaultModelId: 'adhoc-reporting',
 
-        //Broker options
-        broker: {
-            //Middleware endpoint 
-            endpoint: window["_appPathBase"] + '/api/adhoc-reporting'
-        },
+        //Middleware endpoint 
+        endpoint: window["_appPathBase"] + '/api/adhoc-reporting',
 
         enableExport: true,
 
@@ -85,7 +81,8 @@ window.addEventListener('load', () => {
         }
     };
     
-    let reportView = new ReportViewJQuery();
+    let reportView = new ReportView();
+    reportView.getContext().useEnterprise('AlzWbvUgrkISH9AEAEoV7wBKJXGX14');
     reportView.init(options);
-    document['ReportViewJQuery'] = reportView;
+    document['ReportView'] = reportView;
 });

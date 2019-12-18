@@ -38,6 +38,9 @@ namespace EqAspNetCoreDemo
             Configuration = configuration;
 
             this._dataPath = System.IO.Path.Combine(env.ContentRootPath, "App_Data");
+            
+            Korzh.EasyQuery.AspNetCore.License.Key = "w5T2jSxvpyT39qaz5N6wegDBUV7YVI";
+            Korzh.EasyQuery.AspNetCore.JSLicense.Key = "AlzWbvUgrkISH9AEAEoV7wBKJXGX14";
         }
 
         public IConfiguration Configuration { get; }

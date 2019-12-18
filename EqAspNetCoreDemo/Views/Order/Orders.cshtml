@@ -7,7 +7,7 @@
 }
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/5.1.12/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/6.0.0/eq.core.min.css">
 }
 
 <div class="eqjs-process-bar" id="ProcessBar"></div>
@@ -23,7 +23,8 @@
 @section Scripts {
 
     <!-- EasyQuery script -->
-    <script src="https://cdn.korzh.com/eq/5.1.12/eq.all.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/6.0.0/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/6.0.0/eq.enterprise.min.js"></script>
 
     <!-- EasyQuery components initialization -->
     <script>
@@ -31,9 +32,9 @@
             var options = {
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
-                broker: {
-                    endpoint: "@(appPathBase)/data-filtering"
-                },
+
+                endpoint: "@(appPathBase)/data-filtering",
+
                 widgets: {
                     filterBar: {
                         queryPanel: {
@@ -49,6 +50,8 @@
                 }
             }
             var view = new easyquery.ui.HtmlDataFilterView();
+            view.getContext().useEnterprise("@Korzh.EasyQuery.AspNetCore.JSLicense.Key");
+
             view.init(options);
         });
 
