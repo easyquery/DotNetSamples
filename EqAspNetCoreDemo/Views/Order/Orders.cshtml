@@ -8,14 +8,25 @@
 
 @section Styles  {
     <link rel="stylesheet" href="https://cdn.korzh.com/eq/6.0.1/eq.core.min.css">
+
+    <style>
+        .text-search {
+            margin-bottom: 10px;
+        }
+    </style>
 }
 
 <div class="eqjs-process-bar" id="ProcessBar"></div>
 <div class="container">
     <h4>Orders</h4>
-    <div class="row">
+    <div class="row text-search">
         <div class="col-md-8">
-            <input id="textField" class="form-control" placeholder="Enter text for full text search and press Enter">
+            <div class="input-group">
+                <div class="intput-group-prepend">
+                    <div class="input-group-text">Full-text search</div>
+                </div>
+                <input id="textField" class="form-control" placeholder="Search...">
+            </div>
         </div>
         <div class="col-md-4">
             <button id="searchButton" class="btn btn-success">Search</button>
@@ -27,7 +38,6 @@
 
     <div id="ResultPanel"></div>
 </div>
-
 
 @section Scripts {
 
