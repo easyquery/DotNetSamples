@@ -5,18 +5,15 @@ using System.Net;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Linq;
 using Korzh.EasyQuery.AspNetCore;
-using Korzh.EasyQuery.EntityFrameworkCore;
 
 using EqAspNetCoreDemo.Models;
-using Newtonsoft.Json;
 
 namespace EqAspNetCoreDemo.Controllers
 {    
@@ -68,7 +65,6 @@ namespace EqAspNetCoreDemo.Controllers
         public async Task<IActionResult> GetListAsync(string modelId, string editorId)
         {
             var list = await _eqManager.GetValueListAsync(modelId, editorId);
-            var valuesJson = JsonConvert.SerializeObject(list);
 
             return this.EqOk(new { Values = list });
         }
@@ -82,12 +78,49 @@ namespace EqAspNetCoreDemo.Controllers
         {
             await _eqManager.ReadRequestContentFromStreamAsync(modelId, Request.Body);
 
-            var queryable = _dbContext.Orders
-                .Include(o => o.Customer)
-                .Include(o => o.Employee)
-                .DynamicQuery<Order>(_eqManager.Query);
+            var orders = _dbContext.Orders
+                      .Include(o => o.Customer)
+                      .Include(o => o.Employee)
+                      .AsQueryable();
 
-            var list = queryable.ToPagedList(_eqManager.Paging.PageIndex, 15);
+            var text = (string)_eqManager.ClientData["text"];
+            //read full-text search text
+            if (!string.IsNullOrEmpty(text)) {
+
+                var options = new FullTextSearchOptions
+                {
+                    Depth = 2,
+
+                    // filter to use search for string fields we chose
+                    Filter = (propInfo) =>
+                    {
+                        if (propInfo.DeclaringType == typeof(Order)) {
+                            return propInfo.PropertyType == typeof(Customer) || propInfo.PropertyType == typeof(Employee);
+                        }
+
+                        if (propInfo.PropertyType == typeof(string)) {
+                            if (propInfo.DeclaringType == typeof(Customer)) {
+                                return propInfo.Name == "ContactName" || propInfo.Name == "Country";
+                            }
+
+                            if (propInfo.DeclaringType == typeof(Employee)) {
+                                return propInfo.Name == "FirstName" || propInfo.Name == "LastName";
+                            }
+                        }
+
+                        return false;
+                    }
+                };
+
+                orders = orders.FullTextSearchQuery<Order>(text, options);
+            }
+
+
+            orders = orders
+             .DynamicQuery<Order>(_eqManager.Query);
+
+            var list = orders.ToPagedList(_eqManager.Paging.PageIndex, 15);
+            ViewData["Text"] = text;
 
             return View("_OrderListPartial", list);
         }
