@@ -27,21 +27,11 @@ module.exports = {
 				test: /\.css$/,
 				loader: 'css-loader',
 				options: {
-				  url: false
+					url: false
 				}
 			}
         ]
     },
-	plugins: [
-		new FileManagerPlugin({
-			onEnd: {
-				copy: [
-				  { source: './node_modules/@easyquery/ui-jquery/dist/browser/*.min.css', destination: './wwwroot/css' },
-				  { source: './node_modules/@easyquery/ui-jquery/dist/browser/*.min.js', destination: './wwwroot/js' }
-				]
-			}
-		})
-	],
 	watchOptions: {
 		aggregateTimeout: 2000
 	}
