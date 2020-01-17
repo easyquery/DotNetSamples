@@ -95,8 +95,9 @@
             }
 
             var view = new easyquery.ui.HtmlDataFilterView();
-            view.getContext().useEnterprise("@Korzh.EasyQuery.AspNetCore.JSLicense.Key");
-            view.init(options);
+            view.getContext().useEnterprise(function () {
+                view.init(options);
+            });
 
             var searchButton = document.getElementById("searchButton");
             if (searchButton) {
@@ -122,8 +123,6 @@
                     view.applyQueryFilter();
                 });
             }
-
-
 
         });
 

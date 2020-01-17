@@ -136,8 +136,9 @@
             }
 
             var view = new easyquery.ui.AdvancedSearchView();
-            view.getContext().useEnterprise("@Korzh.EasyQuery.AspNetCore.JSLicense.Key");
-            view.init(options);
+            view.getContext().useEnterprise(function () {
+                view.init(options);
+            });
 
             document['AdvancedSearchView'] = view;
         });

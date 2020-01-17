@@ -5,9 +5,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@easyquery/core": "^6.0.1",
-    "@easyquery/ui": "^6.0.1",
-    "@easyquery/enterprise": "^6.0.1"
+    "@easyquery/core": "^6.0.2",
+    "@easyquery/ui": "^6.0.2",
+    "@easyquery/enterprise": "^6.0.2"
   },
   "scripts": {
     "test": "test",

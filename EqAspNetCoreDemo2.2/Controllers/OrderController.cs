@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Linq;
@@ -16,7 +16,6 @@ using Korzh.EasyQuery.AspNetCore;
 using Korzh.EasyQuery.EntityFrameworkCore;
 
 using EqAspNetCoreDemo.Models;
-using Newtonsoft.Json;
 
 namespace EqAspNetCoreDemo.Controllers
 {    

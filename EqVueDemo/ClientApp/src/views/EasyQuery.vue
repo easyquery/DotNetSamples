@@ -112,7 +112,7 @@
 
                 handlers: {
                     onError: (error) => {
-                       // console.error(error.action + ' error:\n' + error.text);
+                        // console.error(error.action + ' error:\n' + error.text);
                     }
                 },
                 widgets: {
@@ -154,7 +154,10 @@
                 },
             };
 
-            this.view.getContext().useEnterprise("AlzWbvUgrkISH9AEAEoV7wBKJXGX14");
+            this.view.getContext().useEnterprise(() => {
+                this.view.init(options);
+            });
+
             this.view.getContext().addEventListener('ready', () => {
                   // here we need to add query autosave
                 const query = this.view.getContext().getQuery();
@@ -168,9 +171,6 @@
                 // add load query from local storage
                 this.loadQueryFromLocalStorage();
             });
-
-            this.view.init(options);
-
         }
 
         private loadQueryFromLocalStorage() {

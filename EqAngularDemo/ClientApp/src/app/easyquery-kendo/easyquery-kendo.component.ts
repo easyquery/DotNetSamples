@@ -173,7 +173,9 @@ export class EasyQueryKendoComponent implements AfterViewInit {
         this.view = new AdvancedSearchView();
         this.context = this.view.getContext();
 
-        this.context.useEnterprise("AlzWbvUgrkISH9AEAEoV7wBKJXGX14");
+        this.context.useEnterprise(() => {
+          this.view.init(options);
+        });
   
         this.context.addEventListener('ready', () => {
           const query = this.context.getQuery();
@@ -188,7 +190,6 @@ export class EasyQueryKendoComponent implements AfterViewInit {
           this.loadQueryFromLocalStorage();
         });
         
-        this.view.init(options);
        }  
   
       private loadQueryFromLocalStorage() {

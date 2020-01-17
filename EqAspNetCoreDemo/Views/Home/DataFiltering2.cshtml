@@ -107,10 +107,11 @@
 
             var dataFilterView = new easyquery.ui.DataFilterView();
 
-            dataFilterView.getContext().useEnterprise("@Korzh.EasyQuery.AspNetCore.JSLicense.Key");
+            dataFilterView.getContext().useEnterprise(function () {
+                   dataFilterView.init(options);
+            });
 
-            dataFilterView.init(options);
-            document['DataFilterViewJQuery'] = dataFilterView;
+            document['DataFilterView'] = dataFilterView;
        });
     </script>
 }
