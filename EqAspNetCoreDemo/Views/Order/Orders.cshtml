@@ -7,7 +7,7 @@
 }
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/6.0.4/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/6.0.5/eq.core.min.css">
 
     <style>
         .text-search {
@@ -55,8 +55,8 @@
 @section Scripts {
 
     <!-- EasyQuery script -->
-    <!--<script src="https://cdn.korzh.com/eq/6.0.4/eq.community.min.js"></script>-->
-    <script src="https://cdn.korzh.com/eq/6.0.4/eq.enterprise.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/6.0.5/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/6.0.5/eq.enterprise.min.js"></script>
 
     <!-- EasyQuery components initialization -->
     <script>
@@ -95,6 +95,7 @@
             }
 
             var view = new easyquery.ui.HtmlDataFilterView();
+            view.getContext().setLicenseKeyEndpoint(window['lckEndpoint'])
             view.getContext().useEnterprise(function () {
                 view.init(options);
             });
