@@ -25,6 +25,22 @@
     right: auto !important;
 }
 
+@media (max-width: 800px) {
+    .eqv-result-panel-content {
+        overflow-y: hidden !important;
+        flex-direction: column;
+    }
+
+    .eqv-result-grid {
+        overflow-y: hidden !important;
+    }
+
+    .eqv-chart-panel {
+        flex: 1 1 auto !important;
+        overflow: hidden;
+    }
+}
+
 .eqjs-qp-conditions-root {
     min-height: 40px;
     max-height: 300px;
