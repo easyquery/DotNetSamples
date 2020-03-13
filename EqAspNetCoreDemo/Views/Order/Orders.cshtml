@@ -95,7 +95,7 @@
             }
 
             var view = new easyquery.ui.HtmlDataFilterView();
-            view.getContext().setLicenseKeyEndpoint(window['lckEndpoint'])
+            view.getContext().setLicenseKeyEndpoint(`@appPathBase` + window['lckEndpoint']);
             view.getContext().useEnterprise(function () {
                 view.init(options);
             });

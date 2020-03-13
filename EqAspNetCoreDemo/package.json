@@ -6,8 +6,8 @@
   "license": "ISC",
   "dependencies": {
     "@easyquery/core": "^6.0.5",
-    "@easyquery/ui": "^6.0.5",
-    "@easyquery/enterprise": "^6.0.5"
+    "@easyquery/enterprise": "^6.0.5",
+    "@easyquery/ui": "^6.0.5"
   },
   "scripts": {
     "test": "test",

@@ -106,6 +106,7 @@
             };
 
             var dataFilterView = new easyquery.ui.DataFilterView();
+            dataFilterView.getContext().setLicenseKeyEndpoint(`@appPathBase` + window['lckEndpoint']);
 
             dataFilterView.getContext().useEnterprise(function () {
                    dataFilterView.init(options);

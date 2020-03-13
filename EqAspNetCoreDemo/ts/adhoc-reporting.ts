@@ -83,7 +83,7 @@ window.addEventListener('load', () => {
     };
 
     const reportView = new ReportView();
-    reportView.getContext().setLicenseKeyEndpoint(window['lckEndpoint'])
+    reportView.getContext().setLicenseKeyEndpoint(window["_appPathBase"] + window['lckEndpoint']);
     reportView.getContext().useEnterprise(() => {
         reportView.init(options);
     });
