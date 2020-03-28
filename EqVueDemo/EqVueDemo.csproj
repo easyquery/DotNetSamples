@@ -6,9 +6,9 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.3.4" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.3.4" />
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="5.3.4" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.3.5" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.3.5" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="5.3.5" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="VueCliMiddleware" Version="2.2.1" />
@@ -35,7 +35,7 @@
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)build\**" />
-      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>
