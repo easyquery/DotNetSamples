@@ -20,7 +20,7 @@ namespace EqAspNetCoreDemo.Services
 
         private const string _modelId = "adhoc-reporting";
 
-        public DefaultReportGenerator(IHostingEnvironment env, AppDbContext dbContext)
+        public DefaultReportGenerator(IWebHostEnvironment env, AppDbContext dbContext)
         {
             _dbContext = dbContext;
             _dataPath = Path.Combine(env.ContentRootPath, $"App_Data\\dm-{_modelId}\\queries");
