@@ -26,6 +26,19 @@ namespace EqAngularDemo
             services.AddDbContext<AppDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb"));
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAllPolicy",
+                    builder => {
+                        builder.WithExposedHeaders("Content-Disposition");
+                        builder.AllowAnyOrigin();
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                        builder.AllowCredentials();
+                    });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory
@@ -49,8 +62,10 @@ namespace EqAngularDemo
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAllPolicy");
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
