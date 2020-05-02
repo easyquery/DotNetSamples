@@ -8,10 +8,8 @@
     ViewData["MenuTitle"] = "Ad-hoc reporting demo";
     var appPathBase = Configuration["appPathBase"] ?? "";
     Boolean isDefaultUser = User.Identity.Name == "demo@korzh.com";
-    string tooltipContent = @"
-        You are logged in as a demo user. Demo user is not allowed to manage the reports.<br />
-        To test that functionlity - please log out first and create a new user.
-    ";
+    string tooltipContent = "You are logged in as a demo user. Demo user is not allowed to manage the reports.<br />" 
+        + "To test that functionlity - please log out first and create a new user.";
 }
 
 
