@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 using Korzh.EasyQuery.Services;
@@ -31,15 +32,14 @@ namespace EqAngularDemo
             {
                 options.AddPolicy(name: "AllowAllPolicy",
                     builder => {
-                        builder.WithExposedHeaders("Content-Disposition");
                         builder.AllowAnyOrigin();
                         builder.AllowAnyHeader();
                         builder.AllowAnyMethod();
-                        builder.AllowCredentials();
+                        builder.WithExposedHeaders("Content-Disposition");
                     });
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => {
@@ -52,7 +52,7 @@ namespace EqAngularDemo
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
@@ -67,7 +67,9 @@ namespace EqAngularDemo
             app.UseCors("AllowAllPolicy");
 
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            if (!env.IsDevelopment()) {
+                app.UseSpaStaticFiles();
+            }
 
             app.UseEasyQuery(options => {
                 options.BuildQueryOnSync = true;
@@ -78,10 +80,13 @@ namespace EqAngularDemo
                 options.UseQueryStore(services => new FileQueryStore("App_Data"));
             });
 
-            app.UseMvc(routes => {
-                routes.MapRoute(
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa => {
