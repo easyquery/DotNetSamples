@@ -28,7 +28,12 @@
                 <div class="card-header">
                     <div class="card-title float-left">Reports</div>
                     <div class="dropdown float-right card-header-button">
-                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cog"></i></button>
+                        <button id="dropdownMenuButton" class="btn btn-default btn-sm dropdown-toggle" 
+                                type="button" data-toggle="dropdown" 
+                                aria-haspopup="true" 
+                                aria-expanded="false">
+                                    <i class="fas fa-cog"></i>
+                        </button>
                         @if (isDefaultUser)
                         {
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-toggle="tooltip" data-html="true" data-placement="bottom" 
