@@ -1,9 +1,11 @@
 import { Component, AfterViewInit} from '@angular/core';
 
-import { EqContext } from '@easyquery/core';
+import { EqContext, Condition } from '@easyquery/core';
 import { EqViewOptions, AdvancedSearchView } from '@easyquery/ui';
 
 import '@easyquery/enterprise'
+
+import { CustomExpressionRenderer } from './custom_expression_renderer'
 
 @Component({
     selector: 'easyquery',
@@ -69,6 +71,18 @@ export class EasyQueryComponent implements AfterViewInit {
             menuOptions: {
                 showSearchBoxAfter: 20,
                 activateOnMouseOver: true
+            },
+            onGetExpressionRenderer: (queryPanel, expression, valueEditor, slot) => {
+              const condition = expression.getParent() as Condition;
+              const model = condition.getQuery().getModel();
+              const attrId = condition.expressions[0].value;
+              const attr = model.getAttributeById(attrId);
+
+              if (attr.defaultEditor.id === "ContactNameEditor") {
+                return new CustomExpressionRenderer(queryPanel, expression, attr.defaultEditor, slot);
+              }
+
+              return null;
             }
           }
         },

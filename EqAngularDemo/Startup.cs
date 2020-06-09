@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 using Korzh.EasyQuery.Services;
+using Korzh.EasyQuery;
 
 namespace EqAngularDemo
 {
@@ -75,6 +76,18 @@ namespace EqAngularDemo
                 options.BuildQueryOnSync = true;
                 options.UseDbContext<AppDbContext>();
                 options.UsePaging(25);
+
+                options.UseModelTuner((model) =>
+                {
+                    // create editors
+                    var editor = new CustomValueEditor(EditorTags.Custom);
+                    editor.Id = "ContactNameEditor";
+                    model.Editors.Add(editor);
+
+                    // set editor for entity attribute
+                    var attr = model.FindEntityAttr("Customers.ContactName");
+                    attr.DefaultEditor = editor;
+                });
 
                 //to save queries in file system
                 options.UseQueryStore(services => new FileQueryStore("App_Data"));
