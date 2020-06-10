@@ -136,7 +136,7 @@
             }
 
             var view = new easyquery.ui.AdvancedSearchView();
-            view.getContext().setLicenseKeyEndpoint(`@appPathBase` + window['lckEndpoint']);
+            view.getContext().setLicenseKeyEndpoint('@appPathBase' + window['lckEndpoint']);
             view.getContext().useEnterprise(function () {
                 view.init(options);
             });
