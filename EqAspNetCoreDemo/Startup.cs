@@ -145,7 +145,9 @@ namespace EqAspNetCoreDemo
 
                 //);
 
-                options.UseSqlFormats(FormatType.MsSqlServer);
+                options.UseSqlFormats(FormatType.MsSqlServer, formats => {
+                    formats.UseTimezoneOffset = true;
+                });
 
                 //The next line allows you to set SELECT DISTINCT for each generated query
                 //options.AddBuilderTuner(builder => {

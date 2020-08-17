@@ -27,12 +27,13 @@ export class EasyQueryComponent implements AfterViewInit {
 
     ngAfterViewInit() {
 
-      const options: EqViewOptions = {
+      //here we define some options for AdvancedSearchView
+      const viewOptions: EqViewOptions = {
         enableExport: true,
         loadModelOnStart: true,
         loadQueryOnStart: false,
 
-        //Middlewares endpoint
+        //EasyQuery endpoint
         endpoint: '/api/easyquery',
 
         handlers: {
@@ -54,7 +55,7 @@ export class EasyQueryComponent implements AfterViewInit {
             customExpressionText: 2,
             showPoweredBy: false,
             menuOptions: {
-                showSearchBoxAfter: 30,
+                showSearchBoxAfter: 2,
                 activateOnMouseOver: true
             }
           },
@@ -72,6 +73,8 @@ export class EasyQueryComponent implements AfterViewInit {
                 showSearchBoxAfter: 20,
                 activateOnMouseOver: true
             },
+            //the following piece demonstrates how to set a custom expression renderer
+            //for some value editors (for ContextNameEditor in this particular example)
             onGetExpressionRenderer: (queryPanel, expression, valueEditor, slot) => {
               const condition = expression.getParent() as Condition;
               const model = condition.getQuery().getModel();
@@ -95,7 +98,7 @@ export class EasyQueryComponent implements AfterViewInit {
       this.context = this.view.getContext();
 
       this.context.useEnterprise(() => {
-        this.view.init(options);
+        this.view.init(viewOptions);
       });
 
       this.context.addEventListener('ready', () => {
@@ -130,7 +133,5 @@ export class EasyQueryComponent implements AfterViewInit {
           
           setTimeout(() => this.view.executeQuery(), 100);
         }
-    };
-
-    
+    };    
 }
