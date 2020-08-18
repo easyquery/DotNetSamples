@@ -119,7 +119,7 @@ namespace EqAspNetCoreDemo.Controllers
             orders = orders
              .DynamicQuery<Order>(_eqManager.Query);
 
-            var list = orders.ToPagedList(_eqManager.Paging.PageIndex, 15);
+            var list = orders.ToPagedList(_eqManager.Chunk.Page, 15);
             ViewData["Text"] = text;
 
             return View("_OrderListPartial", list);

@@ -86,7 +86,7 @@ namespace EqAspNetCoreDemo.Controllers
                 .Include(o => o.Employee)
                 .DynamicQuery<Order>(_eqManager.Query);
 
-            var list = queryable.ToPagedList(_eqManager.Paging.PageIndex, 15);
+            var list = queryable.ToPagedList(_eqManager.Chunk.Page, 15);
 
             return View("_OrderListPartial", list);
         }
