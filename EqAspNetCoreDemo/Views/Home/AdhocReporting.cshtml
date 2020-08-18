@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="~/css/root.css" />
     <link rel="stylesheet" href="~/css/adhoc-reporting.css" />
 
+    <style>
+        .eqv-chart-panel {
+            margin-left: 5px;
+        }
+    </style>
 }
 
 <div class="container-fluid px-5">
@@ -93,33 +98,33 @@
                         <!--<div id="ResultPanel" class="eqv-result-panel-content"></div>-->
                         <div id="ResultFacetsPanel"></div>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row " id="NoReportPanel" style="visibility:hidden;">
-        <div class="col-md-12">
-            <h3 class="text-center">
-                No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
-            </h3>
+        <div class="row " id="NoReportPanel" style="visibility:hidden;">
+            <div class="col-md-12">
+                <h3 class="text-center">
+                    No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
+                </h3>
+            </div>
         </div>
     </div>
-</div>
 
-@section Scripts {
-    <script>
-        window["_appPathBase"] = "@appPathBase";
+    @section Scripts {
+        <script>
+            window["_appPathBase"] = "@appPathBase";
 
-        $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script>
-        google.charts.load('current', { 'packages': ['corechart'] });
-    </script>
+        <script>
+            google.charts.load('current', { 'packages': ['corechart'] });
+        </script>
 
-    <script src="~/js/adhoc-reporting.js"></script>
+        <script src="~/js/adhoc-reporting.js"></script>
 
-}
+    }
