@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@easydata/core": "1.0.0-beta1",
-    "@easydata/ui": "1.0.0-beta1",
+    "@easydata/core": "1.0.0-beta2",
+    "@easydata/ui": "1.0.0-beta2",
     "@easyquery/core": "6.1.0-beta2",
     "@easyquery/ui": "6.1.0-beta2",
     "@easyquery/enterprise": "6.1.0-beta2",
