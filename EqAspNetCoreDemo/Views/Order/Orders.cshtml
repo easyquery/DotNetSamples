@@ -62,7 +62,7 @@
     <script>
 
         window.addEventListener('load', function () {
-            var options = {
+            var viewOptions = {
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
                 broker: {
@@ -74,10 +74,8 @@
                             attrElementFormat: "{entity} {attr}"
                         },
                         //autoEditNewCondition: true
-                    }
-                },
-                result: {
-                    paging: {
+                    },
+                    eqHtmlGrid: {
                         useBootstrap: true
                     }
                 },
@@ -97,7 +95,7 @@
             var view = new easyquery.ui.HtmlDataFilterView();
             view.getContext().setLicenseKeyEndpoint(`@appPathBase` + window['lckEndpoint']);
             view.getContext().useEnterprise(function () {
-                view.init(options);
+                view.init(viewOptions);
             });
 
             var searchButton = document.getElementById("searchButton");

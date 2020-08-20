@@ -5,7 +5,7 @@ import '@easyquery/enterprise';
 window.addEventListener('load', () => {
 
     //Options for ReportViewJQuery
-    let options: ReportViewOptions = {
+    const viewOptions: ReportViewOptions = {
 
         //Saves report on each change
         syncReportOnChange: true,
@@ -85,7 +85,7 @@ window.addEventListener('load', () => {
     const reportView = new ReportView();
     reportView.getContext().setLicenseKeyEndpoint(window["_appPathBase"] + window['lckEndpoint']);
     reportView.getContext().useEnterprise(() => {
-        reportView.init(options);
+        reportView.init(viewOptions);
     });
    
     document['ReportView'] = reportView;

@@ -87,6 +87,9 @@ export class EasyQueryComponent implements AfterViewInit {
 
               return null;
             }
+          },
+          resultGrid: {
+            autoHeight: true
           }
         },
         result: {

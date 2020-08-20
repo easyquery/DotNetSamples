@@ -54,7 +54,7 @@
     <script>
         window.addEventListener('load', function() {
             //Options for AdvancedSearchViewJQuery
-            var options = {
+            var viewOptions = {
                 //Load model on start
                 loadModelOnStart: true,
 
@@ -134,7 +134,7 @@
             var view = new easyquery.ui.AdvancedSearchView();
             view.getContext().setLicenseKeyEndpoint('@appPathBase' + window['lckEndpoint']);
             view.getContext().useEnterprise(function () {
-                view.init(options);
+                view.init(viewOptions);
             });
 
             document['AdvancedSearchView'] = view;
