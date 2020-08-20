@@ -1,12 +1,12 @@
 import { Component, AfterViewInit, OnInit, ViewChild} from '@angular/core';
 
+import { DataRow } from '@easydata/core';
 import { EqContext } from '@easyquery/core';
 import { EqViewOptions, AdvancedSearchView, Grid } from '@easyquery/ui';
 
 import '@easyquery/enterprise';
 
 import { PageChangeEvent } from '@progress/kendo-angular-grid';
-
 @Component({
   selector: 'eq-kendo-grid',
   template: `<kendo-grid
@@ -22,72 +22,68 @@ import { PageChangeEvent } from '@progress/kendo-angular-grid';
 })
 export class EqKendoGridComponent extends Grid  {
 
-  public pageSize: number = 0;
+  public pageSize: number = 15;
   public columns: any[] = [];
-  public gridData: any;
+  public gridData: any  = { data: [], total: 0 };
   public skip: number = 0;
 
   constructor() {
     super(document.createElement('div'));
   }
 
-    protected render() {
-      this.context.resultSet.setDisplayFormats();
-      this.pageSize = this.context.paging.pageSize,
-      this.skip =  this.pageSize * (this.context.paging.pageIndex - 1);
-      this.columns = this.createColumnDefs();
-      this.gridData = this.createRowData();
+  protected render() {
+    this.applyDisplayFormats();
+    this.columns = this.getColumnsDefs();
   }
 
   // specify the columns
-  private createColumnDefs() {
-      const columns = [];
+  private getColumnsDefs() {
+    const columns = [];
 
-      const resultSet = this.context.resultSet;
-      for(let i = 0; i < resultSet.getNumberOfColumns(); i++) {
-          columns.push({title: resultSet.getColumnLabel(i), field: resultSet.getColumnProperties(i).field});
-      }
+    const resultTable = this.context.resultTable;
+    for (const col of resultTable.columns.getItems()) {
+      columns.push({ headerName: col.label, field: col.id });
+    }
 
-      return columns;
+    return columns;
   }
 
   // specify the data
-  private createRowData() {
-      const rows = [];
+  private convertToGridData(rows: DataRow[]) {
+    const result = [];
 
-      const resultSet = this.context.resultSet;
-      for(let i = 0; i < resultSet.getNumberOfRows(); i++) {
-
-          const row: any = {};
-
-          for(let j = 0; j < resultSet.getNumberOfColumns(); j++) {
-             row[resultSet.getColumnProperties(j).field] = resultSet.getFormattedValue(i, j);
-          }
-         
-          rows.push(row);
+    const resultTable = this.context.resultTable;
+    for (const row of rows) {
+      const dataRow: any = {};
+      for (let i = 0; i < resultTable.columns.count; i++) {
+        const col = resultTable.columns.get(i);
+        dataRow[col.id] = row.getValue(i);
       }
-      
-      return {
-          data: rows,
-          total: this.context.paging.totalRecords
-      };
+
+      result.push(dataRow);
+    }
+
+    return {
+      data: result,
+      total: this.context.resultTable.getTotal()
+    };
   }
 
   protected clear() {
-      this.pageSize = 0;
       this.columns = [];
       this.gridData = [];
   }
 
   public pageChange(event: PageChangeEvent) {
-    const pageNum = event.skip / this.pageSize + 1;
-    if (pageNum !== this.context.paging.pageIndex) {
-        this.context.paging.pageSelectedCallback(pageNum, () => {
-            this.context.resultSet.setDisplayFormats();
-            this.gridData = this.createRowData();
-            this.skip =  this.pageSize * (this.context.paging.pageIndex - 1);
-        }, false);
-    }
+    this.context.resultTable.getRows({
+      offset: event.skip,
+      limit: event.take
+    })
+    .then(rows => {
+      this.applyDisplayFormats();
+      this.gridData = this.convertToGridData(rows);
+      this.skip = event.skip;
+    });
   }
 
 }
@@ -116,7 +112,7 @@ export class EasyQueryKendoComponent implements AfterViewInit {
     ngAfterViewInit() {
 
         const options: EqViewOptions = {
-          enableExport: true,
+
           loadModelOnStart: true,
           loadQueryOnStart: false,
 
@@ -154,7 +150,7 @@ export class EasyQueryKendoComponent implements AfterViewInit {
               autoEditNewCondition: true,
               buttons: {
                   condition: ["menu"],
-                  predicate: ["addCondition", "addPredicate", "enable", "delete"]
+                  group: ["addCondition", "addPredicate", "enable", "delete"]
               },
               menuOptions: {
                   showSearchBoxAfter: 20,

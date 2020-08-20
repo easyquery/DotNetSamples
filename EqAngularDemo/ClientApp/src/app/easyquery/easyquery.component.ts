@@ -67,7 +67,7 @@ export class EasyQueryComponent implements AfterViewInit {
             autoEditNewCondition: true,
             buttons: {
                 condition: ["menu"],
-                predicate: ["addCondition", "addPredicate", "enable", "delete"]
+                group: ["addCondition", "addPredicate", "enable", "delete"]
             },
             menuOptions: {
                 showSearchBoxAfter: 20,
