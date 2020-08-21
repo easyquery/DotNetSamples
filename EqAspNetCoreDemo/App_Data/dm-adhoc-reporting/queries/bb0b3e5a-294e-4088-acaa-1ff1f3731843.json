@@ -75,11 +75,11 @@
       "active": 1,
       "items": [
         {
-          "title": "Grid",
+          "title": "Result set",
           "type": "DATA_GRID"
         },
         {
-          "title": "Chart",
+          "title": "Column Chart",
           "type": "CHART",
           "chartType": 3,
           "labelCol": 0,

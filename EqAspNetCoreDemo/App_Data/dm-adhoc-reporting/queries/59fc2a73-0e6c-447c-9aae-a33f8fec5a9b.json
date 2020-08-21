@@ -106,11 +106,11 @@
       "active": 1,
       "items": [
         {
-          "title": "Grid",
+          "title": "Result set",
           "type": "DATA_GRID"
         },
         {
-          "title": "Chart",
+          "title": "Pie Chart",
           "type": "CHART",
           "chartType": 10,
           "labelCol": 0,

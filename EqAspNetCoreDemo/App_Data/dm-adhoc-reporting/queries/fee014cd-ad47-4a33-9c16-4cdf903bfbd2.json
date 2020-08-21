@@ -57,11 +57,11 @@
       "active": 1,
       "items": [
         {
-          "title": "Grid",
+          "title": "Result set",
           "type": "DATA_GRID"
         },
         {
-          "title": "Chart",
+          "title": "Bar Chart",
           "type": "CHART",
           "chartType": 5,
           "labelCol": 0,
