@@ -104,9 +104,19 @@
         </div>
         <div class="row " id="NoReportPanel" style="visibility:hidden;">
             <div class="col-md-12">
-                <h3 class="text-center">
-                    No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
-                </h3>
+                @if (!isDefaultUser)
+                {
+                    <h3 class="text-center">
+                        No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
+                    </h3>
+                }
+                else
+                {
+                    <h3 class="text-center">
+                        No reports are defined. <span id="FirstReportButton" title="@tooltipContent" data-toggle="tooltip" data-placement="top" style="text-decoration: underline">Create a first one</span> to start.
+                    </h3>
+
+                }
             </div>
         </div>
     </div>
