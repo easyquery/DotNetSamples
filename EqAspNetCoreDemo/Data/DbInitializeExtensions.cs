@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Korzh.DbUtils;
 
 using Korzh.EasyQuery.Services;
-
+using System.Linq;
 
 namespace EqAspNetCoreDemo.Services
 {
@@ -25,9 +25,11 @@ namespace EqAspNetCoreDemo.Services
                         options.UseZipPacker(System.IO.Path.Combine(env.ContentRootPath, "App_Data", "EqDemoData.zip"));
                     })
                     .Seed();
+                }
 
+                if (context.Database.CanConnect()) {
                     //create default user
-                    CheckAddDefaultUser(scope.ServiceProvider);
+                    CheckAddDefaultUser(scope.ServiceProvider, config);
 
                     //create eq-manager role
                     CheckAddManagerRole(scope.ServiceProvider);
@@ -38,12 +40,21 @@ namespace EqAspNetCoreDemo.Services
         const string _defaultUserEmail = "demo@korzh.com";
         const string _defaultUserPassword = "demo";
 
-        private static void CheckAddDefaultUser(IServiceProvider scopedServices)
+        private static void CheckAddDefaultUser(IServiceProvider scopedServices, IConfiguration config)
         {
             var manager = scopedServices.GetRequiredService<UserManager<IdentityUser>>();
 
             try {
                 var user = manager.FindByEmailAsync(_defaultUserEmail).Result;
+                var resetDemoUser = config.GetValue<bool>("resetDefaultUser");
+                if (resetDemoUser) {
+                    var dbContext = scopedServices.GetRequiredService<AppDbContext>();
+                    dbContext.Reports.RemoveRange(dbContext.Reports.Where(r => r.OwnerId == user.Id));
+                    dbContext.SaveChanges();
+
+                    manager.DeleteAsync(user).GetAwaiter().GetResult();
+                    user = null;
+                }
                 if (user == null) {
                     user = new IdentityUser() {
                         UserName = _defaultUserEmail,
@@ -53,8 +64,6 @@ namespace EqAspNetCoreDemo.Services
                     var result = manager.CreateAsync(user, _defaultUserPassword).Result;
                     if (result.Succeeded) {
                         var defaultReportsGenerator = scopedServices.GetRequiredService<DefaultReportGenerator>();
-                        var dbContext = scopedServices.GetRequiredService<AppDbContext>();
-
                         defaultReportsGenerator.GenerateAsync(user).GetAwaiter().GetResult();
                     }
                 }
