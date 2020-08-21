@@ -47,7 +47,7 @@ namespace EqAspNetCoreDemo.Services
             try {
                 var user = manager.FindByEmailAsync(_defaultUserEmail).Result;
                 var resetDemoUser = config.GetValue<bool>("resetDefaultUser");
-                if (resetDemoUser) {
+                if (resetDemoUser && user != null) {
                     var dbContext = scopedServices.GetRequiredService<AppDbContext>();
                     dbContext.Reports.RemoveRange(dbContext.Reports.Where(r => r.OwnerId == user.Id));
                     dbContext.SaveChanges();
@@ -55,6 +55,7 @@ namespace EqAspNetCoreDemo.Services
                     manager.DeleteAsync(user).GetAwaiter().GetResult();
                     user = null;
                 }
+
                 if (user == null) {
                     user = new IdentityUser() {
                         UserName = _defaultUserEmail,
