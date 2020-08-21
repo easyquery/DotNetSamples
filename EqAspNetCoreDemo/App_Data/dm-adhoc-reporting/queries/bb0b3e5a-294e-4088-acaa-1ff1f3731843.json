@@ -69,5 +69,23 @@
         ]
       }
     ]
+  },
+  "innerData": {
+    "facets": {
+      "active": 1,
+      "items": [
+        {
+          "title": "Grid",
+          "type": "DATA_GRID"
+        },
+        {
+          "title": "Chart",
+          "type": "CHART",
+          "chartType": 3,
+          "labelCol": 0,
+          "dataCol": 1
+        }
+      ]
+    }
   }
 }
