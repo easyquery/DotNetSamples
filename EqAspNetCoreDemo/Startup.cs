@@ -122,8 +122,10 @@ namespace EqAspNetCoreDemo
                 options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
                 options.UseDbConnection<SqlConnection>();
 
+                options.UseManager<EasyQueryManagerSql>();
+
                 //an example of using customer manager
-                options.UseManager<CustomEasyQueryManagerSql>();
+                //options.UseManager<CustomEasyQueryManagerSql>();
 
                 //defining different query store depending on configuration
                 if (Configuration.GetValue<string>("queryStore") == "session") {
