@@ -169,22 +169,24 @@ export class EasyQueryKendoComponent implements AfterViewInit {
         this.view = new AdvancedSearchView();
         this.context = this.view.getContext();
 
-        this.context.useEnterprise(() => {
-          this.view.init(options);
-        });
-  
         this.context.addEventListener('ready', () => {
           const query = this.context.getQuery();
-  
+
           query.addChangedCallback(() => {
             const queryJson = query.toJSON();
             localStorage.setItem(this.QUERY_KEY, queryJson);
             console.log("Query saved", query);
           });
-  
+
           //add load query from local storage
           this.loadQueryFromLocalStorage();
         });
+
+        this.context.useEnterprise(() => {
+          this.view.init(options);
+        });
+  
+      
         
        }  
   
