@@ -197,9 +197,7 @@ namespace EqAspNetCoreDemo
             //                                               .Include(o => o.Employee)
             //                                               .AsQueryable());
             //    options.UsePaging(10);
-            //});
-
-            
+            //});           
 
 
             app.UseEndpoints(endpoints =>
