@@ -35,6 +35,10 @@
               "node_modules/@easyquery/ui/dist/assets/css/easyfacets.css",
               "node_modules/@easydata/ui/dist/assets/css/easy-grid.css",
               "node_modules/@easydata/ui/dist/assets/css/easy-dialog.css",
+              "node_modules/@easydata/ui/dist/assets/css/forms.css",
+              "node_modules/@easydata/ui/dist/assets/css/controls.css",
+              "node_modules/@easydata/ui/dist/assets/css/columns.css",
+              "node_modules/@easydata/ui/dist/assets/css/buttons.css",
               "node_modules/@progress/kendo-theme-default/dist/all.css",
               "src/styles.css"
             ],
