@@ -10,6 +10,12 @@ window.addEventListener('load', () => {
         //Saves report on each change
         syncReportOnChange: true,
 
+        handlers: {
+            onError: function (error) {
+                console
+            }
+        },
+
         result: {
             //Show EasyChart
             showChart: true,
@@ -18,14 +24,7 @@ window.addEventListener('load', () => {
 
             //Paging options
             paging: {
-                //Use bootstrap v4 styles
-                useBootstrap: true,
-
-                //max count of displayed buttons
-                maxButtonCount: 10,
-
-                //paging css class
-                cssClass: 'pagination-sm'
+                pageSize: 50				
             }
         },
 
