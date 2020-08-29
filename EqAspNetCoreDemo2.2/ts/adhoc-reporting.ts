@@ -17,14 +17,6 @@ window.addEventListener('load', () => {
 
             //Paging options
             paging: {
-                //Use bootstrap v4 styles
-                useBootstrap: true,
-
-                //max count of displayed buttons
-                maxButtonCount: 10,
-
-                //paging css class
-                cssClass: 'pagination-sm'
             }
         },
 
