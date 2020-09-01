@@ -268,7 +268,7 @@
                 locale: 'en',
 
                 // Middleware endpoint
-                endpoint: "@(appPathBase)/api/easyquery",
+                endpoint: '@(appPathBase)/api/easyquery',
 
                 //Handlers
                 handlers: {
@@ -342,7 +342,10 @@
             }
 
             var view = new easyquery.ui.AdvancedSearchView();
-            view.getContext().useEnterprise(function () {
+            const context = view.getContext();
+            context.setLicenseKeyEndpoint(`@appPathBase` + window['__eqLckEndpoint']);
+
+            context.useEnterprise(function () {
                 view.init(viewOptions);
             });
 

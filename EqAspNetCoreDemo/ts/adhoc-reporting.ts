@@ -35,7 +35,7 @@ window.addEventListener('load', () => {
         defaultModelId: 'adhoc-reporting',
 
         //Middleware endpoint 
-        endpoint: window["_appPathBase"] + '/api/adhoc-reporting',
+        endpoint: window["__appPathBase"] + '/api/adhoc-reporting',
 
         enableExport: true,
 
@@ -82,8 +82,9 @@ window.addEventListener('load', () => {
     };
 
     const reportView = new ReportView();
-    reportView.getContext().setLicenseKeyEndpoint(window["_appPathBase"] + window['lckEndpoint']);
-    reportView.getContext().useEnterprise(() => {
+    const context = reportView.getContext();
+    context.setLicenseKeyEndpoint(window["__appPathBase"] + window['__eqLckEndpoint']);
+    context.useEnterprise(() => {
         reportView.init(viewOptions);
     });
    
