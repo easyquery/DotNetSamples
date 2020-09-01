@@ -152,10 +152,9 @@ namespace EqAspNetCoreDemo
                 });
 
                 //The next line allows you to set SELECT DISTINCT for each generated query
-                //options.AddBuilderTuner(builder => {
-                //    (builder as SqlQueryBuilder).Extras.SelectDistinct = true;
-                //});
-                options.UsePaging(30);
+                options.AddBuilderTuner(builder => {
+                    //(builder as SqlQueryBuilder).Extras.SelectDistinct = true;
+                });
             });
 
             app.UseEasyQuery(options => {

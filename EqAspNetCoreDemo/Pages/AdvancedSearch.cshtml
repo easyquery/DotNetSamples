@@ -273,7 +273,7 @@
                 //Handlers
                 handlers: {
                     //Error handler
-                    onError: function(error) {
+                    onError: function (error) {
                         console.error(error.action + " error:\n" + error.text);
                     }
                 },
@@ -320,19 +320,19 @@
                     },
 
                     //ResultGrid options
-                    resultGrid: {
+                    easyGrid: {
                         autoHeight: true,
-                        paging: {
-                            enabled: true,
-                            pageSize: 30
-                        }
                     }
                 },
                 result: {
                     //Show EasyChart
-                    showChart: true
+                    showChart: true,
+                    paging: {
+                        enabled: true,
+                        pageSize: 100
+                    }
                 }
-            }
+            };
 
             var gridType = window.localStorage.getItem('grid-type');
             if (gridType == 'ag-grid') {
