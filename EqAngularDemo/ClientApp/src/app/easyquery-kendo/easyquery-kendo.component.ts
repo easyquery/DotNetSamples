@@ -22,10 +22,10 @@ import { PageChangeEvent } from '@progress/kendo-angular-grid';
 })
 export class EqKendoGridComponent extends Grid  {
 
-  public pageSize: number = 15;
+  public pageSize = 15;
   public columns: any[] = [];
   public gridData: any  = { data: [], total: 0 };
-  public skip: number = 0;
+  public skip = 0;
 
   constructor() {
     super(document.createElement('div'));
@@ -34,6 +34,11 @@ export class EqKendoGridComponent extends Grid  {
   protected render() {
     this.applyDisplayFormats();
     this.columns = this.getColumnsDefs();
+
+    this.pageChange({
+      skip: this.skip,
+      take: this.pageSize
+    });
   }
 
   // specify the columns
@@ -42,7 +47,7 @@ export class EqKendoGridComponent extends Grid  {
 
     const resultTable = this.context.resultTable;
     for (const col of resultTable.columns.getItems()) {
-      columns.push({ headerName: col.label, field: col.id });
+      columns.push({ headerName: col.label, field: this.toValidFieldName(col.id) });
     }
 
     return columns;
@@ -57,7 +62,7 @@ export class EqKendoGridComponent extends Grid  {
       const dataRow: any = {};
       for (let i = 0; i < resultTable.columns.count; i++) {
         const col = resultTable.columns.get(i);
-        dataRow[col.id] = row.getValue(i);
+        dataRow[this.toValidFieldName(col.id)] = row.getValue(i);
       }
 
       result.push(dataRow);
@@ -72,6 +77,10 @@ export class EqKendoGridComponent extends Grid  {
   protected clear() {
       this.columns = [];
       this.gridData = [];
+  }
+
+  private toValidFieldName(field: string) {
+    return field.replace(' ', '_');
   }
 
   public pageChange(event: PageChangeEvent) {

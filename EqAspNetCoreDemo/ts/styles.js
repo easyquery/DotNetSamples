@@ -8,7 +8,4 @@ require('../node_modules/@easyquery/ui/dist/assets/css/eq-grid-mobile.css');
 require('../node_modules/@easyquery/ui/dist/assets/css/easyfacets.css');
 require('../node_modules/@easydata/ui/dist/assets/css/easy-grid.css');
 require('../node_modules/@easydata/ui/dist/assets/css/easy-dialog.css');
-require('../node_modules/@easydata/ui/dist/assets/css/forms.css');
-require('../node_modules/@easydata/ui/dist/assets/css/controls.css');
-require('../node_modules/@easydata/ui/dist/assets/css/columns.css');
-require('../node_modules/@easydata/ui/dist/assets/css/buttons.css');
+require('../node_modules/@easydata/ui/dist/assets/css/easy-forms.css');

@@ -148,6 +148,13 @@
                             activateOnMouseOver: true,
                         },
                     },
+                    resultGrid: {
+                        autoHeight: true,
+                        paging: {
+                            enabled: true,
+                            pageSize: 30
+                        }
+                    }
                 },
                 result: {
                     showChart: true,

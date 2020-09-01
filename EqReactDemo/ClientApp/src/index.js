@@ -10,10 +10,7 @@ import '@easyquery/ui/dist/assets/css/eq-grid-mobile.css';
 import '@easyquery/ui/dist/assets/css/easyfacets.css';
 import '@easydata/ui/dist/assets/css/easy-grid.css';
 import '@easydata/ui/dist/assets/css/easy-dialog.css';
-import '@easydata/ui/dist/assets/css/forms.css';
-import '@easydata/ui/dist/assets/css/controls.css';
-import '@easydata/ui/dist/assets/css/columns.css';
-import '@easydata/ui/dist/assets/css/buttons.css';
+import '@easydata/ui/dist/assets/css/easy-forms.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

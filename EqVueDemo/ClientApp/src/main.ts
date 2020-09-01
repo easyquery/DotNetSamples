@@ -10,6 +10,7 @@ import '@easyquery/ui/dist/assets/css/eq-grid-mobile.css';
 import '@easyquery/ui/dist/assets/css/easyfacets.css';
 import '@easydata/ui/dist/assets/css/easy-grid.css';
 import '@easydata/ui/dist/assets/css/easy-dialog.css';
+import '@easydata/ui/dist/assets/css/easy-forms.css';
 
 import Vue from 'vue';
 import './plugins/axios';

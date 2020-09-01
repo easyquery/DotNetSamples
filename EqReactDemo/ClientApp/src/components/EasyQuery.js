@@ -60,6 +60,13 @@ export class EasyQuery extends Component {
                     showSearchBoxAfter: 20,
                     activateOnMouseOver: true
                 }
+              },
+              resultGrid: {
+                  autoHeight: true,
+                  paging: {
+                      enabled: true,
+                      pageSize: 30
+                  }
               }
             },
             result: {

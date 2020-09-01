@@ -11,13 +11,13 @@ export class CustomExpressionRenderer extends ExpressionRenderer {
     // Build your editor here
   }
 
-  protected appear(): void {
+  protected showEditor(): void {
     // show your editor
     const value = prompt("Enter value: ");
     this.setValue(value);
   }
 
-  protected disappear(): void {
+  protected closeEditor(): void {
     // hide your editor
   }
 
