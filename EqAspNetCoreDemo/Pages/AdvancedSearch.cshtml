@@ -65,7 +65,8 @@
         EqAgGrid.prototype = Object.create(easyquery.ui.Grid.prototype);
  
 
-        EqAgGrid.prototype.render = function() {
+        EqAgGrid.prototype.render = function () {
+
             this.agGridOptions = {};
 
             if (this.context.resultTable && this.context.resultTable.columns.count > 0) {
@@ -76,16 +77,16 @@
                 this.agGridOptions.rowModelType = 'infinite';
                 this.agGridOptions.cacheBlockSize = this.pageSize;
                 this.agGridOptions.paginationPageSize = this.pageSize;
-
+ 
                 function getRowsHandler(params) {
                     this.context.resultTable.getRows({
                         offset: params.startRow,
                         limit: this.pageSize
                     })
-                    .then(rows => {
+                    .then(function (rows) {
                         this.applyDisplayFormats();
                         params.successCallback(this.convertToRowData(rows), this.context.resultTable.getTotal());
-                    });
+                    }.bind(this));
                 }
 
                 this.agGridOptions.datasource = {
@@ -342,8 +343,8 @@
             }
 
             var view = new easyquery.ui.AdvancedSearchView();
-            const context = view.getContext();
-            context.setLicenseKeyEndpoint(`@appPathBase` + window['__eqLckEndpoint']);
+            var context = view.getContext();
+            context.setLicenseKeyEndpoint('@appPathBase' + window['__eqLckEndpoint']);
 
             context.useEnterprise(function () {
                 view.init(viewOptions);
