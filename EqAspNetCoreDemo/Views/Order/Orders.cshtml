@@ -101,7 +101,7 @@
             var searchButton = document.getElementById("searchButton");
             if (searchButton) {
                 searchButton.addEventListener('click', function (ev) {
-                    view.applyQueryFilter();
+                    view.executeQuery();
                 });
 
                 var textField = document.getElementById("textField");
@@ -119,7 +119,7 @@
                 clearButton.addEventListener('click', function (ev) {
                     const input = document.getElementById("textField");
                     input.value = "";
-                    view.applyQueryFilter();
+                    view.executeQuery();
                 });
             }
 
