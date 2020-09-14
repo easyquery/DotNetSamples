@@ -71,7 +71,6 @@ namespace EqReactDemo
             app.UseEasyQuery(options => {
                 options.DefaultModelId = "NWindSQL";
                 options.UseDbConnection<System.Data.SqlClient.SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
-                options.UsePaging(30);
             });
 
             app.UseRouting();

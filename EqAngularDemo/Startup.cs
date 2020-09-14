@@ -75,7 +75,6 @@ namespace EqAngularDemo
             app.UseEasyQuery(options => {
                 options.BuildQueryOnSync = true;
                 options.UseDbContext<AppDbContext>();
-                options.UsePaging(25);
 
                 options.UseModelTuner((model) =>
                 {

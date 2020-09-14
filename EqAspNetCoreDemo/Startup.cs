@@ -172,7 +172,7 @@ namespace EqAspNetCoreDemo
 
                 // here we add our custom query store
                 options.UseQueryStore((services) => new ReportStore(services));
-                options.UsePaging(30);
+
                 options.UseDefaultAuthProvider((provider) => {
                     //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
                     //here you can remove that requirement and make those actions available for all authorized users
@@ -199,7 +199,6 @@ namespace EqAspNetCoreDemo
             //                                               .Include(o => o.Customer)
             //                                               .Include(o => o.Employee)
             //                                               .AsQueryable());
-            //    options.UsePaging(10);
             //});           
 
 
