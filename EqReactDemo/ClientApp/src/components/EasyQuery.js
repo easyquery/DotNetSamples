@@ -13,7 +13,7 @@ export class EasyQuery extends Component {
     view = new AdvancedSearchView();
 
     componentDidMount() {
-        const options = {
+        const viewOptions = {
             enableExport: true,
             loadModelOnStart: true,
             loadQueryOnStart: false,
@@ -74,35 +74,46 @@ export class EasyQuery extends Component {
             }
         }
 
-        this.view.getContext().addEventListener('ready', () => {
-            //here we need to add query autosave
-            let query = this.view.getContext().getQuery();
+        this.view = new AdvancedSearchView();
+        this.context = this.view.getContext();
+
+        this.context.useEnterprise(() => {
+            this.view.init(viewOptions);
+        });
+
+        this.context.addEventListener('ready', () => {
+            const query = this.context.getQuery();
 
             query.addChangedCallback(() => {
-                let queryJson = query.toJSON();
-                localStorage.setItem(this.QUERY_KEY, queryJson);
-                //console.log("Query saved", query);
+                const data = JSON.stringify({
+                    modified: query.isModified(),
+                    query: query.toJSONData()
+                });
+                localStorage.setItem(this.QUERY_KEY, data);
             });
 
             //add load query from local storage
             this.loadQueryFromLocalStorage();
         });
-
-        this.view.getContext().useEnterprise(() => {
-            this.view.init(options);
-        });
-
     }
 
     loadQueryFromLocalStorage() {
-        const queryJson = localStorage.getItem(this.QUERY_KEY);
-        if (queryJson) {
-            const query = this.view.getContext().getQuery();
-            query.loadFromDataOrJson(queryJson);
-            query.fireChangedEvent();
+        const dataJson = localStorage.getItem(this.QUERY_KEY);
+        if (dataJson) {
+            const data = JSON.parse(dataJson);
+            const query = this.context.getQuery();
+            query.loadFromDataOrJson(data.query);
+            if (data.modified) {
+                query.fireChangedEvent();
+            }
+            else {
+                this.view.getContext().refreshWidgets();
+                this.view.syncQuery();
+            }
+
             setTimeout(() => this.view.executeQuery(), 100);
         }
-    };
+    };    
 
     render() {
         return (

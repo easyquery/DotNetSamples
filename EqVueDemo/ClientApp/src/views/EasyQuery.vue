@@ -39,34 +39,56 @@
                                 </div>
                             </div>
 
+
                             <div class="eqv-menu-block">
                                 <hr class="eqv-menu-hr eqv-hr" />
-                                <div class="eqv-menu-title">Menu</div>
+                                <div class="eqv-menu-title">Query Menu</div>
                                 <div class="eqv-menu-content">
-                                    <div id="ClearQueryButton" class="eqv-button eqv-clear-button">Clear query</div>
-                                    <div id="ExecuteQueryButton" class="eqv-button eqv-execute-button">Execute</div>
 
-                                    <div><p></p></div>
+                                    <div id="QueryNameLabel"></div>
+
+
+                                    <a id="ClearQueryButton" class="eqv-button">Clear</a>
+
+
+                                    <div class="eqv-dropdown-container">
+                                        <a id="LoadQueryButton" href="javascript::void(0)" class="eqv-button eqv-drop-button">Load <span style="float: right">▼</span></a>
+                                        <div class="eqv-dropdown-content">
+                                        </div>
+                                    </div>
+
+                                    <div class="eqv-dropdown-container">
+                                        <a id="StorageDropButton" class="eqv-button eqv-drop-button">Storage <span style="float: right">▼</span></a>
+                                        <div class="eqv-dropdown-content">
+                                            <a id="NewQueryButton" href="javascript::void(0)">New query</a>
+                                            <a id="SaveQueryButton" href="javascript::void(0)">Save query</a>
+                                            <a id="CopyQueryButton" href="javascript::void(0)">Save query as...</a>
+                                            <a id="RemoveQueryButton" href="javascript::void(0)">Remove query</a>
+                                        </div>
+                                    </div>
+
+
+                                    <a id="ExecuteQueryButton" href="javascript::void(0)" class="eqv-button eqv-button-execute">Execute</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="eqv-bottom-panel">
-                            <div class="eqv-result-panel" style="width: 100%">
-                                <hr class="eqv-result-panel-hr eqv-hr" />
-                                <div class="eqv-result-panel-title">
-                                    Result
-                                    <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
-                                    <span class="eqv-export-buttons">
-                                        <a class="eqjs-export" href="javascript:void(0)" data-format="excel-html">Export to Excel</a>
-                                        <a class="eqjs-export" href="javascript:void(0)" data-format="csv">Export to CSV</a>
-                                    </span>
+                            <div class="eqv-bottom-panel">
+                                <div class="eqv-result-panel" style="width: 100%">
+                                    <hr class="eqv-result-panel-hr eqv-hr" />
+                                    <div class="eqv-result-panel-title">
+                                        Result
+                                        <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
+                                        <span class="eqv-export-buttons">
+                                            <a class="eqjs-export" href="javascript:void(0)" data-format="excel-html">Export to Excel</a>
+                                            <a class="eqjs-export" href="javascript:void(0)" data-format="csv">Export to CSV</a>
+                                        </span>
+                                    </div>
+                                    <div id="ResultPanel" class="eqv-result-panel-content">
+                                    </div>
+                                    <div class="eqv-result-panel-content-padding">
+                                    </div>
                                 </div>
-                                <div id="ResultPanel" class="eqv-result-panel-content">
-                                </div>
-                                <div class="eqv-result-panel-content-padding">
-                                </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                     <div id="eqv-footer">
@@ -100,7 +122,7 @@
 
 
         private mounted() {
-            const options: EqViewOptions = {
+            const viewOptions: EqViewOptions = {
                 enableExport: true,
                 loadModelOnStart: true,
                 loadQueryOnStart: false,
@@ -135,7 +157,7 @@
                     },
                     queryPanel: {
                         showPoweredBy: false,
-                        alwaysShowButtonsInPredicates: false,
+                        alwaysShowButtonsInGroups: false,
                         allowParameterization: true,
                         allowInJoinConditions: true,
                         autoEditNewCondition: true,
@@ -165,32 +187,46 @@
                 this.view.init(options);
             });
 
-            this.view.getContext().addEventListener('ready', () => {
-                  // here we need to add query autosave
-                const query = this.view.getContext().getQuery();
+            this.view = new AdvancedSearchView();
+            this.context = this.view.getContext();
+
+            this.context.useEnterprise(() => {
+                this.view.init(viewOptions);
+            });
+
+            this.context.addEventListener('ready', () => {
+                const query = this.context.getQuery();
 
                 query.addChangedCallback(() => {
-                    const queryJson = query.toJSON();
-                    localStorage.setItem(this.QUERY_KEY, queryJson);
-                    // console.log('Query saved', query);
+                    const data = JSON.stringify({
+                        modified: query.isModified(),
+                        query: query.toJSONData()
+                    });
+                    localStorage.setItem(this.QUERY_KEY, data);
                 });
 
-                // add load query from local storage
+                //add load query from local storage
                 this.loadQueryFromLocalStorage();
             });
         }
 
         private loadQueryFromLocalStorage() {
-            const queryJson = localStorage.getItem(this.QUERY_KEY);
-            if (queryJson) {
-                const query = this.view.getContext().getQuery();
-                query.loadFromDataOrJson(queryJson);
-                query.fireChangedEvent();
+            const dataJson = localStorage.getItem(this.QUERY_KEY);
+            if (dataJson) {
+                const data = JSON.parse(dataJson);
+                const query = this.context.getQuery();
+                query.loadFromDataOrJson(data.query);
+                if (data.modified) {
+                    query.fireChangedEvent();
+                }
+                else {
+                    this.view.getContext().refreshWidgets();
+                    this.view.syncQuery();
+                }
 
                 setTimeout(() => this.view.executeQuery(), 100);
             }
-        }
-
+        };    
 
     }
 </script>

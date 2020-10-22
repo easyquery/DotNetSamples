@@ -1,4 +1,4 @@
-import React  from 'react';
+﻿import React  from 'react';
 
 const AdvacnedSearchHtml = () => (
     <div>
@@ -35,19 +35,38 @@ const AdvacnedSearchHtml = () => (
                                 <div id="QueryPanel"></div>
                                 </div>
                             </div>
-                        </div>
+                    </div>
+                    <div className="eqv-menu-block">
+                        <hr className="eqv-menu-hr eqv-hr" />
+                        <div className="eqv-menu-title">Query Menu</div>
+                        <div className="eqv-menu-content">
 
-                        <div className="eqv-menu-block">
-                            <hr className="eqv-menu-hr eqv-hr" />
-                            <div className="eqv-menu-title">Menu</div>
-                            <div className="eqv-menu-content">
-                                <div id="ClearQueryButton" className="eqv-button eqv-clear-button">Clear query</div>
-	                        <div id="ExecuteQueryButton" className="eqv-button eqv-execute-button">Execute</div>
+                            <div id="QueryNameLabel"></div>
 
-                                <div><p></p></div>
-             
+
+                            <a id="ClearQueryButton" className="eqv-button">Clear</a>
+
+
+                            <div className="eqv-dropdown-container">
+                                <a id="LoadQueryButton" href="javascript::void(0)" className="eqv-button eqv-drop-button">Load <span style={{ float: "right" }}>▼</span></a>
+                                <div class="eqv-dropdown-content">
+                                </div>
+                            </div>
+
+                            <div class="eqv-dropdown-container">
+                                <a id="StorageDropButton" className="eqv-button eqv-drop-button">Storage <span style={{ float: "right" }}>▼</span></a>
+                                <div class="eqv-dropdown-content">
+                                    <a id="NewQueryButton" href="javascript::void(0)">New query</a>
+                                    <a id="SaveQueryButton" href="javascript::void(0)">Save query</a>
+                                    <a id="CopyQueryButton" href="javascript::void(0)">Save query as...</a>
+                                    <a id="RemoveQueryButton" href="javascript::void(0)">Remove query</a>
+                                </div>
+                            </div>
+
+
+                            <a id="ExecuteQueryButton" href="javascript::void(0)" className="eqv-button eqv-button-execute">Execute</a>
                         </div>
-                        </div>
+                    </div>
                     </div>
                      <div className="eqv-bottom-panel">
                         <div className="eqv-result-panel" style={{ width:'100%' }}>
@@ -75,7 +94,7 @@ const AdvacnedSearchHtml = () => (
                     <div className="power-by">
                         Powered by <a href="https://korzh.com/easyquery" target="_blank">EasyQuery</a>
                         |
-              <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
+                        <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
 
                     </div>
                 </div>

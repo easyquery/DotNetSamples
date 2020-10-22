@@ -70,6 +70,7 @@ namespace EqReactDemo
 
             app.UseEasyQuery(options => {
                 options.DefaultModelId = "NWindSQL";
+                options.UseQueryStore(services => new FileQueryStore("App_Data"));
                 options.UseDbConnection<System.Data.SqlClient.SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
             });
 

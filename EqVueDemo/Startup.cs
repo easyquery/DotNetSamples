@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using VueCliMiddleware;
 
 using Korzh.EasyQuery.Services;
+using System;
 
 namespace EqVueDemo
 {
@@ -69,6 +70,7 @@ namespace EqVueDemo
             app.UseEasyQuery(options => 
             {
                 options.DefaultModelId = "NWindSQL";
+                options.UseQueryStore(services => new FileQueryStore("App_Data"));
                 options.UseDbConnection<System.Data.SqlClient.SqlConnection>(Configuration.GetConnectionString("EqDemoDb"));
             });
 
@@ -84,6 +86,7 @@ namespace EqVueDemo
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
+                spa.Options.StartupTimeout = TimeSpan.FromMinutes(2);
 
                 if (env.IsDevelopment())
                 {
