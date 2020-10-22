@@ -1,9 +1,12 @@
+using System;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using VueCliMiddleware;
 
 using Korzh.EasyQuery.Services;
@@ -84,6 +87,7 @@ namespace EqVueDemo
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
+                spa.Options.StartupTimeout = TimeSpan.FromMinutes(2);
 
                 if (env.IsDevelopment())
                 {

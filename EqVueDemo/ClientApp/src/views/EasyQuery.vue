@@ -71,12 +71,12 @@
                     </div>
                     <div id="eqv-footer">
                         <div class="eqv-copyright">
-                            (c) Copyright 2006-2019 <a href="https://korzh.com/" target="_blank">Korzh.com</a>
+                            (c) Copyright 2006-2020 <a href="https://korzh.com/" target="_blank">Korzh.com</a>
                         </div>
                         <div class="power-by">
                             Powered by <a href="https://korzh.com/easyquery" target="_blank">EasyQuery</a>
                             |
-                            <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
+                            <a href="https://korzh.com/demo" target="_blank">Live demos</a>
 
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                         autoEditNewCondition: true,
                         buttons: {
                             condition: ['menu'],
-                            predicate: ['addCondition', 'addPredicate', 'enable', 'delete'],
+                            group: ['addCondition', 'addPredicate', 'enable', 'delete'],
                         },
                         menuOptions: {
                             showSearchBoxAfter: 20,
