@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 using VueCliMiddleware;
 
 using Korzh.EasyQuery.Services;
-using System;
 
 namespace EqVueDemo
 {
@@ -44,7 +43,6 @@ namespace EqVueDemo
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
 
             services.AddEasyQuery()
                     .UseSqlManager()
@@ -105,8 +103,6 @@ namespace EqVueDemo
             var scriptFilePath = "App_Data\\EqDemoDb.sql";
             var dbInit = new EqVueDemo.Data.DbInitializer(Configuration, "EqDemoDb", scriptFilePath);
             dbInit.EnsureCreated();
-
         }
-
     }
 }
