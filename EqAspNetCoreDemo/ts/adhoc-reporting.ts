@@ -57,7 +57,7 @@ window.addEventListener('load', () => {
 
             //QueryPanel options
             queryPanel: {
-                alwaysShowButtonsInPredicates: false,
+                alwaysShowButtonsInGroups: false,
                 adjustEntitiesMenuHeight: false,
                 menuOptions: {
                     showSearchBoxAfter: 20,
