@@ -21,6 +21,8 @@ namespace EqAspNetCoreDemo.Models
 
         public string OwnerId { get; set; }
 
+        public string Sql { get; set; }
+
         public IdentityUser Owner { get; set; }
     }
 }

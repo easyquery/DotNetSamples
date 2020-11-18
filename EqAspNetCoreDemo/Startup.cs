@@ -188,7 +188,7 @@ namespace EqAspNetCoreDemo
                     //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
                 });
 
-                options.UseManager<CustomEasyQueryManagerSql>();
+                options.UseManager<CustomEasyQueryManagerWithSavingSql>();
             });
 
             //uncomment to test another approach for data filtering (available by /data-filtering2)

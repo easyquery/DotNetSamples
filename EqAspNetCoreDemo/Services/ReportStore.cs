@@ -51,7 +51,8 @@ namespace EqAspNetCoreDemo.Services
                 Description = query.Description,
                 ModelId = query.Model.ID,
                 QueryJson = await query.SaveToJsonStringAsync(),
-                OwnerId = GetUserId()
+                OwnerId = GetUserId(),
+                Sql = query.ExtraData.Sql
             };
 
 
@@ -112,6 +113,7 @@ namespace EqAspNetCoreDemo.Services
                 report.Description = query.Description;
                 report.ModelId = query.Model.ID;
                 report.QueryJson = await query.SaveToJsonStringAsync();
+                report.Sql = query.ExtraData.Sql;
 
                 _dbContext.Update(report);
                 await _dbContext.SaveChangesAsync();
