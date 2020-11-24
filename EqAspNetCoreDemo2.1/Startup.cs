@@ -61,7 +61,7 @@ namespace EqAspNetCoreDemo
                 opts.Password.RequireDigit = false;
             })
              .AddRoles<IdentityRole>()
-             .AddDefaultUI(UIFramework.Bootstrap4)
+             .AddDefaultUI()
              .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddDistributedMemoryCache();
@@ -75,7 +75,7 @@ namespace EqAspNetCoreDemo
             // add default reports generatir
             services.AddScoped<DefaultReportGenerator>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -163,7 +163,7 @@ namespace EqAspNetCoreDemo
                 options.UseDefaultAuthProvider((provider) => {
                     //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
                     //here you can remove that requirement and make those actions available for all authorized users
-                    //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+                    provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
 
                     //here is an example how you can make some actions accessible only by users with a particular role.
                     //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
@@ -174,6 +174,8 @@ namespace EqAspNetCoreDemo
                     //string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                     //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
                 });
+
+                options.UseManager<CustomEasyQueryManagerWithSavingSql>();
             });
 
             //uncomment to test another approach for data filtering (available by /data-filtering2)

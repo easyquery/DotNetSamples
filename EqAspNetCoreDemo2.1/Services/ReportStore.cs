@@ -31,9 +31,11 @@ namespace EqAspNetCoreDemo.Services
             _dbContext = Services.GetRequiredService<AppDbContext>();
         }
 
-        private string GetUserId() {
+        private string GetUserId()
+        {
             var user = _httpContextAccessor?.HttpContext?.User;
-            if (user == null) {
+            if (user == null)
+            {
                 throw new NullReferenceException("Can't get HttpContextAccessor or the current user");
             }
             return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -41,21 +43,25 @@ namespace EqAspNetCoreDemo.Services
 
         public async Task<bool> AddQueryAsync(Query query)
         {
-            if (string.IsNullOrEmpty(query.ID)) {
+            if (string.IsNullOrEmpty(query.ID))
+            {
                 query.ID = Guid.NewGuid().ToString();
             }
 
-            var report = new Report {
+            var report = new Report
+            {
                 Id = query.ID,
                 Name = query.Name,
                 Description = query.Description,
                 ModelId = query.Model.ID,
                 QueryJson = await query.SaveToJsonStringAsync(),
-                OwnerId = GetUserId()
+                OwnerId = GetUserId(),
+                Sql = query.ExtraData.Sql
             };
 
 
-            if (report.OwnerId == null) {
+            if (report.OwnerId == null)
+            {
                 throw new ArgumentNullException(nameof(report.OwnerId));
             }
 
@@ -107,18 +113,21 @@ namespace EqAspNetCoreDemo.Services
         public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true)
         {
             var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.ID);
-            if (report != null) {
+            if (report != null)
+            {
                 report.Name = query.Name;
                 report.Description = query.Description;
                 report.ModelId = query.Model.ID;
                 report.QueryJson = await query.SaveToJsonStringAsync();
+                report.Sql = query.ExtraData.Sql;
 
                 _dbContext.Update(report);
                 await _dbContext.SaveChangesAsync();
 
                 return true;
             }
-            else if (createIfNotExists) {
+            else if (createIfNotExists)
+            {
                 return await AddQueryAsync(query);
             }
 

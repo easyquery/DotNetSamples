@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqReactDemo", "EqReactDemo\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqVueDemo", "EqVueDemo\EqVueDemo.csproj", "{3CCDBF68-5C14-4049-94C6-13C8FB654D06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAspNetCoreDemo2.2", "EqAspNetCoreDemo2.2\EqAspNetCoreDemo2.2.csproj", "{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAspNetCoreDemo2.1", "EqAspNetCoreDemo2.1\EqAspNetCoreDemo2.1.csproj", "{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -49,7 +49,7 @@ window.addEventListener('load', () => {
 
             //QueryPanel options
             queryPanel: {
-                alwaysShowButtonsInPredicates: false,
+                alwaysShowButtonsInGroups: false,
                 adjustEntitiesMenuHeight: false,
                 menuOptions: {
                     showSearchBoxAfter: 20,
@@ -74,6 +74,7 @@ window.addEventListener('load', () => {
     };
     
     const reportView = new ReportView();
+    reportView.getContext().setLicenseKeyEndpoint(window["_appPathBase"] + window['__eqLckEndpoint']);
     reportView.getContext().useEnterprise(() => {
         reportView.init(options);
     });
