@@ -9,6 +9,8 @@ bower_components
 packages/
 node_modules/
 wwwroot/
+dist/
+www/
 PublishProfiles/
 package-lock.json
 
