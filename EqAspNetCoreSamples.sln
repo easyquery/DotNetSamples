@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqVueDemo", "EqVueDemo\EqVu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAspNetCoreDemo2.2", "EqAspNetCoreDemo2.2\EqAspNetCoreDemo2.2.csproj", "{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqStencilDemo", "EqStencilDemo\EqStencilDemo.csproj", "{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqStencilDemo", "EqStencilDemo\EqStencilDemo.csproj", "{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
