@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqVueDemo", "EqVueDemo\EqVu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAspNetCoreDemo2.2", "EqAspNetCoreDemo2.2\EqAspNetCoreDemo2.2.csproj", "{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqStencilDemo", "EqStencilDemo\EqStencilDemo.csproj", "{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,24 @@ Global
 		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|x64.Build.0 = Release|Any CPU
 		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|x86.ActiveCfg = Release|Any CPU
 		{BF14869F-DBBC-427D-AFF1-2FB3FC3184BD}.Release|x86.Build.0 = Release|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Debug|x64.Build.0 = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Debug|x86.Build.0 = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.DebugDeep|Any CPU.ActiveCfg = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.DebugDeep|Any CPU.Build.0 = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.DebugDeep|x64.ActiveCfg = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.DebugDeep|x64.Build.0 = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.DebugDeep|x86.ActiveCfg = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.DebugDeep|x86.Build.0 = Debug|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Release|x64.ActiveCfg = Release|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Release|x64.Build.0 = Release|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Release|x86.ActiveCfg = Release|Any CPU
+		{169E18D8-DEF7-45DB-9947-82B6AE0D49D4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
