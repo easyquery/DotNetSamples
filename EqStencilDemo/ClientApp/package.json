@@ -13,11 +13,11 @@
   "dependencies": {
     "@stencil/core": "^2.2.0",
     "@stencil/router": "^1.0.1",
-    "@easydata/core": "1.0.4-rc5",
-    "@easydata/ui": "1.0.4-rc5",
-    "@easyquery/core": "6.1.4-rc5",
-    "@easyquery/ui": "6.1.4-rc5",
-    "@easyquery/enterprise": "6.1.4-rc5"
+    "@easydata/core": "1.0.4-rc11",
+    "@easydata/ui": "1.0.4-rc11",
+    "@easyquery/core": "6.1.4-rc11",
+    "@easyquery/ui": "6.1.4-rc11",
+    "@easyquery/enterprise": "6.1.4-rc11"
   },
   "license": "MIT",
   "devDependencies": {

@@ -1,0 +1,104 @@
+{
+   "modelId":"adhoc-reporting",
+   "modelName":null,
+   "id":"Pcns-lhd76noebk",
+   "name":"Product/Countries sales",
+   "cols":[
+      {
+         "id":"col-xwe7656feo",
+         "cptn":"Product Name",
+         "srt":0,
+         "expr":{
+            "tag":2,
+            "dtype":1,
+        "kind": 2,
+            "id":"Product.Name",
+            "val":"Product.Name"
+         }
+      },
+      {
+         "id":"col-fge7656feo",
+         "cptn":"Client Country",
+         "srt":0,
+         "expr":{
+            "tag":2,
+            "dtype":1,
+        "kind": 2,
+            "id":"Customer.Country",
+            "val":"Customer.Country"
+         }
+      },
+      {
+         "id":"col-l9e7656feo",
+         "cptn":"Totals",
+         "srt":0,
+         "expr":{
+            "tag":4,
+            "dtype":8,
+            "kind":0,
+            "func":"SUM",
+            "args":[
+               {
+                  "tag":2,
+                  "dtype":8,
+            "kind": 2,
+                  "id":"OrderDetail.UnitPrice",
+                  "val":"OrderDetail.UnitPrice"
+               }
+            ]
+         }
+      }
+   ],
+   "justsortcols":[
+      
+   ],
+   "root":{
+      "tag":51,
+      "linking":3,
+      "conds":[
+         {
+            "tag":1,
+            "op":"DateWithinThisYear",
+            "exprs":[
+               {
+                  "tag":2,
+                  "dtype":12,
+                  "id":"Order.OrderDate",
+                  "val":"Order.OrderDate"
+               }
+            ]
+         }
+      ]
+   },
+   "extraData":{
+      
+   },
+   "extraConds":{
+      "tag":51,
+      "linking":3,
+      "conds":[
+         
+      ]
+   },
+   "innerData":{
+      "facets":{
+         "active":1,
+         "items":[
+            {
+               "title":"Result set",
+               "type":"DATA_GRID"
+            },
+            {
+               "title":"Pivot table",
+               "type":"PIVOT_TABLE",
+               "colName":"Client Country",
+               "rowName":"Product Name",
+               "aggrFunc":"SUM",
+               "fieldName":"Totals",
+               "totalsRow":true,
+               "totalsCol":true
+            }
+         ]
+      }
+   }
+}

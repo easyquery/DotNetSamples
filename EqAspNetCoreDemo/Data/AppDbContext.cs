@@ -11,7 +11,7 @@ using EqAspNetCoreDemo.Models;
 namespace EqAspNetCoreDemo
 {
 
-    
+
     public class AppDbContext : IdentityDbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)

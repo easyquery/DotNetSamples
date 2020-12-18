@@ -1,45 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
-using System.Security.Claims;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Rewrite;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 
-using Korzh.DbUtils;
-
+using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.DbGates;
 using Korzh.EasyQuery.Services;
-using Korzh.EasyQuery.Db;
 
-using EqAspNetCoreDemo.Services;
 using EqAspNetCoreDemo.Models;
-
+using EqAspNetCoreDemo.Services;
 
 namespace EqAspNetCoreDemo
 {
     public class Startup
     {
-
-        private string _dataPath;
-
-        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            this._dataPath = System.IO.Path.Combine(env.ContentRootPath, "App_Data");
         }
 
         public IConfiguration Configuration { get; }
@@ -77,9 +61,7 @@ namespace EqAspNetCoreDemo
             // add default reports generatir
             services.AddScoped<DefaultReportGenerator>();
 
-            services.AddMvc()
-                    .AddNewtonsoftJson()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,10 +70,12 @@ namespace EqAspNetCoreDemo
             var appPathBase = Configuration["appPathBase"] ?? "/";
             app.UsePathBase(appPathBase);
 
-            if (env.EnvironmentName == Environments.Development) {
+            if (env.EnvironmentName == Environments.Development)
+            {
                 app.UseDeveloperExceptionPage();
             }
-            else {
+            else
+            {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
@@ -114,7 +98,7 @@ namespace EqAspNetCoreDemo
             app.UseAuthentication();
             app.UseAuthorization();
 
-            
+
             //The middleware which handles the Advances Search scenario
             app.UseEasyQuery(options => {
                 options.BuildQueryOnSync = true;
@@ -128,10 +112,12 @@ namespace EqAspNetCoreDemo
                 //options.UseManager<CustomEasyQueryManagerSql>();
 
                 //defining different query store depending on configuration
-                if (Configuration.GetValue<string>("queryStore") == "session") {
+                if (Configuration.GetValue<string>("queryStore") == "session")
+                {
                     options.UseQueryStore(services => new SessionQueryStore(services, "App_Data"));
                 }
-                else {
+                else
+                {
                     options.UseQueryStore(services => new FileQueryStore("App_Data"));
                 }
 

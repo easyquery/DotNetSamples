@@ -153,13 +153,13 @@ export class EasyQueryKendoComponent implements AfterViewInit {
             },
             queryPanel: {
               showPoweredBy: false,
-              alwaysShowButtonsInPredicates: false,
+              alwaysShowButtonsInGroups: false,
               allowParameterization: true,
               allowInJoinConditions: true,
               autoEditNewCondition: true,
               buttons: {
                   condition: ["menu"],
-                  group: ["addCondition", "addPredicate", "enable", "delete"]
+                  group: ["addCondition", "addGroup", "enable", "delete"]
               },
               menuOptions: {
                   showSearchBoxAfter: 20,

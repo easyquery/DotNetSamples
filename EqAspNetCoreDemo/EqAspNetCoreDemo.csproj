@@ -1,32 +1,45 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
-    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
-    <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
-    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
-    <UserSecretsId>936abaa1-5778-483b-b279-2f8a83337b96</UserSecretsId>
-    <NoWin32Manifest>true</NoWin32Manifest>
-    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-EqAspNetCoreDemo-6B1134DE-CC38-46BC-9E33-72AD2491F0DD</UserSecretsId>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.4.3" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.4.3" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="5.4.3" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.4.3" />
-    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.4.3" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.4.3" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.4.3" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="5.4.4" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="5.4.4" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="5.4.4" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="5.4.4" />
+    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="5.4.4" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="5.4.4" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="5.4.4" />
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Areas\Identity\Pages\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Views\Home\Privacy.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\site.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Update="App_Data\EqDemoData.zip">
@@ -36,7 +49,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm run build-all" />
-  </Target>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\AdhocReporting.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\AdhocReporting.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\DataFiltering2.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\DataFiltering2.cshtml" />
+  </ItemGroup>
 </Project>

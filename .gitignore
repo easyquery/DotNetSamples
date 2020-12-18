@@ -8,18 +8,12 @@ obj/
 bower_components
 packages/
 node_modules/
-wwwroot/
+lib/
 dist/
 www/
 PublishProfiles/
 package-lock.json
 
-/EqAspNetCoreDemo/ts/easyreport.js
+/EqAspNetCoreTypeScriptDemo/ts/adhoc-repoting.js
 App_Data/dm-*__default/
-/SetEqVersionsForFolder.ps1
-/SetEqScriptsVersionInCshtml.ps1
-/SetEqNugetVersionInCsproj.ps1
-/SetEqNpmVersionInPackageJson.ps1
-/test_exclude.ps1
 /nuget.config
-/EqAspNetCoreDemo/.config/dotnet-tools.json
