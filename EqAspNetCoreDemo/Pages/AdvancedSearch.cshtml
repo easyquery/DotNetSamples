@@ -53,7 +53,10 @@
     <!--<script src="https://cdn.korzh.com/eq/6.1.4/eq.community.min.js"></script>-->
     <script src="https://cdn.korzh.com/eq/6.1.4/eq.enterprise.min.js"></script>
 
-    
+    <!-- EasyQuery text files for RU ans ES -->
+    <script src="https://cdn.korzh.com/eq/6.1.4/eq.locale-es.js"></script>
+    <script src="https://cdn.korzh.com/eq/6.1.4/eq.locale-ru.js"></script>
+
     <script>
         var EqAgGrid = function (slot) {
             Object.getPrototypeOf(EqAgGrid.prototype).constructor.call(this, slot);
@@ -63,7 +66,7 @@
         };
 
         EqAgGrid.prototype = Object.create(easyquery.ui.Grid.prototype);
- 
+
 
         EqAgGrid.prototype.render = function () {
 
@@ -77,16 +80,16 @@
                 this.agGridOptions.rowModelType = 'infinite';
                 this.agGridOptions.cacheBlockSize = this.pageSize;
                 this.agGridOptions.paginationPageSize = this.pageSize;
- 
+
                 function getRowsHandler(params) {
                     this.context.resultTable.getRows({
                         offset: params.startRow,
                         limit: this.pageSize
                     })
-                    .then(function (rows) {
-                        this.applyDisplayFormats();
-                        params.successCallback(this.convertToRowData(rows), this.context.resultTable.getTotal());
-                    }.bind(this));
+                        .then(function (rows) {
+                            this.applyDisplayFormats();
+                            params.successCallback(this.convertToRowData(rows), this.context.resultTable.getTotal());
+                        }.bind(this));
                 }
 
                 this.agGridOptions.datasource = {
@@ -98,18 +101,18 @@
             this.agGrid = new agGrid.Grid(this.slot, this.agGridOptions);
         }
 
-        EqAgGrid.prototype.clear = function() {
+        EqAgGrid.prototype.clear = function () {
             if (this.agGrid) {
                 this.agGrid.destroy();
                 this.agGrid = null;
             }
         }
 
-        EqAgGrid.prototype.getColumnsDefs = function() {
+        EqAgGrid.prototype.getColumnsDefs = function () {
             var columns = [];
 
             var resultTable = this.context.resultTable;
-            for (var i = 0; i < resultTable.columns.count; i++) {  
+            for (var i = 0; i < resultTable.columns.count; i++) {
                 var col = resultTable.columns.get(i);
                 columns.push({ headerName: col.label, field: col.id });
             }
@@ -137,7 +140,7 @@
         }
 
     </script>
-   
+
     <!-- ES6 Implementation
     <script>
         class EqAgGrid extends easyquery.ui.Grid {
@@ -221,7 +224,6 @@
         }
     </script>
      -->
-
     <!-- EasyQuery Advanced Search view initialization -->
     <script>
         window.addEventListener('load', function () {
@@ -337,7 +339,7 @@
                         pageSize: 100
                     }
                 }
-                
+
             };
 
             var gridType = window.localStorage.getItem('grid-type');
@@ -353,6 +355,7 @@
 
             context.useEnterprise(function () {
                 view.init(viewOptions);
+                view.getContext().refreshWidgets();
             });
 
             document['AdvancedSearchView'] = view;
