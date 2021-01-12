@@ -14,7 +14,7 @@
 
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/6.1.4/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.0/eq.core.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/root.css" />
     <link rel="stylesheet" href="~/css/adhoc-reporting.css" />
@@ -125,14 +125,15 @@
     </script>
 
     <!-- EasyQuery scripts -->
-    <!--<script src="https://cdn.korzh.com/eq/6.1.4/eq.community.min.js"></script>-->
-    <script src="https://cdn.korzh.com/eq/6.1.4/eq.enterprise.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/7.0.0/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.0/eq.enterprise.min.js"></script>
 
     <script>
         window.addEventListener('load', function () {
 
             //Options for ReportViewJQuery
             var viewOptions = {
+                calcTotals: true,
 
                 //Saves report on each change
                 syncReportOnChange: true,
@@ -146,9 +147,11 @@
                 result: {
                     //Show EasyChart
                     showChart: true,
+                    chartWidgetResolver: (slot) => { return new GoogleChartWidget(slot) },
+
                     //Paging options
                     paging: {
-                        pageSize: 15
+                        enabled: false
                     }
                 },
 
@@ -158,7 +161,7 @@
                 //Default model's ID (we use it here just for a nice folder name in App_Data folder)
                 defaultModelId: 'adhoc-reporting',
 
-                //Middleware endpoint 
+                //Middleware endpoint
                 endpoint: window["__appPathBase"] + '/api/adhoc-reporting',
 
                 enableExport: true,

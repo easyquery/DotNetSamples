@@ -27,14 +27,14 @@ namespace EqAspNetCoreDemo.Controllers
             this._dbContext = dbContext;
 
             var options = new EasyQueryOptions(services);
-            options.UseEntity((_, __) => 
+            options.UseEntity(_ => 
                 _dbContext
                     .Orders
                     .Include(o => o.Customer)
                     .Include(o => o.Employee)
                     .AsQueryable());
 
-            _eqManager = new EasyQueryManagerLinq<Order>(services, options);    
+            _eqManager = new EasyQueryManagerLinq<Order>(options);    
         }
 
         // GET: /Order/
@@ -83,7 +83,8 @@ namespace EqAspNetCoreDemo.Controllers
                       .Include(o => o.Employee)
                       .AsQueryable();
 
-            var text = (string)_eqManager.ClientData["text"];
+            var clientData = (IDictionary<string, object>)_eqManager.ClientData;
+            var text = clientData.TryGetValue("text", out var value) ? (string)value : "";
             //read full-text search text
             if (!string.IsNullOrEmpty(text)) {
 

@@ -32,7 +32,7 @@ namespace EqAspNetCoreDemo.Services
                            ?? throw new ArgumentNullException("IHttpContextAccessor or HttpContext is null.");
         }
 
-        public async Task<bool> AddQueryAsync(Query query)
+        public virtual async Task<bool> AddQueryAsync(Query query)
         {
             _httpContext.Session.SetString(_keyPrefixQuery + query.ID, await query.SaveToJsonStringAsync());
             AddQueryListItem(query.Model.ID, new QueryListItem(query.ID, query.Name));
@@ -44,7 +44,7 @@ namespace EqAspNetCoreDemo.Services
             return Task.FromResult(GetQueryListItems(modelId).OrderBy(item => item.name).AsEnumerable());
         }
 
-        public async Task<bool> LoadQueryAsync(Query query, string queryId)
+        public virtual async Task<bool> LoadQueryAsync(Query query, string queryId)
         {
             var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + queryId);
             if (!string.IsNullOrEmpty(queryJson)) {
@@ -55,14 +55,14 @@ namespace EqAspNetCoreDemo.Services
             return false;
         }
 
-        public Task<bool> RemoveQueryAsync(string modelId, string queryId)
+        public virtual Task<bool> RemoveQueryAsync(string modelId, string queryId)
         {
             _httpContext.Session.Remove(_keyPrefixQuery + queryId);
             RemoveQueryListItem(modelId, queryId);
             return Task.FromResult(true);
         }
 
-        public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true)
+        public virtual async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true)
         {
             var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + query.ID);
             if (!string.IsNullOrEmpty(queryJson)) {

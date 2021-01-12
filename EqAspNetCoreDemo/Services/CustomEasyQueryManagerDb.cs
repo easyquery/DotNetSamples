@@ -11,13 +11,10 @@ namespace EqAspNetCoreDemo.Services
 {
     public class CustomEasyQueryManagerSql : EasyQueryManagerSql
     {
-
-        public CustomEasyQueryManagerSql(IServiceProvider services, EasyQueryOptions options) 
-            : base(services, options)
-        {
-            //ModelLoader = new FileModelLoader("AppData");
+        public CustomEasyQueryManagerSql(EasyQueryOptions options) : base(options)
+        { 
+            //
         }
-
         protected override void SyncQueryCore()
         {
             try {
@@ -29,8 +26,9 @@ namespace EqAspNetCoreDemo.Services
         }
 
 
-        protected override IEqResultSet ExecuteQueryCore(JObject options = null)
+        protected override Task<IEqResultSet> ExecuteQueryCoreAsync()
         {
+            /*
             if (options != null) {
                 var filter = options["filter"]?.ToString();
                 var stringColumns = Query.Columns.Where(c => c.SystemType == typeof(string));
@@ -59,8 +57,9 @@ namespace EqAspNetCoreDemo.Services
                     var mainSelectedQueryTable = usedTables[0].GetTableName();
                 }
             }
+            */
 
-            return base.ExecuteQueryCore(options);
+            return base.ExecuteQueryCoreAsync();
         }
 
         private void AddFullTextSearch(Condition root, IEnumerable<Column> columns, string text)

@@ -114,15 +114,20 @@ namespace EqAspNetCoreDemo
                 //defining different query store depending on configuration
                 if (Configuration.GetValue<string>("queryStore") == "session")
                 {
-                    options.UseQueryStore(services => new SessionQueryStore(services, "App_Data"));
+                    options.UseQueryStore(manager => new SessionQueryStore(manager.Services, "App_Data"));
                 }
                 else
                 {
-                    options.UseQueryStore(services => new FileQueryStore("App_Data"));
+                    options.UseQueryStore(_ => new FileQueryStore(new FileQueryStoreSettings
+                    {
+                        DataPath = "App_Data",
+                        FileFormat = "xml"
+                    }));
+
                 }
 
-                options.UseModelTuner(model => {
-                    model.SortEntities();
+                options.UseModelTuner(manager => {
+                    manager.Model.SortEntities();
                 });
 
                 //uncomment this line if you want to load model directly from connection 
@@ -134,13 +139,17 @@ namespace EqAspNetCoreDemo
                 //);
 
                 options.UseSqlFormats(FormatType.MsSqlServer, formats => {
-                    formats.UseTimezoneOffset = true;
+                    formats.SupportHashJoin = false;
+                    formats.GroupByCalcColumns = false;
                 });
 
                 //The next line allows you to set SELECT DISTINCT for each generated query
-                options.AddBuilderTuner(builder => {
+                options.AddBuilderTuner((manager, builder) => {
+                    manager.BuilderOptions.UseTimezoneOffset = false;
+                    manager.BuilderOptions.UseUtcTime = true;
                     //(builder as SqlQueryBuilder).Extras.SelectDistinct = true;
                 });
+
             });
 
             app.UseEasyQuery(options => {
@@ -157,7 +166,7 @@ namespace EqAspNetCoreDemo
                 });
 
                 // here we add our custom query store
-                options.UseQueryStore((services) => new ReportStore(services));
+                options.UseQueryStore((manager) => new ReportStore(manager.Services));
 
                 options.UseDefaultAuthProvider((provider) => {
                     //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
