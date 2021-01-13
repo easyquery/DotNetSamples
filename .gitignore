@@ -18,3 +18,5 @@ package-lock.json
 App_Data/dm-*__default/
 /EqAspNetCoreDemo/Properties/ServiceDependencies/eqdemo-net5 - Web Deploy/profile.arm.json
 /EqAspNetCoreDemo/EqAspNetCoreDemo.csproj.user
+/EqAspNetCoreDemo/Properties/serviceDependencies.eqdemo-net5 - Web Deploy.json.user
+/EqAspNetCoreDemo/Properties/serviceDependencies.eqdemo-net5 - Web Deploy.json
