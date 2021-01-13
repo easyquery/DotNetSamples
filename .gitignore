@@ -17,3 +17,5 @@ package-lock.json
 /EqAspNetCoreTypeScriptDemo/ts/adhoc-repoting.js
 App_Data/dm-*__default/
 /nuget.config
+/EqAspNetCoreDemo/Properties/ServiceDependencies/eqdemo-net5 - Web Deploy/profile.arm.json
+/EqAspNetCoreDemo/EqAspNetCoreDemo.csproj.user
