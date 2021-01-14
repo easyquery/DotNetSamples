@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Services;
 
-namespace EqAspNetCoreDemo.Services
+namespace EqDemo.Services
 {
     public class SessionQueryStore : IQueryStore
     {

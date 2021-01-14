@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Identity;
 
-namespace EqAspNetCoreDemo.Models
+namespace EqDemo.Models
 {
     public class Report
     {

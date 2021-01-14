@@ -7,7 +7,7 @@ using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Services;
 using Newtonsoft.Json.Linq;
 
-namespace EqAspNetCoreDemo.Services
+namespace EqDemo.Services
 {
     public class CustomEasyQueryManagerSql : EasyQueryManagerSql
     {

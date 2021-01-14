@@ -13,9 +13,9 @@ using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Linq;
 using Korzh.EasyQuery.AspNetCore;
 
-using EqAspNetCoreDemo.Models;
+using EqDemo.Models;
 
-namespace EqAspNetCoreDemo.Controllers
+namespace EqDemo.Controllers
 {    
     [Route("data-filtering")]
     public class OrderController : Controller

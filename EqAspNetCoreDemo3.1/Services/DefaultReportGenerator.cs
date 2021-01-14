@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 
 using Newtonsoft.Json.Linq;
 
-using EqAspNetCoreDemo.Models;
+using EqDemo.Models;
 
-namespace EqAspNetCoreDemo.Services
+namespace EqDemo.Services
 {
     public class DefaultReportGenerator
     {

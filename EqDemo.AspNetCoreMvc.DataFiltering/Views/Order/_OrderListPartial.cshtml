@@ -1,0 +1,51 @@
+@model Korzh.EasyQuery.Services.IPagedList<Order>
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Order date
+        </th>
+        <th>
+            Customer name
+        </th>
+        <th>
+            Customer country
+        </th>
+        <th>
+            Employee
+        </th>
+        <th>
+            Order freight
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+
+    <td>
+        @(item.OrderDate != null ? item.OrderDate.Value.ToString("yyyy-MM-dd") : "")
+    </td>
+    <td>
+        <eq-highlight-text value="@item.Customer?.ContactName" text="@ViewData["Text"]"></eq-highlight-text>
+    </td>
+    <td>
+        <eq-highlight-text value="@item.Customer?.Country" text="@ViewData["Text"]"></eq-highlight-text>
+    </td>
+    <td>
+        <eq-highlight-text value="@item.Employee.FullName" text="@ViewData["Text"]"></eq-highlight-text>
+    </td>
+    <td>
+        @item.Freight
+    </td>
+    <td></td>
+</tr>
+}
+
+</table>
+
+@Html.PageNavigator(Model)
+

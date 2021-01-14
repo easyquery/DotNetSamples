@@ -24,11 +24,11 @@ using Korzh.EasyQuery.DbGates;
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Db;
 
-using EqAspNetCoreDemo.Services;
-using EqAspNetCoreDemo.Models;
+using EqDemo.Services;
+using EqDemo.Models;
 
 
-namespace EqAspNetCoreDemo
+namespace EqDemo
 {
     public class Startup
     {
@@ -72,7 +72,7 @@ namespace EqAspNetCoreDemo
             services.AddEasyQuery()
                     .UseSqlManager()
                     .AddDefaultExporters()
-                    .RegisterDbGate<SqlClientGate>();
+                    .RegisterDbGate<SqlServerGate>();
 
             // add default reports generatir
             services.AddScoped<DefaultReportGenerator>();
@@ -129,14 +129,14 @@ namespace EqAspNetCoreDemo
 
                 //defining different query store depending on configuration
                 if (Configuration.GetValue<string>("queryStore") == "session") {
-                    options.UseQueryStore(services => new SessionQueryStore(services, "App_Data"));
+                    options.UseQueryStore(manager => new SessionQueryStore(manager.Services, "App_Data"));
                 }
                 else {
-                    options.UseQueryStore(services => new FileQueryStore("App_Data"));
+                    options.UseQueryStore(_ => new FileQueryStore("App_Data"));
                 }
 
-                options.UseModelTuner(model => {
-                    model.SortEntities();
+                options.UseModelTuner(manager => {
+                    manager.Model.SortEntities();
                 });
 
                 //uncomment this line if you want to load model directly from connection 
@@ -147,14 +147,6 @@ namespace EqAspNetCoreDemo
 
                 //);
 
-                options.UseSqlFormats(FormatType.MsSqlServer, formats => {
-                    formats.UseTimezoneOffset = true;
-                });
-
-                //The next line allows you to set SELECT DISTINCT for each generated query
-                options.AddBuilderTuner(builder => {
-                    //(builder as SqlQueryBuilder).Extras.SelectDistinct = true;
-                });
             });
 
             app.UseEasyQuery(options => {
@@ -171,7 +163,7 @@ namespace EqAspNetCoreDemo
                 });
 
                 // here we add our custom query store
-                options.UseQueryStore((services) => new ReportStore(services));
+                options.UseQueryStore((manager) => new ReportStore(manager.Services));
 
                 options.UseDefaultAuthProvider((provider) => {
                     //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 

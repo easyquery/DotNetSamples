@@ -13,9 +13,9 @@ using Microsoft.Extensions.Logging;
 
 using Korzh.EasyQuery.Services;
 
-using EqAspNetCoreDemo.Services;
+using EqDemo.Services;
 
-namespace EqAspNetCoreDemo.Areas.Identity.Pages.Account
+namespace EqDemo.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterModel : PageModel

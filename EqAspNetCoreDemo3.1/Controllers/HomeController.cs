@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 
-using EqAspNetCoreDemo.Models;
+using EqDemo.Models;
 
-namespace EqAspNetCoreDemo.Controllers
+namespace EqDemo.Controllers
 {
     [Route("/")]
     public class HomeController : Controller

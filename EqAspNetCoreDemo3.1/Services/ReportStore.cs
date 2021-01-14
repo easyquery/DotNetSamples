@@ -13,9 +13,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Services;
 
-using EqAspNetCoreDemo.Models;
+using EqDemo.Models;
 
-namespace EqAspNetCoreDemo.Services
+namespace EqDemo.Services
 {
     public class ReportStore : IQueryStore
     {

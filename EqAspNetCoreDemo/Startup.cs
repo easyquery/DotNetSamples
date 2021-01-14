@@ -14,10 +14,10 @@ using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.DbGates;
 using Korzh.EasyQuery.Services;
 
-using EqAspNetCoreDemo.Models;
-using EqAspNetCoreDemo.Services;
+using EqDemo.Models;
+using EqDemo.Services;
 
-namespace EqAspNetCoreDemo
+namespace EqDemo
 {
     public class Startup
     {
@@ -56,7 +56,7 @@ namespace EqAspNetCoreDemo
             services.AddEasyQuery()
                     .UseSqlManager()
                     .AddDefaultExporters()
-                    .RegisterDbGate<SqlClientGate>();
+                    .RegisterDbGate<SqlServerGate>();
 
             // add default reports generatir
             services.AddScoped<DefaultReportGenerator>();

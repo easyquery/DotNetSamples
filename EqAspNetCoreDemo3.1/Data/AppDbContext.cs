@@ -6,9 +6,9 @@ using System.Xml.Linq;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-using EqAspNetCoreDemo.Models;
+using EqDemo.Models;
 
-namespace EqAspNetCoreDemo
+namespace EqDemo
 {
 
     

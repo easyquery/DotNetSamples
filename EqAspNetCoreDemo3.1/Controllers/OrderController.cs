@@ -13,9 +13,9 @@ using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.Linq;
 using Korzh.EasyQuery.AspNetCore;
 
-using EqAspNetCoreDemo.Models;
+using EqDemo.Models;
 
-namespace EqAspNetCoreDemo.Controllers
+namespace EqDemo.Controllers
 {    
     [Route("data-filtering")]
     public class OrderController : Controller
@@ -24,17 +24,17 @@ namespace EqAspNetCoreDemo.Controllers
         AppDbContext _dbContext;
 
         public OrderController(IServiceProvider services, AppDbContext dbContext) {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
 
             var options = new EasyQueryOptions(services);
-            options.UseEntity((_, __) => 
+            options.UseEntity((_) => 
                 _dbContext
                     .Orders
                     .Include(o => o.Customer)
                     .Include(o => o.Employee)
                     .AsQueryable());
 
-            _eqManager = new EasyQueryManagerLinq<Order>(services, options);    
+            _eqManager = new EasyQueryManagerLinq<Order>(options);    
         }
 
         // GET: /Order/

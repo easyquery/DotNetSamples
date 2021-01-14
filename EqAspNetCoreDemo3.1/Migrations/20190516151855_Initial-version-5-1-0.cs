@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EqAspNetCoreDemo.Migrations
+namespace EqDemo.Migrations
 {
     public partial class Initialversion510 : Migration
     {

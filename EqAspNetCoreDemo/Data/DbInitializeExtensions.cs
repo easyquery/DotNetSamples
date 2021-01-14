@@ -11,7 +11,7 @@ using Korzh.DbUtils;
 using Korzh.EasyQuery.Services;
 using System.Linq;
 
-namespace EqAspNetCoreDemo.Services
+namespace EqDemo.Services
 {
     public static class DbInitializeExtensions
     {
