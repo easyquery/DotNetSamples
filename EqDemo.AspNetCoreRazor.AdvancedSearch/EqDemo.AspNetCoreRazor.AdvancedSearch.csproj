@@ -1,14 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>x64</PlatformTarget>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
@@ -16,25 +13,21 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.0-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.0.0-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-beta1" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.0-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.0.0-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-beta2" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Update="wwwroot\css\site.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
 </Project>

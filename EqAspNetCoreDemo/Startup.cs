@@ -144,9 +144,9 @@ namespace EqDemo
                 });
 
                 //The next line allows you to set SELECT DISTINCT for each generated query
-                options.AddBuilderTuner((manager, builder) => {
-                    manager.BuilderOptions.UseTimezoneOffset = false;
-                    manager.BuilderOptions.UseUtcTime = true;
+                options.AddBuilderTuner(manager => {
+                    manager.QueryBuilder.Options.UseTimezoneOffset = false;
+                    manager.QueryBuilder.Options.UseUtcTime = true;
                     //(builder as SqlQueryBuilder).Extras.SelectDistinct = true;
                 });
 

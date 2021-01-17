@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
@@ -16,10 +16,10 @@
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.0-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-beta1" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-beta1" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.0-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-beta2" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-beta2" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
@@ -43,7 +43,7 @@
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)build\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>

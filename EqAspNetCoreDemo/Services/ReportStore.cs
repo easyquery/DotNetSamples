@@ -41,15 +41,15 @@ namespace EqDemo.Services
 
         public async Task<bool> AddQueryAsync(Query query)
         {
-            if (string.IsNullOrEmpty(query.ID)) {
-                query.ID = Guid.NewGuid().ToString();
+            if (string.IsNullOrEmpty(query.Id)) {
+                query.Id = Guid.NewGuid().ToString();
             }
 
             var report = new Report {
-                Id = query.ID,
+                Id = query.Id,
                 Name = query.Name,
                 Description = query.Description,
-                ModelId = query.Model.ID,
+                ModelId = query.Model.Id,
                 QueryJson = await query.SaveToJsonStringAsync(),
                 OwnerId = GetUserId()
             };
@@ -82,7 +82,7 @@ namespace EqDemo.Services
             if (report != null)
             {
                 await query.LoadFromJsonStringAsync(report.QueryJson);
-                query.ID = report.Id;
+                query.Id = report.Id;
 
                 return true;
             }
@@ -106,11 +106,11 @@ namespace EqDemo.Services
 
         public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true)
         {
-            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.ID);
+            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.Id);
             if (report != null) {
                 report.Name = query.Name;
                 report.Description = query.Description;
-                report.ModelId = query.Model.ID;
+                report.ModelId = query.Model.Id;
                 report.QueryJson = await query.SaveToJsonStringAsync();
 
                 _dbContext.Update(report);

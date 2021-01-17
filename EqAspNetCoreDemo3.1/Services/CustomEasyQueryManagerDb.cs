@@ -12,8 +12,8 @@ namespace EqDemo.Services
     public class CustomEasyQueryManagerSql : EasyQueryManagerSql
     {
 
-        public CustomEasyQueryManagerSql(IServiceProvider services, EasyQueryOptions options) 
-            : base(services, options)
+        public CustomEasyQueryManagerSql(EasyQueryOptions options) 
+            : base(options)
         {
             //ModelLoader = new FileModelLoader("AppData");
         }
@@ -29,10 +29,10 @@ namespace EqDemo.Services
         }
 
 
-        protected override IEqResultSet ExecuteQueryCore(JObject options = null)
+        protected override Task<IEqResultSet> ExecuteQueryCoreAsync()
         {
-            if (options != null) {
-                var filter = options["filter"]?.ToString();
+            if (ClientData != null) {
+                var filter = ClientData["filter"]?.ToString();
                 var stringColumns = Query.Columns.Where(c => c.SystemType == typeof(string));
 
                 if (!string.IsNullOrEmpty(filter) && stringColumns.Any()) {
@@ -60,7 +60,7 @@ namespace EqDemo.Services
                 }
             }
 
-            return base.ExecuteQueryCore(options);
+            return base.ExecuteQueryCoreAsync();
         }
 
         private void AddFullTextSearch(Condition root, IEnumerable<Column> columns, string text)

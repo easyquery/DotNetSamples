@@ -1,9 +1,10 @@
 ﻿{
-  "id": "fee014cd-ad47-4a33-9c16-4cdf903bfbd2",
+  "id": "865d4abf-ab74-46c4-8456-6e1ed8a53e62",
+  "modelId": "adhoc-reporting",
   "name": "Sales by countries (last year)",
-  "desc": null,
   "cols": [
     {
+      "id": "col-pj7esdrquzhb",
       "cptn": "Country",
       "srt": 1,
       "srtidx": 0,
@@ -11,11 +12,24 @@
         "tag": 2,
         "dtype": 1,
         "kind": 2,
-        "id": "Customer.Country"
+        "val": "Customer.Country"
       }
     },
     {
-      "cptn": "Freight Sum",
+      "id": "col-9bse7g43cw",
+      "cptn": "City",
+      "srt": 1,
+      "srtidx": 1,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "kind": 2,
+        "val": "Customer.City"
+      }
+    },
+    {
+      "id": "col-kdse7aeku8",
+      "cptn": "Total sales",
       "srt": 0,
       "expr": {
         "tag": 4,
@@ -28,7 +42,7 @@
             "tag": 2,
             "dtype": 8,
             "kind": 2,
-            "id": "Order.Freight"
+            "val": "OrderDetail.UnitPrice"
           }
         ]
       }
@@ -46,19 +60,22 @@
             "tag": 2,
             "dtype": 12,
             "kind": 2,
-            "id": "Order.OrderDate"
+            "val": "Order.OrderDate"
           }
         ]
       }
     ]
   },
+  "extraData": {},
   "innerData": {
     "facets": {
-      "active": 1,
+      "active": 0,
       "items": [
         {
           "title": "Result set",
-          "type": "DATA_GRID"
+          "type": "DATA_GRID",
+          "calcSubTotals": true,
+          "calcGrandTotals": true
         },
         {
           "title": "Bar Chart",

@@ -34,8 +34,8 @@ namespace EqDemo.Services
 
         public async Task<bool> AddQueryAsync(Query query)
         {
-            _httpContext.Session.SetString(_keyPrefixQuery + query.ID, await query.SaveToJsonStringAsync());
-            AddQueryListItem(query.Model.ID, new QueryListItem(query.ID, query.Name));
+            _httpContext.Session.SetString(_keyPrefixQuery + query.Id, await query.SaveToJsonStringAsync());
+            AddQueryListItem(query.Model.ID, new QueryListItem(query.Id, query.Name));
             return true;
         }
 
@@ -64,11 +64,11 @@ namespace EqDemo.Services
 
         public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true)
         {
-            var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + query.ID);
+            var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + query.Id);
             if (!string.IsNullOrEmpty(queryJson)) {
 
-                _httpContext.Session.SetString(_keyPrefixQuery + query.ID, await query.SaveToJsonStringAsync());
-                UpdateQueryListItem(query.Model.ID, new QueryListItem(query.ID, query.Name));
+                _httpContext.Session.SetString(_keyPrefixQuery + query.Id, await query.SaveToJsonStringAsync());
+                UpdateQueryListItem(query.Model.ID, new QueryListItem(query.Id, query.Name));
                 return true;
             }
             else if (createIfNotExists) {
