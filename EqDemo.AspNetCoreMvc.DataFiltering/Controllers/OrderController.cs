@@ -84,13 +84,11 @@ namespace EqDemo.Controllers
                       .Include(o => o.Employee)
                       .AsQueryable();
 
-            var clientData = (IDictionary<string, object>)_eqManager.ClientData;
-            var text = clientData != null && clientData.TryGetValue("text", out object value) 
-                ? (string)value : "";
+
+            var text = _eqManager.ClientData.TryGetValue("text", out var textObj) ? textObj.ToString() : "";
 
             //read full-text search text
             if (!string.IsNullOrEmpty(text)) {
-
                 var options = new FullTextSearchOptions
                 {
                     Depth = 2,
@@ -105,7 +103,7 @@ namespace EqDemo.Controllers
 
                         if (propInfo.PropertyType == typeof(string)) {
                             if (propInfo.DeclaringType == typeof(Customer)) {
-                                return propInfo.Name == "ContactName" || propInfo.Name == "Country";
+                                return propInfo.Name == "CompanyName" || propInfo.Name == "Country" || propInfo.Name == "ContactName";
                             }
 
                             if (propInfo.DeclaringType == typeof(Employee)) {
@@ -121,8 +119,7 @@ namespace EqDemo.Controllers
             }
 
 
-            orders = orders
-             .DynamicQuery<Order>(_eqManager.Query);
+            orders = orders.DynamicQuery<Order>(_eqManager.Query);
 
             var list = orders.ToPagedList(_eqManager.Chunk.Page, 15);
             ViewData["Text"] = text;

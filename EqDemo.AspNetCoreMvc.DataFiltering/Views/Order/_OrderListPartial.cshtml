@@ -30,7 +30,7 @@
         @(item.OrderDate != null ? item.OrderDate.Value.ToString("yyyy-MM-dd") : "")
     </td>
     <td>
-        <eq-highlight-text value="@item.Customer?.ContactName" text="@ViewData["Text"]"></eq-highlight-text>
+        <eq-highlight-text value="@item.Customer?.CompanyName" text="@ViewData["Text"]"></eq-highlight-text>
     </td>
     <td>
         <eq-highlight-text value="@item.Customer?.Country" text="@ViewData["Text"]"></eq-highlight-text>
