@@ -11,7 +11,6 @@ namespace EqDemo.Pages
     {
         public void OnGet()
         {
-
         }
     }
 }
