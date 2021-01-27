@@ -23,7 +23,7 @@ namespace EqDemo.Services
         public DefaultReportGenerator(IWebHostEnvironment env, AppDbContext dbContext)
         {
             _dbContext = dbContext;
-            _dataPath = Path.Combine(env.ContentRootPath, $"App_Data\\Seeed");
+            _dataPath = Path.Combine(env.ContentRootPath, $"App_Data\\Seed");
         }
 
         public async Task GenerateAsync(IdentityUser user)

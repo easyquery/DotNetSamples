@@ -179,8 +179,6 @@ namespace EqDemo
                     //string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                     //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
                 });
-
-                options.UseManager<CustomEasyQueryManagerSql>();
             });
 
             //uncomment to test another approach for data filtering (available by /data-filtering2)
