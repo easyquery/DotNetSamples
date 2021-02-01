@@ -64,7 +64,7 @@ const AdvacnedSearchHtml = () => (
                             </div>
 
 
-                            <a id="ExecuteQueryButton" href="javascript::void(0)" className="eqv-button eqv-button-execute">Execute</a>
+                            <a id="FetchDataButton" href="javascript::void(0)" className="eqv-button eqv-button-execute">Fetch data</a>
                         </div>
                     </div>
                     </div>
