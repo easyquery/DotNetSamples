@@ -174,7 +174,7 @@ namespace EqDemo
                     //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
                 });
 
-                options.AddPreExecuteTunningWithHttpContext((manager, context) => {
+                options.AddPreFetchTunerWithHttpContext((manager, context) => {
                     //the next two lines demonstrate how to add to each generated query a condition that filters data by the current user
                     //string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                     //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);

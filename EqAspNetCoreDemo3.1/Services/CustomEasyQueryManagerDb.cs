@@ -29,7 +29,7 @@ namespace EqDemo.Services
         }
 
 
-        protected override Task<IEqResultSet> ExecuteQueryCoreAsync()
+        protected override Task<IEqResultSet> FetchDataCoreAsync()
         {
             if (ClientData != null) {
                 var filter = ClientData["filter"]?.ToString();
@@ -60,7 +60,7 @@ namespace EqDemo.Services
                 }
             }
 
-            return base.ExecuteQueryCoreAsync();
+            return base.FetchDataCoreAsync();
         }
 
         private void AddFullTextSearch(Condition root, IEnumerable<Column> columns, string text)
