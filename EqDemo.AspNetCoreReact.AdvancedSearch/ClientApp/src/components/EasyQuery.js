@@ -22,7 +22,7 @@ export class EasyQuery extends Component {
             endpoint: '/api/easyquery',
 
             handlers: {
-              onError: (error) => {
+              onError: (context, error) => {
                 console.error(error.type + " error:\n" + error.text);
               }
             },
@@ -59,8 +59,7 @@ export class EasyQuery extends Component {
                     activateOnMouseOver: true
                 }
               },
-              resultGrid: {
-                  autoHeight: true,
+              easyGrid: {
                   paging: {
                       enabled: true,
                       pageSize: 30
@@ -109,7 +108,7 @@ export class EasyQuery extends Component {
                 this.view.syncQuery();
             }
 
-            setTimeout(() => this.view.executeQuery(), 100);
+            setTimeout(() => this.view.fetchData(), 100);
         }
     };    
 

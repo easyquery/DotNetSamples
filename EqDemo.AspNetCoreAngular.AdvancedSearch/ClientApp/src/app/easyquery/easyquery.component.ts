@@ -37,7 +37,7 @@ export class EasyQueryComponent implements AfterViewInit {
         endpoint: '/api/easyquery',
 
         handlers: {
-          onError: (error) => {
+          onError: (context, error) => {
             console.error(error.action + " error:\n" + error.text);
           }
         },
@@ -131,7 +131,7 @@ export class EasyQueryComponent implements AfterViewInit {
             this.view.syncQuery();
           }
           
-          setTimeout(() => this.view.executeQuery(), 100);
+          setTimeout(() => this.view.fetchData(), 100);
         }
     };    
 }

@@ -45,9 +45,7 @@
             </div>
         </div>
     </div>
-
-    @Html.FilterBar()
-
+    <div id="FilterBar"></div>
     <div id="ResultPanel"></div>
 </div>
 
@@ -97,7 +95,7 @@
             var searchButton = document.getElementById("searchButton");
             if (searchButton) {
                 searchButton.addEventListener('click', function (ev) {
-                    view.executeQuery();
+                    view.fetchData();
                 });
 
                 var textField = document.getElementById("textField");
@@ -115,7 +113,7 @@
                 clearButton.addEventListener('click', function (ev) {
                     const input = document.getElementById("textField");
                     input.value = "";
-                    view.executeQuery();
+                    view.fetchData();
                 });
             }
 

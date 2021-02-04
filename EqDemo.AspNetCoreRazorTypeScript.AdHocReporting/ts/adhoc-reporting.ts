@@ -1,4 +1,4 @@
-import { ReportViewOptions, GoogleChartWidget, ReportView } from "@easyquery/ui";
+import { ReportViewOptions, ReportView } from "@easyquery/ui";
 import '@easyquery/enterprise';
 
 
@@ -13,8 +13,8 @@ window.addEventListener('load', () => {
         syncReportOnChange: true,
 
         handlers: {
-            onError: function (error) {
-                
+            onError: function (context, error) {
+                console.error(error.sourceError);
             }
         },
 
@@ -62,20 +62,6 @@ window.addEventListener('load', () => {
                 menuOptions: {
                     showSearchBoxAfter: 20,
                     activateOnMouseOver: true
-                }
-            },
-
-            //ResultGrid options
-            resultGrid: {
-                tableClass: "table table-sm",
-                formatGridCell: function (dataTable, rowIndex, colIndex, value) {
-                    var props = dataTable.getColumnProperties(colIndex);
-                    if (props.dataType == 'Decimal') {
-                        return "$" + value;
-                    }
-                    else {
-                        return value;
-                    }
                 }
             }
         }

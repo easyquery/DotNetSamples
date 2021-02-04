@@ -131,7 +131,7 @@
                 endpoint: '/api/easyquery',
 
                 handlers: {
-                    onError: (error) => {
+                    onError: (context, error) => {
                         console.error(error.action + ' error:\n' + error.text);
                     }
                 },

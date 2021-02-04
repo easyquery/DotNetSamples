@@ -5,11 +5,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@easydata/core": "1.2.0-rc3",
-    "@easydata/ui": "1.2.0-rc3",
-    "@easyquery/core": "7.0.0-rc3",
-    "@easyquery/ui": "7.0.0-rc3",
-    "@easyquery/enterprise": "7.0.0-rc3"
+    "@easydata/core": "1.2.0-rc4",
+    "@easydata/ui": "1.2.0-rc4",
+    "@easyquery/core": "7.0.0-rc4",
+    "@easyquery/ui": "7.0.0-rc4",
+    "@easyquery/enterprise": "7.0.0-rc4"
   },
   "scripts": {
     "test": "test",

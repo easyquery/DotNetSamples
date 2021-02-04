@@ -30,7 +30,7 @@ export class EasyQuery {
             endpoint: '/api/easyquery',
 
             handlers: {
-              onError: (error) => {
+              onError: (_, error) => {
                 console.error(error.action + " error:\n" + error.text);
               }
             },

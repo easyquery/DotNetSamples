@@ -34,10 +34,7 @@
 <div class="eqjs-process-bar" id="ProcessBar"></div>
 <div class="container">
     <h4>Orders</h4>
-
-
-    @Html.FilterBar()
-
+    <div id="FilterBar"></div>
     <div id="ResultPanel"></div>
 </div>
 
@@ -61,6 +58,9 @@
                             attrElementFormat: "{entity} {attr}"
                         }
                     }
+                },
+                result: {
+                    showChart: false
                 }
             }
 

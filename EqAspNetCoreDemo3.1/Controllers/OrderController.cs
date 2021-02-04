@@ -73,7 +73,7 @@ namespace EqDemo.Controllers
         /// This action is called when user clicks on "Apply" button in FilterBar or other data-filtering widget
         /// </summary>
         /// <returns>IActionResult which contains a partial view with the filtered result set</returns>
-        [HttpPost("models/{modelId}/queries/{queryId}/execute")]
+        [HttpPost("models/{modelId}/fetch")]
         public async Task<IActionResult> ApplyQueryFilter(string modelId, string queryId)
         {
             await _eqManager.ReadRequestContentFromStreamAsync(modelId, Request.Body);

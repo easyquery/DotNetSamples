@@ -14,7 +14,7 @@
 <h2>Orders</h2>
 
 
-@Html.FilterBar()
+<div id="FilterBar"></div>
 
 
 <div id="ResultPanel"></div>
@@ -54,15 +54,6 @@
             //Options for DataFilterViewJQuery
             let options = {
 
-                //Paging options
-                paging: {
-                    //Use bootstrap v4 styles
-                    useBootstrap: true,
-                },
-
-                //Context options
-                context: {
-
                     //Load model on start
                     loadModelOnStart: true,
 
@@ -72,19 +63,20 @@
                     //hadlers
                     handlers: {
                         //override error handler
-                        onError: function (message) {
+                        onError: function (context, error) {
                             $("#error-title").text(message.type);
                             $("#error-content").text(message.text);
                             $('#errorModel').modal('show');
                         }
                     },
 
-                    //Broker options
-                    broker: {
+                    //Middleware endpoint
+                    endpoint: "@(appPathBase)/api/data-filtering2",
 
-                        //Middleware endpoint
-                        endpoint: "@(appPathBase)/api/data-filtering2",
-                    },
+                //Paging options
+                paging: {
+                    //Use bootstrap v4 styles
+                    useBootstrap: true,
                 },
 
                 //Different widgets options
