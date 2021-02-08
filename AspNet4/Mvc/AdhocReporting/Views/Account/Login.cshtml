@@ -1,0 +1,87 @@
+@using EqDemo.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+
+    ViewData["Title"] = "Log in";
+    ViewData["MenuTitle"] = "Menu";
+
+    const string defaultUserEmail = "demo@korzh.com";
+    const string defaultUserPassword = "demo";
+}
+
+<div class="container">
+    <h2>@ViewBag.Title.</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Value = defaultUserEmail })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @value = defaultUserPassword })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Register as a new user", "Register", new {  ReturnUrl = ViewBag.ReturnUrl })
+                    </p>
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>
+                }
+            </section>
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <section>
+                <h4>Demo account</h4>
+                <hr />
+                <div>
+                    <p>
+                        Some pages of our demo application require an authorization.
+                        We did that by purpose - to demonstrate how EasyQuery works in the systems with access control.
+                    <p>
+                        To login you might use the default user with the following credentials:
+                    </p>
+                    <p>
+                        login: <strong>demo@korzh.com</strong>
+                        <br />
+                        password: <strong>demo</strong>
+                    </p>
+                    <p>
+                        or you can @Html.ActionLink("register a new account", "Register", new {  ReturnUrl = ViewBag.ReturnUrl }) and unleash all possibilities of this demo.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

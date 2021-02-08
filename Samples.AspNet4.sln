@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{F088CE7B-D84C-480A-9F99-0FB4270A823B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebForms", "WebForms", "{1D3247D9-65C5-4467-947D-91A583634CC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.AdhocReporting", "AspNet4\Mvc\AdhocReporting\EqDemo.AspNet4x.AdhocReporting.csproj", "{420AEDD8-5D2E-4994-95B8-67644681C908}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.AdvancedSearch", "AspNet4\Mvc\AdvancedSearch\EqDemo.AspNet4x.AdvancedSearch.csproj", "{F063D29F-C3C2-4076-A036-F891AC8C09AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.DataFiltering", "AspNet4\Mvc\DataFiltering\EqDemo.AspNet4x.DataFiltering.csproj", "{25B4D977-9D95-4133-B95F-A3C88830C21F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.WebForms.AdvancedSearch", "AspNet4\WebForms\AdvancedSearch\EqDemo.WebForms.AdvancedSearch.csproj", "{0907F31A-03D6-4A16-A16B-AB3AFC0C4E50}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EqDemo.WebFormsVB.AdvancedSearch", "AspNet4\WebForms\VB.AdvancedSearch\EqDemo.WebFormsVB.AdvancedSearch.vbproj", "{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0907F31A-03D6-4A16-A16B-AB3AFC0C4E50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0907F31A-03D6-4A16-A16B-AB3AFC0C4E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0907F31A-03D6-4A16-A16B-AB3AFC0C4E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0907F31A-03D6-4A16-A16B-AB3AFC0C4E50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{420AEDD8-5D2E-4994-95B8-67644681C908} = {F088CE7B-D84C-480A-9F99-0FB4270A823B}
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE} = {F088CE7B-D84C-480A-9F99-0FB4270A823B}
+		{25B4D977-9D95-4133-B95F-A3C88830C21F} = {F088CE7B-D84C-480A-9F99-0FB4270A823B}
+		{0907F31A-03D6-4A16-A16B-AB3AFC0C4E50} = {1D3247D9-65C5-4467-947D-91A583634CC9}
+		{CD8E53D2-B177-494B-AE08-1CEEF98E43D7} = {1D3247D9-65C5-4467-947D-91A583634CC9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D59C48F8-9526-40FF-9861-4E49D1C64B37}
+	EndGlobalSection
+EndGlobal

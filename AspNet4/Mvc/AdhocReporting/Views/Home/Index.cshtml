@@ -1,0 +1,209 @@
+
+@{
+    ViewData["Title"] = "Ad-hoc reporting demo";
+    ViewData["MenuTitle"] = "Ad-hoc reporting demo";
+    bool isDefaultUser = User.Identity.Name == "demo@korzh.com";
+    var tooltipContent = @"
+You are logged in as a demo user. Demo user is not allowed to manage the reports.<br />
+To test that functionlity - please log out first and create a new user.
+";
+}
+
+
+@section Styles {
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.0/eq.core.min.css">
+    <link rel="stylesheet" href="~/Content/adhoc-reporting.css" />
+
+
+    <style>
+        .eqv-grid-panel {
+            max-height: 450px;
+        }
+
+        #NoReportPanel {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 300px;
+        }
+
+        .tooltip-inner {
+            text-align: left;
+        }
+    </style>
+}
+
+<div class="container-fluid px-5">
+    <div class="row" id="ReportsContainer" style="visibility: hidden">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title float-left">Reports</div>
+                    <div class="dropdown float-right card-header-button">
+                        <button id="dropdownMenuButton" class="btn btn-default btn-sm dropdown-toggle"
+                                type="button" data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        @if (isDefaultUser)
+                        {
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                                 title="@tooltipContent">
+                                <a class="dropdown-item disabled" href="javascript:void(0)">New report</a>
+                                <a class="dropdown-item disabled" href="javascript:void(0)">Save as...</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item disabled" href="javascript:void(0)">Remove report</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" id="NewReportButton" href="javascript:void(0)">New report</a>
+                                <a class="dropdown-item" id="SaveReportButton" href="javascript:void(0)">Save as...</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" id="RemoveReportButton" href="javascript:void(0)">Remove report</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="ReportList" class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div id="ReportPanel" class="card">
+                <div class="card-header">
+                    <div id="ReportTitle" class="card-title float-left">Sales by product</div>
+                    <div class="float-right card-header-button">
+                        <button id="UpdateReportButton" type="button" class="btn btn-default btn-sm" title="Refresh result set">
+                            <i class="fas fa-sync-alt" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" title="Export the result" id="ResultExportButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-download"></i></button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportMenuButton">
+                            <a class="dropdown-item eqjs-export" href="javascript:void(0)" data-format="excel-html"><i class="fas fa-file-excel mr-2"></i>Export to Excel</a>
+                            <a class="dropdown-item eqjs-export" href="javascript:void(0)" data-format="csv"><i class="fas fa-file-csv mr-2"></i>Export to CSV</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="columns-block mb-3">
+                        <div class="block-caption">Columns:</div>
+                        <div id="ColumnsBar"></div>
+                        <!-- <div id="ColumnsPanel"></div> -->
+                    </div>
+                    <div class="conditions-block mb-3">
+                        <div class="block-caption">Conditions:</div>
+                        <div id="QueryPanel" class="query-panel"></div>
+                    </div>
+                    <div class="result-block">
+                        <div class="block-caption">Result:</div>
+                        <!--<div id="ResultPanel" class="eqv-result-panel-content"></div>-->
+                        <div id="ResultFacetsPanel"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row " id="NoReportPanel" style="visibility:hidden;">
+        <div class="col-md-12">
+            @if (!isDefaultUser)
+            {
+                <h3 class="text-center">
+                    No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
+                </h3>
+            }
+            else
+            {
+                <h3 class="text-center">
+                    No reports are defined. <span id="FirstReportButton" title="@tooltipContent" data-toggle="tooltip" data-placement="top" style="text-decoration: underline">Create a first one</span> to start.
+                </h3>
+
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <!-- EasyQuery script -->
+    <!--<script src="https://cdn.korzh.com/eq/7.0.0/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.0/eq.enterprise.min.js"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+    </script>
+
+    <script>
+        window.addEventListener('load', function () {
+
+            //Options for ReportView
+            var viewOptions = {
+
+                calcTotals: true,
+
+                //Saves report on each change
+                syncReportOnChange: true,
+
+                //Load model on start
+                loadModelOnStart: true,
+
+                // Controller endpoint
+                endpoint: '/api/adhoc-reporting',
+
+                enableExport: true,
+
+                //Different widgets options
+                widgets: {
+
+                    //ColumnBar options
+                    columnsBar: {
+                        accentActiveColumn: false,
+                        allowAggrColumns: true,
+                        attrElementFormat: "{attr}",
+                        showColumnCaptions: true,
+                        adjustEntitiesMenuHeight: false,
+                        menuOptions: {
+                            showSearchBoxAfter: 30,
+                            activateOnMouseOver: true
+                        }
+
+                    },
+
+                    //QueryPanel options
+                    queryPanel: {
+                        alwaysShowButtonsInPredicates: false,
+                        adjustEntitiesMenuHeight: false,
+                        menuOptions: {
+                            showSearchBoxAfter: 20,
+                            activateOnMouseOver: true
+                        }
+                    }
+                }
+            };
+
+            var reportView = new easyquery.ui.ReportView();
+            reportView.getContext().useEnterprise('@Korzh.EasyQuery.AspNet.JSLicense.Key');
+            reportView.init(viewOptions);
+
+            document['ReportView'] = reportView;
+        });
+    </script>
+
+}
+
