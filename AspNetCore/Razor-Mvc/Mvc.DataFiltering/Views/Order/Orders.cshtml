@@ -1,0 +1,125 @@
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Data Filtering demo";
+    ViewData["MenuTitle"] = "Data Filtering demo";
+    var appPathBase = Configuration["appPathBase"] ?? "";
+}
+
+@section Styles  {
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.0/eq.core.min.css">
+
+    <style>
+        .text-search {
+            margin-bottom: 10px;
+        }
+
+        .krh-fts-container {
+            display: flex;
+        }
+
+        .krh-fts-input {
+            flex: 1 1 auto;
+        }
+
+        .krh-fts-buttons {
+            flex: 0 0 auto;
+            padding-left: 15px;
+        }
+    </style>
+}
+
+<div class="eqjs-process-bar" id="ProcessBar"></div>
+<div class="container">
+    <h4>Orders</h4>
+    <div class="row text-search">
+        <div class="col-md-12 krh-fts-container">
+            <div class="input-group krh-fts-input">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Full-Text Search</div>
+                </div>
+                <input id="textField" class="form-control" placeholder="Type here...">
+            </div>
+            <div class="krh-fts-buttons">
+                <button id="searchButton" class="btn btn-success">Search</button>
+                <button id="clearButton" class="btn btn-secondary">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="FilterBar"></div>
+
+    <div id="ResultPanel"></div>
+</div>
+
+@section Scripts {
+
+    <!-- EasyQuery script -->
+    <!--<script src="https://cdn.korzh.com/eq/7.0.0/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.0/eq.enterprise.min.js"></script>
+
+    <!-- EasyQuery components initialization -->
+    <script>
+
+        window.addEventListener('load', function () {
+            var viewOptions = {
+                loadModelOnStart: true,
+                clearResultOnQueryChange: false,
+                endpoint: "/data-filtering",
+                widgets: {
+                    filterBar: {
+                        queryPanel: {
+                            attrElementFormat: "{entity} {attr}"
+                        },
+                        //autoEditNewCondition: true
+                    },
+                    eqHtmlGrid: {
+                        useBootstrap: true
+                    }
+                },
+                handlers: {
+                    beforeExecuteQuery: function (context, options) {
+                        options.data = options.data || {};
+
+                        //add full text search text to query
+                        const input = document.getElementById("textField");
+                        options.data.text = input.value;
+
+                        console.log(options);
+                    }
+                }
+            }
+
+            var view = new easyquery.ui.HtmlDataFilterView();
+            view.getContext().useEnterprise('@Korzh.EasyQuery.AspNetCore.JSLicense.Key');
+            view.init(viewOptions);
+
+            var searchButton = document.getElementById("searchButton");
+            if (searchButton) {
+                searchButton.addEventListener('click', function (ev) {
+                    view.fetchData();
+                });
+
+                var textField = document.getElementById("textField");
+                if (textField) {
+                    textField.addEventListener('keypress', function (e) {
+                        if (e.which == 13) {
+                            searchButton.click();
+                        }
+                    });
+                }
+            }
+
+            var clearButton = document.getElementById("clearButton");
+            if (clearButton) {
+                clearButton.addEventListener('click', function (ev) {
+                    const input = document.getElementById("textField");
+                    input.value = "";
+                    view.fetchData();
+                });
+            }
+
+        });
+
+    </script>
+}

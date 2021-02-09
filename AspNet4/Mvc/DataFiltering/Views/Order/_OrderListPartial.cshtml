@@ -1,0 +1,54 @@
+@using EqDemo.Models
+@using Korzh.EasyQuery.AspNet
+@model Korzh.EasyQuery.Services.IPagedList<Order>
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Order date
+        </th>
+        <th>
+            Customer name
+        </th>
+        <th>
+            Customer country
+        </th>
+        <th>
+            Employee
+        </th>
+        <th>
+            Order freight
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @(item.OrderDate != null ? item.OrderDate.Value.ToString("yyyy-MM-dd") : "")
+            </td>
+            <td>
+                @Html.EqHighLightFor(item.Customer?.CompanyName ?? "", (string)@ViewBag.Text)
+            </td>
+            <td>
+                @Html.EqHighLightFor(item.Customer?.Country ?? "", (string)@ViewBag.Text)
+            </td>
+            <td>
+                @Html.EqHighLightFor(item.Employee.FullName, (string)@ViewBag.Text)
+            </td>
+
+            <td>
+                @item.Freight
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table>
+
+@Html.PageNavigator(Model)
