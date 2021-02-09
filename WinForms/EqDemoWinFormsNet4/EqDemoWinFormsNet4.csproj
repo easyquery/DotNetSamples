@@ -7,7 +7,7 @@
     <ProjectGuid>{5622F0C6-C856-4122-A303-D527B9FC0518}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EqDemo</RootNamespace>
-    <AssemblyName>EqDemo.WinForms.AdvancedSearch</AssemblyName>
+    <AssemblyName>EqDemoWinFormsNet4</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>EqDemo</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Content Include="image\btnCsvExport.png" />
+    <Content Include="image\btnExcelExport.png" />
+    <Content Include="App_Data\EqDemoData.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="App_Data\Empolyee of the year.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Sales by product %28this year%29.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Sales by countries %28last year%29.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.0.0-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.WinForms" Version="7.0.0-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-rc5" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
+    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="MainForm.cs" />
+    <Compile Update="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Update="MainForm.Resources.Designer.cs">
+      <DependentUpon>MainForm.Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="MainForm.Resources.resx">
+      <LastGenOutput>MainForm.Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
