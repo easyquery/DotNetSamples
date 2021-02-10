@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5-windows</TargetFramework>
@@ -30,11 +30,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.0.0-rc5" />
-    <PackageReference Include="Korzh.EasyQuery.WinForms" Version="7.0.0-rc5" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-rc5" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-rc5" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.0.0-rc6" />
+    <PackageReference Include="Korzh.EasyQuery.WinForms" Version="7.0.0-rc6" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-rc6" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-rc6" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-rc6" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
@@ -60,5 +60,4 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-
 </Project>
