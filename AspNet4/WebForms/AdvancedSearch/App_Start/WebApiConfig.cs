@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
+
 using Korzh.EasyQuery.Services;
 
 namespace EqDemo
@@ -35,7 +36,8 @@ namespace EqDemo
             // Register you exportes here
             // to make export works
             EasyQueryManager.RegisterExporter("csv", new CsvDataExporter());
-            EasyQueryManager.RegisterExporter("excel-html", new ExcelHtmlDataExporter());
+            EasyQueryManager.RegisterExporter("excel", new ExcelDataExporter());
+            EasyQueryManager.RegisterExporter("pdf", new PdfDataExporter());
 
             // Uncomment this line to enable model loading from DbConnection
             // EasyQueryManagerSql.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();

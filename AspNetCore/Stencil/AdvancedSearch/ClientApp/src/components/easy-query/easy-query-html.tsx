@@ -75,7 +75,8 @@ export const AdvacnedSearchHtml: FunctionalComponent = () => (
                                 Result
                                 <span id="ResultCount" style={{display:'none', marginLeft:'20px', fontSize:'small'}}></span>
                                 <span class="eqv-export-buttons">
-                                    <a class="eqjs-export" href="javascript:void(0)" data-format="excel-html">Export to Excel</a>
+                                    <a class="eqjs-export" href="javascript:void(0)" data-format="pdf">Export to PDF</a>
+                                    <a class="eqjs-export" href="javascript:void(0)" data-format="excel">Export to Excel</a>
                                     <a class="eqjs-export" href="javascript:void(0)" data-format="csv">Export to CSV</a>
                                 </span>
                             </div>

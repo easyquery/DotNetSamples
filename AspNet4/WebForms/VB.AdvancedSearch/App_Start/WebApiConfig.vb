@@ -22,7 +22,8 @@ Public Module WebApiConfig
         ' Register you exportes here
         ' to make export works
         EasyQueryManager.RegisterExporter("csv", New CsvDataExporter())
-        EasyQueryManager.RegisterExporter("excel-html", New ExcelHtmlDataExporter())
+        EasyQueryManager.RegisterExporter("excel", New ExcelDataExporter())
+        EasyQueryManager.RegisterExporter("pdf", New PdfDataExporter())
 
         ' Uncomment this line to enable model loading from DbConnection
         ' EasyQueryManagerSql.RegisterDbGate(Of Korzh.EasyQuery.DbGates.SqlServerGate)();
