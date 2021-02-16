@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Data;
 using System.IO;
 using System.Configuration;
@@ -285,10 +286,7 @@ namespace EqDemo {
                 saveFileDlg.RestoreDirectory = true;
                 bool? result = saveFileDlg.ShowDialog();
                 if (result == true) {
-                    var resultSet = new EasyDbResultSet(Query, resultDt.CreateDataReader());
-                    var exporter = new ExcelHtmlDataExporter();
-                    using (var fileStream = File.OpenWrite(saveFileDlg.FileName))
-                        exporter.Export(resultSet, fileStream);
+                    ExportData(new ExcelDataExporter(), saveFileDlg.FileName);
                 }
             }
             catch (Exception error) {
@@ -299,7 +297,6 @@ namespace EqDemo {
 
         private void ExportToCsv_Click(object sender, RoutedEventArgs e) {
             try {
-                DataTable resultDt = ((DataView)datGrid.ItemsSource).ToTable();
                 SaveFileDialog saveFileDlg = new SaveFileDialog();
                 saveFileDlg.Filter = "csv files (*.csv)|*.csv";
                 saveFileDlg.DefaultExt = "csv";
@@ -307,16 +304,22 @@ namespace EqDemo {
                 saveFileDlg.RestoreDirectory = true;
                 bool? result = saveFileDlg.ShowDialog();
                 if (result == true) {
-                    var resultSet = new EasyDbResultSet(Query, resultDt.CreateDataReader());
-                    var exporter = new CsvDataExporter();
-                    using (var fileStream = File.OpenWrite(saveFileDlg.FileName))
-                        exporter.Export(resultSet, fileStream);
+                    ExportData(new CsvDataExporter(), saveFileDlg.FileName);
                 }
             }
             catch (Exception error) {
                 //if some error occurs just show the error message 
                 MessageBox.Show(error.Message);
             }
+        }
+
+        private void ExportData(IDataExporter exporter, string fileName)
+        {
+            var resultDt = ((DataView)datGrid.ItemsSource).ToTable();
+            using (var resultSet = new EasyDbResultSet(Query, resultDt.CreateDataReader(), new ResultSetOptions()))
+            using (var fileStream = File.OpenWrite(fileName))
+                exporter.Export(resultSet, fileStream);
+            Process.Start(fileName);
         }
     }
 }

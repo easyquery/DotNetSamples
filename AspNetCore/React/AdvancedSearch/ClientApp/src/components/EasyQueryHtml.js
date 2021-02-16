@@ -75,7 +75,8 @@ const AdvacnedSearchHtml = () => (
                                 Result
                           <span id="ResultCount" style={{ display:'none', marginLeft:20, fontSize:'small'}}></span>
                                 <span className="eqv-export-buttons">
-                                    <a className="eqjs-export" href="javascript:void(0)" data-format="excel-html">Export to Excel</a>
+                                    <a className="eqjs-export" href="javascript:void(0)" data-format="pdf">Export to PDF</a>
+                                    <a className="eqjs-export" href="javascript:void(0)" data-format="excel">Export to Excel</a>
                                     <a className="eqjs-export" href="javascript:void(0)" data-format="csv">Export to CSV</a>
                                 </span>
                             </div>

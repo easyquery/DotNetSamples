@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+using System.Diagnostics;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -15,7 +17,6 @@ using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.WinForms;
 
 using EqDemo.Models;
-using System.Configuration;
 
 namespace EqDemo
 {
@@ -336,10 +337,7 @@ namespace EqDemo
                     saveFileDialog.RestoreDirectory = true;
 
                     if (saveFileDialog.ShowDialog(this) == DialogResult.OK) {
-                        var exporter = new CsvDataExporter();
-                        var resultSet = new EasyDbResultSet(_query, ResultDS.Tables[0].CreateDataReader());
-                        using (var fileStream = File.OpenWrite(saveFileDialog.FileName))
-                            exporter.Export(resultSet, fileStream);
+                        ExportData(new CsvDataExporter(), saveFileDialog.FileName);
                     }
                 }
 
@@ -354,17 +352,14 @@ namespace EqDemo
         private void btnExportXls_Click(object sender, EventArgs e)
         {
             try {
-                //Save xls  file 
+                //Save xlsx  file 
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog()) {
-                    saveFileDialog.Filter = "xls files (*.xls)|*.xls";
+                    saveFileDialog.Filter = "xlsx files (*.xlsx)|*.xlsx";
                     saveFileDialog.FilterIndex = 2;
                     saveFileDialog.RestoreDirectory = true;
 
                     if (saveFileDialog.ShowDialog(this) == DialogResult.OK)  {
-                        var exporter = new ExcelHtmlDataExporter();
-                        var resultSet = new EasyDbResultSet(_query, ResultDS.Tables[0].CreateDataReader());
-                        using (var fileStream = File.OpenWrite(saveFileDialog.FileName))
-                            exporter.Export(resultSet, fileStream);
+                        ExportData(new ExcelDataExporter(), saveFileDialog.FileName);
                     }
                 }
 
@@ -375,6 +370,17 @@ namespace EqDemo
                 MessageBox.Show(error.Message);
             }
         }
+
+        private void ExportData(IDataExporter exporter, string fileName)
+        {
+            using (var resultSet = new EasyDbResultSet(_query,
+                ResultDS.Tables[0].CreateDataReader(),
+                new ResultSetOptions()))
+            using (var fileStream = File.OpenWrite(fileName))
+                exporter.Export(resultSet, fileStream);
+            Process.Start(fileName);
+        }
+
 
         private void ShowExportPanel()
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Configuration;
 using System.Data;
 using System.Data.Entity.Migrations;
@@ -324,10 +325,7 @@ namespace EqDemo
                     saveFileDialog.RestoreDirectory = true;
 
                     if (saveFileDialog.ShowDialog(this) == DialogResult.OK) {
-                        var exporter = new CsvDataExporter();
-                        var resultSet = new EasyDbResultSet(_query, ResultDS.Tables[0].CreateDataReader());
-                        using (var fileStream = File.OpenWrite(saveFileDialog.FileName))
-                            exporter.Export(resultSet, fileStream);
+                        ExportData(new CsvDataExporter(), saveFileDialog.FileName);
                     }
                 }
 
@@ -344,15 +342,12 @@ namespace EqDemo
             try {
                 //Save xls  file 
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog()) {
-                    saveFileDialog.Filter = "xls files (*.xls)|*.xls";
+                    saveFileDialog.Filter = "xlsx files (*.xlsx)|*.xlsx";
                     saveFileDialog.FilterIndex = 2;
                     saveFileDialog.RestoreDirectory = true;
 
                     if (saveFileDialog.ShowDialog(this) == DialogResult.OK)  {
-                        var exporter = new ExcelHtmlDataExporter();
-                        var resultSet = new EasyDbResultSet(_query, ResultDS.Tables[0].CreateDataReader());
-                        using (var fileStream = File.OpenWrite(saveFileDialog.FileName))
-                            exporter.Export(resultSet, fileStream);
+                        ExportData(new ExcelDataExporter(), saveFileDialog.FileName);
                     }
                 }
 
@@ -362,6 +357,16 @@ namespace EqDemo
                 //if some error occurs just show the error message 
                 MessageBox.Show(error.Message);
             }
+        }
+
+        private void ExportData(IDataExporter exporter, string fileName)
+        {
+            using (var resultSet = new EasyDbResultSet(_query, 
+                ResultDS.Tables[0].CreateDataReader(), 
+                new ResultSetOptions()))
+            using (var fileStream = File.OpenWrite(fileName))
+                exporter.Export(resultSet, fileStream);
+            Process.Start(fileName);
         }
 
         private void ShowExportPanel()
