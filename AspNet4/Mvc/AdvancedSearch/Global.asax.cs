@@ -22,10 +22,6 @@ namespace EqDemo.AspNet4x.AdvancedSearch
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            // License key
-            Korzh.EasyQuery.AspNet.License.Key = "M-Vm5PXqfpFr0P6bDruZ2wQIC0HYW2";
-            Korzh.EasyQuery.AspNet.JSLicense.Key = "M-Vm5PXqfpFr0P6bDruZ2wBIJ1H334";
-
             // init db
             var databaseMigrator = new DbMigrator(new Configuration());
             databaseMigrator.Update();

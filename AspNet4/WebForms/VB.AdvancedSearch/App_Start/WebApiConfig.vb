@@ -3,6 +3,10 @@ Imports System.Web.Http
 Imports System.Web.Http.Controllers
 Imports System.Web.Http.Routing
 
+Imports EasyData.Export.Csv
+Imports EasyData.Export.Excel
+Imports EasyData.Export.Pdf
+
 Imports Korzh.EasyQuery.Services
 
 Public Module WebApiConfig

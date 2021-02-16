@@ -32,10 +32,6 @@ export class EasyQueryComponent implements AfterViewInit {
         enableExport: true,
         loadModelOnStart: true,
         loadQueryOnStart: false,
-
-        //EasyQuery endpoint
-        endpoint: '/api/easyquery',
-
         handlers: {
           onError: (context, error) => {
             console.error(error.action + " error:\n" + error.text);
@@ -97,9 +93,11 @@ export class EasyQueryComponent implements AfterViewInit {
       this.view = new AdvancedSearchView();
       this.context = this.view.getContext();
 
-      this.context.useEnterprise(() => {
-        this.view.init(viewOptions);
-      });
+      this.context
+        .useEndpoint('/api/easyquery')
+        .useEnterprise(() => {
+          this.view.init(viewOptions);
+        });
 
       this.context.addEventListener('ready', () => {
         const query = this.context.getQuery();

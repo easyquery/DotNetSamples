@@ -34,9 +34,6 @@ window.addEventListener('load', () => {
         //Default model's ID (we use it here just for a nice folder name in App_Data folder)
         defaultModelId: 'adhoc-reporting',
 
-        //Middleware endpoint 
-        endpoint: window["__appPathBase"] + '/api/adhoc-reporting',
-
         enableExport: true,
 
         //Different widgets options
@@ -69,10 +66,12 @@ window.addEventListener('load', () => {
 
     const reportView = new ReportView();
     const context = reportView.getContext();
-    context.setLicenseKeyEndpoint(window["__appPathBase"] + window['__eqLckEndpoint']);
-    context.useEnterprise(() => {
-        reportView.init(viewOptions);
-    });
+
+    context
+        .useEndpoint('/api/adhoc-reporting')
+        .useEnterprise(() => {
+            reportView.init(viewOptions);
+        });
    
     document['ReportView'] = reportView;
 });

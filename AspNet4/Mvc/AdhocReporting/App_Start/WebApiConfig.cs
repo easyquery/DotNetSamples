@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
-using System.Web.Http.WebHost;
-using System.Web.Routing;
-using System.Web.SessionState;
+
+using EasyData.Export.Csv;
+using EasyData.Export.Excel;
+using EasyData.Export.Pdf;
 
 using Korzh.EasyQuery.Services;
 
@@ -32,6 +31,7 @@ namespace EqDemo
             // to make export works
             EasyQueryManager.RegisterExporter("csv", new CsvDataExporter());
             EasyQueryManager.RegisterExporter("excel", new ExcelDataExporter());
+            EasyQueryManager.RegisterExporter("excel-html", new ExcelHtmlDataExporter());
             EasyQueryManager.RegisterExporter("pdf", new PdfDataExporter());
 
             // Uncomment this line to enable model loading from DbConnection

@@ -124,9 +124,6 @@ export class EasyQueryKendoComponent implements AfterViewInit {
 
           loadModelOnStart: true,
           loadQueryOnStart: false,
-
-          //Middlewares endpoint
-          endpoint: '/api/easyquery',
   
           handlers: {
             onError: (context, error) => {
@@ -191,9 +188,11 @@ export class EasyQueryKendoComponent implements AfterViewInit {
           this.loadQueryFromLocalStorage();
         });
 
-        this.context.useEnterprise(() => {
-          this.view.init(options);
-        });
+        this.context
+          .useEndpoint('/api/easyquery')
+          .useEnterprise(() => {
+            this.view.init(options);
+          });
   
       
         

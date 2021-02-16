@@ -24,9 +24,8 @@ namespace EqDemo.Controllers
         public OrderController()
         {
             _dbContext = ApplicationDbContext.Create();
-            var services = new EmptyServiceProvider();
 
-            var options = new EasyQueryOptions(services);
+            var options = new EasyQueryOptions();
             options.UseEntity((_) => _dbContext.Orders);
 
             //create EasyQuery manager which generates LINQ queries

@@ -61,7 +61,6 @@
             var viewOptions = {
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
-                endpoint: "/data-filtering",
                 widgets: {
                     filterBar: {
                         queryPanel: {
@@ -84,8 +83,12 @@
                 }
             }
             var view = new easyquery.ui.HtmlDataFilterView();
-            view.getContext().useEnterprise('@Korzh.EasyQuery.AspNet.JSLicense.Key');
+            view.getContext()
+                .useEndpoint('/data-filtering')
+                .useEnterprise('@Korzh.EasyQuery.AspNet.JSLicense.Key');
+
             view.init(viewOptions);
+           
             var searchButton = document.getElementById("searchButton");
             if (searchButton) {
                 searchButton.addEventListener('click', function (ev) {

@@ -163,9 +163,6 @@ To test that functionlity - please log out first and create a new user.
                 //Load model on start
                 loadModelOnStart: true,
 
-                // Controller endpoint
-                endpoint: '/api/adhoc-reporting',
-
                 enableExport: true,
 
                 //Different widgets options
@@ -198,8 +195,11 @@ To test that functionlity - please log out first and create a new user.
             };
 
             var reportView = new easyquery.ui.ReportView();
-            reportView.getContext().useEnterprise('@Korzh.EasyQuery.AspNet.JSLicense.Key');
-            reportView.init(viewOptions);
+            reportView.getContext()
+                .useEndpoint('/api/adhoc-reporting')
+                .useEnterprise(function () {
+                    reportView.init(viewOptions);
+                });
 
             document['ReportView'] = reportView;
         });

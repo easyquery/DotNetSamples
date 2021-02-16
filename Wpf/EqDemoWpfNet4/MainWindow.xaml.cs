@@ -13,6 +13,10 @@ using System.Windows.Controls;
 
 using Microsoft.Win32;
 
+using EasyData.Export;
+using EasyData.Export.Excel;
+using EasyData.Export.Csv;
+
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Wpf;
 using Korzh.EasyQuery.Db;

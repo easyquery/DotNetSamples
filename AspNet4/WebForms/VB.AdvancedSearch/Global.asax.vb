@@ -11,9 +11,6 @@ Public Class Global_asax
 
     Sub Application_Start(sender As Object, e As EventArgs)
 
-        Korzh.EasyQuery.AspNet.License.Key = "M-Vm5PXqfpFr0P6bDruZ2wQIC0HYW2"
-        Korzh.EasyQuery.AspNet.JSLicense.Key = "M-Vm5PXqfpFr0P6bDruZ2wBIJ1H334"
-
         ' Fires when the application is started
         GlobalConfiguration.Configure(AddressOf WebApiConfig.Register)
         RouteConfig.RegisterRoutes(RouteTable.Routes)

@@ -8,7 +8,9 @@ using System.Web.Http.Routing;
 using System.Web.Http.WebHost;
 using System.Web.Routing;
 using System.Web.SessionState;
-
+using EasyData.Export.Csv;
+using EasyData.Export.Excel;
+using EasyData.Export.Pdf;
 using Korzh.EasyQuery.Services;
 
 namespace EqDemo

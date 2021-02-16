@@ -27,7 +27,7 @@ namespace EqDemo.Controllers
         {
             _dbContext = dbContext;
 
-            var options = new EasyQueryOptions(services);
+            var options = new EasyQueryOptions();
             options.UseEntity((_) =>
                 _dbContext
                     .Orders
@@ -35,7 +35,7 @@ namespace EqDemo.Controllers
                     .Include(o => o.Employee)
                     .AsQueryable());
 
-            _eqManager = new EasyQueryManagerLinq<Order>(options);
+            _eqManager = new EasyQueryManagerLinq<Order>(options, services);
         }
 
         // GET: /Order/

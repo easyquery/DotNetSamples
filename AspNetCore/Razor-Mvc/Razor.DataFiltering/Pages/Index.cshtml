@@ -51,7 +51,6 @@
             var viewOptions = {
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
-                endpoint: "/data-filtering",
                 widgets: {
                     filterBar: {
                         queryPanel: {
@@ -65,8 +64,11 @@
             }
 
             var view = new easyquery.ui.DataFilterView();
-            view.getContext().useEnterprise('@Korzh.EasyQuery.AspNetCore.JSLicense.Key');
-            view.init(viewOptions);
+            view.getContext()
+                .useEndpoint('/data-filtering')
+                .useEnterprise(function () {
+                    view.init(viewOptions);
+                });
         });
 
     </script>

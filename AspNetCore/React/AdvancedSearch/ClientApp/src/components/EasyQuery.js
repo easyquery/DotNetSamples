@@ -18,9 +18,6 @@ export class EasyQuery extends Component {
             loadModelOnStart: true,
             loadQueryOnStart: false,
 
-            //Middlewares endpoint
-            endpoint: '/api/easyquery',
-
             handlers: {
               onError: (context, error) => {
                 console.error(error.type + " error:\n" + error.text);
@@ -74,9 +71,11 @@ export class EasyQuery extends Component {
         this.view = new AdvancedSearchView();
         this.context = this.view.getContext();
 
-        this.context.useEnterprise(() => {
-            this.view.init(viewOptions);
-        });
+        this.context
+            .useEndpoint('/api/easyquery')
+            .useEnterprise(() => {
+                this.view.init(viewOptions);
+            });
 
         this.context.addEventListener('ready', () => {
             const query = this.context.getQuery();

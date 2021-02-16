@@ -41,9 +41,6 @@
 
                 enableExport: true,
 
-                // Controller endpoint
-                endpoint: "/api/easyquery",
-
                 //Handlers
                 handlers: {
                     //Error handler
@@ -107,8 +104,11 @@
             }
 
             var view = new easyquery.ui.AdvancedSearchView();
-            view.getContext().useEnterprise('<% Response.Write(Korzh.EasyQuery.AspNet.JSLicense.Key); %>')
-            view.init(viewOptions);
+            view.getContext()
+                .useEndpoint("/api/easyquery")
+                .useEnterprise(function() {
+                    view.init(viewOptions);
+                });
 
             document['AdvancedSearchView'] = view;
         });

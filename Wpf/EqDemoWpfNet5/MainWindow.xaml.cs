@@ -12,6 +12,10 @@ using Microsoft.EntityFrameworkCore;
 
 using Korzh.DbUtils;
 
+using EasyData.Export;
+using EasyData.Export.Excel;
+using EasyData.Export.Csv;
+
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Wpf;
 using Korzh.EasyQuery.Db;
@@ -319,7 +323,14 @@ namespace EqDemo {
             using (var resultSet = new EasyDbResultSet(Query, resultDt.CreateDataReader(), new ResultSetOptions()))
             using (var fileStream = File.OpenWrite(fileName))
                 exporter.Export(resultSet, fileStream);
-            Process.Start(fileName);
+
+            new Process
+            {
+                StartInfo = new ProcessStartInfo(fileName)
+                {
+                    UseShellExecute = true
+                }
+            }.Start();
         }
     }
 }

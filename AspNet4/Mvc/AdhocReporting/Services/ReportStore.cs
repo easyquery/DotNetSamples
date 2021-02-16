@@ -63,7 +63,7 @@ namespace EqDemo.Services
                             .Where(r => r.ModelId == modelId)
                             .ToListAsync();
 
-            return reports.Select(r => new QueryListItem(r.Id, r.Name, r.Description));
+            return reports.Select(r => new QueryListItem(r.Id, r.Name, r.Description)).ToList();
         }
 
 

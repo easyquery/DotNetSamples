@@ -162,9 +162,6 @@
                 //Default model's ID (we use it here just for a nice folder name in App_Data folder)
                 defaultModelId: 'adhoc-reporting',
 
-                //Middleware endpoint
-                endpoint: '/api/adhoc-reporting',
-
                 enableExport: true,
 
                 //Different widgets options
@@ -197,9 +194,11 @@
 
             var reportView = new easyquery.ui.ReportView();
             var context = reportView.getContext();
-            context.useEnterprise(function () {
-                reportView.init(viewOptions);
-            });
+            context
+                .useEndpoint('/api/adhoc-reporting')
+                .useEnterprise(function () {
+                    reportView.init(viewOptions);
+                });
 
             document['ReportView'] = reportView;
         });
