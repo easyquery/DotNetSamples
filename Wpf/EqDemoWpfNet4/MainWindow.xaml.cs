@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Data.Entity.Migrations;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,14 +15,14 @@ using EasyData.Export.Excel;
 using EasyData.Export.Csv;
 
 using Korzh.EasyQuery;
-using Korzh.EasyQuery.Wpf;
-using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Services;
+using Korzh.EasyQuery.Wpf;
 using Korzh.EasyQuery.EntityFramework;
 
 using EqDemo.Models;
 
 namespace EqDemo {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -36,7 +33,6 @@ namespace EqDemo {
 
         public MainWindow()
         {
-
             Korzh.EasyQuery.Wpf.License.Key = "M-Vm5PXqfpFr0P6bDruZ2wQIG1H640";
 
             InitDatabase();
@@ -56,23 +52,21 @@ namespace EqDemo {
             migrator.Update();
         }
 
-        public DbQuery Query { get; private set; }
+        EasyQueryManagerSql EqManager { get; set; }
 
+        public Query Query => EqManager.Query;
 
         private void InitEasyQuery()
         {
-            var workDir = System.IO.Directory.GetCurrentDirectory();
-            var dataModel = new DbModel();
+            var options = new EasyQueryOptions();
+            EqManager = new EasyQueryManagerSql(options);
+            EqManager.Model.LoadFromDbContext(ApplicationDbContext.Create());
 
-            dataModel.LoadFromDbContext(ApplicationDbContext.Create());
+            // EasyQueryManagerSql.RegisterDbGate<SqlServerGate>();
+            // EqManager.Model.LoadFromConnection(ApplicationDbContext.Create().Database.GetConnection());
 
-            // DbGate.Register<SqlServerGate>();
-            // dataModel.LoadFromConnection(ApplicationDbContext.Create().Database.Connection);
-
-            //query initialization
-            Query = new DbQuery(dataModel);
-            Query.ConditionsChanged += query_ConditionsChanged;
-            Query.ColumnsChanged += query_ColumnsChanged;
+            EqManager.Query.ConditionsChanged += query_ConditionsChanged;
+            EqManager.Query.ColumnsChanged += query_ColumnsChanged;
 
             //add handlers for ListRequest and ValueRequest events
             AddHandler(ListXElement.ListRequestEvent, new ListXElement.ListRequestEventHandler(queryPanel_ListRequest));
@@ -111,31 +105,11 @@ namespace EqDemo {
         }
 
         void SetSql() {
-            SqlQueryBuilder builder = new SqlQueryBuilder((DbQuery)queryPanel.Query);
-            builder.Formats.SetDefaultFormats(FormatType.MsSqlServer);
-            builder.Formats.OrderByStyle = OrderByStyles.Aliases;
-            builder.Formats.DateFormat = "MM/dd/yyyy";
-            builder.Formats.DateTimeFormat = "MM/dd/yyyy HH:mm";
+            var result = EqManager.BuildQuery();
+            if (result == null) return;
 
-            if (!builder.CanBuild) return;
-            builder.BuildSQL();
-            string sql = builder.Result.SQL;
-            textBoxSql.Text = sql;
-            buttonExecute.IsEnabled = !string.IsNullOrEmpty(sql);
-        }
-
-        private Stream LoadEmbededResource(string resourceFileName) {
-            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-            return a.GetManifestResourceStream("EqWpfDemo.res." + resourceFileName);
-        }
-
-        private void CreateFileByResource(string fileName) {
-            using (Stream s = LoadEmbededResource(fileName)) {
-                using (var fileStream = File.Create(fileName)) {
-                    s.CopyTo(fileStream);
-                    fileStream.Flush();
-                }
-            }
+            textBoxSql.Text = result.Statement;
+            buttonExecute.IsEnabled = !string.IsNullOrEmpty(result.Statement);
         }
 
         private void CheckConnection() {
@@ -145,7 +119,7 @@ namespace EqDemo {
 
         private void Execute_Click(object sender, RoutedEventArgs e) {
             try {
-                string sql = textBoxSql.Text;
+                var sql = textBoxSql.Text;
                 CheckConnection();
                 var resultDA = new SqlDataAdapter(sql, _connection);
 
@@ -176,7 +150,7 @@ namespace EqDemo {
         }
 
         private void Clear() {
-            queryPanel.Query.Clear();
+            EqManager.Query.Clear();
             textBoxSql.Clear();
             datGrid.ItemsSource = null;
             buttonExecute.IsEnabled = false;
@@ -242,10 +216,10 @@ namespace EqDemo {
                 bool? result = openFileDlg.ShowDialog();
                 if (result == true) {
                     if (openFileDlg.FilterIndex == 1) {
-                        queryPanel.Query.LoadFromJsonFile(openFileDlg.FileName);
+                        EqManager.Query.LoadFromJsonFile(openFileDlg.FileName);
                     }
                     else {
-                        queryPanel.Query.LoadFromXmlFile(openFileDlg.FileName);
+                        EqManager.Query.LoadFromXmlFile(openFileDlg.FileName);
                     }
                 }
             }
@@ -263,10 +237,10 @@ namespace EqDemo {
             bool? result = saveFileDlg.ShowDialog();
             if (result == true) {
                 if (saveFileDlg.FilterIndex == 1) {
-                    queryPanel.Query.SaveToJsonFile(saveFileDlg.FileName);
+                    EqManager.Query.SaveToJsonFile(saveFileDlg.FileName);
                 }
                 else {
-                    queryPanel.Query.SaveToXmlFile(saveFileDlg.FileName);
+                    EqManager.Query.SaveToXmlFile(saveFileDlg.FileName);
                 }
             }
         }
@@ -310,7 +284,7 @@ namespace EqDemo {
         private void ExportData(IDataExporter exporter, string fileName)
         {
             var resultDt = ((DataView)datGrid.ItemsSource).ToTable();
-            using (var resultSet = new EasyDbResultSet(Query, resultDt.CreateDataReader(), new ResultSetOptions()))
+            using (var resultSet = new EasyDbResultSet(EqManager.Query, resultDt.CreateDataReader(), EqManager.ResultSetOptions))
             using (var fileStream = File.OpenWrite(fileName))
                 exporter.Export(resultSet, fileStream);
             Process.Start(fileName);

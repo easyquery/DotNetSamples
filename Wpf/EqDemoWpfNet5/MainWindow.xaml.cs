@@ -64,24 +64,25 @@ namespace EqDemo {
             };
         }
 
-        public DbQuery Query { get; private set; }
+        EasyQueryManagerSql EqManager { get; set; }
+
+        public Query Query => EqManager.Query;
 
 
         private void InitEasyQuery()
         {
-            var workDir = System.IO.Directory.GetCurrentDirectory();
-            var dataModel = new DbModel();
+            var options = new EasyQueryOptions();
+            EqManager = new EasyQueryManagerSql(options);
 
             using (var dbContext = ApplicationDbContext.Create())
-                dataModel.LoadFromDbContext(dbContext);
+                EqManager.Model.LoadFromDbContext(dbContext);
 
-            // DbGate.Register<SqlServerGate>();
-            // dataModel.LoadFromConnection(ApplicationDbContext.Create().Database.Connection);
+            // EasyQueryManagerSql.RegisterDbGate<SqlServerGate>();
+            // EqManager.Model.LoadFromConnection(ApplicationDbContext.Create().Database.GetConnection());
 
             //query initialization
-            Query = new DbQuery(dataModel);
-            Query.ConditionsChanged += query_ConditionsChanged;
-            Query.ColumnsChanged += query_ColumnsChanged;
+            EqManager.Query.ConditionsChanged += query_ConditionsChanged;
+            EqManager.Query.ColumnsChanged += query_ColumnsChanged;
 
             //add handlers for ListRequest and ValueRequest events
             AddHandler(ListXElement.ListRequestEvent, new ListXElement.ListRequestEventHandler(queryPanel_ListRequest));
@@ -119,32 +120,13 @@ namespace EqDemo {
             //set e.Accept to true only for those item which you want to leave in the tree
         }
 
-        void SetSql() {
-            SqlQueryBuilder builder = new SqlQueryBuilder((DbQuery)queryPanel.Query);
-            builder.Formats.SetDefaultFormats(FormatType.MsSqlServer);
-            builder.Formats.OrderByStyle = OrderByStyles.Aliases;
-            builder.Formats.DateFormat = "MM/dd/yyyy";
-            builder.Formats.DateTimeFormat = "MM/dd/yyyy HH:mm";
+        void SetSql()
+        {
+            var result = EqManager.BuildQuery();
+            if (result == null) return;
 
-            if (!builder.CanBuild) return;
-            builder.BuildSQL();
-            string sql = builder.Result.SQL;
-            textBoxSql.Text = sql;
-            buttonExecute.IsEnabled = !string.IsNullOrEmpty(sql);
-        }
-
-        private Stream LoadEmbededResource(string resourceFileName) {
-            System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
-            return a.GetManifestResourceStream("EqWpfDemo.res." + resourceFileName);
-        }
-
-        private void CreateFileByResource(string fileName) {
-            using (Stream s = LoadEmbededResource(fileName)) {
-                using (var fileStream = File.Create(fileName)) {
-                    s.CopyTo(fileStream);
-                    fileStream.Flush();
-                }
-            }
+            textBoxSql.Text = result.Statement;
+            buttonExecute.IsEnabled = !string.IsNullOrEmpty(result.Statement);
         }
 
         private void CheckConnection() {
@@ -185,7 +167,8 @@ namespace EqDemo {
         }
 
         private void Clear() {
-            queryPanel.Query.Clear();
+            EqManager.Query.Clear();
+
             textBoxSql.Clear();
             datGrid.ItemsSource = null;
             buttonExecute.IsEnabled = false;
@@ -251,10 +234,10 @@ namespace EqDemo {
                 bool? result = openFileDlg.ShowDialog();
                 if (result == true) {
                     if (openFileDlg.FilterIndex == 1) {
-                        queryPanel.Query.LoadFromJsonFile(openFileDlg.FileName);
+                        EqManager.Query.LoadFromJsonFile(openFileDlg.FileName);
                     }
                     else {
-                        queryPanel.Query.LoadFromXmlFile(openFileDlg.FileName);
+                        EqManager.Query.LoadFromXmlFile(openFileDlg.FileName);
                     }
                 }
             }
@@ -272,10 +255,10 @@ namespace EqDemo {
             bool? result = saveFileDlg.ShowDialog();
             if (result == true) {
                 if (saveFileDlg.FilterIndex == 1) {
-                    queryPanel.Query.SaveToJsonFile(saveFileDlg.FileName);
+                    EqManager.Query.SaveToJsonFile(saveFileDlg.FileName);
                 }
                 else {
-                    queryPanel.Query.SaveToXmlFile(saveFileDlg.FileName);
+                    EqManager.Query.SaveToXmlFile(saveFileDlg.FileName);
                 }
             }
         }
@@ -320,7 +303,7 @@ namespace EqDemo {
         private void ExportData(IDataExporter exporter, string fileName)
         {
             var resultDt = ((DataView)datGrid.ItemsSource).ToTable();
-            using (var resultSet = new EasyDbResultSet(Query, resultDt.CreateDataReader(), new ResultSetOptions()))
+            using (var resultSet = new EasyDbResultSet(EqManager.Query, resultDt.CreateDataReader(), EqManager.ResultSetOptions))
             using (var fileStream = File.OpenWrite(fileName))
                 exporter.Export(resultSet, fileStream);
 
