@@ -20,3 +20,5 @@ App_Data/dm-*__default/
 /EqAspNetCoreDemo/EqAspNetCoreDemo.csproj.user
 /EqAspNetCoreDemo/Properties/serviceDependencies.eqdemo-net5 - Web Deploy.json.user
 /EqAspNetCoreDemo/Properties/serviceDependencies.eqdemo-net5 - Web Deploy.json
+/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js.map
+/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js
