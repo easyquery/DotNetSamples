@@ -104,7 +104,7 @@ namespace EqDemo
             entitiesPanel.ItemAdding += EntitiesPanel_ItemAdding;
         }
 
-        void query_ColumnsChanged(object sender, ColumnsChangeEventArgs e)
+        void query_ColumnsChanged(object sender, QueryColumnChangeEventArgs e)
         {
             SetSql();
         }

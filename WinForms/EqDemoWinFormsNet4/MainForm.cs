@@ -279,7 +279,7 @@ namespace EqDemo
 
         }
 
-        private void query1_ColumnsChanged(object sender, ColumnsChangeEventArgs e)
+        private void query1_ColumnsChanged(object sender, QueryColumnChangeEventArgs e)
         {
             BuildSQL();
             ResultDS.Reset();
