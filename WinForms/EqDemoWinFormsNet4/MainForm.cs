@@ -65,11 +65,9 @@ namespace EqDemo
 
         private SqlConnection _connection;
 
-        private DbModel _dataModel;
-        private DbQuery _query;
-
         private EntityAttr _countryAttr = null;
 
+        private EasyQueryManagerSql EqManager;
 
         public MainForm()
         {
@@ -93,22 +91,23 @@ namespace EqDemo
 
         private void InitEasyQuery()
         {
+            var options = new EasyQueryOptions();
+            EqManager = new EasyQueryManagerSql(options);
+
             //intialize the data model and load it from XML (or JSON) file
-            _dataModel = new DbModel();
-            _dataModel.LoadFromDbContext(ApplicationDbContext.Create());
+            EqManager.Model.LoadFromDbContext(ApplicationDbContext.Create());
 
             // DbGate.Register<SqlServerGate>();
             // _dataModel.LoadFromConnection(ApplicationDbContext.Create().Database.Connection);
 
             //saving the reference to Customer Country attribute in our model (will be used on RequestList processing)
-            _countryAttr = _dataModel.EntityRoot.FindAttributeById("Customers.Country");
+            _countryAttr = EqManager.Model.EntityRoot.FindAttributeById("Customers.Country");
 
-            //initialize the query and assign it to all visual controls.
-            _query = new DbQuery(_dataModel);
-            QPanel.Query = _query;
-            CPanel.Query = _query;
-            SPanel.Query = _query;
-            EntPanel.Query = _query;
+            //assign query to all visual controls.
+            QPanel.Query = EqManager.Query;
+            CPanel.Query = EqManager.Query;
+            SPanel.Query = EqManager.Query;
+            EntPanel.Query = EqManager.Query;
 
             //setting differnt properties of EasyQuery visual controls
             this.CPanel.AllowEditCaptions = true;
@@ -146,7 +145,7 @@ namespace EqDemo
 
         private void btClear_Click(object sender, System.EventArgs e)
         {
-            QPanel.Query.Clear();
+            EqManager.Query.Clear();
             EntPanel.ClearFilter();
             teSQL.Clear();
             dataGrid1.DataSource = null;
@@ -160,10 +159,10 @@ namespace EqDemo
             openFileDlg.InitialDirectory = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "App_Data");
             if (openFileDlg.ShowDialog() == DialogResult.OK) {
                 if (openFileDlg.FilterIndex == 1) {
-                    QPanel.Query.LoadFromJsonFile(openFileDlg.FileName);
+                    EqManager.Query.LoadFromJsonFile(openFileDlg.FileName);
                 }
                 else {
-                    QPanel.Query.LoadFromXmlFile(openFileDlg.FileName);
+                    EqManager.Query.LoadFromXmlFile(openFileDlg.FileName);
                 }
             }
         }
@@ -177,10 +176,10 @@ namespace EqDemo
             saveFileDlg.FileName = System.IO.Path.Combine(_dataFolder, "queries\\query");
             if (saveFileDlg.ShowDialog() == DialogResult.OK) {
                 if (saveFileDlg.FilterIndex == 1) {
-                    QPanel.Query.SaveToJsonFile(saveFileDlg.FileName);
+                    EqManager.Query.SaveToJsonFile(saveFileDlg.FileName);
                 }
                 else {
-                    QPanel.Query.SaveToXmlFile(saveFileDlg.FileName);
+                    EqManager.Query.SaveToXmlFile(saveFileDlg.FileName);
                 }
             }
         }
@@ -198,8 +197,7 @@ namespace EqDemo
                 var command = _connection.CreateCommand();
                 command.CommandText = builderResult.Statement;
                 foreach (QueryParam param in builderResult.Params) {
-                    command.Parameters.Add("@" + param.Id);
-                    command.Parameters["@" + param.Id].Value = param.Value;
+                    command.Parameters.Add(new SqlParameter("@" + param.Id, param.Value));
                 }
 
                 var resultDA = new SqlDataAdapter(command);
@@ -221,15 +219,15 @@ namespace EqDemo
         {
             teSQL.Clear();
             try {
-                SqlQueryBuilder builder = new SqlQueryBuilder(_query);
-                builder.Formats.SetDefaultFormats(FormatType.MsSqlServer);
+                
+                EqManager.QueryBuilder.Formats.SetDefaultFormats(FormatType.MsSqlServer);
 
-                if (builder.CanBuild) {
-                    builder.BuildSQL();
-                    string sql = builder.Result.SQL;
+                if (EqManager.QueryBuilder.CanBuild) {
+                    EqManager.QueryBuilder.BuildParamSQL();
+                    string sql = EqManager.QueryBuilder.Result.SQL;
                     teSQL.Text = sql;
 
-                    return builder;
+                    return EqManager.QueryBuilder;
                 }
 
                 return null;
@@ -264,7 +262,7 @@ namespace EqDemo
             }
             else if (e.ListName == "RegionList") {
                 e.ListItems.Clear();
-                string country = _query.GetOneValueForAttr(_countryAttr);
+                string country = EqManager.Query.GetOneValueForAttr(_countryAttr);
 
                 if (country == "Canada" || country == null) {
                     e.ListItems.Add("British Columbia", "BC");
@@ -365,9 +363,9 @@ namespace EqDemo
 
         private void ExportData(IDataExporter exporter, string fileName)
         {
-            using (var resultSet = new EasyDbResultSet(_query, 
+            using (var resultSet = new EasyDbResultSet(EqManager.Query, 
                 ResultDS.Tables[0].CreateDataReader(), 
-                new ResultSetOptions()))
+                EqManager.ResultSetOptions))
             using (var fileStream = File.OpenWrite(fileName))
                 exporter.Export(resultSet, fileStream);
             Process.Start(fileName);
