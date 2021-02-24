@@ -41,23 +41,26 @@
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="MainForm.cs" />
-    <Compile Update="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Update="EasyQueryForm.cs" />
+    <Compile Update="EasyQueryForm.Designer.cs">
+      <DependentUpon>EasyQueryForm.cs</DependentUpon>
     </Compile>
-    <Compile Update="MainForm.Resources.Designer.cs">
-      <DependentUpon>MainForm.Resources.resx</DependentUpon>
+    <Compile Update="EasyQueryForm.Resources.Designer.cs">
+      <DependentUpon>EasyQueryForm.Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="MainForm.Resources.resx">
-      <LastGenOutput>MainForm.Resources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="EasyQueryForm.Resources.resx">
+      <LastGenOutput>EasyQueryForm.Resources.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Update="EasyQueryForm.resx">
+      <DependentUpon>EasyQueryForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
