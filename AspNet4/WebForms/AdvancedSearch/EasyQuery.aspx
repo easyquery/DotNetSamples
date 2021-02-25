@@ -40,6 +40,7 @@
                 loadQueryOnStart: false,
 
                 enableExport: true,
+                serverExporters: ['csv', 'pdf', 'excel'],
 
                 //Handlers
                 handlers: {

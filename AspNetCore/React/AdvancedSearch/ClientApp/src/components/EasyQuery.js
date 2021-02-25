@@ -15,6 +15,7 @@ export class EasyQuery extends Component {
     componentDidMount() {
         const viewOptions = {
             enableExport: true,
+            serverExporters: ['pdf', 'excel', 'csv'],
             loadModelOnStart: true,
             loadQueryOnStart: false,
 

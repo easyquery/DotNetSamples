@@ -34,16 +34,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\ApplicationDbContext.cs" />
+    <Compile Include="EasyQueryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EasyQueryForm.Designer.cs">
+      <DependentUpon>EasyQueryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EasyQueryForm.Resources.Designer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MainForm.Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202101141900542_IntitalCreate.cs" />
     <Compile Include="Migrations\202101141900542_IntitalCreate.Designer.cs">
@@ -60,9 +62,8 @@
     <Compile Include="Models\NWind\Supplier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.Resources.resx">
-      <LastGenOutput>MainForm.Resources.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
+    <EmbeddedResource Include="EasyQueryForm.resx">
+      <DependentUpon>EasyQueryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -129,6 +130,9 @@
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.2.1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

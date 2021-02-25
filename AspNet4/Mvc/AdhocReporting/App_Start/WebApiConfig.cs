@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
-
-using EasyData.Export.Csv;
-using EasyData.Export.Excel;
-using EasyData.Export.Pdf;
-
 using Korzh.EasyQuery.Services;
+
+using EasyData.Export;
 
 namespace EqDemo
 {

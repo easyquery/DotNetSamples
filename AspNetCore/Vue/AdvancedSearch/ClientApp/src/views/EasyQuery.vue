@@ -125,6 +125,7 @@
         private mounted() {
             const viewOptions: EqViewOptions = {
                 enableExport: true,
+                serverExporters: ['pdf', 'excel', 'csv'],
                 loadModelOnStart: true,
 
                 handlers: {

@@ -30,6 +30,7 @@ export class EasyQueryComponent implements AfterViewInit {
       //here we define some options for AdvancedSearchView
       const viewOptions: EqViewOptions = {
         enableExport: true,
+        serverExporters: ['pdf', 'excel', 'csv'],
         loadModelOnStart: true,
         loadQueryOnStart: false,
         handlers: {

@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using VueCliMiddleware;
 
 using Korzh.EasyQuery.Services;
+using EasyData.Export;
 
 namespace EqDemo
 {
@@ -50,7 +51,11 @@ namespace EqDemo
 
             services.AddEasyQuery()
                     .UseSqlManager()
-                    .AddDefaultExporters();
+                    .AddDefaultExporters()
+                    .AddDataExporter<PdfDataExporter>("pdf")
+                    .AddDataExporter<ExcelDataExporter>("excel");
+            // Uncomment if you want to load model directly from DB               
+            // .RegisterDbGate<SqlServerGate>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

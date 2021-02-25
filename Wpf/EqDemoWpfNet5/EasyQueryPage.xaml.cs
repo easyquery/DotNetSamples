@@ -13,8 +13,6 @@ using Microsoft.EntityFrameworkCore;
 using Korzh.DbUtils;
 
 using EasyData.Export;
-using EasyData.Export.Excel;
-using EasyData.Export.Csv;
 
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Wpf;
