@@ -92,9 +92,8 @@
             var view = new easyquery.ui.HtmlDataFilterView();
             view.getContext()
                 .useEndpoint('/data-filtering')
-                .useEnterprise(function () {
-                    view.init(viewOptions);
-                });
+                .useEnterprise('@Korzh.EasyQuery.AspNetCore.JSLicense.Key');
+            view.init(viewOptions);
 
             var searchButton = document.getElementById("searchButton");
             if (searchButton) {
