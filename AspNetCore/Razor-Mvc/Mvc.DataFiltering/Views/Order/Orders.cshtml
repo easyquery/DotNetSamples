@@ -77,7 +77,7 @@
                     }
                 },
                 handlers: {
-                    beforeExecuteQuery: function (context, options) {
+                    beforeFetchData: function (_, options) {
                         options.data = options.data || {};
 
                         //add full text search text to query
