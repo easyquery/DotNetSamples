@@ -3,9 +3,7 @@ Imports System.Web.Http
 Imports System.Web.Http.Controllers
 Imports System.Web.Http.Routing
 
-Imports EasyData.Export.Csv
-Imports EasyData.Export.Excel
-Imports EasyData.Export.Pdf
+Imports EasyData.Export
 
 Imports Korzh.EasyQuery.Services
 

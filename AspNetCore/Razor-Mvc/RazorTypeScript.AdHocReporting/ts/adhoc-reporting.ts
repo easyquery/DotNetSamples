@@ -9,6 +9,8 @@ window.addEventListener('load', () => {
 
         calcTotals: true,
 
+        serverExporters: ['pdf', 'excel', 'excel-html', 'csv'],
+
         //Saves report on each change
         syncReportOnChange: true,
 

@@ -37,6 +37,7 @@
                 loadQueryOnStart: false,
      
                 enableExport: true,
+                serverExporters: ['csv', 'pdf', 'excel'],
                 // Controller endpoint
                 endpoint: "/api/easyquery",
                 //Handlers

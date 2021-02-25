@@ -20,10 +20,14 @@
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.0-rc13" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-rc13" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-rc13" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-rc13" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.2.1" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.2.1" />    
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.0-rc14" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.0-rc14" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.0-rc14" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.0.0-rc14" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
@@ -72,7 +76,7 @@
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
       <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>

@@ -121,7 +121,8 @@ export class EasyQueryKendoComponent implements AfterViewInit {
     ngAfterViewInit() {
 
         const options: EqViewOptions = {
-
+          enableExport: true,
+          serverExporters: ['pdf', 'excel', 'csv'],
           loadModelOnStart: true,
           loadQueryOnStart: false,
   

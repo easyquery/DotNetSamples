@@ -11,8 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Korzh.DbUtils;
 
 using EasyData.Export;
-using EasyData.Export.Csv;
-using EasyData.Export.Excel;
 
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Db;

@@ -12,6 +12,7 @@ using EqDemo.Models;
 using EqDemo.Services;
 
 using Korzh.EasyQuery.Services;
+using EasyData.Export;
 
 namespace EqDemo
 {
@@ -51,7 +52,9 @@ namespace EqDemo
 
             services.AddEasyQuery()
                     .UseSqlManager()
-                    .AddDefaultExporters();
+                    .AddDefaultExporters()
+                    .AddDataExporter<PdfDataExporter>("pdf")
+                    .AddDataExporter<ExcelDataExporter>("excel");
 
             // add default reports generatir
             services.AddScoped<DefaultReportGenerator>();

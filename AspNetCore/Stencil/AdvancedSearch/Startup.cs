@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 using Korzh.EasyQuery.Services;
+using EasyData.Export;
 
 namespace EqDemo
 {
@@ -41,8 +42,10 @@ namespace EqDemo
             });
 
             services.AddEasyQuery()
-                 .AddDefaultExporters()
-                 .UseSqlManager();
+              .UseSqlManager()
+              .AddDefaultExporters()
+              .AddDataExporter<PdfDataExporter>("pdf")
+              .AddDataExporter<ExcelDataExporter>("excel");
             // Uncomment if you want to load model directly from DB               
             // .RegisterDbGate<SqlServerGate>();
 

@@ -23,6 +23,7 @@ export class EasyQuery {
         const viewOptions: EqViewOptions = {
             shadowRoots: [ this.host.shadowRoot ],
             enableExport: true,
+            serverExporters: ['pdf', 'excel', 'csv'],
             loadModelOnStart: true,
             loadQueryOnStart: false,
 

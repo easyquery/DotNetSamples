@@ -139,6 +139,8 @@
                 //Saves report on each change
                 syncReportOnChange: true,
 
+                serverExporters: [ 'pdf', 'excel', 'excel-html', 'csv'],
+
                 handlers: {
                     onError: function (context, error) {
                         console.error(error.sourceError);
