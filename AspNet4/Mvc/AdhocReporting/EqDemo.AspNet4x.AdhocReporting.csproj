@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.SqlServerGate">
-      <Version>7.0.0-rc13</Version>
+      <Version>7.0.0-rc14</Version>
     </PackageReference>
     <PackageReference Include="WebGrease">
       <Version>1.6.0</Version>
