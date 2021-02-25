@@ -103,10 +103,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.0.0-rc13" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.0.0-rc13" />
-    <PackageReference Include="Korzh.EasyQuery.AspNet4" Version="7.0.0-rc13" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFramework6" Version="7.0.0-rc13" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.0.0-rc14" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.0.0-rc14" />
+    <PackageReference Include="Korzh.EasyQuery.AspNet4" Version="7.0.0-rc14" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFramework6" Version="7.0.0-rc14" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
