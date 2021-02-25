@@ -7,7 +7,8 @@
       {
          "id":"col-xwe7656feo",
          "cptn":"Product Name",
-         "srt":0,
+      "srt": 1,
+      "srtidx": 0,
          "expr":{
             "tag":2,
             "dtype":1,
@@ -20,6 +21,7 @@
          "id":"col-fge7656feo",
          "cptn":"Client Country",
          "srt":0,
+      "srtidx": 1,
          "expr":{
             "tag":2,
             "dtype":1,
@@ -32,6 +34,7 @@
          "id":"col-l9e7656feo",
          "cptn":"Totals",
          "srt":0,
+      "srtidx": 2,
          "expr":{
             "tag":4,
             "dtype":8,
@@ -80,25 +83,30 @@
          
       ]
    },
-   "innerData":{
-      "facets":{
-         "active":1,
-         "items":[
-            {
-               "title":"Result set",
-               "type":"DATA_GRID"
-            },
-            {
-               "title":"Pivot table",
-               "type":"PIVOT_TABLE",
-               "colName":"Client Country",
-               "rowName":"Product Name",
-               "aggrFunc":"SUM",
-               "fieldName":"Totals",
-               "totalsRow":true,
-               "totalsCol":true
+  "innerData": {
+    "facets": {
+      "active": 1,
+      "items": [
+        {
+          "title": "Result set",
+          "type": "DATA_GRID",
+          "cols": {
+            "col-xwe7656feo": {
+              "calcSubTotals": true
             }
-         ]
-      }
-   }
+          }
+        },
+        {
+          "title": "Pivot table",
+          "type": "PIVOT_TABLE",
+          "colName": "col-xwe7656feo",
+          "rowName": "col-fge7656feo",
+          "aggrFunc": "SUM",
+          "fieldName": "col-l9e7656feo",
+          "totalsRow": true,
+          "totalsCol": true
+        }
+      ]
+    }
+  }
 }
