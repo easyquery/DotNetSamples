@@ -48,7 +48,7 @@ namespace EqDemo
                 };
 
                 var resetDemoUserStr = ConfigurationManager.AppSettings["resetDefaultUser"];
-                var resetDemoUser = resetDemoUserStr != null ? bool.Parse(resetDemoUserStr) : true;
+                var resetDemoUser = resetDemoUserStr != null ? bool.Parse(resetDemoUserStr) : false;
 
                 var user = userManager.FindByEmail(defaultUserEmail);
 
