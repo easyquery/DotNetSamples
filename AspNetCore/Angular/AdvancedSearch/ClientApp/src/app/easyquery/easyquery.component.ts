@@ -72,18 +72,18 @@ export class EasyQueryComponent implements AfterViewInit {
             },
             //the following piece demonstrates how to set a custom expression renderer
             //for some value editors (for ContextNameEditor in this particular example)
-            //onGetExpressionRenderer: (queryPanel, expression, valueEditor, slot) => {
-            //  const condition = expression.getParent() as Condition;
-            //  const model = condition.getQuery().getModel();
-            //  const attrId = condition.expressions[0].value;
-            //  const attr = model.getAttributeById(attrId);
+            onGetExpressionRenderer: (queryPanel, expression, valueEditor, slot) => {
+             const condition = expression.getParent() as Condition;
+             const model = condition.getQuery().getModel();
+             const attrId = condition.expressions[0].value;
+             const attr = model.getAttributeById(attrId);
 
-            //  if (attr.defaultEditor.id === "ContactNameEditor") {
-            //    return new CustomExpressionRenderer(queryPanel, expression, attr.defaultEditor, slot);
-            //  }
+             if (attr.defaultEditor && attr.defaultEditor.id === "ContactNameEditor") {
+               return new CustomExpressionRenderer(queryPanel, expression, attr.defaultEditor, slot);
+             }
 
-            //  return null;
-            //}
+             return null;
+            }
           }
         },
         result: {

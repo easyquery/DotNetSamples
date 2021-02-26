@@ -15,7 +15,9 @@ export class CustomExpressionRenderer extends ExpressionRenderer {
   protected showEditor(): void {
     // show your editor
     const value = prompt("Enter value: ");
-    this.setValue(value);
+    if (value) {
+      this.setValue(value);
+    }
   }
 
   protected closeEditor(): void {
