@@ -62,6 +62,7 @@
     <Compile Include="Models\NWind\Supplier.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EasyQueryForm.Resources.resx" />
     <EmbeddedResource Include="EasyQueryForm.resx">
       <DependentUpon>EasyQueryForm.cs</DependentUpon>
     </EmbeddedResource>
