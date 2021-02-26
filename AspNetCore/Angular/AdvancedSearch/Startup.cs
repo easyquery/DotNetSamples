@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,9 +7,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 using EasyData;
-using Korzh.EasyQuery;
-using Korzh.EasyQuery.Services;
 using EasyData.Export;
+
+using Korzh.EasyQuery.Services;
 
 namespace EqDemo
 {
@@ -88,6 +86,15 @@ namespace EqDemo
 
                 // Uncomment if you want to donwload model directly from DB
                 // options.UseDbConnectionModelLoader();
+
+                options.UseModelTuner(manager =>
+                {
+                    // for onGetExpression example
+                    var attr = manager.Model.FindEntityAttr("Customer.CompanyName");
+                    if (attr != null) {
+                        attr.DefaultEditor = new TextValueEditor("ContactNameEditor");
+                    }
+                });
 
                 options.UseQueryStore((_) => new FileQueryStore("App_Data"));
             });
