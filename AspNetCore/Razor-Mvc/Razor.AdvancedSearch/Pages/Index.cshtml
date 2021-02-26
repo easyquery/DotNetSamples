@@ -1,0 +1,352 @@
+﻿@page
+@model EqDemo.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Advanced Search demo";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.0/eq.view.min.css">
+
+    <!-- AgGrid script -->
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css">
+
+    <style>
+        .eqjs-menu-levelDiv {
+            border: 1px solid silver;
+            border-radius: 0 0 4px 4px;
+            padding: 6px 0;
+            box-shadow: 4px 8px 15px 0px rgba(0,0,0,.16);
+        }
+
+        .eqjs-menu-itemDiv {
+            min-width: 158px;
+            font-size: 0.9rem;
+        }
+
+            .eqjs-menu-itemDiv:hover {
+                background-color: #ecf3f5 !important;
+                color: #1776b1;
+            }
+    </style>
+}
+
+<div class="container">
+    <partial name="EasyQuery/_AdvancedSearch" />
+</div>
+
+@section Scripts {
+
+    <!-- ChartJS script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" type="text/javascript"></script>
+
+    <!-- EasyQuery scripts -->
+    <!--<script src="https://cdn.korzh.com/eq/7.0.0/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.0/eq.enterprise.min.js"></script>
+
+
+    <script>
+        var EqAgGrid = function (slot) {
+            Object.getPrototypeOf(EqAgGrid.prototype).constructor.call(this, slot);
+            slot.classList.add('ag-theme-alpine');
+
+            this.pageSize = 30;
+        };
+
+        EqAgGrid.prototype = Object.create(easyquery.ui.Grid.prototype);
+
+
+        EqAgGrid.prototype.render = function () {
+
+            this.agGridOptions = {};
+
+            if (this.context.resultTable && this.context.resultTable.columns.count > 0) {
+                this.applyDisplayFormats();
+
+                this.agGridOptions.columnDefs = this.getColumnsDefs();
+                this.agGridOptions.pagination = true;
+                this.agGridOptions.rowModelType = 'infinite';
+                this.agGridOptions.cacheBlockSize = this.pageSize;
+                this.agGridOptions.paginationPageSize = this.pageSize;
+
+                function getRowsHandler(params) {
+                    this.context.resultTable.getRows({
+                        offset: params.startRow,
+                        limit: this.pageSize
+                    })
+                        .then(function (rows) {
+                            this.applyDisplayFormats();
+                            params.successCallback(this.convertToRowData(rows), this.context.resultTable.getTotal());
+                        }.bind(this));
+                }
+
+                this.agGridOptions.datasource = {
+                    rowCount: null,
+                    getRows: getRowsHandler.bind(this)
+                };
+            }
+
+            this.agGrid = new agGrid.Grid(this.slot, this.agGridOptions);
+        }
+
+        EqAgGrid.prototype.clear = function () {
+            if (this.agGrid) {
+                this.agGrid.destroy();
+                this.agGrid = null;
+            }
+        }
+
+        EqAgGrid.prototype.getColumnsDefs = function () {
+            var columns = [];
+
+            var resultTable = this.context.resultTable;
+            for (var i = 0; i < resultTable.columns.count; i++) {
+                var col = resultTable.columns.get(i);
+                columns.push({ headerName: col.label, field: col.id });
+            }
+
+            return columns;
+        }
+
+        EqAgGrid.prototype.convertToRowData = function (rows) {
+            var result = [];
+
+            var resultTable = this.context.resultTable;
+
+            for (var rowIdx = 0; rowIdx < rows.length; rowIdx++) {
+                var row = rows[rowIdx];
+                var dataRow = {};
+                for (var i = 0; i < resultTable.columns.count; i++) {
+                    var col = resultTable.columns.get(i);
+                    dataRow[col.id] = row.getValue(i);
+                }
+
+                result.push(dataRow);
+            }
+
+            return result;
+        }
+
+    </script>
+
+    <!-- ES6 Implementation
+    <script>
+        class EqAgGrid extends easyquery.ui.Grid {
+
+            pageSize = 30;
+
+            constructor(slot) {
+                super(slot);
+
+                slot.classList.add('ag-theme-alpine');
+
+            }
+
+            render() {
+
+                this.agGridOptions = {};
+
+                if (this.context.resultTable && this.context.resultTable.columns.count > 0) {
+                    this.applyDisplayFormats();
+
+                    this.agGridOptions.columnDefs = this.getColumnsDefs();
+                    this.agGridOptions.pagination = true;
+                    this.agGridOptions.rowModelType = 'infinite';
+                    this.agGridOptions.cacheBlockSize = this.pageSize;
+                    this.agGridOptions.paginationPageSize = this.pageSize;
+
+                    this.agGridOptions.datasource = {
+                        rowCount: null,
+                        getRows: (params) => {
+                            this.context.resultTable.getRows({
+                                offset: params.startRow,
+                                limit: this.pageSize
+                            })
+                            .then(rows => {
+                                this.applyDisplayFormats();
+                                params.successCallback(this.convertToRowData(rows), this.context.resultTable.getTotal());
+                            });
+                        }
+                    };
+                }
+
+                this.agGrid = new agGrid.Grid(this.slot, this.agGridOptions);
+            }
+
+            clear() {
+                if (this.agGrid) {
+                    this.agGrid.destroy();
+                    this.agGrid = null;
+                }
+            }
+
+            // specify the columns
+            getColumnsDefs() {
+                const columns = [];
+
+                const resultTable = this.context.resultTable;
+                for (const col of resultTable.columns.getItems()) {
+                    columns.push({ headerName: col.label, field: col.id });
+                }
+
+                return columns;
+            }
+
+            // specify the data
+            convertToRowData(rows) {
+                const result = [];
+
+                const resultTable = this.context.resultTable;
+                for (const row of rows) {
+                    const dataRow = {};
+                    for (let i = 0; i < resultTable.columns.count; i++) {
+                        const col = resultTable.columns.get(i);
+                        dataRow[col.id] = row.getValue(i);
+                    }
+
+                    result.push(dataRow);
+                }
+
+                return result;
+            }
+        }
+    </script>
+     -->
+    <!-- EasyQuery Advanced Search view initialization -->
+    <script>
+        window.addEventListener('load', function () {
+
+            function renderGridSelector() {
+
+                var gridSelector = document.createElement('select');
+                gridSelector.classList.add('eqv-select');
+
+                var menuContent = document.getElementsByClassName('eqv-menu-content')[0];
+                menuContent.appendChild(gridSelector);
+
+                var defOption = document.createElement('option');
+                defOption.setAttribute('value', 'default');
+                defOption.text = "EasyGrid";
+                gridSelector.appendChild(defOption);
+
+                var agOption = document.createElement('option');
+                agOption.setAttribute('value', 'ag-grid');
+                agOption.text = "AgGrid";
+                gridSelector.appendChild(agOption);
+
+                var gridType = this.localStorage.getItem('grid-type') || 'default';
+                gridSelector.value = gridType;
+
+                gridSelector.addEventListener('change', function () {
+                    window.localStorage.setItem('grid-type', gridSelector.value);
+                    window.location.reload();
+                });
+
+            }
+            //Options for AdvancedSearchViewJQuery
+            var viewOptions = {
+                //Load model on start
+                loadModelOnStart: true,
+
+                //Load query on start
+                loadQueryOnStart: false,
+
+                enableExport: true,
+                serverExporters: ['pdf', 'excel', 'csv'],
+
+                //locale: 'en-US',
+
+                localeSettings: {
+                    shortDateFormat : 'yyyy-MM-dd',
+                },
+
+                //Handlers
+                handlers: {
+                    //Error handler
+                    onError: function (context, error) {
+                        console.error(error.action + " error:\n" + error.text);
+                    }
+                },
+
+                //Widgets options
+                widgets: {
+
+                    //EntitiesPanel options
+                    entitiesPanel: {
+                        showCheckboxes: true
+                    },
+
+                    //ColumnsPanel options
+                    columnsPanel: {
+                        allowAggrColumns: true,
+                        allowCustomExpressions: true,
+                        attrElementFormat: "{entity} {attr}",
+                        titleElementFormat: "{attr}",
+                        showColumnCaptions: true,
+                        adjustEntitiesMenuHeight: false,
+                        customExpressionText: 2,
+                        showPoweredBy: false,
+                        menuOptions: {
+                            showSearchBoxAfter: 30,
+                            activateOnMouseOver: true
+                        }
+                    },
+
+                    //QueryPanel options
+                    queryPanel: {
+                        showDateTimeInput: true,
+                        alwaysShowButtonsInGroups: false,
+                        allowParameterization: true,
+                        allowInJoinConditions: true,
+                        autoEditNewCondition: true,
+                        buttons: {
+                            condition: ["menu"],
+                            predicate: ["addCondition", "addPredicate", "enable", "delete"]
+                        },
+                        menuOptions: {
+                            showSearchBoxAfter: 20,
+                            activateOnMouseOver: true
+                        }
+                    },
+
+                    //ResultGrid options
+                    easyGrid: {
+                        autoHeight: true,
+                    }
+                },
+                result: {
+                    //Show EasyChart
+                    showChart: true,
+                    paging: {
+                        enabled: true,
+                        pageSize: 30
+                    }
+                }
+
+            };
+
+            var gridType = window.localStorage.getItem('grid-type');
+            if (gridType == 'ag-grid') {
+                viewOptions.result.resultGridResolver = function (slot) {
+                    return new EqAgGrid(slot);
+                }
+            }
+
+            var view = new easyquery.ui.AdvancedSearchView();
+            var context = view.getContext();
+            context.useEnterprise(function () {
+                view.init(viewOptions);
+            });
+
+            document['AdvancedSearchView'] = view;
+
+            renderGridSelector();
+        });
+    </script>
+}

@@ -1,0 +1,11 @@
+﻿<Window x:Class="EqDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:clr="clr-namespace:System;assembly=mscorlib"        
+        Title="EasyQuery.NET WPF Demo" Height="685" Width="1124" WindowStartupLocation="CenterScreen">
+
+    <DockPanel>
+        <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" />
+    </DockPanel>
+
+</Window>

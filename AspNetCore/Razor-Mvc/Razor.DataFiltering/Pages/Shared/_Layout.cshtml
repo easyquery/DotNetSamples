@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["IsIndexPage"] == null ? @ViewData["Title"] + " - " : "")EasyQuery library samples</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="~/css/root.css" />
+
+    @RenderSection("Styles", required: false)
+
+</head>
+<body>
+
+    <header class="navbar border-bottom mb-3 p-0 container-fluid px-5">
+        <div class="header my-2">
+            <a href="~/"><div class="logo-title">Advanced Search Demo</div></a>
+        </div>
+    </header>
+    <div class="global-message"></div>
+
+    @RenderBody()
+
+    <footer class="footer container-fluid px-5">
+        <div class="float-right">Powered by <a href="https://korzh.com/easyquery">EasyQuery</a></div>
+        <div>Copyright 2019-@DateTime.Now.Year © <a href="https://korzh.com">Korzh.com</a></div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" type="text/javascript"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

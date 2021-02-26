@@ -1,0 +1,12 @@
+﻿<Page x:Class="EqDemo.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      d:Width="1124" d:Height="680"
+      mc:Ignorable="d">
+
+    <Grid Background="AliceBlue">
+        <Button Name="EQB" Width="100" Height="30" Content="EasyQuery" Click="Button_Click" />
+    </Grid>
+</Page>
