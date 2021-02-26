@@ -19,6 +19,8 @@ namespace EqDemo
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ExportFormats = "pdf,excel,excel-html,csv";
         }
 
         public IConfiguration Configuration { get; }

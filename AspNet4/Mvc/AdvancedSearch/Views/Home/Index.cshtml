@@ -131,9 +131,6 @@
                 enableExport: true,
                 serverExporters: [ 'csv', 'pdf', 'excel' ],
 
-                // Controller endpoint
-                endpoint: "/api/easyquery",
-
                 //Handlers
                 handlers: {
                     //Error handler
@@ -193,8 +190,10 @@
             }
 
             var view = new easyquery.ui.AdvancedSearchView();
-            view.getContext().useEnterprise('@Korzh.EasyQuery.AspNet.JSLicense.Key');
-            view.init(viewOptions);
+            view.getContext().useEndpoint('/api/easyquery');
+            view.getContext().useEnterprise(function () {
+                view.init(viewOptions);
+            });
 
             document['AdvancedSearchView'] = view;
         });
