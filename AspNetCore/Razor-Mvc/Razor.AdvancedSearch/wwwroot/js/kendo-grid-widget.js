@@ -27,8 +27,14 @@
         this.grid.setDataSource(dataSource);
     }
 
+    /**
+     * Get aggregates for Kendo
+     */
     getAggregate() {
-        const aggrCols = this.context.getQuery().getAggregatedColumns();
+        // get aggregated columsn from query
+        const aggrCols = this.context.getQuery()
+            .getAggregatedColumns();
+
         const aggregate = [];
         for (const col of aggrCols) {
             aggregate.push({
@@ -40,7 +46,9 @@
         return aggregate;
     }
 
-    // specify the columns
+    /**
+    * Gets columns for Kendo Grid
+    */
     getColumnsDefs() {
         const columns = [];
 
@@ -54,6 +62,7 @@
             columns.push(column);
         };
 
+        // calTotals mode on
         if (this.context.calcTotals) {
             const settings = this.context.getTotalsSettings();
             if (settings.calcGrandTotals) {
@@ -68,6 +77,7 @@
                 }
             }
 
+            // get coulumns which are used in totals
             const cols = query.getUsedInTotalsColumns();
             for (const col of cols) {
                 for (const kendoCol of columns) {
@@ -83,6 +93,11 @@
         return columns;
     }
 
+    /**
+     * Constructs Group header template for kendo column
+     * @param col The column
+     * @param settings The totals settigns
+     */
     buildGroupHeaderTemplate(col, settings) {
         let result = `${col.caption}: #=value#`;
         if (!settings.cols || settings.cols[col.id].calcSubTotals) {
@@ -102,7 +117,10 @@
         return field.replace('_', '-');
     }
 
-    // specify the data
+    /**
+    * Converts EasyQuery rows representation into 
+    * Kendo
+    */
     convertToGridData(rows) {
         const result = [];
 
@@ -120,12 +138,14 @@
         return result;
     }
 
+    /**
+     * Creates custom DataSource for Kendo widget
+     */
     createDataSource() {
 
         const options = {
             transport: {
                 read: async (options) => {
-                    console.log("Data source options", options);
                     const rows = await this.context.resultTable.getRows({
                         offset: options.data.skip,
                         limit: options.data.take
@@ -140,7 +160,6 @@
                         aggregates = await this.buildAggregates();
                     }
                     const result = { data, groups, aggregates };
-                    console.log("Result", result);
                     options.success(result);
                 }
             },
@@ -156,6 +175,7 @@
             pageSize: 10,
         };
 
+        // calTotals mode on
         if (this.context.calcTotals) {
             const query = this.context.getQuery();
             if (query.hasEnabledAggrColumns()) {
@@ -176,16 +196,24 @@
         return new kendo.data.DataSource(options);
     }
 
+    /**
+    * Contruct Kendo Aggregates for columns based on EasyQuery information
+    * @param options
+    */
     async buildAggregates() {
         const cols = this.context.resultTable.columns;
         const row = new easydata.core.DataRow(cols, new Array(cols.count));
 
-        // fill aggr cols in data row
+        // get totals container
         const totals = this.context.getServices()
             .getTotalCalculator()
             .getTotals();
+
+        // fill totals for level 0 (Grand totals)
+        // in DataRow row
         await totals.fillTotals(0, row);
 
+        // write aggregates values from row in Kendo format
         const aggregates = {};
         const aggrCols = this.context.getQuery().getAggregatedColumns();
         for (const col of aggrCols) {
@@ -196,6 +224,10 @@
         return aggregates;
     }
 
+    /**
+    * Contruct Kendo Groups for columns based on EasyQuery information
+    * @param options
+    */
     async buildGroups(colIndex, data) {
         const groups = [];
         const query = this.context.getQuery();
@@ -219,6 +251,10 @@
         return groups;
     }
 
+    /**
+     * Contruct Kendo Group based on EasyQuery information
+     * @param options 
+     */
     async buildGroup(options) {
         const group = {
             field: options.field,
@@ -233,6 +269,9 @@
         }
 
         group.aggregates = {};
+
+        // here we get totals settings selected
+        // by the user in dialog
         const settings = this.context.getTotalsSettings();
         const colId = this.fieldToId(group.field);
         if (!settings.cols || settings.cols[colId].calcSubTotals) {
@@ -240,19 +279,26 @@
                 .getTotalCalculator()
                 .getTotals();
 
-            // fill data row with key columns 
+            // fill data row with key column values 
             const cols = this.context.resultTable.columns;
             const totalCols = this.context.getQuery().getUsedInTotalsColumns();
             const values = options.data[0];
+
+            // create DataRow for reading total values
             const row = new easydata.core.DataRow(cols, new Array(cols.count));
+
+            // fill group column values 
+            // for current level (it is used as keys for Aggr Totals Values)
             for (const col of totalCols) {
                 const value = values[this.idToField(col.id)];
                 row.setValue(col.id, value);
             }
 
-            // fill aggr cols in data row
+            // fill totals for level colIndex + 1 (Sub totals)
+            // in DataRow row
             await totals.fillTotals(options.colIndex + 1, row);
 
+            // write aggregates values from row in Kendo format
             const aggrCols = this.context.getQuery().getAggregatedColumns();
             for (const col of aggrCols) {
                 group.aggregates[this.idToField(col.id)] = {};
