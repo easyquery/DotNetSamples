@@ -95,7 +95,7 @@ Partial Class EasyQueryForm
         Me.panelExport.Size = New System.Drawing.Size(44, 219)
         Me.panelExport.TabIndex = 2
         Me.panelExport.TabStop = False
-        Me.btnExportCsv.Image = EasyQueryForm_Resources.btnExportCsv_Image
+        Me.btnExportCsv.Image = My.Resources.EasyQueryForm_Resources.btnExportCsv_Image
         Me.btnExportCsv.Location = New System.Drawing.Point(3, 63)
         Me.btnExportCsv.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnExportCsv.Name = "btnExportCsv"
@@ -105,7 +105,7 @@ Partial Class EasyQueryForm
         Me.toolTipCsv.SetToolTip(Me.btnExportCsv, "Export to CSV")
         Me.btnExportCsv.UseVisualStyleBackColor = True
         AddHandler Me.btnExportCsv.Click, New System.EventHandler(AddressOf Me.btnExportCsv_Click)
-        Me.btnExportExel.Image = EasyQueryForm_Resources.btnExportExel_Image
+        Me.btnExportExel.Image = My.Resources.EasyQueryForm_Resources.btnExportExel_Image
         Me.btnExportExel.Location = New System.Drawing.Point(3, 20)
         Me.btnExportExel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnExportExel.Name = "btnExportExel"

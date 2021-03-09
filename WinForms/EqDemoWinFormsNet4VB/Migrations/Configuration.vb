@@ -9,8 +9,8 @@ Namespace Migrations
         Inherits DbMigrationsConfiguration(Of ApplicationDbContext)
 
         Public Sub New()
-            AutomaticMigrationsEnabled = False
-            ContextKey = "EqDemo.Models.ApplicationDbContext"
+            AutomaticMigrationsEnabled = True
+            ContextKey = "Models.ApplicationDbContext"
         End Sub
 
         Protected Overrides Sub Seed(context As ApplicationDbContext)

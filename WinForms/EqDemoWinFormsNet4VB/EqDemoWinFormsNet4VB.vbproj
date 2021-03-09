@@ -12,8 +12,6 @@
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -75,12 +73,22 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ItemGroup>
+    <Compile Include="EasyQueryForm\EasyQueryForm.Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EasyQueryForm.Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Migrations\202101141900542_IntitalCreate.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>202101141900542_IntitalCreate.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -117,13 +125,22 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <Content Include="App_Data\EqDemoData.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="App_Data\Empolyee of the year.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Sales by product %28this year%29.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="App_Data\Sales by countries %28last year%29.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\202101141900542_IntitalCreate.vb" />
-    <Compile Include="Migrations\202101141900542_IntitalCreate.Designer.vb">
-      <DependentUpon>202101141900542_IntitalCreate.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.vb"/>
+    <Compile Include="Migrations\Configuration.vb" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EasyQueryForm\EasyQueryForm.vb">
@@ -134,21 +151,37 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-      <EmbeddedResource Include="EasyQueryForm\EasyQueryForm.Resources.resx" />
-      <EmbeddedResource Include="EasyQueryForm\EasyQueryForm.resx">
-        <DependentUpon>EasyQueryForm.cs</DependentUpon>
-      </EmbeddedResource>
-      <Compile Include="EasyQueryForm\EasyQueryForm.Resources.Designer.vb" />
+    <EmbeddedResource Include="EasyQueryForm\EasyQueryForm.Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EasyQueryForm.Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EasyQueryForm\EasyQueryForm.resx">
+      <DependentUpon>EasyQueryForm.cs</DependentUpon>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\ApplicationDbContext.vb"/>
-    <Compile Include="Models\NWind\Category.vb"/>
-    <Compile Include="Models\NWind\Customer.vb"/>
-    <Compile Include="Models\NWind\Employee.vb"/>
-    <Compile Include="Models\NWind\Order.vb"/>
-    <Compile Include="Models\NWind\OrderDetail.vb"/>
-    <Compile Include="Models\NWind\Product.vb"/>
-    <Compile Include="Models\NWind\Shipper.vb"/>
-    <Compile Include="Models\NWind\Supplier.vb"/>
+    <Compile Include="Data\ApplicationDbContext.vb" />
+    <Compile Include="Models\NWind\Category.vb" />
+    <Compile Include="Models\NWind\Customer.vb" />
+    <Compile Include="Models\NWind\Employee.vb" />
+    <Compile Include="Models\NWind\Order.vb" />
+    <Compile Include="Models\NWind\OrderDetail.vb" />
+    <Compile Include="Models\NWind\Product.vb" />
+    <Compile Include="Models\NWind\Shipper.vb" />
+    <Compile Include="Models\NWind\Supplier.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
 </Project>
