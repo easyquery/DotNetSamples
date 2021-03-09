@@ -73,8 +73,21 @@ Partial Public Class EasyQueryForm
     Private Sub InitEasyQuery()
         Dim options = New EasyQueryOptions()
         EqManager = New EasyQueryManagerSql(options)
+
+
+
+        ' loads model from DbContext
         EqManager.Model.LoadFromDbContext(ApplicationDbContext.Create())
+
+        ' intialize the data model And load it from XML (Or JSON) file
+        ' EqManager.Model.LoadFromJsonFile("Your path");
+
+        ' intialize the data model And load it from connection
+        ' DbGate.Register(Of SqlServerGate)();
+        ' EqManager.Model.LoadFromConnection(ApplicationDbContext.Create().Database.Connection);
+
         _countryAttr = EqManager.Model.EntityRoot.FindAttributeById("Customers.Country")
+
         QPanel.Query = EqManager.Query
         CPanel.Query = EqManager.Query
         SPanel.Query = EqManager.Query

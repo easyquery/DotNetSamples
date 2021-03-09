@@ -92,11 +92,15 @@ namespace EqDemo
             var options = new EasyQueryOptions();
             EqManager = new EasyQueryManagerSql(options);
 
-            //intialize the data model and load it from XML (or JSON) file
+            // loads model from DbContext
             EqManager.Model.LoadFromDbContext(ApplicationDbContext.Create());
 
+            // intialize the data model and load it from XML (or JSON) file
+            // EqManager.Model.LoadFromJsonFile("Your path");
+
+            //  intialize the data model and load it from connection
             // DbGate.Register<SqlServerGate>();
-            // _dataModel.LoadFromConnection(ApplicationDbContext.Create().Database.Connection);
+            // EqManager.Model.LoadFromConnection(ApplicationDbContext.Create().Database.Connection);
 
             //saving the reference to Customer Country attribute in our model (will be used on RequestList processing)
             _countryAttr = EqManager.Model.EntityRoot.FindAttributeById("Customers.Country");
