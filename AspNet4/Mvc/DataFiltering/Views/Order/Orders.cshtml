@@ -5,7 +5,7 @@
 }
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.1/eq.core.min.css">
 
     <style>
         .text-search {
@@ -52,8 +52,8 @@
 @section Scripts {
 
     <!-- EasyQuery script -->
-    <!--<script src="https://cdn.korzh.com/eq/7.0.0/eq.community.min.js"></script>-->
-    <script src="https://cdn.korzh.com/eq/7.0.0/eq.enterprise.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/7.0.1/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.1/eq.enterprise.min.js"></script>
 
     <!-- EasyQuery components initialization -->
     <script>
@@ -73,7 +73,7 @@
                     }
                 },
                 handlers: {
-                    beforeExecuteQuery: function (context, options) {
+                    beforeFetchData: function (context, options) {
                         options.data = options.data || {};
                         //add full text search text to query
                         const input = document.getElementById("textField");
