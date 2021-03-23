@@ -11,22 +11,16 @@ namespace EqDemo.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column("OrderID")]
+        [EqEntityAttr(DisplayName = "ID", DisplayFormat = "{0:D8}")]
         public int Id { get; set; }
-
-        [NotMapped]
-        public string Name {
-            get {
-                return string.Format("{0:0000}-{1:yyyy-MM-dd}", this.Id, this.OrderDate);
-            }
-        }
-        
-        [Display(Name = "Ordered")]
+       
+        [EqEntityAttr(DisplayName = "Ordered", DisplayFormat = "{0:d}")]
         public DateTime? OrderDate { get; set; }
 
-        [Display(Name = "Required")]
+        [EqEntityAttr(false)]
         public DateTime? RequiredDate { get; set; }
 
-        [Display(Name = "Shipped")]
+        [EqEntityAttr(DisplayName = "Shipped", DisplayFormat = "{0:d}")]
         public DateTime? ShippedDate { get; set; }
 
         public decimal? Freight { get; set; }
