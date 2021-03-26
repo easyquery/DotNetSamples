@@ -22,8 +22,11 @@ namespace EqDemo.Controllers
 
             options.UseDbContext(ApplicationDbContext.Create());
 
-            // Uncomment this line if you want to load model directly from connection 
-            // Do not forget to uncomment SqlClientGate registration in WebApiConfig.cs file
+            // If you want to load model directly from DB metadata
+            // remove (or comment) options.UseDbContext(...) call and uncomment the next 3 lines of code
+            //options.ConnectionString = 
+            //    ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString();
+            //options.UseDbConnection<SqlConnection>();
             //options.UseDbConnectionModelLoader();
 
             var path = System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data");

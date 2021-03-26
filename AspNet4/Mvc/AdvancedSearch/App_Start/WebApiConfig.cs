@@ -34,9 +34,7 @@ namespace EqDemo
             EasyQueryManager.RegisterExporter("excel", new ExcelDataExporter());
             EasyQueryManager.RegisterExporter("pdf", new PdfDataExporter());
 
-            // Uncomment this line to enable model loading from DbConnection
-            // EasyQueryManagerSql.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
-
+            EasyQueryManagerSql.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlClientGate>();
         }
     }
 
