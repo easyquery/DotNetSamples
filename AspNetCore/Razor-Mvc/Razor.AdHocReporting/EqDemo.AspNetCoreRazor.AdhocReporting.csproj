@@ -19,12 +19,11 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.2.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Core" Version="1.2.3" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.4-rc4" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.4-rc4" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.4-rc4" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.0.4-rc4" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="7.0.4-rc4" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.0.4-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.4-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.0.4-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.0.4-rc5" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="7.0.4-rc5" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Areas\Identity\Pages\_ViewStart.cshtml">
