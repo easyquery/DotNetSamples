@@ -141,7 +141,7 @@
                         allowAggrColumns: true,
                         allowCustomExpressions: true,
                         attrElementFormat: '{entity} {attr}',
-                        titleElementFormat: '{attr}',
+                        titleElementFormat: '{entity} {attr}',
                         showColumnCaptions: true,
                         adjustEntitiesMenuHeight: false,
                         customExpressionText: 2,
