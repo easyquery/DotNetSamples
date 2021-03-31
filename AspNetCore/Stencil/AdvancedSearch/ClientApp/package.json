@@ -15,9 +15,9 @@
     "@stencil/router": "^1.0.1",
     "@easydata/core": "1.2.3",
     "@easydata/ui": "1.2.3",
-    "@easyquery/core": "7.0.4",
-    "@easyquery/ui": "7.0.4",
-    "@easyquery/enterprise": "7.0.4"
+    "@easyquery/core": "7.0.5",
+    "@easyquery/ui": "7.0.5",
+    "@easyquery/enterprise": "7.0.5"
   },
   "license": "MIT",
   "devDependencies": {
