@@ -8,8 +8,8 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.4/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.4/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.5/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.5/eq.view.min.css">
 
     <!-- AgGrid script -->
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
@@ -52,8 +52,8 @@
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.1.119/styles/kendo.default-v2.min.css" />
 
     <!-- EasyQuery scripts -->
-    <!--<script src="https://cdn.korzh.com/eq/7.0.4/eq.community.min.js"></script>-->
-    <script src="https://cdn.korzh.com/eq/7.0.4/eq.enterprise.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/7.0.5/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.5/eq.enterprise.min.js"></script>
 
     <!-- Examples of custom GRID integration -->
     <script src="~/js/kendo-grid-widget.js"></script>
@@ -107,6 +107,8 @@
                 enableExport: true,
                 serverExporters: ['pdf', 'excel', 'csv'],
 
+                columnTitleFormat: '{attr}',
+
                 //locale: 'en-US',
 
                 localeSettings: {
@@ -123,7 +125,6 @@
 
                 //Widgets options
                 widgets: {
-
                     //EntitiesPanel options
                     entitiesPanel: {
                         showCheckboxes: true
@@ -134,7 +135,6 @@
                         allowAggrColumns: true,
                         allowCustomExpressions: true,
                         attrElementFormat: "{entity} {attr}",
-                        titleElementFormat: "{attr}",
                         showColumnCaptions: true,
                         adjustEntitiesMenuHeight: false,
                         customExpressionText: 2,
@@ -175,7 +175,6 @@
                         pageSize: 30
                     }
                 }
-
             };
 
             // you can remove this logic with grid type selection
