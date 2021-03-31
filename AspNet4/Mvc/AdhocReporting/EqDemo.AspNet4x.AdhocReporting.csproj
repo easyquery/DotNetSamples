@@ -71,7 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.SqlServerGate">
+<<<<<<< HEAD
       <Version>7.0.5</Version>
+=======
+      <Version>7.0.4-rc6</Version>
+>>>>>>> 76206d7c327ebe05e7bc9ad7f466da8aabbfb8b2
     </PackageReference>
     <PackageReference Include="WebGrease">
       <Version>1.6.0</Version>
@@ -133,6 +137,7 @@
     <PackageReference Include="X.PagedList.Mvc">
       <Version>7.6.0</Version>
     </PackageReference>
+<<<<<<< HEAD
     <PackageReference Include="Korzh.EasyQuery.Db" Version="7.0.5" />
     <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.0.5" />
     <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.5" />
@@ -140,8 +145,17 @@
     <PackageReference Include="Korzh.EasyQuery.EntityFramework6" Version="7.0.5" />
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
+=======
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.0.4" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.0.4" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.0.4" />
+    <PackageReference Include="Korzh.EasyQuery.AspNet4" Version="7.0.4" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFramework6" Version="7.0.4" />
+>>>>>>> 76206d7c327ebe05e7bc9ad7f466da8aabbfb8b2
     <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.2.3" />
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.2.3" />
+    <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
+    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

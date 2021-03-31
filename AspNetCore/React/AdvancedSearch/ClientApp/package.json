@@ -3,11 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "@easydata/core": "1.2.3",
     "@easydata/ui": "1.2.3",
     "@easyquery/core": "7.0.5",
     "@easyquery/ui": "7.0.5",
     "@easyquery/enterprise": "7.0.5",
+=======
+    "@easydata/core": "^1.2.3",
+    "@easydata/ui": "^1.2.3",
+    "@easyquery/core": "^7.0.4",
+    "@easyquery/ui": "^7.0.4",
+    "@easyquery/enterprise": "^7.0.4",
+>>>>>>> 76206d7c327ebe05e7bc9ad7f466da8aabbfb8b2
     "bootstrap": "^4.3.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
