@@ -44,9 +44,8 @@ namespace EqDemo
                     .UseSqlManager()
                     .AddDefaultExporters()
                     .AddDataExporter<PdfDataExporter>("pdf")
-                    .AddDataExporter<ExcelDataExporter>("excel");
-                    // Uncomment if you want to load model directly from DB               
-                    // .RegisterDbGate<SqlServerGate>();
+                    .AddDataExporter<ExcelDataExporter>("excel")
+                    .RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
 
             services.AddRazorPages();
         }
@@ -73,8 +72,11 @@ namespace EqDemo
                 options.SaveNewQuery = false;
                 options.UseDbContext<AppDbContext>();
 
-                // Uncomment if you want to load model directly from DB
-                // options.UseDbConnectionModelLoader();
+                // If you want to load model directly from DB metadata
+                // remove (or comment) options.UseDbContext(...) call and uncomment the next 3 lines of code
+                //options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
+                //options.UseDbConnection<Microsoft.Data.SqlClient.SqlConnection>();
+                //options.UseDbConnectionModelLoader();
 
                 options.UseQueryStore((_) =>new FileQueryStore("App_Data"));
             });
