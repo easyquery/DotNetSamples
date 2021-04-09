@@ -133,7 +133,7 @@
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.2.3" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.2.4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

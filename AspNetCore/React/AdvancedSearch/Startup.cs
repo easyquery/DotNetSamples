@@ -78,23 +78,23 @@ namespace EqDemo
                 app.UseSpaStaticFiles();
             }
 
-            app.UseEasyQuery(options => {
-                options.DefaultModelId = "nwind";
-
-                options.SaveNewQuery = false;
-
-                options.UseDbContext<AppDbContext>();
-
-                // Uncomment if you want to donwload model directly from DB
-                // options.UseDbConnectionModelLoader();
-
-                options.UseQueryStore((_) => new FileQueryStore("App_Data"));
-            });
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapEasyQuery(options => {
+                    options.DefaultModelId = "nwind";
+
+                    options.SaveNewQuery = false;
+
+                    options.UseDbContext<AppDbContext>();
+
+                    // Uncomment if you want to donwload model directly from DB
+                    // options.UseDbConnectionModelLoader();
+
+                    options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+                });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");

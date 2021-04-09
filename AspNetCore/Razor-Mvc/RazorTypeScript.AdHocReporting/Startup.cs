@@ -88,41 +88,41 @@ namespace EqDemo
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapEasyQuery(options => {
+                    options.Endpoint = "/api/adhoc-reporting";
 
-            app.UseEasyQuery(options => {
-                options.DefaultModelId = "adhoc-reporting";
-                options.SaveNewQuery = true;
-                options.SaveQueryOnSync = true;
-                options.Endpoint = "/api/adhoc-reporting";
+                    options.DefaultModelId = "adhoc-reporting";
+                    options.SaveNewQuery = true;
+                    options.SaveQueryOnSync = true;
 
-                options.UseDbContextWithoutIdentity<AppDbContext>(loaderOptions => {
-                    //Ignore the "Reports" DbSet as well
-                    loaderOptions.AddFilter(entity => {
-                        return entity.ClrType != typeof(Report);
+                    options.UseDbContextWithoutIdentity<AppDbContext>(loaderOptions => {
+                        //Ignore the "Reports" DbSet as well
+                        loaderOptions.AddFilter(entity => {
+                            return entity.ClrType != typeof(Report);
+                        });
+                    });
+
+                    // here we add our custom query store
+                    options.UseQueryStore((manager) => new ReportStore(manager.Services));
+
+                    options.UseDefaultAuthProvider((provider) => {
+                        //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
+                        //here you can remove that requirement and make those actions available for all authorized users
+                        //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+
+                        //here is an example how you can make some actions accessible only by users with a particular role.
+                        //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+                    });
+
+                    options.AddPreFetchTunerWithHttpContext((manager, context) => {
+                        //the next two lines demonstrate how to add to each generated query a condition that filters data by the current user
+                        //string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                        //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
                     });
                 });
 
-                // here we add our custom query store
-                options.UseQueryStore((manager) => new ReportStore(manager.Services));
-
-                options.UseDefaultAuthProvider((provider) => {
-                    //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
-                    //here you can remove that requirement and make those actions available for all authorized users
-                    //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
-
-                    //here is an example how you can make some actions accessible only by users with a particular role.
-                    //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
-                });
-
-                options.AddPreFetchTunerWithHttpContext((manager, context) => {
-                    //the next two lines demonstrate how to add to each generated query a condition that filters data by the current user
-                    //string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                    //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
-                });
-            });
-
-            app.UseEndpoints(endpoints =>
-            {
                 endpoints.MapRazorPages();
             });
 

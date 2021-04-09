@@ -76,33 +76,34 @@ namespace EqDemo
                 app.UseSpaStaticFiles();
             }
 
-            app.UseEasyQuery(options => {
-                options.DefaultModelId = "nwind";
-
-                options.SaveNewQuery = false;
-                options.BuildQueryOnSync = true;
-
-                options.UseDbContext<AppDbContext>();
-
-                // Uncomment if you want to donwload model directly from DB
-                // options.UseDbConnectionModelLoader();
-
-                options.UseModelTuner(manager =>
-                {
-                    // for onGetExpression example
-                    var attr = manager.Model.FindEntityAttr("Customer.CompanyName");
-                    if (attr != null) {
-                        attr.DefaultEditor = new TextValueEditor("ContactNameEditor");
-                    }
-                });
-
-                options.UseQueryStore((_) => new FileQueryStore("App_Data"));
-            });
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapEasyQuery(options => {
+                    options.DefaultModelId = "nwind";
+
+                    options.SaveNewQuery = false;
+                    options.BuildQueryOnSync = true;
+
+                    options.UseDbContext<AppDbContext>();
+
+                    // Uncomment if you want to donwload model directly from DB
+                    // options.UseDbConnectionModelLoader();
+
+                    options.UseModelTuner(manager =>
+                    {
+                        // for onGetExpression example
+                        var attr = manager.Model.FindEntityAttr("Customer.CompanyName");
+                        if (attr != null)
+                        {
+                            attr.DefaultEditor = new TextValueEditor("ContactNameEditor");
+                        }
+                    });
+
+                    options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+                });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");

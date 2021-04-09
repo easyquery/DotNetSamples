@@ -77,28 +77,29 @@ namespace EqDemo
 
             app.UseRouting();
 
-            app.UseEasyQuery(options => {
-                options.DefaultModelId = "nwind";
-
-                options.SaveNewQuery = false;
-
-                options.UseDbContext<AppDbContext>();
-
-                // Uncomment if you want to donwload model directly from DB
-                // options.UseDbConnectionModelLoader();
-
-                options.UseQueryStore((_) => new FileQueryStore("App_Data"));
-            });
-
-            app.UseEasyQuery(options => {
-                options.Endpoint = "/api/data-filtering";
-
-                options.DefaultModelId = "nwind";
-                options.UseDbContext<AppDbContext>();
-            });
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapEasyQuery(options => {
+                    options.DefaultModelId = "nwind";
+
+                    options.SaveNewQuery = false;
+
+                    options.UseDbContext<AppDbContext>();
+
+                    // Uncomment if you want to donwload model directly from DB
+                    // options.UseDbConnectionModelLoader();
+
+                    options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+                });
+
+                endpoints.MapEasyQuery(options => {
+                    options.Endpoint = "/api/data-filtering";
+
+                    options.DefaultModelId = "nwind";
+                    options.UseDbContext<AppDbContext>();
+                });
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");

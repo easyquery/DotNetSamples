@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using EqDemo.Services;
+using EasyData.Export;
 
 using Korzh.EasyQuery.Services;
-using EasyData.Export;
+
+using EqDemo.Services;
 
 namespace EqDemo
 {
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -28,12 +29,7 @@ namespace EqDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options => {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => false;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
+          
             services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb")));
        
@@ -66,25 +62,29 @@ namespace EqDemo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseEasyQuery(options => {
-                options.DefaultModelId = "nwind";
-
-                options.SaveNewQuery = false;
-                options.UseDbContext<AppDbContext>();
-
-                // If you want to load model directly from DB metadata
-                // remove (or comment) options.UseDbContext(...) call and uncomment the next 3 lines of code
-                //options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
-                //options.UseDbConnection<Microsoft.Data.SqlClient.SqlConnection>();
-                //options.UseDbConnectionModelLoader();
-
-                options.UseQueryStore((_) =>new FileQueryStore("App_Data"));
-            });
-
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapEasyQuery(options => {
+                    options.DefaultModelId = "nwind";
+                    options.SaveNewQuery = false;
+                    options.UseDbContext<AppDbContext>();
+
+                    // If you want to load model directly from DB metadata
+                    // remove (or comment) options.UseDbContext(...) call and uncomment the next 3 lines of code
+                    //options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
+                    //options.UseDbConnection<Microsoft.Data.SqlClient.SqlConnection>();
+                    //options.UseDbConnectionModelLoader();
+
+                    options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+                });
+
                 endpoints.MapRazorPages();
             });
 

@@ -55,19 +55,18 @@ namespace EqDemo
 
             app.UseAuthorization();
 
-            app.UseEasyQuery(options =>
-            {
-                options.Endpoint = "/data-filtering";
-                options.UseEntity((manager) => manager.Services
-                    .GetRequiredService<AppDbContext>()
-                    .Orders
-                    .Include(o => o.Customer)
-                    .Include(o => o.Employee)
-                    .AsQueryable());
-            });
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapEasyQuery(options =>
+                {
+                    options.Endpoint = "/data-filtering";
+                    options.UseEntity((manager) => manager.Services
+                        .GetRequiredService<AppDbContext>()
+                        .Orders
+                        .Include(o => o.Customer)
+                        .Include(o => o.Employee)
+                        .AsQueryable());
+                });
                 endpoints.MapRazorPages();
             });
 
