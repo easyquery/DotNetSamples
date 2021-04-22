@@ -111,10 +111,10 @@ EqAgGrid.prototype.render = function () {
                 offset: params.startRow,
                 limit: this.pageSize
             })
-                .then(function (rows) {
-                    this.applyDisplayFormats();
-                    params.successCallback(this.convertToRowData(rows), this.context.resultTable.getTotal());
-                }.bind(this));
+            .then(function (rows) {
+                this.applyDisplayFormats();
+                params.successCallback(this.convertToRowData(rows), this.context.resultTable.getTotal());
+            }.bind(this));
         }
 
         this.agGridOptions.datasource = {

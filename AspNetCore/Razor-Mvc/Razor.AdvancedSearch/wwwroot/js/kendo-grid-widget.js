@@ -62,8 +62,8 @@
             columns.push(column);
         };
 
-        // calTotals mode on
-        if (this.context.calcTotals) {
+        // calTotals mode on and we have aagregated columns
+        if (this.context.calcTotals && query.hasEnabledAggrColumns()) {
             const settings = this.context.getTotalsSettings();
             if (settings.calcGrandTotals) {
                 const aggrCols = query.getAggregatedColumns();
