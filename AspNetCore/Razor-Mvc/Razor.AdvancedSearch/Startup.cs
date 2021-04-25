@@ -22,6 +22,7 @@ namespace EqDemo
             Configuration = configuration;
 
             Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ExportFormats = "pdf,excel,excel-html,csv";
+            Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ShowSqlPanel = false;
         }
 
         public IConfiguration Configuration { get; }
