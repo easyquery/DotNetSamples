@@ -61,6 +61,7 @@
 
     <!-- Useful code samples -->
     <script src="~/js/samples/convert-columns-to-aggr.js"></script>
+    <script src="~/js/samples/manage-subtotals.js"></script>
 
     <!-- EasyQuery Advanced Search view initialization -->
     <script>
@@ -70,6 +71,8 @@
 
             //Options for AdvancedSearchViewJQuery
             var viewOptions = {
+                calcTotals: true,
+
                 //Load model on start
                 loadModelOnStart: true,
 
@@ -152,12 +155,12 @@
             // you can remove this logic with grid type selection
             var gridType = window.localStorage.getItem('grid-type');
             if (gridType == 'ag-grid') {
+                viewOptions.calcTotals = false;
                 viewOptions.result.resultGridResolver = function (slot) {
                     return new EqAgGrid(slot);
                 }
             }
             else if (gridType == 'kendo-grid') {
-                viewOptions.calcTotals = true;
                 viewOptions.result.resultGridResolver = function (slot) {
                     return new KendoGridWidget(slot);
                 }
@@ -217,6 +220,11 @@
                 simpleColToAggr: {
                     name: 'Currency columns to aggregates',
                     handler: convertColumnsToAggr
+                },
+
+                manageTotals: {
+                    name: 'Manage sub and grand totals',
+                    handler: manageSubtotals
                 }
 
             }
