@@ -155,45 +155,17 @@ To test that functionlity - please log out first and create a new user.
             //Options for ReportView
             var viewOptions = {
 
-                calcTotals: false,
-
                 //Saves report on each change
                 syncReportOnChange: true,
 
                 //Load model on start
                 loadModelOnStart: true,
 
+                // enables export
                 enableExport: true,
 
+                // define possible exporters
                 serverExporters: [ 'csv', 'pdf', 'excel', 'excel-html' ],
-
-                //Different widgets options
-                widgets: {
-
-                    //ColumnBar options
-                    columnsBar: {
-                        accentActiveColumn: false,
-                        allowAggrColumns: true,
-                        attrElementFormat: "{attr}",
-                        showColumnCaptions: true,
-                        adjustEntitiesMenuHeight: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 30,
-                            activateOnMouseOver: true
-                        }
-
-                    },
-
-                    //QueryPanel options
-                    queryPanel: {
-                        alwaysShowButtonsInPredicates: false,
-                        adjustEntitiesMenuHeight: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 20,
-                            activateOnMouseOver: true
-                        }
-                    }
-                }
             };
 
             var reportView = new easyquery.ui.ReportView();

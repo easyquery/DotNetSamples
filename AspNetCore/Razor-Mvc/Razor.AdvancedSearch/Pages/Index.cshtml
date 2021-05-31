@@ -63,11 +63,13 @@
     <script src="~/js/samples/convert-columns-to-aggr.js"></script>
     <script src="~/js/samples/manage-subtotals.js"></script>
 
+    <!-- Sample selectors logic -->
+    <script src="~/js/sample-selectors.js"></script>
+
     <!-- EasyQuery Advanced Search view initialization -->
     <script>
 
         window.addEventListener('load', function () {
-
 
             //Options for AdvancedSearchViewJQuery
             var viewOptions = {
@@ -82,10 +84,7 @@
                 enableExport: true,
                 serverExporters: ['pdf', 'excel', 'csv'],
 
-                columnTitleFormat: '{attr}',
-
                 //locale: 'en-US',
-
                 localeSettings: {
                     shortDateFormat: 'yyyy-MM-dd',
                 },
@@ -93,78 +92,20 @@
                 //Handlers
                 handlers: {
                     //Error handler
-                    onError: function (context, error) {
-                        console.error(error.action + " error:\n" + error.text);
-                    }
-                },
-
-                //Widgets options
-                widgets: {
-                    //EntitiesPanel options
-                    entitiesPanel: {
-                        showCheckboxes: true
-                    },
-
-                    //ColumnsPanel options
-                    columnsPanel: {
-                        allowAggrColumns: true,
-                        allowCustomExpressions: true,
-                        attrElementFormat: "{entity} {attr}",
-                        showColumnCaptions: true,
-                        adjustEntitiesMenuHeight: false,
-                        customExpressionText: 2,
-                        showPoweredBy: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 30,
-                            activateOnMouseOver: true
-                        }
-                    },
-
-                    //QueryPanel options
-                    queryPanel: {
-                        showDateTimeInput: true,
-                        alwaysShowButtonsInGroups: false,
-                        allowParameterization: true,
-                        allowInJoinConditions: true,
-                        autoEditNewCondition: true,
-                        buttons: {
-                            condition: ["menu"],
-                            predicate: ["addCondition", "addPredicate", "enable", "delete"]
-                        },
-                        menuOptions: {
-                            showSearchBoxAfter: 20,
-                            activateOnMouseOver: true
-                        }
-                    },
-
-                    //ResultGrid options
-                    easyGrid: {
-                        autoHeight: true,
+                    onError: function (_, error) {
+                        console.error(error.sourceError);
                     }
                 },
                 result: {
                     //Show EasyChart
                     showChart: true,
                     paging: {
-                        enabled: true,
                         pageSize: 30
                     }
                 }
             };
 
-            // you can remove this logic with grid type selection
-            var gridType = window.localStorage.getItem('grid-type');
-            if (gridType == 'ag-grid') {
-                viewOptions.calcTotals = false;
-                viewOptions.result.resultGridResolver = function (slot) {
-                    return new EqAgGrid(slot);
-                }
-            }
-            else if (gridType == 'kendo-grid') {
-                viewOptions.result.resultGridResolver = function (slot) {
-                    return new KendoGridWidget(slot);
-                }
-            }
+            configureOptionsForSelectedGrid(viewOptions);
 
             var view = new easyquery.ui.AdvancedSearchView();
             var context = view.getContext();
@@ -173,95 +114,6 @@
             });
 
             document['AdvancedSearchView'] = view;
-
-            renderSamplesSelector();
-            renderGridSelector();
-        });
-
-        // Grid selector renderer
-        function renderGridSelector() {
-
-            var gridSelector = document.createElement('select');
-            gridSelector.classList.add('eqv-select');
-
-            var menuContent = document.getElementsByClassName('eqv-menu-content')[0];
-            menuContent.appendChild(gridSelector);
-
-            var defOption = document.createElement('option');
-            defOption.setAttribute('value', 'default');
-            defOption.text = "EasyGrid";
-            gridSelector.appendChild(defOption);
-
-            var agOption = document.createElement('option');
-            agOption.setAttribute('value', 'ag-grid');
-            agOption.text = "AgGrid";
-            gridSelector.appendChild(agOption);
-
-
-            var kendoOption = document.createElement('option');
-            kendoOption.setAttribute('value', 'kendo-grid');
-            kendoOption.text = "Kendo";
-            gridSelector.appendChild(kendoOption);
-
-            var gridType = this.localStorage.getItem('grid-type') || 'default';
-            gridSelector.value = gridType;
-
-            gridSelector.addEventListener('change', function () {
-                window.localStorage.setItem('grid-type', gridSelector.value);
-                window.location.reload();
-            });
-        }
-
-        // Code samples renderer
-        function renderSamplesSelector() {
-
-            var samples = {
-
-                simpleColToAggr: {
-                    name: 'Currency columns to aggregates',
-                    handler: convertColumnsToAggr
-                },
-
-                manageTotals: {
-                    name: 'Manage sub and grand totals',
-                    handler: manageSubtotals
-                }
-
-            }
-
-            var container = document.createElement('div');
-            container.className = "eqv-dropdown-container";
-
-            var a = document.createElement('a');
-            a.classList = 'eqv-button eqv-drop-button'
-            a.innerHTML = 'Code samples <span style="float: right">▼</span>';
-
-            a.addEventListener('click', function () {
-                content.classList.add('eqv-dropdown-show');
-            });
-
-            a.addEventListener('blur', function () {
-                content.classList.remove('eqv-dropdown-show');
-            });
-
-            container.appendChild(a);
-
-            var content = document.createElement('div');
-            content.className = 'eqv-dropdown-content';
-
-            Object.keys(samples).forEach(key => {
-                var sample = samples[key];
-                var link = document.createElement('a');
-                link.innerHTML = sample.name;
-                link.addEventListener('click', sample.handler);
-                content.append(link);
-            });
-
-            container.appendChild(content);
-
-            var menuContent = document.getElementsByClassName('eqv-menu-content')[0];
-            menuContent.appendChild(container);
-
-        }
+        });   
     </script>
 }

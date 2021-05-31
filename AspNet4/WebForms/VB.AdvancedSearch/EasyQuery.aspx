@@ -38,54 +38,17 @@
      
                 enableExport: true,
                 serverExporters: ['csv', 'pdf', 'excel'],
-                // Controller endpoint
-                endpoint: "/api/easyquery",
+
                 //Handlers
                 handlers: {
                     //Error handler
                     onError: function (context, error) {
-                        console.error(error.action + " error:\n" + error.text);
+                        console.error(error.sourceError);
                     }
                 },
                 //Widgets options
                 widgets: {
-                    //EntitiesPanel options
-                    entitiesPanel: {
-                        showCheckboxes: true
-                    },
-                    //ColumnsPanel options
-                    columnsPanel: {
-                        allowAggrColumns: true,
-                        allowCustomExpressions: true,
-                        attrElementFormat: "{entity} {attr}",
-                        titleElementFormat: "{attr}",
-                        showColumnCaptions: true,
-                        adjustEntitiesMenuHeight: false,
-                        customExpressionText: 2,
-                        showPoweredBy: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 30,
-                            activateOnMouseOver: true
-                        }
-                    },
-                    //QueryPanel options
-                    queryPanel: {
-                        showPoweredBy: false,
-                        alwaysShowButtonsInPredicates: false,
-                        allowParameterization: true,
-                        allowInJoinConditions: true,
-                        autoEditNewCondition: true,
-                        buttons: {
-                            condition: ["menu"],
-                            predicate: ["addCondition", "addPredicate", "enable", "delete"]
-                        },
-                        menuOptions: {
-                            showSearchBoxAfter: 20,
-                            activateOnMouseOver: true
-                        }
-                    },
                     resultGrid: {
-                        autoHeight: true,
                         paging: {
                             enabled: true,
                             pageSize: 30
@@ -98,8 +61,11 @@
                 }
             }
             var view = new easyquery.ui.AdvancedSearchView();
-            view.getContext().useEnterprise('<% Response.Write(Korzh.EasyQuery.AspNet.JSLicense.Key) %>')
-            view.init(viewOptions);
+            view.getContext()
+                .useEndpoint('/api/easyquery')
+                .useEnterprise(function () {
+                    view.init(viewOptions);
+                });
             
             document['AdvancedSearchView'] = view;
         });

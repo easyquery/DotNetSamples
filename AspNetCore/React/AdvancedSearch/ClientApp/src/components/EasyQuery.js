@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 
 import { AdvancedSearchView } from '@easyquery/ui';
-import '@easyquery/enterprise'
+import '@easyquery/enterprise';
 
 import  AdvancedSearchHtml  from './EasyQueryHtml';
 
@@ -20,43 +20,11 @@ export class EasyQuery extends Component {
             loadQueryOnStart: false,
 
             handlers: {
-              onError: (context, error) => {
-                console.error(error.type + " error:\n" + error.text);
+              onError: (_, error) => {
+                console.error(error.sourceError);
               }
             },
             widgets: {
-              entitiesPanel: {
-                showCheckboxes: true
-              },
-              columnsPanel: {
-                allowAggrColumns: true,
-                allowCustomExpressions: true,
-                attrElementFormat: "{entity} {attr}",
-                titleElementFormat: "{attr}",
-                showColumnCaptions: true,
-                adjustEntitiesMenuHeight: false,
-                customExpressionText: 2,
-                showPoweredBy: false,
-                menuOptions: {
-                    showSearchBoxAfter: 30,
-                    activateOnMouseOver: true
-                }
-              },
-              queryPanel: {
-                showPoweredBy: false,
-                alwaysShowButtonsInPredicates: false,
-                allowParameterization: true,
-                allowInJoinConditions: true,
-                autoEditNewCondition: true,
-                buttons: {
-                    condition: ["menu"],
-                    predicate: ["addCondition", "addPredicate", "enable", "delete"]
-                },
-                menuOptions: {
-                    showSearchBoxAfter: 20,
-                    activateOnMouseOver: true
-                }
-              },
               easyGrid: {
                   paging: {
                       enabled: true,

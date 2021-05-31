@@ -23,54 +23,21 @@ export class EasyQuery {
         const viewOptions: EqViewOptions = {
             shadowRoots: [ this.host.shadowRoot ],
             enableExport: true,
-            serverExporters: ['pdf', 'excel', 'csv'],
+            serverExporters: [ 'pdf', 'excel', 'csv' ],
             loadModelOnStart: true,
             loadQueryOnStart: false,
 
             handlers: {
               onError: (_, error) => {
-                console.error(error.action + " error:\n" + error.text);
+                console.error(error.sourceError);
               }
             },
             widgets: {
-              entitiesPanel: {
-                showCheckboxes: true
-              },
-              columnsPanel: {
-                allowAggrColumns: true,
-                allowCustomExpressions: true,
-                attrElementFormat: "{entity} {attr}",
-                titleElementFormat: "{attr}",
-                showColumnCaptions: true,
-                adjustEntitiesMenuHeight: false,
-                customExpressionText: 2,
-                showPoweredBy: false,
-                menuOptions: {
-                    showSearchBoxAfter: 30,
-                    activateOnMouseOver: true
-                }
-              },
-              queryPanel: {
-                showPoweredBy: false,
-                alwaysShowButtonsInGroups: false,
-                allowParameterization: true,
-                allowInJoinConditions: true,
-                autoEditNewCondition: true,
-                buttons: {
-                    condition: ["menu"],
-                    group: ["addCondition", "addPredicate", "enable", "delete"]
-                },
-                menuOptions: {
-                    showSearchBoxAfter: 20,
-                    activateOnMouseOver: true
-                }
-              },
               resultGrid: {
-                  autoHeight: true,
-                  paging: {
-                      enabled: true,
-                      pageSize: 30
-                  }
+                paging: {
+                    enabled: true,
+                    pageSize: 30
+                }
               }
             },
             result: {
@@ -117,7 +84,7 @@ export class EasyQuery {
                 this.view.syncQuery();
             }
 
-            setTimeout(() => this.view.executeQuery(), 100);
+            setTimeout(() => this.view.fetchData(), 100);
         }
     };    
 

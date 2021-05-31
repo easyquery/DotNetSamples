@@ -112,13 +112,15 @@
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
+    import { EqContext } from '@easyquery/core';
     import { AdvancedSearchView, EqViewOptions } from '@easyquery/ui';
     import '@easyquery/enterprise'
 
     @Component({})
     export default class EasyQueryView extends Vue {
 
-        private view = new AdvancedSearchView();
+        private view: AdvancedSearchView;
+        private context: EqContext;
         private QUERY_KEY = 'easyqueryview-query';
 
 
@@ -129,45 +131,12 @@
                 loadModelOnStart: true,
 
                 handlers: {
-                    onError: (context, error) => {
-                        console.error(error.action + ' error:\n' + error.text);
+                    onError: (_, error) => {
+                        console.error(error.sourceError);
                     }
                 },
                 widgets: {
-                    entitiesPanel: {
-                        showCheckboxes: true,
-                    },
-                    columnsPanel: {
-                        allowAggrColumns: true,
-                        allowCustomExpressions: true,
-                        attrElementFormat: '{entity} {attr}',
-                        titleElementFormat: '{entity} {attr}',
-                        showColumnCaptions: true,
-                        adjustEntitiesMenuHeight: false,
-                        customExpressionText: 2,
-                        showPoweredBy: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 30,
-                            activateOnMouseOver: true,
-                        },
-                    },
-                    queryPanel: {
-                        showPoweredBy: false,
-                        alwaysShowButtonsInGroups: false,
-                        allowParameterization: true,
-                        allowInJoinConditions: true,
-                        autoEditNewCondition: true,
-                        buttons: {
-                            condition: ['menu'],
-                            group: ['addCondition', 'addPredicate', 'enable', 'delete'],
-                        },
-                        menuOptions: {
-                            showSearchBoxAfter: 20,
-                            activateOnMouseOver: true,
-                        },
-                    },
                     resultGrid: {
-                        autoHeight: true,
                         paging: {
                             enabled: true,
                             pageSize: 30
@@ -218,7 +187,7 @@
                     this.view.syncQuery();
                 }
 
-                setTimeout(() => this.view.executeQuery(), 100);
+                setTimeout(() => this.view.fetchData(), 100);
             }
         };    
 

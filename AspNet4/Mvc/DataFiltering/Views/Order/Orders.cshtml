@@ -62,12 +62,6 @@
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
                 widgets: {
-                    filterBar: {
-                        queryPanel: {
-                            attrElementFormat: "{entity} {attr}"
-                        },
-                        //autoEditNewCondition: true
-                    },
                     eqHtmlGrid: {
                         useBootstrap: true
                     }
@@ -76,9 +70,8 @@
                     beforeFetchData: function (context, options) {
                         options.data = options.data || {};
                         //add full text search text to query
-                        const input = document.getElementById("textField");
+                        var input = document.getElementById("textField");
                         options.data.text = input.value;
-                        console.log(options);
                     }
                 }
             }

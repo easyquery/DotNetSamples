@@ -19,14 +19,6 @@ export class FilterBar {
         this.options = {
             shadowRoots: [ this.host.shadowRoot ],
             loadModelOnStart: true,
-            endpoint: `api/data-filtering`,
-            widgets: {
-              filterBar: {
-                queryPanel: {
-                  attrElementFormat: '{entity} {attr}',
-                },
-              }
-            },
             result: {
                 paging: {
                     pageSize: 15
@@ -58,9 +50,11 @@ export class FilterBar {
             );
         });
 
-        context.useEnterprise(() => {
-            this.view.init(this.options);
-        });
+        context
+            .useEndpoint('api/data-filtering')
+            .useEnterprise(() => {
+                this.view.init(this.options);
+            });
 
     }
 

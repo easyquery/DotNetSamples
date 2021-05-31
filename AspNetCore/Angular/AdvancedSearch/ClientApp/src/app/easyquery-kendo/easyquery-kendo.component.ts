@@ -127,42 +127,8 @@ export class EasyQueryKendoComponent implements AfterViewInit {
           loadQueryOnStart: false,
   
           handlers: {
-            onError: (context, error) => {
-              console.error(error.action + " error:\n" + error.text);
-            }
-          },
-          widgets: {
-            entitiesPanel: {
-              showCheckboxes: true
-            },
-            columnsPanel: {
-              allowAggrColumns: true,
-              allowCustomExpressions: true,
-              attrElementFormat: "{entity} {attr}",
-              titleElementFormat: "{attr}",
-              showColumnCaptions: true,
-              adjustEntitiesMenuHeight: false,
-              customExpressionText: 2,
-              showPoweredBy: false,
-              menuOptions: {
-                  showSearchBoxAfter: 30,
-                  activateOnMouseOver: true
-              }
-            },
-            queryPanel: {
-              showPoweredBy: false,
-              alwaysShowButtonsInGroups: false,
-              allowParameterization: true,
-              allowInJoinConditions: true,
-              autoEditNewCondition: true,
-              buttons: {
-                  condition: ["menu"],
-                  group: ["addCondition", "addGroup", "enable", "delete"]
-              },
-              menuOptions: {
-                  showSearchBoxAfter: 20,
-                  activateOnMouseOver: true
-              }
+            onError: (_, error) => {
+              console.error(error.sourceError);
             }
           },
           result: {
@@ -205,7 +171,7 @@ export class EasyQueryKendoComponent implements AfterViewInit {
             const query = this.context.getQuery();
             query.loadFromDataOrJson(queryJson);
             query.fireChangedEvent();
-            setTimeout(() => this.view.executeQuery(), 100);
+            setTimeout(() => this.view.fetchData(), 100);
           }
       };
 
