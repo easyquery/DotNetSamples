@@ -34,8 +34,7 @@ namespace EqDemo.Controllers
             options.SaveNewQuery = true;
 
             var dbContext = ApplicationDbContext.Create();
-            options.UseDbContext(dbContext, config => { 
-
+            options.UseDbContext(dbContext, config => {
                 // Ignore identity tables
                 config.AddFilter((entityMap) => {
 
