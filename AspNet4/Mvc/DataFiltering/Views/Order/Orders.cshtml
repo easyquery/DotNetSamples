@@ -5,7 +5,7 @@
 }
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.7/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.9/eq.core.min.css">
 
     <style>
         .text-search {
@@ -52,8 +52,8 @@
 @section Scripts {
 
     <!-- EasyQuery script -->
-    <!--<script src="https://cdn.korzh.com/eq/7.0.7/eq.community.min.js"></script>-->
-    <script src="https://cdn.korzh.com/eq/7.0.7/eq.enterprise.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/7.0.9/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.9/eq.enterprise.min.js"></script>
 
     <!-- EasyQuery components initialization -->
     <script>
@@ -62,12 +62,6 @@
                 loadModelOnStart: true,
                 clearResultOnQueryChange: false,
                 widgets: {
-                    filterBar: {
-                        queryPanel: {
-                            attrElementFormat: "{entity} {attr}"
-                        },
-                        //autoEditNewCondition: true
-                    },
                     eqHtmlGrid: {
                         useBootstrap: true
                     }
@@ -76,9 +70,8 @@
                     beforeFetchData: function (context, options) {
                         options.data = options.data || {};
                         //add full text search text to query
-                        const input = document.getElementById("textField");
+                        var input = document.getElementById("textField");
                         options.data.text = input.value;
-                        console.log(options);
                     }
                 }
             }

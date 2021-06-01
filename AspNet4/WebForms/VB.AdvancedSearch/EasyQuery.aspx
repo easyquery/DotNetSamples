@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="EasyQuery" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="EasyQuery.aspx.vb" Inherits="EqDemo.EasyQuery" %>
 <asp:Content ID="StylesContent" ContentPlaceHolderID="StylesPlaceHolder" runat="server">
 
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.6/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.6/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.9/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.9/eq.view.min.css">
 
     <style>
         .eqv-dropdown-content {
@@ -21,8 +21,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" type="text/javascript"></script>
 
     <!-- EasyQuery script -->
-    <!--<script src="https://cdn.korzh.com/eq/7.0.6/eq.community.min.js"></script>-->
-    <script src="https://cdn.korzh.com/eq/7.0.6/eq.enterprise.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/7.0.9/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.9/eq.enterprise.min.js"></script>
 
 
     <!-- EasyQuery Advanced Search view initialization -->
@@ -38,54 +38,17 @@
      
                 enableExport: true,
                 serverExporters: ['csv', 'pdf', 'excel'],
-                // Controller endpoint
-                endpoint: "/api/easyquery",
+
                 //Handlers
                 handlers: {
                     //Error handler
                     onError: function (context, error) {
-                        console.error(error.action + " error:\n" + error.text);
+                        console.error(error.sourceError);
                     }
                 },
                 //Widgets options
                 widgets: {
-                    //EntitiesPanel options
-                    entitiesPanel: {
-                        showCheckboxes: true
-                    },
-                    //ColumnsPanel options
-                    columnsPanel: {
-                        allowAggrColumns: true,
-                        allowCustomExpressions: true,
-                        attrElementFormat: "{entity} {attr}",
-                        titleElementFormat: "{attr}",
-                        showColumnCaptions: true,
-                        adjustEntitiesMenuHeight: false,
-                        customExpressionText: 2,
-                        showPoweredBy: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 30,
-                            activateOnMouseOver: true
-                        }
-                    },
-                    //QueryPanel options
-                    queryPanel: {
-                        showPoweredBy: false,
-                        alwaysShowButtonsInPredicates: false,
-                        allowParameterization: true,
-                        allowInJoinConditions: true,
-                        autoEditNewCondition: true,
-                        buttons: {
-                            condition: ["menu"],
-                            predicate: ["addCondition", "addPredicate", "enable", "delete"]
-                        },
-                        menuOptions: {
-                            showSearchBoxAfter: 20,
-                            activateOnMouseOver: true
-                        }
-                    },
                     resultGrid: {
-                        autoHeight: true,
                         paging: {
                             enabled: true,
                             pageSize: 30
@@ -98,8 +61,11 @@
                 }
             }
             var view = new easyquery.ui.AdvancedSearchView();
-            view.getContext().useEnterprise('<% Response.Write(Korzh.EasyQuery.AspNet.JSLicense.Key) %>')
-            view.init(viewOptions);
+            view.getContext()
+                .useEndpoint('/api/easyquery')
+                .useEnterprise(function () {
+                    view.init(viewOptions);
+                });
             
             document['AdvancedSearchView'] = view;
         });

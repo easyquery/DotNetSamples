@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -46,6 +48,12 @@ namespace EqDemo
              .AddRoles<IdentityRole>()
              .AddDefaultUI()
              .AddEntityFrameworkStores<AppDbContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
+            });
+
 
             services.AddDistributedMemoryCache();
             services.AddSession();

@@ -14,7 +14,7 @@
 
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.6/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.0.9/eq.core.min.css">
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/root.css" />
@@ -124,8 +124,8 @@
     </script>
 
     <!-- EasyQuery scripts -->
-    <!--<script src="https://cdn.korzh.com/eq/7.0.6/eq.community.min.js"></script>-->
-    <script src="https://cdn.korzh.com/eq/7.0.6/eq.enterprise.min.js"></script>
+    <!--<script src="https://cdn.korzh.com/eq/7.0.9/eq.community.min.js"></script>-->
+    <script src="https://cdn.korzh.com/eq/7.0.9/eq.enterprise.min.js"></script>
 
     <script>
         window.addEventListener('load', function () {
@@ -139,10 +139,11 @@
                 //Saves report on each change
                 syncReportOnChange: true,
 
+                enableExport: true,
                 serverExporters: [ 'pdf', 'excel', 'excel-html', 'csv'],
 
                 handlers: {
-                    onError: function (context, error) {
+                    onError: function (_, error) {
                         console.error(error.sourceError);
                     }
                 },
@@ -150,11 +151,10 @@
                 result: {
                     //Show EasyChart
                     showChart: true,
-                    chartWidgetResolver: (slot) => { return new GoogleChartWidget(slot) },
 
                     //Paging options
                     paging: {
-                        enabled: false
+                        pageSize: 30
                     }
                 },
 
@@ -164,34 +164,7 @@
                 //Default model's ID (we use it here just for a nice folder name in App_Data folder)
                 defaultModelId: 'adhoc-reporting',
 
-                enableExport: true,
-
-                //Different widgets options
-                widgets: {
-                    //ColumnBar options
-                    columnsBar: {
-                        accentActiveColumn: false,
-                        allowAggrColumns: true,
-                        attrElementFormat: "{entity} {attr}",
-                        showColumnCaptions: true,
-                        adjustEntitiesMenuHeight: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 30,
-                            activateOnMouseOver: true
-                        }
-                    },
-
-                    //QueryPanel options
-                    queryPanel: {
-                        alwaysShowButtonsInGroups: false,
-                        adjustEntitiesMenuHeight: false,
-                        menuOptions: {
-                            showSearchBoxAfter: 20,
-                            activateOnMouseOver: true
-                        }
-                    },
-                }
-            };
+            }
 
             var reportView = new easyquery.ui.ReportView();
             var context = reportView.getContext();

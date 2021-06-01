@@ -5,9 +5,9 @@
   "dependencies": {
     "@easydata/core": "1.2.7",
     "@easydata/ui": "1.2.7",
-    "@easyquery/core": "7.0.7",
-    "@easyquery/ui": "7.0.7",
-    "@easyquery/enterprise": "7.0.7",
+    "@easyquery/core": "7.0.9",
+    "@easyquery/ui": "7.0.9",
+    "@easyquery/enterprise": "7.0.9",
     "bootstrap": "^4.3.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
