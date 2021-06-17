@@ -20,26 +20,18 @@ namespace EqDemo.Controllers
 
             options.UseDbContext(ApplicationDbContext.Create());
 
-            // Uncomment this line if you want to load model directly from connection 
-            // Do not forget to uncomment SqlClientGate registration in WebApiConfig.cs file
+            // Uncomment the following 3 lines if you want to load model directly from the DB's meta-data 
+            // (it's better to remove UseDbContext(..) call abouve in this case)
+            //options.ConnectionString = "Your connection string";
+            //options.UseDbConnection<SqlConnection>();
             //options.UseDbConnectionModelLoader();
 
             var path = System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data");
             options.UseQueryStore((_) => new FileQueryStore(path));
 
-            options.AddPreExecuteTuner(new SessionPreExecuteTuner());
-        }
-    }
-
-    public class SessionPreExecuteTuner : IEasyQueryManagerTuner
-    {
-        public bool Tune(EasyQueryManager manager)
-        {
-            //An example of how you can add an extra condtion before query execution
-            //var userId = (string)HttpContext.Current.Session["UserId"];
-            //manager.Query.ExtraConditions.AddSimpleCondition("Users.Id", "Equal", userId);
-
-            return true;
+            options.AddPreFetchTuner(manager => { 
+                //any code you would like to execute before the data is retrieved from the DB
+            });
         }
     }
 }
