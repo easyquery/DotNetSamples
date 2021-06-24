@@ -53,5 +53,16 @@
 
 </table>
 
-<eq-page-navigator paging="Model" />
+<div class="row">
+    <div class="col-md-8">
+        <eq-page-navigator paging="Model" />
+    </div>
+    <div class="col-md-4">
+        @{
+            var start = (Model.PageIndex - 1) * Model.PageSize;
+        }
+        <p class="h5">@(start + 1) - @(start + Model.Count()) of @Model.TotalRecords records</p>
+    </div>
+</div>
+
 
