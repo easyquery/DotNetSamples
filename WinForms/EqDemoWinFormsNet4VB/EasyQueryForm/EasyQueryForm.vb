@@ -58,7 +58,7 @@ Partial Public Class EasyQueryForm
     Private EqManager As EasyQueryManagerSql
 
     Public Sub New()
-        Korzh.EasyQuery.WinForms.License.Key = "M-Vm5PXqfpFr0P6bDruZ2wQIS6HV2Y"
+        Korzh.EasyQuery.WinForms.License.Key = "Drkqtq3P4-xp8tj5EzzARwQCS5ES9I970Q"
         _appDirectory = System.IO.Directory.GetCurrentDirectory()
         _dataFolder = System.IO.Path.Combine(_appDirectory, "App_Data")
         InitializeComponent()
@@ -193,13 +193,13 @@ Partial Public Class EasyQueryForm
         teSQL.Clear()
 
         Try
-            EqManager.QueryBuilder.Formats.SetDefaultFormats(FormatType.MsSqlServer)
+            EqManager.SqlQueryBuilder.Formats.SetDefaultFormats(FormatType.MsSqlServer)
 
-            If EqManager.QueryBuilder.CanBuild Then
-                EqManager.QueryBuilder.BuildParamSQL()
-                Dim sql As String = EqManager.QueryBuilder.Result.SQL
+            If EqManager.SqlQueryBuilder.CanBuild Then
+                EqManager.SqlQueryBuilder.BuildParamSQL()
+                Dim sql As String = EqManager.SqlQueryBuilder.Result.SQL
                 teSQL.Text = sql
-                Return EqManager.QueryBuilder
+                Return EqManager.SqlQueryBuilder
             End If
 
             Return Nothing

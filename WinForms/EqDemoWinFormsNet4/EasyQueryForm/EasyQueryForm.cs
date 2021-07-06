@@ -69,7 +69,7 @@ namespace EqDemo
 
         public EasyQueryForm()
         {
-            Korzh.EasyQuery.WinForms.License.Key = "M-Vm5PXqfpFr0P6bDruZ2wQIS6HV2Y";
+            Korzh.EasyQuery.WinForms.License.Key = "Drkqtq3P4-xp8tj5EzzARwQCS5ES9I970Q";
 
             _appDirectory = System.IO.Directory.GetCurrentDirectory();
             _dataFolder = System.IO.Path.Combine(_appDirectory, "App_Data");
@@ -222,14 +222,14 @@ namespace EqDemo
             teSQL.Clear();
             try {
                 
-                EqManager.QueryBuilder.Formats.SetDefaultFormats(FormatType.MsSqlServer);
+                EqManager.SqlQueryBuilder.Formats.SetDefaultFormats(FormatType.MsSqlServer);
 
-                if (EqManager.QueryBuilder.CanBuild) {
-                    EqManager.QueryBuilder.BuildParamSQL();
-                    string sql = EqManager.QueryBuilder.Result.SQL;
+                if (EqManager.SqlQueryBuilder.CanBuild) {
+                    EqManager.SqlQueryBuilder.BuildParamSQL();
+                    string sql = EqManager.SqlQueryBuilder.Result.SQL;
                     teSQL.Text = sql;
 
-                    return EqManager.QueryBuilder;
+                    return EqManager.SqlQueryBuilder;
                 }
 
                 return null;

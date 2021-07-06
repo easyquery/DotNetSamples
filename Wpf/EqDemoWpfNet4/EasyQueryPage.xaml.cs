@@ -33,7 +33,7 @@ namespace EqDemo
         public EasyQueryPage()
         {
 
-            Korzh.EasyQuery.Wpf.License.Key = "M-Vm5PXqfpFr0P6bDruZ2wQIG1H640";
+            Korzh.EasyQuery.Wpf.License.Key = "Drkqtq3P4-xp8tj5EzzARwQCG8ES4I8Y0Q";
 
             InitDatabase();
 
