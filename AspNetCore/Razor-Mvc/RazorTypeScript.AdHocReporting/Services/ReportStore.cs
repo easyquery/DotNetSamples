@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
@@ -39,7 +40,7 @@ namespace EqDemo.Services
             return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
 
-        public async Task<bool> AddQueryAsync(Query query)
+        public async Task<bool> AddQueryAsync(Query query, CancellationToken ct = default)
         {
             if (string.IsNullOrEmpty(query.Id)) {
                 query.Id = Guid.NewGuid().ToString();
@@ -59,13 +60,13 @@ namespace EqDemo.Services
                 throw new ArgumentNullException(nameof(report.OwnerId));
             }
 
-            await _dbContext.Reports.AddAsync(report);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.Reports.AddAsync(report, ct);
+            await _dbContext.SaveChangesAsync(ct);
             return true;
 
         }
 
-        public Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId)
+        public Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId, CancellationToken ct = default)
         {
             return Task.FromResult(ApplyUserGuard(_dbContext.Reports)
                                    .Where(r => r.ModelId == modelId)
@@ -76,9 +77,9 @@ namespace EqDemo.Services
         }
 
 
-        public async Task<bool> LoadQueryAsync(Query query, string queryId)
+        public async Task<bool> LoadQueryAsync(Query query, string queryId, CancellationToken ct = default)
         {
-            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == queryId);
+            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == queryId, ct);
             if (report != null)
             {
                 await query.LoadFromJsonStringAsync(report.QueryJson);
@@ -90,9 +91,9 @@ namespace EqDemo.Services
             return false;
         }
 
-        public async Task<bool> RemoveQueryAsync(string modelId, string queryId)
+        public async Task<bool> RemoveQueryAsync(string modelId, string queryId, CancellationToken ct = default)
         {
-            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == queryId);
+            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == queryId, ct);
             if (report != null)
             {
                 _dbContext.Remove(report);
@@ -104,9 +105,9 @@ namespace EqDemo.Services
             return false;
         }
 
-        public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true)
+        public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true, CancellationToken ct = default)
         {
-            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.Id);
+            var report = await ApplyUserGuard(_dbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.Id, ct);
             if (report != null) {
                 report.Name = query.Name;
                 report.Description = query.Description;
@@ -114,12 +115,12 @@ namespace EqDemo.Services
                 report.QueryJson = await query.SaveToJsonStringAsync();
 
                 _dbContext.Update(report);
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync(ct);
 
                 return true;
             }
             else if (createIfNotExists) {
-                return await AddQueryAsync(query);
+                return await AddQueryAsync(query, ct);
             }
 
             return false;

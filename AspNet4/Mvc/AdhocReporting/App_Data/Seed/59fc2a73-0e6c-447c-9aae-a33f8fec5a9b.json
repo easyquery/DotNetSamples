@@ -1,109 +1,81 @@
 ﻿{
-  "id": "59fc2a73-0e6c-447c-9aae-a33f8fec5a9b",
+  "id": "1b84aa88-5f67-4b8c-85de-f846a5ca8498",
   "name": "Empolyee of the year",
-  "desc": null,
   "cols": [
     {
+      "id": "col-of8vri5upy9q",
       "cptn": "First name",
       "srt": 0,
+      "srtidx": -1,
       "expr": {
         "tag": 2,
         "dtype": 1,
-        "kind": 2,
-        "id": "Employee.FirstName"
+        "id": "Employee.FirstName",
+        "val": "Employee.FirstName"
       }
     },
     {
+      "id": "col-568vri5upy9q",
       "cptn": "Last name",
       "srt": 0,
+      "srtidx": -1,
       "expr": {
         "tag": 2,
         "dtype": 1,
-        "kind": 2,
-        "id": "Employee.LastName"
+        "id": "Employee.LastName",
+        "val": "Employee.LastName"
       }
     },
     {
+      "id": "col-gt8vri5upy9q",
       "cptn": "Title",
       "srt": 0,
+      "srtidx": -1,
       "expr": {
         "tag": 2,
         "dtype": 1,
-        "kind": 2,
-        "id": "Employee.Title"
+        "id": "Employee.Title",
+        "val": "Employee.Title"
       }
     },
     {
+      "id": "col-wd8vri5upy9q",
       "cptn": "Home phone",
       "srt": 0,
+      "srtidx": -1,
       "expr": {
         "tag": 2,
         "dtype": 1,
-        "kind": 2,
-        "id": "Employee.HomePhone"
+        "id": "Employee.HomePhone",
+        "val": "Employee.HomePhone"
       }
     },
     {
-      "cptn": "Unit price Sum",
+      "id": "col-p78vri5upy9q",
+      "cptn": "Order Detail Unit Price Sum",
       "srt": 2,
-      "srtidx": 0,
+      "srtidx": 4,
       "expr": {
         "tag": 4,
-        "dtype": 8,
+        "dtype": 1,
         "kind": 0,
         "func": "SUM",
-        "distinct": false,
         "args": [
           {
             "tag": 2,
-            "dtype": 8,
-            "kind": 2,
-            "id": "OrderDetail.UnitPrice"
+            "dtype": 1,
+            "id": "OrderDetail.UnitPrice",
+            "val": "OrderDetail.UnitPrice"
           }
         ]
       }
     }
   ],
   "justsortcols": [],
-  "root": {
-    "linking": 3,
-    "conds": [
-      {
-        "tag": 1,
-        "op": "DateWithinPrevYear",
-        "exprs": [
-          {
-            "tag": 2,
-            "dtype": 12,
-            "kind": 2,
-            "id": "Order.OrderDate"
-          }
-        ]
-      },
-      {
-        "tag": 1,
-        "op": "Equal",
-        "exprs": [
-          {
-            "tag": 2,
-            "dtype": 1,
-            "kind": 2,
-            "id": "Customer.Country"
-          },
-          {
-            "tag": 1,
-            "dtype": 1,
-            "kind": 0,
-            "val": "USA",
-            "txt": "USA"
-          }
-        ]
-      }
-    ]
-  },
+  "extraData": {},
   "innerData": {
     "facets": {
-      "active": 1,
+      "active": 0,
       "items": [
         {
           "title": "Result set",
@@ -117,6 +89,57 @@
           "dataCol": 4
         }
       ]
+    },
+    "aggr": {
+      "groups": [],
+      "ugt": false,
+      "uc": false,
+      "aggregates": [],
+      "enabled": false
     }
-  }
+  },
+  "root": {
+    "tag": 51,
+    "linking": 3,
+    "conds": [
+      {
+        "tag": 1,
+        "op": "DateWithinPrevYear",
+        "exprs": [
+          {
+            "tag": 2,
+            "dtype": 12,
+            "id": "Order.OrderDate",
+            "val": "Order.OrderDate"
+          }
+        ]
+      },
+      {
+        "tag": 1,
+        "op": "Equal",
+        "exprs": [
+          {
+            "tag": 2,
+            "dtype": 1,
+            "id": "Customer.Country",
+            "val": "Customer.Country"
+          },
+          {
+            "tag": 1,
+            "dtype": 1,
+            "kind": 0,
+            "val": "USA",
+            "txt": "USA"
+          }
+        ]
+      }
+    ]
+  },
+  "extraConds": {
+    "tag": 51,
+    "linking": 3,
+    "conds": []
+  },
+  "timezoneOffset": -180,
+  "locale": "en-US"
 }

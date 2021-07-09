@@ -71,7 +71,7 @@ namespace EqDemo
 
         public EasyQueryForm()
         {
-            Korzh.EasyQuery.WinForms.License.Key = "Drkqtq3P4-xp8tj5EzzARwQCS5ES9I970Q";
+            Korzh.EasyQuery.WinForms.License.Key = "";
 
             _appDirectory = System.IO.Directory.GetCurrentDirectory();
             _dataFolder = System.IO.Path.Combine(_appDirectory, "App_Data");
