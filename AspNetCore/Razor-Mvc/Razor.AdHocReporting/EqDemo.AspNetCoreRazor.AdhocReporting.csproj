@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>aspnet-EqAspNetCoreTypeScriptDemo-582AC6C7-7F26-495D-ADAB-B16A31B9B144</UserSecretsId>
+    <UserSecretsId>EqDemo.AspNetCoreRazor.AdhocReporting</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
