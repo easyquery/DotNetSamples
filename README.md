@@ -40,7 +40,9 @@ To run these samples you will need:
 
 ## EasyQuery trial license key
 
-At the first run you will be asked for a product key for EasyQuery. You can [register on our website](https://korzh.com/easyquery/get-started) to get the trial product key (works for 30 days). The registration takes about 1 minute. When you get the key, add it to your appsettings.json file (for ASP.NET Core project), to web.config (for ASP.NET 4) or right into the code (for WinForms or WPF). Here are the examples:
+At the first launch, you will be asked for an EasyQuery product key. Please [register on our website](https://korzh.com/easyquery#get-started) to get the trial product key (works for 30 days). The registration takes about 1 minute. 
+
+When you get the key, add it to your `appsettings.json` file (for ASP.NET Core projects), to `web.config` (for ASP.NET 4) or right into the code (for WinForms or WPF). Here are the examples:
 
 ### ASP.NET Core (appsettings.json)
 
