@@ -34,9 +34,51 @@ To run these samples you will need:
 
 * Clone the repository
 * Run Command Prompt and change the current directory to the project's folder for one of the demo projects (e.g. `AspNetCore/Razor-Mvc/Razor.AdHocReporting `)
-* Type `dotnet build` to build the project
-* Type `dotnet run` to run it
+* Type `dotnet run` to run the project
 * Open `localhost:5000` in your browser.
+
+
+## EasyQuery trial license key
+
+At the first run you will be asked for a product key for EasyQuery. You can [register on our website](https://korzh.com/easyquery/get-started) to get the trial product key (works for 30 days). The registration takes about 1 minute. When you get the key, add it to your appsettings.json file (for ASP.NET Core project), to web.config (for ASP.NET 4) or right into the code (for WinForms or WPF). Here are the examples:
+
+### ASP.NET Core (appsettings.json)
+
+```
+{
+   .    .    .    .  
+  "EasyQuery": {
+    "LicenseKey": "Your trial version key goes here"
+  }
+}
+```
+
+### ASP.NET (web.config)
+
+```
+<configuration>
+  .   .   .   .  
+  <appSettings>
+    .   .   .   .  
+    <add key="EasyQuery:LicenseKey" value="Your trial version key goes here" />
+    .   .   .   .
+```
+
+### WPF 
+
+In the constructor of the page:
+
+```
+Korzh.EasyQuery.Wpf.License.Key = "Your trial version key goes here";
+```
+
+### WPF 
+
+In the constructor of the form:
+
+```
+Korzh.EasyQuery.WinForms.License.Key = "Your trial version key goes here";
+```
 
 
 ## Repository structure
