@@ -1,0 +1,115 @@
+{
+  "id": "45184c7e-ec4d-4542-849c-70976c8f9775",
+  "name": "Product/Countries sales",
+  "cols": [
+    {
+      "id": "col-xwe7656feo",
+      "cptn": "Product Name",
+      "srt": 1,
+      "srtidx": 0,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "id": "Product.Name",
+        "val": "Product.Name"
+      }
+    },
+    {
+      "id": "col-fge7656feo",
+      "cptn": "Client Country",
+      "srt": 1,
+      "srtidx": 1,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "id": "Customer.Country",
+        "val": "Customer.Country"
+      }
+    },
+    {
+      "id": "col-l9e7656feo",
+      "cptn": "Unit Price",
+      "srt": 0,
+      "srtidx": 2,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "id": "OrderDetail.UnitPrice",
+        "val": "OrderDetail.UnitPrice"
+      }
+    }
+  ],
+  "justsortcols": [],
+  "extraData": {},
+  "innerData": {
+    "facets": {
+      "active": 0,
+      "items": [
+        {
+          "title": "Result set",
+          "type": "DATA_GRID"
+        },
+        {
+          "title": "Pivot table",
+          "type": "PIVOT_TABLE",
+          "colName": "col-xwe7656feo",
+          "rowName": "col-fge7656feo",
+          "aggrFunc": "SUM",
+          "fieldName": "col-l9e7656feo",
+          "totalsRow": true,
+          "totalsCol": true
+        }
+      ]
+    },
+    "aggr": {
+      "groups": [
+        {
+          "columns": [
+            "col-xwe7656feo"
+          ],
+          "aggregates": null
+        },
+        {
+          "columns": [
+            "col-fge7656feo"
+          ],
+          "aggregates": null
+        }
+      ],
+      "ugt": true,
+      "uc": false,
+      "aggregates": [
+        {
+          "colId": "col-l9e7656feo",
+          "funcId": "SUM"
+        }
+      ],
+      "enabled": true
+    }
+  },
+  "root": {
+    "tag": 51,
+    "linking": 3,
+    "conds": [
+      {
+        "tag": 1,
+        "op": "DateWithinThisYear",
+        "exprs": [
+          {
+            "tag": 2,
+            "dtype": 12,
+            "id": "Order.OrderDate",
+            "val": "Order.OrderDate"
+          }
+        ]
+      }
+    ]
+  },
+  "extraConds": {
+    "tag": 51,
+    "linking": 3,
+    "conds": []
+  },
+  "timezoneOffset": -180,
+  "locale": "en-US"
+}
