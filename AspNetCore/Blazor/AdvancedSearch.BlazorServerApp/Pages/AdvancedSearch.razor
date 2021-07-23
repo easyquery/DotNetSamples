@@ -123,11 +123,15 @@
     </div>
 </div>
 
-@code {
+@code {        
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JSRuntime.InvokeVoidAsync("easyquery.blazor.startAdvancedSearch");
+        if (firstRender) {
+            await JSRuntime.InvokeVoidAsync("easyquery.blazor.startAdvancedSearch");
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
     }
 
     private bool _disposed = false;

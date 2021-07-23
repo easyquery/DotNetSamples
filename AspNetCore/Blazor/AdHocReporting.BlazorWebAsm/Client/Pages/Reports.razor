@@ -122,13 +122,21 @@
     }
 
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var result = await AccessTokenProviderAccessor.TokenProvider.RequestAccessToken();
-        if (result.Status == AccessTokenResultStatus.Success && result.TryGetToken(out var token)) {
-            await JSRuntime.InvokeVoidAsync("easyquery.blazor.startAdhocReporting", token.Value);
+        if (firstRender) {
+            var result = await AccessTokenProviderAccessor.TokenProvider.RequestAccessToken();
+            if (result.Status == AccessTokenResultStatus.Success && result.TryGetToken(out var token)) {
+                await JSRuntime.InvokeVoidAsync("easyquery.blazor.startAdhocReporting", token.Value);
+            }
+            else {
+                await JSRuntime.InvokeVoidAsync("consloe.error", "Unable to get access token");
+            }
         }
+
+        await base.OnAfterRenderAsync(firstRender);
     }
+
 
     private bool _disposed = false;
 
