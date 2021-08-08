@@ -2,6 +2,8 @@
 using System.Configuration;
 using System.Web.Http;
 using System.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
 
 using Korzh.EasyQuery.Services;
 using Korzh.EasyQuery.AspNet;
@@ -31,6 +33,29 @@ namespace EqDemo.Controllers
 
             var path = System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data");
             options.UseQueryStore((_) => new FileQueryStore(path));
+        }
+
+        public override async Task<IHttpActionResult> SaveQueryAsync(string modelId, string queryId, CancellationToken ct)
+        {
+            try
+            {
+                var requestStream = await Request.Content.ReadAsStreamAsync();
+                await Manager.ReadRequestContentFromStreamAsync(modelId, requestStream, ct);
+                await Manager.SaveQueryToStoreAsync(true, ct);
+
+                if (Options.ReturnQueryOnSave)
+                {
+                    var query = Manager.Query;
+
+                    return EqOk(new { query });
+                }
+
+                return EqOk();
+            }
+            catch (Exception ex)
+            {
+                return EqError(ex);
+            }
         }
     }
 }
