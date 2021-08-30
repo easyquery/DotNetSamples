@@ -122,16 +122,15 @@ namespace EqDemo
 
         private void CheckConnection()
         {
-            var prevTitle = this.Text;
-            this.Text += " (openning the connection to DB...)";
-            try {
-                if (_connection == null) {
+            if (_connection == null) {
+                var prevTitle = this.Text;
+                this.Text += " (creating a DB connection...)";
+                try {
+                    string currentDir = System.IO.Directory.GetCurrentDirectory();
                     var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString();
-                    using (var dbContext = ApplicationDbContext.Create())
-                    {
+                    using (var dbContext = ApplicationDbContext.Create()) {
                         _connection = new SqlConnection(connectionString);
-                        if (dbContext.Database.EnsureCreated())
-                        {
+                        if (dbContext.Database.EnsureCreated()) {
                             Korzh.DbUtils.DbInitializer.Create(options => {
                                 options.UseSqlServer(connectionString);
                                 options.UseZipPacker(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "App_Data/EqDemoData.zip"));
@@ -140,14 +139,23 @@ namespace EqDemo
                         }
                     };
                 }
-                if (_connection.State != ConnectionState.Open) {
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+                this.Text = prevTitle;
+            }
+
+            if (_connection.State != ConnectionState.Open) {
+                var prevTitle = this.Text;
+                this.Text += " (openning a DB connection...)";
+                try {
                     _connection.Open();
                 }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+                this.Text = prevTitle;
             }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-            this.Text = prevTitle;
         }
 
         private void btClear_Click(object sender, System.EventArgs e)
