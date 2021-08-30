@@ -103,7 +103,7 @@ namespace EqDemo.Controllers
 
                         if (propInfo.PropertyType == typeof(string)) {
                             if (propInfo.DeclaringType == typeof(Customer)) {
-                                return propInfo.Name == "CompanyName" || propInfo.Name == "Country" || propInfo.Name == "ContactName";
+                                return propInfo.Name == "Country" || propInfo.Name == "ContactName";
                             }
 
                             if (propInfo.DeclaringType == typeof(Employee)) {
