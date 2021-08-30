@@ -55,8 +55,8 @@ namespace EqDemo
         private ToolTip toolTipExel;
         private ToolTip toolTipCsv;
         private GroupBox panelExport;
-        private Button btnExportCsv;
-        private Button btnExportExel;
+        private Button btnExportToCsv;
+        private Button btnExportToExcel;
 
         private readonly string _dataFolder = "App_Data";
         private readonly string _appDirectory;
@@ -124,10 +124,10 @@ namespace EqDemo
 
         private void CheckConnection()
         {
-            var prevTitle = this.Text;
-            this.Text += " (openning the connection to DB...)";
-            try {
-                if (_connection == null) {
+            if (_connection == null) {
+                var prevTitle = this.Text;
+                this.Text += " (creating a DB connection...)";
+                try {
                     string currentDir = System.IO.Directory.GetCurrentDirectory();
                     var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString();
                     _connection = new SqlConnection(connectionString);
@@ -135,14 +135,23 @@ namespace EqDemo
                     var migrator = new DbMigrator(new EqDemo.Migrations.Configuration());
                     migrator.Update();
                 }
-                if (_connection.State != ConnectionState.Open) {
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+                this.Text = prevTitle;
+            }
+
+            if (_connection.State != ConnectionState.Open) {
+                var prevTitle = this.Text;
+                this.Text += " (openning a DB connection...)";
+                try {
                     _connection.Open();
                 }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+                this.Text = prevTitle;
             }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
-            this.Text = prevTitle;
         }
 
         private void btClear_Click(object sender, System.EventArgs e)
