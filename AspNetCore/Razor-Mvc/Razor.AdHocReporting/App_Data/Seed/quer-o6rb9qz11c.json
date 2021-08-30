@@ -6,7 +6,7 @@
   "cols":[
     {
       "id":"col-9frb9ypzpc",
-      "cptn":"Client Country",
+      "cptn":"Country",
       "srt":1,
       "srtidx":0,
       "expr":{
@@ -18,7 +18,7 @@
     },
     {
       "id":"col-u4rb96vbsw",
-      "cptn":"Category Category Name",
+      "cptn":"Category",
       "srt":1,
       "srtidx":1,
       "expr":{
