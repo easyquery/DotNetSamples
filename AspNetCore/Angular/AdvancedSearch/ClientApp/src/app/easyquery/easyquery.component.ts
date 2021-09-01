@@ -17,13 +17,10 @@ export class EasyQueryComponent implements AfterViewInit {
 
     private view: AdvancedSearchView;
 
-    constructor() {
-      
-    }
-   
+    constructor() {      
+    }   
 
     ngAfterViewInit() {
-
       //here we define some options for AdvancedSearchView
       const viewOptions: EqViewOptions = {
         enableExport: true,
