@@ -60,31 +60,6 @@
           "totalsCol": true
         }
       ]
-    },
-    "aggr": {
-      "groups": [
-        {
-          "columns": [
-            "col-xwe7656feo"
-          ],
-          "aggregates": null
-        },
-        {
-          "columns": [
-            "col-fge7656feo"
-          ],
-          "aggregates": null
-        }
-      ],
-      "ugt": true,
-      "uc": false,
-      "aggregates": [
-        {
-          "colId": "col-l9e7656feo",
-          "funcId": "SUM"
-        }
-      ],
-      "enabled": true
     }
   },
   "root": {

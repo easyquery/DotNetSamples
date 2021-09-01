@@ -12,5 +12,10 @@ namespace EqDemo.Controllers
         {
             return RedirectToAction("Index", "Order");
         }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }
 }
