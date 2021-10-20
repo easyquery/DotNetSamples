@@ -1,0 +1,105 @@
+﻿{
+  "id": "f3af02b0-4cd4-455b-a1ca-5fa43022e396",
+  "name": "Sales by product (this year)",
+  "cols": [
+    {
+      "id": "col-bf8vrj0835f8",
+      "cptn": "Name",
+      "srt": 1,
+      "srtidx": 0,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "id": "Product.Name",
+        "val": "Product.Name"
+      }
+    },
+    {
+      "id": "col-eb8vrj0835f8",
+      "srt": 0,
+      "srtidx": 1,
+      "expr": {
+        "tag": 2,
+        "dtype": 1,
+        "id": "Order.Freight",
+        "val": "Order.Freight"
+      }
+    }
+  ],
+  "justsortcols": [],
+  "extraData": {},
+  "innerData": {
+    "facets": {
+      "active": 0,
+      "items": [
+        {
+          "title": "Result set",
+          "type": "DATA_GRID"
+        }
+      ]
+    },
+    "aggr": {
+      "groups": [
+        {
+          "columns": [
+            "col-bf8vrj0835f8"
+          ],
+          "aggregates": null
+        }
+      ],
+      "ugt": true,
+      "uc": false,
+      "aggregates": [
+        {
+          "colId": "col-eb8vrj0835f8",
+          "funcId": "SUM"
+        }
+      ],
+      "enabled": true
+    }
+  },
+  "root": {
+    "tag": 51,
+    "linking": 3,
+    "conds": [
+      {
+        "tag": 1,
+        "op": "DateWithinThisYear",
+        "exprs": [
+          {
+            "tag": 2,
+            "dtype": 12,
+            "id": "Order.OrderDate",
+            "val": "Order.OrderDate"
+          }
+        ]
+      },
+      {
+        "tag": 1,
+        "op": "Equal",
+        "exprs": [
+          {
+            "tag": 2,
+            "dtype": 1,
+            "id": "Customer.Country",
+            "val": "Customer.Country"
+          },
+          {
+            "tag": 1,
+            "dtype": 1,
+            "kind": 0,
+            "val": "USA",
+            "txt": "USA"
+          }
+        ]
+      }
+    ]
+  },
+  "extraConds": {
+    "tag": 51,
+    "linking": 3,
+    "conds": []
+  },
+  "timezoneOffset": -180,
+  "locale": "en-US"
+}

@@ -93,7 +93,21 @@
                     //Error handler
                     onError: function (_, error) {
                         console.error(error.sourceError);
-                    }
+                    },
+                    onListRequest: function (params, onResult) {
+                        console.log('Inside list request handler');
+                        var processed = true;
+                        const listName = params.listName;
+                        if (listName.startsWith("Lookup")) {
+                            console.log('Looking for list: ', listName);
+                            const type = listName.split(' ')[1];
+                            const list = [];
+                            getLookupList(type, onResult);
+                        } else {
+                            processed = false;
+                        }
+                        return processed;
+                    },
                 },
                 result: {
                     //Show EasyChart
@@ -113,6 +127,20 @@
             });
 
             document['AdvancedSearchView'] = view;
-        });   
+        });
+
+        function getLookupList(type, onSuccess) {
+            $.ajax({
+                dataType: 'json',
+                url: '/api/values/list1',
+                success: function (data) {
+                    onSuccess(data);
+                },
+
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert('ERROR: ' + textStatus + ' ' + errorThrown);
+                }
+            });
+        }
     </script>
 }

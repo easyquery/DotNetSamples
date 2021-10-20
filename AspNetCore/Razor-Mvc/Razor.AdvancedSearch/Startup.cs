@@ -11,6 +11,8 @@ using EasyData.Export;
 using Korzh.EasyQuery.Services;
 
 using EqDemo.Services;
+using EasyData;
+using Korzh.EasyQuery.Db;
 
 namespace EqDemo
 {
@@ -87,9 +89,21 @@ namespace EqDemo
                     //options.UseDbConnectionModelLoader();
 
                     options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+
+                    options.UseModelTuner(manager => {
+                        var attr = manager.Model.FindEntityAttr("Order.ShipRegion");
+                        attr.Operations.RemoveByIDs(manager.Model, "StartsWith,Contains");
+                        attr.DefaultEditor = new CustomListValueEditor("Lookup", "Lookup");
+                    });
+
+                    options.UseSqlFormats(FormatType.SqlServer, formats => {
+                        formats.UseDbName = false;
+                        formats.UseSchema = false;
+                    });
                 });
 
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
             //Init demo database (if necessary)
