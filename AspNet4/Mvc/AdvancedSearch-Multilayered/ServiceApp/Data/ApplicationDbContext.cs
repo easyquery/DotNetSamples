@@ -6,10 +6,8 @@ namespace EqDemo.Models
     {
         public ApplicationDbContext()
             : base("DefaultConnection")
-        {
- 
+        { 
         }
-
 
 
         #region NWind
@@ -44,7 +42,5 @@ namespace EqDemo.Models
         {
             return new ApplicationDbContext();
         }
-
     }
-
 }

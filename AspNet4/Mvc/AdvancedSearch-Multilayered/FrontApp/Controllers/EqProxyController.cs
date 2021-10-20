@@ -38,6 +38,7 @@ namespace EqDemo.Controllers
         [Route("models/{modelId}")]
         public async Task<ActionResult> GetModelAsync(string modelId, CancellationToken ct)
         {
+            _httpClient.DefaultRequestHeaders.TryAddWithoutValidation("x-eqjs-version", "7.1.0");
             var response = await _httpClient.GetAsync($"models/{modelId}", ct);
             var content = await response.Content.ReadAsStringAsync();
             return JsonContent(content, response.StatusCode);
