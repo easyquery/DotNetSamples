@@ -12,8 +12,8 @@
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.3.0" />
-    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.3.0" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.3.5" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.3.5" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.1.2" />
