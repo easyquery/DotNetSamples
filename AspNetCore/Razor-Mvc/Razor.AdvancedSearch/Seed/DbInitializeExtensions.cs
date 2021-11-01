@@ -22,6 +22,5 @@ namespace EqDemo.Services
                 }
             }
         }
-
     }
 }
