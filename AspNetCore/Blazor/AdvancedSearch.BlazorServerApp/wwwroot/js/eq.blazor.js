@@ -18,8 +18,12 @@ easyquery.blazor = {
             //Load model on start
             loadModelOnStart: true,
 
+            defaultModelId: 'nwind',
+
+            defaultQueryId: 'fee014cd-ad47-4a33-9c16-4cdf903bfbd2',
+
             //Load query on start
-            loadQueryOnStart: false,
+            loadQueryOnStart: true,
 
             enableExport: true,
             serverExporters: ['pdf', 'excel', 'csv'],
