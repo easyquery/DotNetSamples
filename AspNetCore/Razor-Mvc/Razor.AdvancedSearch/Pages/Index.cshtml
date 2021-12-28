@@ -8,8 +8,8 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.1.2/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.1.2/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.2.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.2.0/eq.view.min.css">
 
     <!-- AgGrid script -->
     <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
@@ -38,6 +38,7 @@
 }
 
 <div class="container">
+    <a id="AggrSettingsButton" href="javascript:void(0)">Aggr Settings</a>
     <partial name="EasyQuery/_AdvancedSearch" />
 </div>
 
@@ -52,7 +53,7 @@
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.1.119/styles/kendo.default-v2.min.css" />
 
     <!-- EasyQuery scripts -->
-    <script src="https://cdn.korzh.com/eq/7.1.2/eq.enterprise.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/7.2.0/eq.enterprise.min.js"></script>
 
     <!-- Examples of custom GRID integration -->
     <script src="~/js/kendo-grid-widget.js"></script>
@@ -124,6 +125,13 @@
             context.useEnterprise(function () {
                 view.init(viewOptions);
             });
+
+            var aggrSetttingsBtn = document.getElementById('AggrSettingsButton');
+            aggrSetttingsBtn.addEventListener('click', () => {
+                var dialog = new easyquery.ui.AggrSettingsDialog(context);
+                dialog.show();
+            });
+
 
             document['AdvancedSearchView'] = view;
         });

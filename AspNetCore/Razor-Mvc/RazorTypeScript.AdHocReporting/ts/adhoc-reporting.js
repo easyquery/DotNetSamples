@@ -5,71 +5,33 @@ require("@easyquery/enterprise");
 window.addEventListener('load', function () {
     //Options for ReportViewJQuery
     var viewOptions = {
+        calcTotals: true,
+        enableExport: true,
+        serverExporters: ['pdf', 'excel', 'excel-html', 'csv'],
         //Saves report on each change
         syncReportOnChange: true,
         handlers: {
-            onError: function (error) {
-                console;
+            onError: function (context, error) {
+                console.error(error.sourceError);
             }
         },
         result: {
             //Show EasyChart
             showChart: true,
-            chartWidgetResolver: function (slot) { return new ui_1.GoogleChartWidget(slot); },
             //Paging options
             paging: {
-                pageSize: 50
+                pageSize: 30
             }
         },
         //Load model on start
         loadModelOnStart: true,
         //Default model's ID (we use it here just for a nice folder name in App_Data folder)
-        defaultModelId: 'adhoc-reporting',
-        //Middleware endpoint 
-        endpoint: window["__appPathBase"] + '/api/adhoc-reporting',
-        enableExport: true,
-        //Different widgets options
-        widgets: {
-            //ColumnBar options
-            columnsBar: {
-                accentActiveColumn: false,
-                allowAggrColumns: true,
-                attrElementFormat: "{attr}",
-                showColumnCaptions: true,
-                adjustEntitiesMenuHeight: false,
-                menuOptions: {
-                    showSearchBoxAfter: 30,
-                    activateOnMouseOver: true
-                }
-            },
-            //QueryPanel options
-            queryPanel: {
-                alwaysShowButtonsInGroups: false,
-                adjustEntitiesMenuHeight: false,
-                menuOptions: {
-                    showSearchBoxAfter: 20,
-                    activateOnMouseOver: true
-                }
-            },
-            //ResultGrid options
-            resultGrid: {
-                tableClass: "table table-sm",
-                formatGridCell: function (dataTable, rowIndex, colIndex, value) {
-                    var props = dataTable.getColumnProperties(colIndex);
-                    if (props.dataType == 'Decimal') {
-                        return "$" + value;
-                    }
-                    else {
-                        return value;
-                    }
-                }
-            }
-        }
+        defaultModelId: 'adhoc-reporting'
     };
     var reportView = new ui_1.ReportView();
-    var context = reportView.getContext();
-    context.setLicenseKeyEndpoint(window["__appPathBase"] + window['__eqLckEndpoint']);
-    context.useEnterprise(function () {
+    reportView.getContext()
+        .useEndpoint('/api/adhoc-reporting')
+        .useEnterprise(function () {
         reportView.init(viewOptions);
     });
     document['ReportView'] = reportView;
