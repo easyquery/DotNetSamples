@@ -134,7 +134,7 @@ namespace EqDemo
             });
 
             //Init demo database (if necessary)
-            app.EnsureDbInitialized(Configuration, env);
+            app.EnsureDbInitializedAsync(Configuration, env).GetAwaiter().GetResult();
         }
     }
 }
