@@ -7,7 +7,7 @@
 @{
     ViewData["Title"] = "Ad-hoc reporting demo";
     ViewData["MenuTitle"] = "Ad-hoc reporting demo";
-    bool isDefaultUser = User.Identity.Name == "demo@korzh.com";
+    bool IsQueryManager = User.IsInRole(Korzh.EasyQuery.Services.DefaultEqAuthProvider.EqManagerRole);
     string tooltipContent = "You are logged in as a demo user. Demo user is not allowed to manage the reports.<br />"
         + "To test this functionlity - please log out and sign in with another account.";
 }
@@ -40,7 +40,17 @@
                                 aria-expanded="false">
                             <i class="fas fa-cog"></i>
                         </button>
-                        @if (isDefaultUser)
+                        @if (IsQueryManager)
+                        {
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" id="NewReportButton" href="javascript:void(0)">New report</a>
+                                <a class="dropdown-item" id="SaveReportButton" href="javascript:void(0)">Save as...</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" id="RemoveReportButton" href="javascript:void(0)">Remove report</a>
+                            </div>
+
+                        }
+                        else
                         {
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-toggle="tooltip" data-html="true" data-placement="bottom"
                                  title="@tooltipContent">
@@ -48,15 +58,6 @@
                                 <a class="dropdown-item disabled" href="javascript:void(0)">Save as...</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item disabled" href="javascript:void(0)">Remove report</a>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" id="NewReportButton" href="javascript:void(0)">New report</a>
-                                <a class="dropdown-item" id="SaveReportButton" href="javascript:void(0)">Save as...</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" id="RemoveReportButton" href="javascript:void(0)">Remove report</a>
                             </div>
                         }
                     </div>
@@ -97,7 +98,7 @@
     </div>
     <div class="row " id="NoReportPanel" style="visibility:hidden;">
         <div class="col-md-12">
-            @if (!isDefaultUser)
+            @if (IsQueryManager)
             {
                 <h3 class="text-center">
                     No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
