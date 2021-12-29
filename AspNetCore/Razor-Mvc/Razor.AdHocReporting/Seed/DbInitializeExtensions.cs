@@ -70,6 +70,9 @@ namespace EqDemo.Services
                         await defaultReportsGenerator.GenerateAsync(user);
                     }
                 }
+                else {
+                    await userManager.AddToRoleAsync(user, DefaultEqAuthProvider.EqManagerRole);
+                }
             }
             catch (Exception ex) {
                 Console.WriteLine(ex);
