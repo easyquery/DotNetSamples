@@ -12,7 +12,7 @@
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.0-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.2.0-rc03" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.0-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.2.0-rc05" />
   </ItemGroup>
 </Project>
