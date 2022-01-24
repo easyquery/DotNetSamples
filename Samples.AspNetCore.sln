@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.156
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Angular", "Angular", "{05B73A78-F79B-4850-B426-E42FF18D893A}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vue", "Vue", "{B3073273-2DF6-4853-A1FC-4EFFDD7E1422}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Razor-Mvc", "Razor-Mvc", "{1776D551-217D-4D0D-B255-5F4DF15AC492}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreAngular.AdvancedSearch", "AspNetCore\Angular\AdvancedSearch\EqDemo.AspNetCoreAngular.AdvancedSearch.csproj", "{678C235D-DF3F-4D1E-8995-E30340733E2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreReact.AdvancedSearch", "AspNetCore\React\AdvancedSearch\EqDemo.AspNetCoreReact.AdvancedSearch.csproj", "{E6BD0C2A-8447-41C5-946B-3EBC9E7489C6}"
 EndProject
@@ -43,16 +41,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreBlazorWebA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EqDemo.AspNetCoreBlazorWebAsm", "EqDemo.AspNetCoreBlazorWebAsm", "{81579B4C-47D5-45B9-998E-D280C5F29732}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqAngularAdvSearch", "AspNetCore\Angular\EqAngularAdvSearch\EqAngularAdvSearch.csproj", "{D2164DCA-A765-4924-A008-E56ED6001036}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{678C235D-DF3F-4D1E-8995-E30340733E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{678C235D-DF3F-4D1E-8995-E30340733E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{678C235D-DF3F-4D1E-8995-E30340733E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{678C235D-DF3F-4D1E-8995-E30340733E2A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6BD0C2A-8447-41C5-946B-3EBC9E7489C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6BD0C2A-8447-41C5-946B-3EBC9E7489C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6BD0C2A-8447-41C5-946B-3EBC9E7489C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -101,12 +97,15 @@ Global
 		{3C35905F-DCBD-4C68-BEDF-D738101FC38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C35905F-DCBD-4C68-BEDF-D738101FC38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C35905F-DCBD-4C68-BEDF-D738101FC38F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2164DCA-A765-4924-A008-E56ED6001036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2164DCA-A765-4924-A008-E56ED6001036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2164DCA-A765-4924-A008-E56ED6001036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2164DCA-A765-4924-A008-E56ED6001036}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{678C235D-DF3F-4D1E-8995-E30340733E2A} = {05B73A78-F79B-4850-B426-E42FF18D893A}
 		{E6BD0C2A-8447-41C5-946B-3EBC9E7489C6} = {D1E3E79A-88D8-4914-B20E-F598FF93B496}
 		{61D26EA2-338F-45F9-804F-6DC29A266470} = {F479CC93-A463-418D-94EB-36C740A33879}
 		{3E09145C-B472-47E8-811B-76388A70901F} = {B3073273-2DF6-4853-A1FC-4EFFDD7E1422}
@@ -120,6 +119,7 @@ Global
 		{29D41145-DBE9-4403-8A30-9F753A4C3F55} = {81579B4C-47D5-45B9-998E-D280C5F29732}
 		{3C35905F-DCBD-4C68-BEDF-D738101FC38F} = {81579B4C-47D5-45B9-998E-D280C5F29732}
 		{81579B4C-47D5-45B9-998E-D280C5F29732} = {5CA907DE-3505-410D-BEE7-F2D0FFA84B0E}
+		{D2164DCA-A765-4924-A008-E56ED6001036} = {05B73A78-F79B-4850-B426-E42FF18D893A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08B4EA69-9776-4D12-8FAD-CFB8FCD57198}
