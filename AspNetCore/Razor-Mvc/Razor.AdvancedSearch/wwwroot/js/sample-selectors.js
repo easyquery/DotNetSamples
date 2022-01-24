@@ -1,7 +1,6 @@
 window.addEventListener('load', function () {
     // Grid selector renderer
     function renderGridSelector() {
-
         var gridSelector = document.createElement('select');
         gridSelector.classList.add('eqv-select');
 
@@ -35,8 +34,11 @@ window.addEventListener('load', function () {
 
     // Code samples renderer
     function renderSamplesSelector() {
-
         var samples = {
+            showAggregationDialog: {
+                name: 'Show aggregation/grouping dialog',
+                handler: showAggregationDialog
+            },
 
             simpleColToAggr: {
                 name: 'Currency columns to aggregates',
@@ -82,15 +84,13 @@ window.addEventListener('load', function () {
 
         var menuContent = document.getElementsByClassName('eqv-menu-content')[0];
         menuContent.appendChild(container);
-
     }
 
     renderSamplesSelector();
     renderGridSelector();
 });
 
-function configureOptionsForSelectedGrid(viewOptions)
-{
+function configureOptionsForSelectedGrid(viewOptions) {
     var gridType = window.localStorage.getItem('grid-type');
     if (gridType == 'ag-grid') {
         viewOptions.calcTotals = false;
@@ -103,5 +103,13 @@ function configureOptionsForSelectedGrid(viewOptions)
             return new KendoGridWidget(slot);
         }
     }
+}
 
+function showAggregationDialog() {
+    var view = document['AdvancedSearchView'];
+    if (!view) {
+        throw "Can't find view object";
+    }
+    var dialog = new easyquery.ui.AggrSettingsDialog(view.getContext());
+    dialog.show();
 }
