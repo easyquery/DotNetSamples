@@ -23,7 +23,7 @@ namespace EqDemo
         {
             Configuration = configuration;
 
-            Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ExportFormats = "pdf,excel,excel-html,csv";
+            Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ExportFormats = new string[] { "pdf", "excel", "excel-html", "csv" };
             
             //uncomment the following line if you want to show the SQL statements on each change in your query
             //Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ShowSqlPanel = true;
