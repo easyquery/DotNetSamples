@@ -7,9 +7,9 @@
   "dependencies": {
     "@easydata/core": "1.4.1",
     "@easydata/ui": "1.4.1",
-    "@easyquery/core": "7.2.0-rc05",
-    "@easyquery/ui": "7.2.0-rc05",
-    "@easyquery/enterprise": "7.2.0-rc05"
+    "@easyquery/core": "7.2.0-rc06",
+    "@easyquery/ui": "7.2.0-rc06",
+    "@easyquery/enterprise": "7.2.0-rc06"
   },
   "scripts": {
     "test": "test",
