@@ -97,15 +97,12 @@
                 <h3 class="text-center">
                     No reports are defined. <span id="FirstReportButton" title="@TooltipContent" data-toggle="tooltip" data-placement="top" style="text-decoration: underline">Create a first one</span> to start.
                 </h3>
-
-
             }
         </div>
     </div>
 </div>
 
 @code {
-
     public string TooltipContent { get; } = "You are logged in as a demo user. Demo user is not allowed to manage the reports.<br />"
         + "To test this functionlity - please log out and sign in with another account.";
 
@@ -142,9 +139,7 @@
 
     public async ValueTask DisposeAsync()
     {
-        if (!_disposed)
-        {
-
+        if (!_disposed) {
             _disposed = true;
 
             await JSRuntime.InvokeVoidAsync("easyquery.blazor.stopAdhocReporting");

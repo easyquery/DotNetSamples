@@ -1,6 +1,6 @@
 ﻿easyquery = easyquery || {};
-easyquery.blazor = {
 
+easyquery.blazor = {
     initEasyQueryView: function (view, viewOptions) {
         var context = view.getContext();
         if (viewOptions.token) {
@@ -16,7 +16,6 @@ easyquery.blazor = {
     },
 
     startAdhocReporting: function (token) {
-
         //Options for ReportView
         var viewOptions = {
 
