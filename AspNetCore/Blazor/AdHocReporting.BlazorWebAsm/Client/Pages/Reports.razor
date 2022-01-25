@@ -112,9 +112,8 @@
     protected override async Task OnParametersSetAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
 
-        IsManager = user.IsInRole("eq-manager");
+        IsManager = authState.User.IsInRole("eq-manager");
 
         await base.OnParametersSetAsync();
     }
