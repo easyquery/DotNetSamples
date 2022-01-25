@@ -59,7 +59,7 @@ easyquery.blazor = {
     },
 
     stopAdhocReporting: function () {
-        if (document.AdhocReportingView) {
+        if (document && document.AdhocReportingView) {
             document.AdhocReportingView.detach();
             delete document.AdhocReportingView;
         }
