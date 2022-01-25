@@ -90,12 +90,10 @@ const AdvacnedSearchHtml = () => (
                 </div>
                 <div id="eqv-footer">
                 <div className="eqv-copyright">
-                    (c) Copyright 2006-{new Date().getFullYear()} <a href="https://korzh.com/" target="_blank">Korzh.com</a>
+                    (c) Copyright 2006-{new Date().getFullYear()} <a href="https://korzh.com/" target="_blank">Korzh.com</a> | 
                     </div>
                     <div className="power-by">
                         Powered by <a href="https://korzh.com/easyquery" target="_blank">EasyQuery</a>
-                        |
-                        <a href="http://demo.easyquerybuilder.com" target="_blank">Live demos</a>
 
                     </div>
                 </div>
