@@ -8,7 +8,7 @@ easyquery.blazor = {
             http.defaultHeaders['Authorization'] = 'Bearer ' + viewOptions.token;
         }
         if (viewOptions.endpoint) {
-            context.useEndpoint(viewOptions.endpoint);
+            context.useEndpoint('/api/adhoc-reporting');
         }
         context.useEnterprise(function () {
             view.init(viewOptions);
@@ -18,14 +18,11 @@ easyquery.blazor = {
     startAdhocReporting: function (token) {
         //Options for ReportView
         var viewOptions = {
-
             //Saves report on each change
             syncReportOnChange: true,
 
             enableExport: true,
             serverExporters: ['pdf', 'excel', 'excel-html', 'csv'],
-
-            endpoint: '/api/adhoc-reporting',
 
             handlers: {
                 onError: function (_, error) {
