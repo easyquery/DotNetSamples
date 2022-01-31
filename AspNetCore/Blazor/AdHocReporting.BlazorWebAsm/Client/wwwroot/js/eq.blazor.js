@@ -7,9 +7,7 @@ easyquery.blazor = {
             var http = context.getServices().getHttpClient();
             http.defaultHeaders['Authorization'] = 'Bearer ' + viewOptions.token;
         }
-        if (viewOptions.endpoint) {
-            context.useEndpoint('/api/adhoc-reporting');
-        }
+        context.useEndpoint('/api/adhoc-reporting');
         context.useEnterprise(function () {
             view.init(viewOptions);
         });

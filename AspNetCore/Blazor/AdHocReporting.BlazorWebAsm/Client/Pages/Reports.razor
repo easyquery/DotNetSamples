@@ -87,16 +87,16 @@
     </div>
     <div class="row " id="NoReportPanel" style="visibility:hidden;">
         <div class="col-md-12">
-            @if (!IsManager)
+            @if (IsManager)
             {
                 <h3 class="text-center">
-                    No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
+                    No reports are defined. <a id="FirstReportButton" href="javascript:document.AdhocReportingView.newReport()">Create the first one</a> to start.
                 </h3>
             }
             else
             {
                 <h3 class="text-center">
-                    No reports are defined. <span id="FirstReportButton" title="@TooltipContent" data-toggle="tooltip" data-placement="top" style="text-decoration: underline">Create a first one</span> to start.
+                    No reports are defined. Please login to a manager account to create reports.
                 </h3>
             }
         </div>
