@@ -327,7 +327,7 @@ namespace EqDemo
         {
             var resultDt = ((DataView)datGrid.ItemsSource).ToTable();
             using (var resultSet = new EasyDbResultSet(EqManager.Query, resultDt.CreateDataReader(), EqManager.ResultSetOptions))
-            using (var fileStream = File.OpenWrite(fileName))
+            using (var fileStream = File.Open(fileName, FileMode.Create))
                 exporter.Export(resultSet, fileStream);
 
             new Process
