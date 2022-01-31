@@ -205,7 +205,6 @@ Partial Class EasyQueryForm
         Me.CPanel.Appearance.BackColor = System.Drawing.Color.LightYellow
         Me.CPanel.Appearance.ButtonForeColor = System.Drawing.SystemColors.ControlText
         Me.CPanel.Appearance.FocusBorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.CPanel.Appearance.Title = ""
         Me.CPanel.Appearance.TitleElementFormat = "{attr}"
         Me.CPanel.BackColor = System.Drawing.Color.LightYellow
         Me.CPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -277,7 +276,6 @@ Partial Class EasyQueryForm
         Me.SPanel.Appearance.BackColor = System.Drawing.Color.LightYellow
         Me.SPanel.Appearance.ButtonForeColor = System.Drawing.SystemColors.ControlText
         Me.SPanel.Appearance.FocusBorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.SPanel.Appearance.Title = ""
         Me.SPanel.Appearance.TitleElementFormat = "{attr}"
         Me.SPanel.BackColor = System.Drawing.Color.LightYellow
         Me.SPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
