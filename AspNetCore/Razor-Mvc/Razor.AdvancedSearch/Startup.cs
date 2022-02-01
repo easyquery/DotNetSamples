@@ -6,13 +6,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using EasyData;
 using EasyData.Export;
 
 using Korzh.EasyQuery.Services;
+using Korzh.EasyQuery.Db;
 
 using EqDemo.Services;
-using EasyData;
-using Korzh.EasyQuery.Db;
+using Microsoft.Data.Sqlite;
 
 namespace EqDemo
 {
@@ -33,10 +34,9 @@ namespace EqDemo
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-          
+        {          
             services.AddDbContext<AppDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb")));
+                options => options.UseSqlite(Configuration.GetConnectionString("EqDemoDb")));
        
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -46,7 +46,7 @@ namespace EqDemo
                     .AddDefaultExporters()
                     .AddDataExporter<PdfDataExporter>("pdf")
                     .AddDataExporter<ExcelDataExporter>("excel")
-                    .RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
+                    .RegisterDbGate<Korzh.EasyQuery.DbGates.SqLiteGate>();
 
             services.AddRazorPages();
         }
@@ -80,6 +80,8 @@ namespace EqDemo
                     options.DefaultModelId = "nwind";
                     options.BuildQueryOnSync = true;
                     options.SaveNewQuery = false;
+                    options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
+                    options.UseDbConnection<SqliteConnection>();
                     options.UseDbContext<AppDbContext>();
 
                     // If you want to load model directly from DB metadata
@@ -96,7 +98,7 @@ namespace EqDemo
                         attr.DefaultEditor = new CustomListValueEditor("Lookup", "Lookup");
                     });
 
-                    options.UseSqlFormats(FormatType.SqlServer, formats => {
+                    options.UseSqlFormats(FormatType.Sqlite, formats => {
                         formats.UseDbName = false;
                         formats.UseSchema = false;
                     });
