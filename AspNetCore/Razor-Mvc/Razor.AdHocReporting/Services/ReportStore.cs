@@ -71,7 +71,7 @@ namespace EqDemo.Services
             return Task.FromResult(ApplyUserGuard(_dbContext.Reports)
                                    .Where(r => r.ModelId == modelId)
                                    .OrderBy(r => r.Name)
-                                   .Select(r => new QueryListItem(r.Id, r.Name, r.Description))
+                                   .Select(r => new QueryListItem(r.Id, r.ModelId, r.Name, r.Description))
                                    .AsNoTracking()
                                    .AsEnumerable());
         }
