@@ -16,7 +16,7 @@ using Korzh.EasyQuery.Services;
 using EqDemo.Models;
 using System.Threading;
 
-namespace EqDemo.Services
+namespace EqDemo
 {
     public class ReportStore : IQueryStore
     {
