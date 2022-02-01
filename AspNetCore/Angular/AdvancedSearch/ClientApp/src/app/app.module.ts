@@ -17,8 +17,7 @@ import { EasyQueryComponent } from './easyquery/easyquery.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent,
-    EasyQueryComponent
+    FetchDataComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
