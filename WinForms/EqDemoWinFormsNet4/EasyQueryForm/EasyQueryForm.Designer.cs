@@ -251,7 +251,6 @@
             this.CPanel.Appearance.BackColor = System.Drawing.Color.LightYellow;
             this.CPanel.Appearance.ButtonForeColor = System.Drawing.SystemColors.ControlText;
             this.CPanel.Appearance.FocusBorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.CPanel.Appearance.Title = "";
             this.CPanel.Appearance.TitleElementFormat = "{attr}";
             this.CPanel.BackColor = System.Drawing.Color.LightYellow;
             this.CPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -338,7 +337,6 @@
             this.SPanel.Appearance.BackColor = System.Drawing.Color.LightYellow;
             this.SPanel.Appearance.ButtonForeColor = System.Drawing.SystemColors.ControlText;
             this.SPanel.Appearance.FocusBorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SPanel.Appearance.Title = "";
             this.SPanel.Appearance.TitleElementFormat = "{attr}";
             this.SPanel.BackColor = System.Drawing.Color.LightYellow;
             this.SPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;

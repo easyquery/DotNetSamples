@@ -1,4 +1,4 @@
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, Inject, AfterViewInit} from '@angular/core';
 
 import { EqContext } from '@easyquery/core';
 import { EqViewOptions, AdvancedSearchView } from '@easyquery/ui';
@@ -17,7 +17,10 @@ export class EasyQueryComponent implements AfterViewInit {
 
     private view: AdvancedSearchView;
 
-    constructor() {      
+  constructor(@Inject('BASE_URL') baseUrl: string) {
+      console.log(baseUrl);
+      this.view = new AdvancedSearchView();
+      this.context = this.view.getContext();    
     }   
 
     ngAfterViewInit() {
@@ -36,9 +39,6 @@ export class EasyQueryComponent implements AfterViewInit {
           showChart: true
         }
       }
-
-      this.view = new AdvancedSearchView();
-      this.context = this.view.getContext();
 
       this.context
         .useEndpoint('/api/easyquery')

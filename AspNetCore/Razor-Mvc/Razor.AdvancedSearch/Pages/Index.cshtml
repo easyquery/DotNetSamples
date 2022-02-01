@@ -38,7 +38,6 @@
 }
 
 <div class="container">
-    <a id="AggrSettingsButton" href="javascript:void(0)">Aggr Settings</a>
     <partial name="EasyQuery/_AdvancedSearch" />
 </div>
 
@@ -49,6 +48,12 @@
 
     <!-- Kendo script -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <!-- 
+        The following Kendo scripts are used for demostration purposes only
+        (to show how you can use a third-party grid with EasyQuery).
+        They are not necessary in general cases.
+    -->
     <script src="https://kendo.cdn.telerik.com/2021.1.119/js/kendo.all.min.js"></script>
     <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.1.119/styles/kendo.default-v2.min.css" />
 
@@ -125,13 +130,6 @@
             context.useEnterprise(function () {
                 view.init(viewOptions);
             });
-
-            var aggrSetttingsBtn = document.getElementById('AggrSettingsButton');
-            aggrSetttingsBtn.addEventListener('click', () => {
-                var dialog = new easyquery.ui.AggrSettingsDialog(context);
-                dialog.show();
-            });
-
 
             document['AdvancedSearchView'] = view;
         });

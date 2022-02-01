@@ -1,5 +1,4 @@
 ﻿function convertColumnsToAggr() {
-
     var view = document['AdvancedSearchView'];
 
     var model = view.getContext().getModel();

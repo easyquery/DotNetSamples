@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -18,7 +19,7 @@ namespace EqDemo.Services
 {
     public static class DbInitializeExtensions
     {
-        public static void EnsureDbInitialized(this IApplicationBuilder app, IConfiguration config, IWebHostEnvironment env)
+        public static async Task EnsureDbInitializedAsync(this IApplicationBuilder app, IConfiguration config, IWebHostEnvironment env)
         {
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             using (var context = scope.ServiceProvider.GetService<AppDbContext>()) {
@@ -31,11 +32,11 @@ namespace EqDemo.Services
                 }
 
                 if (context.Database.CanConnect()) {
-                    //create default user
-                    CheckAddDefaultUser(scope.ServiceProvider, config);
-
                     //create eq-manager role
-                    CheckAddManagerRole(scope.ServiceProvider);
+                    await CheckAddManagerRoleAsync(scope.ServiceProvider);
+
+                    //create default user
+                    await CheckAddDefaultUserAsync(scope.ServiceProvider, config);
                 }
             }
         }
@@ -43,19 +44,19 @@ namespace EqDemo.Services
         const string _defaultUserEmail = "demo@korzh.com";
         const string _defaultUserPassword = "demo";
 
-        private static void CheckAddDefaultUser(IServiceProvider scopedServices, IConfiguration config)
+        private static async Task CheckAddDefaultUserAsync(IServiceProvider scopedServices, IConfiguration config)
         {
-            var manager = scopedServices.GetRequiredService<UserManager<ApplicationUser>>();
+            var userManager = scopedServices.GetRequiredService<UserManager<ApplicationUser>>();
 
             try {
-                var user = manager.FindByEmailAsync(_defaultUserEmail).Result;
+                var user = await userManager.FindByEmailAsync(_defaultUserEmail);
                 var resetDemoUser = config.GetValue<bool>("resetDefaultUser");
                 if (resetDemoUser && user != null) {
                     var dbContext = scopedServices.GetRequiredService<AppDbContext>();
                     dbContext.Reports.RemoveRange(dbContext.Reports.Where(r => r.OwnerId == user.Id));
                     dbContext.SaveChanges();
 
-                    manager.DeleteAsync(user).GetAwaiter().GetResult();
+                    await userManager.DeleteAsync(user);
                     user = null;
                 }
 
@@ -65,11 +66,15 @@ namespace EqDemo.Services
                         Email = _defaultUserEmail,
                         EmailConfirmed = true
                     };
-                    var result = manager.CreateAsync(user, _defaultUserPassword).Result;
+                    var result = await userManager.CreateAsync(user, _defaultUserPassword);
                     if (result.Succeeded) {
+                        await userManager.AddToRoleAsync(user, DefaultEqAuthProvider.EqManagerRole);
                         var defaultReportsGenerator = scopedServices.GetRequiredService<DefaultReportGenerator>();
-                        defaultReportsGenerator.GenerateAsync(user).GetAwaiter().GetResult();
+                        await defaultReportsGenerator.GenerateAsync(user);
                     }
+                }
+                else {
+                    await userManager.AddToRoleAsync(user, DefaultEqAuthProvider.EqManagerRole);
                 }
             }
             catch (Exception ex) {
@@ -77,15 +82,15 @@ namespace EqDemo.Services
             }
         }
 
-        private static void CheckAddManagerRole(IServiceProvider scopedServices)
+        private static async Task CheckAddManagerRoleAsync(IServiceProvider scopedServices)
         {
-            var manager = scopedServices.GetRequiredService<RoleManager<IdentityRole>>();
+            var roleManager = scopedServices.GetRequiredService<RoleManager<IdentityRole>>();
 
             try {
-                IdentityRole role = manager.FindByNameAsync(DefaultEqAuthProvider.EqManagerRole).Result;
+                IdentityRole role = await roleManager.FindByNameAsync(DefaultEqAuthProvider.EqManagerRole);
                 if (role == null) {
                     role = new IdentityRole(DefaultEqAuthProvider.EqManagerRole);
-                    var result = manager.CreateAsync(role).Result;
+                    var result = await roleManager.CreateAsync(role);
                 }
             }
             catch (Exception ex) {

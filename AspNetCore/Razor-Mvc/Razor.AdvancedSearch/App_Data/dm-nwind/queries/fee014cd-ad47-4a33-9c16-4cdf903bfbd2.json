@@ -1,5 +1,6 @@
 ﻿{
   "id": "fee014cd-ad47-4a33-9c16-4cdf903bfbd2",
+  "modelId": "nwind",
   "name": "Sales by countries (last year)",
   "desc": null,
   "cols": [
