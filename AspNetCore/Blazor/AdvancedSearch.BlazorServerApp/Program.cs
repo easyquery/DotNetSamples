@@ -1,25 +1,67 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace EqDemo { 
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+using EasyData.Export;
+using Korzh.EasyQuery.Services;
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+using EqDemo;
+using EqDemo.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var services = builder.Services;
+
+services.AddDbContext<AppDbContext>(
+  options => options.UseSqlServer(builder.Configuration.GetConnectionString("EqDemoDb")));
+
+services.AddDistributedMemoryCache();
+services.AddSession();
+
+services.AddEasyQuery()
+        .UseSqlManager()
+        .AddDefaultExporters()
+        .AddDataExporter<PdfDataExporter>("pdf")
+        .AddDataExporter<ExcelDataExporter>("excel")
+        .RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
+builder.Services.AddSingleton<WeatherForecastService>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment()) {
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.MapEasyQuery(options => {
+    options.DefaultModelId = "nwind";
+    options.SaveNewQuery = false;
+    options.BuildQueryOnSync = true;
+    options.UseDbContext<AppDbContext>();
+
+    // If you want to load model directly from DB metadata
+    // remove (or comment) options.UseDbContext(...) call and uncomment the next 3 lines of code
+    //options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
+    //options.UseDbConnection<Microsoft.Data.SqlClient.SqlConnection>();
+    //options.UseDbConnectionModelLoader();
+
+    options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+});
+
+app.MapBlazorHub();
+app.MapFallbackToPage("/_Host");
+
+//Init demo database (if necessary)
+app.EnsureDbInitialized(builder.Configuration, app.Environment);
+
+app.Run();

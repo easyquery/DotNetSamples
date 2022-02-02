@@ -1,11 +1,8 @@
 ﻿easyquery = easyquery || {};
 easyquery.blazor = {
-
     initEasyQueryView: function (view, viewOptions) {
         var context = view.getContext();
-        if (viewOptions.endpoint) {
-            context.useEndpoint(viewOptions.endpoint);
-        }
+        context.useEndpoint('/api/easyquery');
         context.useEnterprise(function () {
             view.init(viewOptions);
         });
@@ -14,7 +11,6 @@ easyquery.blazor = {
     startAdvancedSearch: function () {
         //Options for AdvancedSearchViewJQuery
         var viewOptions = {
-
             //Load model on start
             loadModelOnStart: true,
 
