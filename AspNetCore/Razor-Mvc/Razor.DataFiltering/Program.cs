@@ -1,26 +1,55 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace EqDemo
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+using EqDemo;
+using Korzh.EasyQuery.Services;
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+var builder = WebApplication.CreateBuilder(args);
+
+var configuration = builder.Configuration;
+
+// Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(options => {
+    options.UseSqlServer(configuration.GetConnectionString("EqDemoDb"));
+});
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
+builder.Services.AddEasyQuery();
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment()) {
+    app.UseDeveloperExceptionPage();
 }
+else {
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapEasyQuery(options =>
+{
+    options.Endpoint = "/data-filtering";
+    options.UseEntity((manager) => manager.Services
+        .GetRequiredService<AppDbContext>()
+        .Orders
+        .Include(o => o.Customer)
+        .Include(o => o.Employee)
+        .AsQueryable());
+});
+
+app.MapRazorPages();
+
+//Init demo database (if necessary)
+app.EnsureDbInitialized(configuration, app.Environment);
+
+app.Run();

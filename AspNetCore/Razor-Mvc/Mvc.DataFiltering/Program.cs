@@ -1,4 +1,3 @@
-
 using Microsoft.EntityFrameworkCore;
 
 using EqDemo;
@@ -44,8 +43,6 @@ app.MapControllerRoute(
 );
 
 //Init demo database (if necessary)
-app.EnsureDbInitializedAsync(configuration, app.Environment)
-    .GetAwaiter()
-    .GetResult();
+app.EnsureDbInitialized(configuration, app.Environment);
 
 app.Run();
