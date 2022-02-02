@@ -13,8 +13,6 @@ using Microsoft.Extensions.Logging;
 
 using Korzh.EasyQuery.Services;
 
-using EqDemo.Services;
-
 namespace EqDemo.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]

@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 
 using EqDemo.Models;
 
-namespace EqDemo.Services
+namespace EqDemo
 {
     public class DefaultReportGenerator
     {

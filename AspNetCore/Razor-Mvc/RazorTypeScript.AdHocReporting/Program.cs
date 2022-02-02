@@ -1,26 +1,125 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Rewrite;
 
-namespace EqDemo
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+using EasyData;
+using EasyData.Export;
+using Korzh.EasyQuery.Services;
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+using EqDemo;
+using EqDemo.Models;
+
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EqDemoDb"));
+});
+
+
+// Setting up authentication/authorization services
+builder.Services.AddDefaultIdentity<IdentityUser>(opts => {
+    //Password options
+    opts.Password.RequiredLength = 4;
+    opts.Password.RequireNonAlphanumeric = false;
+    opts.Password.RequireLowercase = false;
+    opts.Password.RequireUppercase = false;
+    opts.Password.RequireDigit = false;
+})
+ .AddRoles<IdentityRole>()
+ .AddDefaultUI()
+ .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.Configure<CookiePolicyOptions>(options => {
+    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+    options.CheckConsentNeeded = context => false;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
+builder.Services.ConfigureApplicationCookie(options => {
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+});
+
+builder.Services.AddRazorPages();
+
+// Registering EasyQuery services
+builder.Services.AddEasyQuery()
+                .AddDefaultExporters()
+                .AddDataExporter<PdfDataExporter>("pdf")
+                .AddDataExporter<ExcelDataExporter>("excel")
+                .UseSqlManager();
+// Uncomment if you want to load model directly from DB               
+// .RegisterDbGate<SqlServerGate>();
+
+// add default reports generatir
+builder.Services.AddScoped<DefaultReportGenerator>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment()) {
+    app.UseDeveloperExceptionPage();
+    app.UseMigrationsEndPoint();
 }
+else {
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+//Disable all Identity/Account/Manage actions
+var redirectOptions = new RewriteOptions()
+    .AddRedirect("(?i:identity/account/forgotpassword(/.*)?$)", "/")
+    .AddRedirect("(?i:identity/account/manage(/.*)?$)", "/");
+app.UseRewriter(redirectOptions);
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+//Adding EasyQuery API middleware
+app.MapEasyQuery(options => {
+    options.Endpoint = "/api/adhoc-reporting";
+    options.DefaultModelId = "adhoc-reporting";
+    options.SaveNewQuery = true;
+    options.SaveQueryOnSync = true;
+
+    options.UseDbContextWithoutIdentity<AppDbContext>(loaderOptions => {
+        //Ignore the "Reports" DbSet as well
+        loaderOptions.AddFilter(entity => {
+            return entity.ClrType != typeof(Report);
+        });
+    });
+
+    // here we add our custom query store
+    options.UseQueryStore((manager) => new ReportStore(manager.Services));
+
+    options.UseDefaultAuthProvider((provider) => {
+        //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
+        //here you can remove that requirement and make those actions available for all authorized users
+        //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+
+        //here is an example how you can make some actions accessible only by users with a particular role.
+        //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+    });
+
+    options.AddPreFetchTunerWithHttpContext((manager, context) => {
+        //the next two lines demonstrate how to add to each generated query a condition that filters data by the current user
+        //string userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //manager.Query.ExtraConditions.AddSimpleCondition("Employees.EmployeeID", "Equal", userId);
+    });
+});
+
+app.MapRazorPages();
+
+//Init demo database (if necessary)
+app.EnsureDbInitializedAsync(builder.Configuration, app.Environment)
+    .GetAwaiter()
+    .GetResult();
+
+app.Run();
