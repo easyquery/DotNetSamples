@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreBlazorWebAsm.AdhocReporting.Server", "AspNetCore\Blazor\AdHocReporting.BlazorWebAsmNet5\Server\EqDemo.AspNetCoreBlazorWebAsm.AdhocReporting.Server.csproj", "{74EDB881-63ED-43C4-8DD4-512978135CAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.BlazorServer.AdvancedSearch", "AspNetCore\Blazor\AdvancedSearch.BlazorServerApp\EqDemo.BlazorServer.AdvancedSearch.csproj", "{C71C549E-EA4B-4619-A2BE-0665CBE66286}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreBlazorWebAsm.AdhocReporting.Client", "AspNetCore\Blazor\AdHocReporting.BlazorWebAsmNet5\Client\EqDemo.AspNetCoreBlazorWebAsm.AdhocReporting.Client.csproj", "{29D41145-DBE9-4403-8A30-9F753A4C3F55}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EqDemo.BlazorWasm", "EqDemo.BlazorWasm", "{3E928F87-0B80-4A7F-9025-D7FD105EDE7B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreBlazorWebAsm.AdhocReporting.Shared", "AspNetCore\Blazor\AdHocReporting.BlazorWebAsmNet5\Shared\EqDemo.AspNetCoreBlazorWebAsm.AdhocReporting.Shared.csproj", "{3C35905F-DCBD-4C68-BEDF-D738101FC38F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.BlazorWasm.AdhocReporting.Server", "AspNetCore\Blazor\AdHocReporting.BlazorWasm\Server\EqDemo.BlazorWasm.AdhocReporting.Server.csproj", "{C6D552F8-0E5D-480E-8B78-E8372F3069A8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EqDemo.AspNetCoreBlazorWebAsmNet5", "EqDemo.AspNetCoreBlazorWebAsmNet5", "{81579B4C-47D5-45B9-998E-D280C5F29732}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.BlazorWasm.AdhocReporting.Client", "AspNetCore\Blazor\AdHocReporting.BlazorWasm\Client\EqDemo.BlazorWasm.AdhocReporting.Client.csproj", "{CD33E2AD-A24F-4222-9473-4E07D2E995B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedSearch.BlazorServerApp", "AspNetCore\Blazor\AdvancedSearch.BlazorServerApp\EqDemo.AspNetCoreBlazorServer.AdvancedSearch.csproj", "{C71C549E-EA4B-4619-A2BE-0665CBE66286}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.BlazorWasm.AdhocReporting.Shared", "AspNetCore\Blazor\AdHocReporting.BlazorWasm\Shared\EqDemo.BlazorWasm.AdhocReporting.Shared.csproj", "{D3994E87-9595-4F82-8CEC-08525D8CE4EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,30 +19,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{74EDB881-63ED-43C4-8DD4-512978135CAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74EDB881-63ED-43C4-8DD4-512978135CAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74EDB881-63ED-43C4-8DD4-512978135CAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74EDB881-63ED-43C4-8DD4-512978135CAF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29D41145-DBE9-4403-8A30-9F753A4C3F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29D41145-DBE9-4403-8A30-9F753A4C3F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29D41145-DBE9-4403-8A30-9F753A4C3F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29D41145-DBE9-4403-8A30-9F753A4C3F55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C35905F-DCBD-4C68-BEDF-D738101FC38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C35905F-DCBD-4C68-BEDF-D738101FC38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C35905F-DCBD-4C68-BEDF-D738101FC38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C35905F-DCBD-4C68-BEDF-D738101FC38F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C71C549E-EA4B-4619-A2BE-0665CBE66286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C71C549E-EA4B-4619-A2BE-0665CBE66286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C71C549E-EA4B-4619-A2BE-0665CBE66286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C71C549E-EA4B-4619-A2BE-0665CBE66286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D552F8-0E5D-480E-8B78-E8372F3069A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D552F8-0E5D-480E-8B78-E8372F3069A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D552F8-0E5D-480E-8B78-E8372F3069A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D552F8-0E5D-480E-8B78-E8372F3069A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD33E2AD-A24F-4222-9473-4E07D2E995B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD33E2AD-A24F-4222-9473-4E07D2E995B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD33E2AD-A24F-4222-9473-4E07D2E995B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD33E2AD-A24F-4222-9473-4E07D2E995B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3994E87-9595-4F82-8CEC-08525D8CE4EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3994E87-9595-4F82-8CEC-08525D8CE4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3994E87-9595-4F82-8CEC-08525D8CE4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3994E87-9595-4F82-8CEC-08525D8CE4EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{74EDB881-63ED-43C4-8DD4-512978135CAF} = {81579B4C-47D5-45B9-998E-D280C5F29732}
-		{29D41145-DBE9-4403-8A30-9F753A4C3F55} = {81579B4C-47D5-45B9-998E-D280C5F29732}
-		{3C35905F-DCBD-4C68-BEDF-D738101FC38F} = {81579B4C-47D5-45B9-998E-D280C5F29732}
+		{C6D552F8-0E5D-480E-8B78-E8372F3069A8} = {3E928F87-0B80-4A7F-9025-D7FD105EDE7B}
+		{CD33E2AD-A24F-4222-9473-4E07D2E995B4} = {3E928F87-0B80-4A7F-9025-D7FD105EDE7B}
+		{D3994E87-9595-4F82-8CEC-08525D8CE4EF} = {3E928F87-0B80-4A7F-9025-D7FD105EDE7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {08B4EA69-9776-4D12-8FAD-CFB8FCD57198}
