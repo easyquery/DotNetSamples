@@ -25,7 +25,8 @@ namespace EqDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => {
-                options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb"));
+                options.UseSqlite(Configuration.GetConnectionString("EqDemoSqLite"));
+                //options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb"));
             });
 
             services.AddControllersWithViews();
