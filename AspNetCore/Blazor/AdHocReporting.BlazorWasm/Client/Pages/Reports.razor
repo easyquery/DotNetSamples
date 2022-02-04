@@ -21,8 +21,8 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
-                    <div class="card-title float-left">Reports</div>
-                    <div class="dropdown float-right card-header-button">
+                    <div class="card-title float-start">Reports</div>
+                    <div class="dropdown float-end card-header-button">
                         <button id="dropdownMenuButton" class="btn btn-default btn-sm dropdown-toggle"
                                 type="button" data-toggle="dropdown"
                                 aria-haspopup="true"
@@ -64,15 +64,15 @@
                     <div id="ReportTitle" class="card-title float-left">Report title</div>
                 </div>
                 <div class="card-body">
-                    <div class="columns-block mb-3">
+                    <div class="columns-block mb-3" data-hide-on-max>
                         <div class="block-caption">Columns:</div>
                         <div id="ColumnsBar"></div>
                     </div>
-                    <div class="aggregations-block mb-3">
+                    <div class="aggregations-block mb-3" data-hide-on-max>
                         <div class="block-caption mb-1">Aggregations:</div>
                         <div id="AggregationBar"></div>
                     </div>
-                    <div class="conditions-block mb-3">
+                    <div class="conditions-block mb-3" data-hide-on-max>
                         <div class="block-caption">Conditions:</div>
                         <div id="QueryPanel" class="query-panel"></div>
                     </div>
