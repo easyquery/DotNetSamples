@@ -49,8 +49,8 @@ builder.Services.AddEasyQuery()
         .AddDataExporter<PdfDataExporter>("pdf")
         .AddDataExporter<ExcelDataExporter>("excel");
 
-// add default reports generator
-// it's for demonstration purposes only
+// add the service that generators default reports
+// it's used for demonstration purposes only and can't be deleted in production
 builder.Services.AddScoped<DefaultReportGenerator>();
 
 builder.Services.AddControllersWithViews();
