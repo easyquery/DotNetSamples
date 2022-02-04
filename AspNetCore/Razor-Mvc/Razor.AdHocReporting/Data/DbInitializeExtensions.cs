@@ -12,7 +12,7 @@ using Korzh.DbUtils;
 using Korzh.EasyQuery.Services;
 using System.Threading.Tasks;
 
-namespace EqDemo
+namespace EqDemo.Services
 {
     public static class DbInitializeExtensions
     {
