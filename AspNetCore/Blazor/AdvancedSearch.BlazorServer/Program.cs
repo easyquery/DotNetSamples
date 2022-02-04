@@ -11,7 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 services.AddDbContext<AppDbContext>(
-  options => options.UseSqlServer(builder.Configuration.GetConnectionString("EqDemoDb")));
+    options => options.UseSqlite(builder.Configuration.GetConnectionString("EqDemoSqLite"))
+    //options => options.UseSqlServer(builder.Configuration.GetConnectionString("EqDemoDb"))
+);
 
 services.AddDistributedMemoryCache();
 services.AddSession();
@@ -21,7 +23,8 @@ services.AddEasyQuery()
         .AddDefaultExporters()
         .AddDataExporter<PdfDataExporter>("pdf")
         .AddDataExporter<ExcelDataExporter>("excel")
-        .RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
+        .RegisterDbGate<Korzh.EasyQuery.DbGates.SqLiteGate>();
+        //.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
