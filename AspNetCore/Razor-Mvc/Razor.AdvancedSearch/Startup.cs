@@ -49,6 +49,7 @@ namespace EqDemo
                     .AddDataExporter<PdfDataExporter>("pdf")
                     .AddDataExporter<ExcelDataExporter>("excel")
                     .RegisterDbGate<Korzh.EasyQuery.DbGates.SqLiteGate>();
+                    //.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
 
             services.AddRazorPages();
         }

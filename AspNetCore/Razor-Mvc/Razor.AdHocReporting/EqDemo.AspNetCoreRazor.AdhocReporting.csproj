@@ -8,6 +8,8 @@
 	</PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.0" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />

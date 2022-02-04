@@ -60,6 +60,7 @@ builder.Services.AddEasyQuery()
                 .AddDataExporter<ExcelDataExporter>("excel")
                 .UseSqlManager();
                 // Uncomment if you want to load model directly from DB               
+                // .RegisterDbGate<SqLiteGate>();
                 // .RegisterDbGate<SqlServerGate>();
 
 
