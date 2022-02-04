@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "AdvancedSearch.BlazorServerApp": {
+    "AdvancedSearch.BlazorServer": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
