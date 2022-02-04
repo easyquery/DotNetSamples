@@ -24,3 +24,4 @@ App_Data/dm-*__default/
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js
 /AspNet4/Mvc/AdvancedSearch/App_Data/dm-nwind/queries
 /Samples.AspNetCore.Mvc.sln
+**/eqdemo-sqlite.*

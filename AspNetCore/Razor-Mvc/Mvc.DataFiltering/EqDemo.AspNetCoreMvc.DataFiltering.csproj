@@ -5,6 +5,8 @@
     <UserSecretsId>EqDemo.AspNetCoreMvc.DataFiltering</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1" />
   </ItemGroup>

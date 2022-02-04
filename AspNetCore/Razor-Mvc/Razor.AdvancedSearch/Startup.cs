@@ -36,7 +36,9 @@ namespace EqDemo
         public void ConfigureServices(IServiceCollection services)
         {          
             services.AddDbContext<AppDbContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("EqDemoDb")));
+                options => options.UseSqlite(Configuration.GetConnectionString("EqDemoSqLite"))
+                //options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb"));
+            );
        
             services.AddDistributedMemoryCache();
             services.AddSession();

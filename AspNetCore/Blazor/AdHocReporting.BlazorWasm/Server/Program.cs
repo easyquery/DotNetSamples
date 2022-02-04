@@ -13,9 +13,10 @@ using EqDemo.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("EqDemoDb");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlite(builder.Configuration.GetConnectionString("EqDemoSqLite"))
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("EqDemoDb"))
+);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(opts => {

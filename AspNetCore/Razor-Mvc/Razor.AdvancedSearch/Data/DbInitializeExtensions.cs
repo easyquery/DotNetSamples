@@ -17,7 +17,8 @@ namespace EqDemo.Services
                 if (context.Database.EnsureCreated()) {
                     Console.Write("Initializing demo DB...");
                     DbInitializer.Create(options => {
-                        options.UseSqlite(config.GetConnectionString("EqDemoDb"));
+                        options.UseSqlite(config.GetConnectionString("EqDemoSqLite"));
+                        //options.UseSqlServer(config.GetConnectionString("EqDemoDb"));
                         options.UseZipPacker(System.IO.Path.Combine(env.ContentRootPath, "App_Data", "EqDemoData.zip"));
                     })
                     .Seed();
