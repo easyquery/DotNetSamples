@@ -7,7 +7,7 @@ using Korzh.EasyQuery.Services;
 
 using EqDemo;
 using EqDemo.Models;
-
+using EqDemo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
