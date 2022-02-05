@@ -41,10 +41,10 @@ namespace EqDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {          
-            services.AddDbContext<AppDbContext>(
-                options => options.UseSqlite(DbConnectionString)
-                //options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb"));
-            );
+services.AddDbContext<AppDbContext>(
+    options => options.UseSqlite(DbConnectionString)
+    //options => options.UseSqlServer(DbConnectionString);
+);
        
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -90,7 +90,6 @@ namespace EqDemo
                     options.BuildQueryOnSync = true;
                     options.SaveNewQuery = false;
                     options.ConnectionString = DbConnectionString;
-                    options.UseDbConnection<SqliteConnection>();
                     options.UseDbContext<AppDbContext>();
 
                     // If you want to load model directly from DB metadata
@@ -118,7 +117,7 @@ namespace EqDemo
             });
 
             //Init demo database (if necessary)
-            app.EnsureDbInitialized(Configuration, env);
+            app.EnsureDbInitialized(DbConnectionString, env);
         }
     }
 }
