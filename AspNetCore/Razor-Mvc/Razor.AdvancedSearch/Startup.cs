@@ -83,7 +83,7 @@ namespace EqDemo
                     options.DefaultModelId = "nwind";
                     options.BuildQueryOnSync = true;
                     options.SaveNewQuery = false;
-                    options.ConnectionString = Configuration.GetConnectionString("EqDemoDb");
+                    options.ConnectionString = Configuration.GetConnectionString("EqDemoSqLite");
                     options.UseDbConnection<SqliteConnection>();
                     options.UseDbContext<AppDbContext>();
 
