@@ -56,6 +56,7 @@ namespace EqDemo
                     .AddDataExporter<ExcelDataExporter>("excel");
                 
                   // Uncomment if you want to load model directly from DB               
+                  // .RegisterDbGate<SqLiteGate>();
                   // .RegisterDbGate<SqlServerGate>();
         }
 
