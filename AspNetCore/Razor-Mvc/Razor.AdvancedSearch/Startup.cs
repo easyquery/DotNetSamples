@@ -24,6 +24,8 @@ namespace EqDemo
         {
             Configuration = configuration;
 
+            DbConnectionString = Configuration.GetConnectionString("EqDemoDb");            
+
             Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ExportFormats = new string[] { "pdf", "excel", "excel-html", "csv" };
             
             //uncomment the following line if you want to show the SQL statements on each change in your query
@@ -32,11 +34,15 @@ namespace EqDemo
 
         public IConfiguration Configuration { get; }
 
+        public string DbConnectionString { get; }
+
+        
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {          
             services.AddDbContext<AppDbContext>(
-                options => options.UseSqlite(Configuration.GetConnectionString("EqDemoSqLite"))
+                options => options.UseSqlite(DbConnectionString)
                 //options => options.UseSqlServer(Configuration.GetConnectionString("EqDemoDb"));
             );
        
@@ -83,7 +89,7 @@ namespace EqDemo
                     options.DefaultModelId = "nwind";
                     options.BuildQueryOnSync = true;
                     options.SaveNewQuery = false;
-                    options.ConnectionString = Configuration.GetConnectionString("EqDemoSqLite");
+                    options.ConnectionString = DbConnectionString;
                     options.UseDbConnection<SqliteConnection>();
                     options.UseDbContext<AppDbContext>();
 
