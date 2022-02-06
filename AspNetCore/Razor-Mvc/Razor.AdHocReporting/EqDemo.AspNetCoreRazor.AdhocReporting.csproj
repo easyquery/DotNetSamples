@@ -31,6 +31,7 @@
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.0" />
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.2.0" />
     <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="7.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Areas\Identity\Pages\_ViewStart.cshtml">
