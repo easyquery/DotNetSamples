@@ -10,9 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var configuration = builder.Configuration;
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options => {
-    options.UseSqlite(builder.Configuration.GetConnectionString("EqDemoSqLite"));
+    options.UseSqlite(configuration.GetConnectionString("EqDemoDb"));
     //options.UseSqlServer(builder.Configuration.GetConnectionString("EqDemoDb"));
 });
 
@@ -62,8 +63,7 @@ app.MapEasyQuery(options => {
     // Uncomment if you want to donwload model directly from DB
     // options.UseDbConnectionModelLoader();
 
-    options.UseModelTuner(manager =>
-    {
+    options.UseModelTuner(manager => {
         // for onGetExpression example
         var attr = manager.Model.FindEntityAttr("Customer.CompanyName");
         if (attr != null) {
@@ -78,6 +78,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
+
+app.EnsureDbInitialized(configuration, app.Environment);
 
 app.Run();
