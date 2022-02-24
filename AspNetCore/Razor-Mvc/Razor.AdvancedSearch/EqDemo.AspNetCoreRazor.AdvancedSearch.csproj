@@ -8,7 +8,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.1-rc04" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.1" />
@@ -32,7 +31,8 @@
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.1-rc04" />
     <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.2.1-rc04" />
     <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.1-rc04" />
-  </ItemGroup>
+		<PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.1-rc04" />
+	</ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\site.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>

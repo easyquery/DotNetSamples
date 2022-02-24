@@ -34,7 +34,7 @@ namespace EqDemo.Services
                     await CheckAddManagerRoleAsync(scope.ServiceProvider);
 
                     //create default user
-                    await CheckAddDefaultUserAsync(scope.ServiceProvider, config);
+                    await CheckAddDefaultUserAsync(scope.ServiceProvider, config, env);
                 }
             }
         }
@@ -42,15 +42,15 @@ namespace EqDemo.Services
         const string _defaultUserEmail = "demo@korzh.com";
         const string _defaultUserPassword = "demo";
 
-        private static async Task CheckAddDefaultUserAsync(IServiceProvider scopedServices, IConfiguration config)
+        private static async Task CheckAddDefaultUserAsync(IServiceProvider scopedServices, IConfiguration config, IWebHostEnvironment env)
         {
             var userManager = scopedServices.GetRequiredService<UserManager<IdentityUser>>();
 
             try {
+                var dbContext = scopedServices.GetRequiredService<AppDbContext>();
                 var user = await userManager.FindByEmailAsync(_defaultUserEmail);
                 var resetDemoUser = config.GetValue<bool>("resetDefaultUser");
                 if (resetDemoUser && user != null) {
-                    var dbContext = scopedServices.GetRequiredService<AppDbContext>();
                     dbContext.Reports.RemoveRange(dbContext.Reports.Where(r => r.OwnerId == user.Id));
                     dbContext.SaveChanges();
 
@@ -67,7 +67,7 @@ namespace EqDemo.Services
                     var result = await userManager.CreateAsync(user, _defaultUserPassword);
                     if (result.Succeeded) {
                         await userManager.AddToRoleAsync(user, DefaultEqAuthProvider.EqManagerRole);
-                        var defaultReportsGenerator = scopedServices.GetRequiredService<DefaultReportGenerator>();
+                        var defaultReportsGenerator = new DefaultReportGenerator(env, dbContext);
                         await defaultReportsGenerator.GenerateAsync(user);
                     }
                 }
