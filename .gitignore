@@ -26,3 +26,4 @@ App_Data/dm-*__default/
 /Samples.AspNetCore.Mvc.sln
 **/eqdemo-sqlite.*
 /AspNetCore/Razor-Mvc/Razor.AdvancedSearch/EasyQuery.lck
+/AspNet4/Mvc/AdvancedSearch/EasyQuery.lck
