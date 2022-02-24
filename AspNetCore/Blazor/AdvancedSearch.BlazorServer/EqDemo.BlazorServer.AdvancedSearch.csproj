@@ -7,7 +7,7 @@
     <UserSecretsId>EqDemo.BlazorServer.AdvancedSearch</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.1-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
@@ -24,9 +24,9 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.2" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.1-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.1-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.1-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.1-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.1" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.1" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.1" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.1" />
   </ItemGroup>
 </Project>
