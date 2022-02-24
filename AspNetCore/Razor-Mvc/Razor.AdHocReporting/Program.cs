@@ -64,7 +64,6 @@ builder.Services.AddEasyQuery()
                 // .RegisterDbGate<SqlServerGate>();
 
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
