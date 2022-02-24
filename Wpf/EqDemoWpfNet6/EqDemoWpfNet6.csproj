@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -29,11 +29,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.Wpf" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.0" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.1-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.Wpf" Version="7.2.1-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.1-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.1-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.1-rc04" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
