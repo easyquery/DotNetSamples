@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options => {
-    options.UseSqlite(builder.Configuration.GetConnectionString("EqDemoSqLite"));
+    options.UseSqlite(builder.Configuration.GetConnectionString("EqDemoDb"));
     //options.UseSqlServer(builder.Configuration.GetConnectionString("EqDemoDb"));
 });
 

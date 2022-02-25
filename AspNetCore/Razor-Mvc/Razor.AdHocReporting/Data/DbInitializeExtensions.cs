@@ -16,13 +16,18 @@ namespace EqDemo.Services
 {
     public static class DbInitializeExtensions
     {
+        private static IConfiguration _config;
+        private static IWebHostEnvironment _env;
+
         public static async Task EnsureDbInitializedAsync(this IApplicationBuilder app, IConfiguration config, IWebHostEnvironment env)
         {
+            _config = config;
+            _env = env;
             using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             using (var context = scope.ServiceProvider.GetService<AppDbContext>()) {
                 if (context.Database.EnsureCreated()) {
                     Korzh.DbUtils.DbInitializer.Create(options => {
-                        options.UseSqlite(config.GetConnectionString("EqDemoSqLite"));
+                        options.UseSqlite(config.GetConnectionString("EqDemoDb"));
                         //options.UseSqlServer(config.GetConnectionString("EqDemoDb"));
                         options.UseZipPacker(System.IO.Path.Combine(env.ContentRootPath, "App_Data", "EqDemoData.zip"));
                     })
@@ -34,7 +39,7 @@ namespace EqDemo.Services
                     await CheckAddManagerRoleAsync(scope.ServiceProvider);
 
                     //create default user
-                    await CheckAddDefaultUserAsync(scope.ServiceProvider, config, env);
+                    await CheckAddDefaultUserAsync(scope.ServiceProvider);
                 }
             }
         }
@@ -42,14 +47,13 @@ namespace EqDemo.Services
         const string _defaultUserEmail = "demo@korzh.com";
         const string _defaultUserPassword = "demo";
 
-        private static async Task CheckAddDefaultUserAsync(IServiceProvider scopedServices, IConfiguration config, IWebHostEnvironment env)
+        private static async Task CheckAddDefaultUserAsync(IServiceProvider scopedServices)
         {
             var userManager = scopedServices.GetRequiredService<UserManager<IdentityUser>>();
-
             try {
                 var dbContext = scopedServices.GetRequiredService<AppDbContext>();
                 var user = await userManager.FindByEmailAsync(_defaultUserEmail);
-                var resetDemoUser = config.GetValue<bool>("resetDefaultUser");
+                var resetDemoUser = _config.GetValue<bool>("resetDefaultUser");
                 if (resetDemoUser && user != null) {
                     dbContext.Reports.RemoveRange(dbContext.Reports.Where(r => r.OwnerId == user.Id));
                     dbContext.SaveChanges();
@@ -67,7 +71,7 @@ namespace EqDemo.Services
                     var result = await userManager.CreateAsync(user, _defaultUserPassword);
                     if (result.Succeeded) {
                         await userManager.AddToRoleAsync(user, DefaultEqAuthProvider.EqManagerRole);
-                        var defaultReportsGenerator = new DefaultReportGenerator(env, dbContext);
+                        var defaultReportsGenerator = new DefaultReportGenerator(_env, dbContext);
                         await defaultReportsGenerator.GenerateAsync(user);
                     }
                 }
