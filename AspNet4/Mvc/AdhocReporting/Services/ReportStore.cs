@@ -31,13 +31,11 @@ namespace EqDemo.Services
 
         public async Task<bool> AddQueryAsync(Query query, CancellationToken ct = default)
         {
-            if (string.IsNullOrEmpty(query.Id))
-            {
+            if (string.IsNullOrEmpty(query.Id)) {
                 query.Id = Guid.NewGuid().ToString();
             }
 
-            var report = new Report
-            {
+            var report = new Report {
                 Id = query.Id,
                 Name = query.Name,
                 Description = query.Description,
@@ -47,15 +45,13 @@ namespace EqDemo.Services
             };
 
 
-            if (report.OwnerId == null)
-            {
+            if (report.OwnerId == null) {
                 throw new ArgumentNullException(nameof(report.OwnerId));
             }
 
             DbContext.Reports.Add(report);
             await DbContext.SaveChangesAsync(ct);
             return true;
-
         }
 
         public async Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId, CancellationToken ct = default)
@@ -64,9 +60,8 @@ namespace EqDemo.Services
                             .Where(r => r.ModelId == modelId)
                             .ToListAsync(ct);
 
-            return reports.Select(r => new QueryListItem(r.Id, r.Name, r.Description)).ToList();
+            return reports.Select(r => new QueryListItem(r.Id, r.ModelId, r.Name, r.Description)).ToList();
         }
-
 
 
         public async Task<bool> LoadQueryAsync(Query query, string queryId, CancellationToken ct = default)
@@ -86,8 +81,7 @@ namespace EqDemo.Services
         public async Task<bool> RemoveQueryAsync(string modelId, string queryId, CancellationToken ct = default)
         {
             var report = await ApplyUserGuard(DbContext.Reports).FirstOrDefaultAsync(r => r.Id == queryId, ct);
-            if (report != null)
-            {
+            if (report != null) {
                 DbContext.Reports.Remove(report);
                 await DbContext.SaveChangesAsync();
 
@@ -100,8 +94,7 @@ namespace EqDemo.Services
         public async Task<bool> SaveQueryAsync(Query query, bool createIfNotExist = true, CancellationToken ct = default)
         {
             var report = await ApplyUserGuard(DbContext.Reports).FirstOrDefaultAsync(r => r.Id == query.Id, ct);
-            if (report != null)
-            {
+            if (report != null) {
                 report.Name = query.Name;
                 report.Description = query.Description;
                 report.ModelId = query.Model.Id;
