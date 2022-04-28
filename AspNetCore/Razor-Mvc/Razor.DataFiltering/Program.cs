@@ -1,22 +1,28 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
+
+using Korzh.EasyQuery.Services;
 
 using EqDemo;
-using Korzh.EasyQuery.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
+var DbConnectionString = configuration.GetConnectionString("EqDemoDb");
+
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options => {
-    options.UseSqlite(configuration.GetConnectionString("EqDemoSqLite"));
+    options.UseSqlite(DbConnectionString);
     //options.UseSqlServer(configuration.GetConnectionString("EqDemoDb"));
 });
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
-builder.Services.AddEasyQuery();
+builder.Services.AddEasyQuery()
+        .UseSqlManager()
+        .RegisterDbGate<Korzh.EasyQuery.DbGates.SqLiteGate>();
 
 builder.Services.AddRazorPages();
 
@@ -40,12 +46,20 @@ app.UseAuthorization();
 app.MapEasyQuery(options =>
 {
     options.Endpoint = "/data-filtering";
-    options.UseEntity((manager) => manager.Services
-        .GetRequiredService<AppDbContext>()
-        .Orders
-        .Include(o => o.Customer)
-        .Include(o => o.Employee)
-        .AsQueryable());
+//options.UseEntity((manager) => manager.Services
+//    .GetRequiredService<AppDbContext>()
+//    .Orders
+//    .Include(o => o.Customer)
+//    .Include(o => o.Employee)
+//    .AsQueryable());
+    //options.DefaultModelId = "nwind";
+    options.BuildQueryOnSync = true;
+    options.SaveNewQuery = false;
+    options.ConnectionString = DbConnectionString;
+    options.UseDbConnection<SqliteConnection>();
+    options.UseDbConnectionModelLoader();
+
+    options.UseQueryStore((_) => new FileQueryStore("App_Data"));
 });
 
 app.MapRazorPages();
