@@ -58,6 +58,7 @@ builder.Services.AddEasyQuery()
                 .AddDefaultExporters()
                 .AddDataExporter<PdfDataExporter>("pdf")
                 .AddDataExporter<ExcelDataExporter>("excel")
+                .UseSessionCache()
                 .UseSqlManager();
                 // Uncomment if you want to load model directly from DB               
                 // .RegisterDbGate<SqLiteGate>();

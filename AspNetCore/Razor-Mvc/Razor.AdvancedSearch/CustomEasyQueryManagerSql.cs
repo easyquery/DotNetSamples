@@ -1,6 +1,5 @@
 ﻿using Korzh.EasyQuery.Db;
 using Korzh.EasyQuery.Services;
-using Newtonsoft.Json.Linq;
 using System.Data.Common;
 
 namespace EqDemo
