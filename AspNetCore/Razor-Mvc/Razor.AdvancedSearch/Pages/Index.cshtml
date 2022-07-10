@@ -95,6 +95,9 @@
 
                 //Handlers
                 handlers: {
+                    afterFetchData: function(context) {
+                        //console.log("After Fetch");
+                    },
                     //Error handler
                     onError: function (_, error) {
                         console.error(error.sourceError);
