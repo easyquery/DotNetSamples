@@ -17,9 +17,9 @@
     <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.1" />
-		<PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.1" />
-		<PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.1" />
-		<PackageReference Include="Korzh.EasyQuery.Linq" Version="7.2.1" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.2" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.2" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.2" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.2.2" />
   </ItemGroup>
 </Project>

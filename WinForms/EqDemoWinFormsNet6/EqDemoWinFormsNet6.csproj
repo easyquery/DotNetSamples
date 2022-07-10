@@ -30,10 +30,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.1" />
-    <PackageReference Include="Korzh.EasyQuery.WinForms" Version="7.2.1" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.1" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.1" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.2" />
+    <PackageReference Include="Korzh.EasyQuery.WinForms" Version="7.2.2" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.2" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.2" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.5" />
-		<PackageReference Include="EasyData.Exporters.Default" Version="1.4.5" />
-	</ItemGroup>
+    <PackageReference Include="EasyData.Exporters.Default" Version="1.4.5" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Update="MainForm.cs" />
     <Compile Update="MainForm.Designer.cs">
