@@ -26,8 +26,8 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Exporters -->
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.3" />
-    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.3" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.9" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.9" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.2" />
