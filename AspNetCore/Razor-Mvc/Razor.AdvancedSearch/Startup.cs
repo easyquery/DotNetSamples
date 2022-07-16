@@ -58,6 +58,9 @@ namespace EqDemo
                     //.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
 
             services.AddRazorPages();
+
+            //to support non-Unicode code pages in PDF Exporter
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
