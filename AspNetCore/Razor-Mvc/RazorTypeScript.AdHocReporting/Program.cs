@@ -59,6 +59,9 @@ builder.Services.AddScoped<DefaultReportGenerator>();
 
 var app = builder.Build();
 
+//to support non-Unicode code pages in PDF Exporter
+System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseDeveloperExceptionPage();

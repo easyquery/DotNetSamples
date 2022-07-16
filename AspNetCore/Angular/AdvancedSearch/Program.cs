@@ -40,6 +40,9 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+//to support non-Unicode code pages in PDF Exporter
+System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment()) {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
