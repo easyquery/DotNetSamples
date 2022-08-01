@@ -1,4 +1,8 @@
-﻿.card-header {
+﻿a {
+    text-decoration: none;
+}
+
+.card-header {
     background-image: -webkit-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%);
     background-image: linear-gradient(to bottom,#f5f5f5 0,#e8e8e8 100%);
     background-repeat: repeat-x;
