@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mvc", "Mvc", "{F088CE7B-D84C-480A-9F99-0FB4270A823B}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.MultiLayered.FrontApp", "AspNet4\Mvc\AdvancedSearch-Multilayered\FrontApp\EqDemo.AspNet4x.MultiLayered.FrontApp.csproj", "{953CBD6B-5213-4930-B0E5-4AC110A0597A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.MultiLayered.ServiceApp", "AspNet4\Mvc\AdvancedSearch-Multilayered\ServiceApp\EqDemo.AspNet4x.MultiLayered.ServiceApp.csproj", "{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.AdhocReporting.Metadata", "AspNet4\Mvc\AdhocReportingMetaData\EqDemo.AspNet4x.AdhocReporting.Metadata.csproj", "{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{561F61DC-A523-44EA-8162-68C19E90F32B} = {F088CE7B-D84C-480A-9F99-0FB4270A823B}
 		{953CBD6B-5213-4930-B0E5-4AC110A0597A} = {561F61DC-A523-44EA-8162-68C19E90F32B}
 		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4} = {561F61DC-A523-44EA-8162-68C19E90F32B}
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215} = {F088CE7B-D84C-480A-9F99-0FB4270A823B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D59C48F8-9526-40FF-9861-4E49D1C64B37}
