@@ -60,10 +60,11 @@ builder.Services.AddEasyQuery()
                 .AddDataExporter<ExcelDataExporter>("excel")
                 .UseSessionCache()
                 .UseSqlManager();
-                // Uncomment if you want to load model directly from DB               
-                // .RegisterDbGate<SqLiteGate>();
-                // .RegisterDbGate<SqlServerGate>();
+// Uncomment if you want to load model directly from DB               
+// .RegisterDbGate<SqLiteGate>();
+// .RegisterDbGate<SqlServerGate>();
 
+builder.Services.AddScoped<DefaultReportGenerator>();
 
 var app = builder.Build();
 
