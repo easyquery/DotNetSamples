@@ -35,9 +35,9 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.4-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.4-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.4-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.2.4-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.4-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.4-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.4-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.2.4-rc05" />
   </ItemGroup>
 </Project>
