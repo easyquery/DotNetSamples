@@ -12,14 +12,12 @@ builder.Services.AddDbContext<AppDbContext>(options => {
     //options.UseSqlServer(configuration.GetConnectionString("EqDemoDb"));
 });
 
-
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
 builder.Services.AddEasyQuery();
 
 builder.Services.AddControllersWithViews();
-
 
 var app = builder.Build();
 
