@@ -8,7 +8,7 @@ var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options => {
-    options.UseSqlite(configuration.GetConnectionString("EqDemoSqLite"));
+    options.UseSqlite(configuration.GetConnectionString("EqDemoDb"));
     //options.UseSqlServer(configuration.GetConnectionString("EqDemoDb"));
 });
 

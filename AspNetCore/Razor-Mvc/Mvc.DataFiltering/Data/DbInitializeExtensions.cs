@@ -12,7 +12,7 @@ namespace EqDemo
             using (var context = scope.ServiceProvider.GetService<AppDbContext>()) {
                 if (context.Database.EnsureCreated()) {
                     Korzh.DbUtils.DbInitializer.Create(options => {
-                        options.UseSqlite(config.GetConnectionString("EqDemoSqLite"));
+                        options.UseSqlite(config.GetConnectionString("EqDemoDb"));
                         //options.UseSqlServer(config.GetConnectionString("EqDemoDb"));
                         options.UseZipPacker(System.IO.Path.Combine(env.ContentRootPath, "App_Data", "EqDemoData.zip"));
                     })
