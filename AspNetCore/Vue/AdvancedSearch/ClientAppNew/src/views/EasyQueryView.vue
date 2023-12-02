@@ -147,7 +147,7 @@
     context
         .useEndpoint(`${END_POINT}/api/easyquery`)
         .useEnterprise(() => {
-          this.view.init(viewOptions);
+          view.init(viewOptions);
         });
 
     context.addEventListener('ready', () => {
@@ -176,11 +176,11 @@
       if (data.modified) {
         query.fireChangedEvent();
       } else {
-        this.view.getContext().refreshWidgets();
-        this.view.syncQuery();
+        view.getContext().refreshWidgets();
+        view.syncQuery();
       }
 
-      setTimeout(() => this.view.fetchData(), 100);
+      setTimeout(() => view.fetchData(), 100);
     }
   }
 </script>

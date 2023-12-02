@@ -94,7 +94,7 @@ namespace EqDemo
 
                     options.UseDbContext<AppDbContext>();
 
-                    // Uncomment if you want to donwload model directly from DB
+                    // Uncomment if you want to download model directly from DB
                     // options.UseDbConnectionModelLoader();
 
                     options.UseQueryStore((_) => new FileQueryStore("App_Data"));
@@ -105,20 +105,18 @@ namespace EqDemo
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            // app.UseSpa(spa =>
-            // {
-            //     spa.Options.SourcePath = "ClientAppNew";
-            //     spa.Options.StartupTimeout = TimeSpan.FromMinutes(2);
-            //
-            //     if (env.IsDevelopment())
-            //     {
-            //         // run npm process with client app
-            //         spa.UseVueCli(npmScript: "dev", port: 8085, regex: "vite ");
-            //         // if you just prefer to proxy requests from client app, use proxy to SPA dev server instead:
-            //         // app should be already running before starting a .NET client
-            //         // spa.UseProxyToSpaDevelopmentServer("http://localhost:8080"); // your Vue app port
-            //     }
-            // });
+            //app.UseSpa(spa => {
+            //    spa.Options.SourcePath = "ClientAppNew";
+            //    spa.Options.StartupTimeout = TimeSpan.FromMinutes(2);
+
+            //    if (env.IsDevelopment()) {
+            //        // run npm process with client app
+            //        spa.UseVueCli(npmScript: "dev", port: 8085, regex: "vite");
+            //        // if you just prefer to proxy requests from client app, use proxy to SPA dev server instead:
+            //        // app should be already running before starting a .NET client
+            //        // spa.UseProxyToSpaDevelopmentServer("http://localhost:8080"); // your Vue app port
+            //    }
+            //});
 
 
             //Init demo database (if necessary)
