@@ -1,0 +1,6 @@
+@EqDemo.AspNetCoreVue3.AdvancedSearch.csproj.Server_HostAddress = http://localhost:5088
+
+GET {{EqDemo.AspNetCoreVue3.AdvancedSearch.csproj.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
