@@ -39,26 +39,28 @@
                 </div>
               </div>
 
-
               <div class="eqv-menu-block">
                 <hr class="eqv-menu-hr eqv-hr" />
                 <div class="eqv-menu-title">Query Menu</div>
                 <div class="eqv-menu-content">
-
                   <div id="QueryNameLabel"></div>
-
 
                   <a id="ClearQueryButton" class="eqv-button">Clear</a>
 
-
                   <div class="eqv-dropdown-container">
-                    <a id="LoadQueryButton" href="javascript::void(0)" class="eqv-button eqv-drop-button">Load <span style="float: right">▼</span></a>
-                    <div class="eqv-dropdown-content">
-                    </div>
+                    <a
+                      id="LoadQueryButton"
+                      href="javascript::void(0)"
+                      class="eqv-button eqv-drop-button"
+                      >Load <span style="float: right">▼</span></a
+                    >
+                    <div class="eqv-dropdown-content"></div>
                   </div>
 
                   <div class="eqv-dropdown-container">
-                    <a id="StorageDropButton" class="eqv-button eqv-drop-button">Storage <span style="float: right">▼</span></a>
+                    <a id="StorageDropButton" class="eqv-button eqv-drop-button"
+                      >Storage <span style="float: right">▼</span></a
+                    >
                     <div class="eqv-dropdown-content">
                       <a id="NewQueryButton" href="javascript::void(0)">New query</a>
                       <a id="SaveQueryButton" href="javascript::void(0)">Save query</a>
@@ -67,8 +69,12 @@
                     </div>
                   </div>
 
-
-                  <a id="FetchDataButton" href="javascript::void(0)" class="eqv-button eqv-button-execute">Fetch data</a>
+                  <a
+                    id="FetchDataButton"
+                    href="javascript::void(0)"
+                    class="eqv-button eqv-button-execute"
+                    >Fetch data</a
+                  >
                 </div>
               </div>
               <div class="eqv-bottom-panel">
@@ -76,19 +82,25 @@
                   <hr class="eqv-result-panel-hr eqv-hr" />
                   <div class="eqv-result-panel-title">
                     Result
-                    <span id="ResultCount" style="display:none; margin-left:20px; font-size:small"></span>
+                    <span
+                      id="ResultCount"
+                      style="display: none; margin-left: 20px; font-size: small"
+                    ></span>
                     <span class="eqv-export-buttons">
-                                            <a class="eqjs-export" href="javascript:void(0)" data-format="pdf">Export to PDF</a>
-                                            <a class="eqjs-export" href="javascript:void(0)" data-format="excel">Export to Excel</a>
-                                            <a class="eqjs-export" href="javascript:void(0)" data-format="csv">Export to CSV</a>
-                                        </span>
+                      <a class="eqjs-export" href="javascript:void(0)" data-format="pdf"
+                        >Export to PDF</a
+                      >
+                      <a class="eqjs-export" href="javascript:void(0)" data-format="excel"
+                        >Export to Excel</a
+                      >
+                      <a class="eqjs-export" href="javascript:void(0)" data-format="csv"
+                        >Export to CSV</a
+                      >
+                    </span>
                   </div>
-                  <div id="ResultPanel" class="eqv-result-panel-content">
-                  </div>
-                  <div class="eqv-result-panel-content-padding">
-                  </div>
+                  <div id="ResultPanel" class="eqv-result-panel-content"></div>
+                  <div class="eqv-result-panel-content-padding"></div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -109,78 +121,76 @@
 </template>
 
 <script setup>
-  import { AdvancedSearchView } from '@easyquery/ui'
-  import '@easyquery/enterprise'
-  import { onMounted } from "vue"
+import { AdvancedSearchView } from '@easyquery/ui'
+import '@easyquery/enterprise'
+import { onMounted } from 'vue'
 
-  let view, context
-  const END_POINT = `https://localhost:5001`
-  const QUERY_KEY = `easyqueryview-query`
+let view, context
+const END_POINT = `https://localhost:5001`
+const QUERY_KEY = `easyqueryview-query`
 
-  onMounted(() => {
-    const viewOptions = {
-      enableExport: true,
-      serverExporters: ['pdf', 'excel', 'csv'],
-      loadModelOnStart: true,
+onMounted(() => {
+  const viewOptions = {
+    enableExport: true,
+    serverExporters: ['pdf', 'excel', 'csv'],
+    loadModelOnStart: true,
 
-      handlers: {
-        onError: (_, error) => {
-          console.error(error.sourceError);
-        }
-      },
-      widgets: {
-        resultGrid: {
-          paging: {
-            enabled: true,
-            pageSize: 30
-          }
-        }
-      },
-      result: {
-        showChart: true,
-      },
-    };
-
-    view = new AdvancedSearchView();
-    context = view.getContext();
-
-    context
-        .useEndpoint(`${END_POINT}/api/easyquery`)
-        .useEnterprise(() => {
-          view.init(viewOptions);
-        });
-
-    context.addEventListener('ready', () => {
-      const query = context.getQuery();
-
-      query.addChangedCallback(() => {
-        const data = JSON.stringify({
-          modified: query.isModified(),
-          query: query.toJSONData()
-        });
-        localStorage.setItem(QUERY_KEY, data);
-      });
-
-      //add load query from local storage
-      loadQueryFromLocalStorage();
-    });
-  })
-
-  const loadQueryFromLocalStorage = () => {
-    const dataJson = localStorage.getItem(QUERY_KEY);
-    if (dataJson) {
-      const data = JSON.parse(dataJson);
-      const query = context.getQuery();
-      query.loadFromDataOrJson(data.query);
-
-      if (data.modified) {
-        query.fireChangedEvent();
-      } else {
-        view.getContext().refreshWidgets();
-        view.syncQuery();
+    handlers: {
+      onError: (_, error) => {
+        console.error(error.sourceError)
       }
-
-      setTimeout(() => view.fetchData(), 100);
+    },
+    widgets: {
+      resultGrid: {
+        paging: {
+          enabled: true,
+          pageSize: 30
+        }
+      }
+    },
+    result: {
+      showChart: true
     }
   }
+
+  view = new AdvancedSearchView()
+  context = view.getContext()
+
+  context.useEndpoint(`${END_POINT}/api/easyquery`).useEnterprise(() => {
+    view.init(viewOptions)
+  })
+
+  context.addEventListener('ready', () => {
+    const query = context.getQuery()
+
+    query.addChangedCallback(() => {
+      const data = JSON.stringify({
+        modified: query.isModified(),
+        query: query.toJSONData()
+      })
+      localStorage.setItem(QUERY_KEY, data)
+    })
+
+    //add load query from local storage
+    loadQueryFromLocalStorage()
+  })
+})
+
+const loadQueryFromLocalStorage = () => {
+  const dataJson = localStorage.getItem(QUERY_KEY)
+  if (dataJson) {
+    const data = JSON.parse(dataJson)
+    const query = context.getQuery()
+    query.loadFromDataOrJson(data.query)
+
+    if (data.modified) {
+      query.fireChangedEvent()
+    } else {
+      view.getContext().refreshWidgets()
+      view.syncQuery()
+    }
+
+    setTimeout(() => view.fetchData(), 100)
+  }
+}
 </script>
