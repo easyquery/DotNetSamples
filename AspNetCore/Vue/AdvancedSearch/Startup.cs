@@ -11,6 +11,7 @@ using VueCliMiddleware;
 
 using Korzh.EasyQuery.Services;
 using EasyData.Export;
+using Korzh.EasyQuery.Db;
 
 namespace EqDemo
 {
@@ -98,6 +99,10 @@ namespace EqDemo
                     // options.UseDbConnectionModelLoader();
 
                     options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+
+                    options.UseSqlFormats(formats => {
+                        formats.OrderByStyle = OrderByStyles.Names;
+                    });
                 });
 
                 endpoints.MapControllerRoute(
@@ -106,15 +111,16 @@ namespace EqDemo
             });
 
             //app.UseSpa(spa => {
+
             //    spa.Options.SourcePath = "ClientAppNew";
             //    spa.Options.StartupTimeout = TimeSpan.FromMinutes(2);
 
             //    if (env.IsDevelopment()) {
             //        // run npm process with client app
-            //        spa.UseVueCli(npmScript: "dev", port: 8085, regex: "vite");
+            //        spa.UseVueCli(npmScript: "dev", port: 8086, regex: "vite");
             //        // if you just prefer to proxy requests from client app, use proxy to SPA dev server instead:
             //        // app should be already running before starting a .NET client
-            //        // spa.UseProxyToSpaDevelopmentServer("http://localhost:8080"); // your Vue app port
+            //        spa.UseProxyToSpaDevelopmentServer("http://localhost:8086"); // your Vue app port
             //    }
             //});
 
