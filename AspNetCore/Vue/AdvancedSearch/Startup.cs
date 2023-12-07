@@ -45,11 +45,11 @@ namespace EqDemo
 
             services.AddControllersWithViews();
 
-            // In production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
+            //// In production, the React files will be served from this directory
+            //services.AddSpaStaticFiles(configuration =>
+            //{
+            //    configuration.RootPath = "ClientApp/dist";
+            //});
 
             services.AddEasyQuery()
                     .UseSqlManager()
@@ -79,10 +79,9 @@ namespace EqDemo
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            if (!env.IsDevelopment()) {
-                app.UseSpaStaticFiles();
-            }
-
+            //if (!env.IsDevelopment()) {
+            //    app.UseSpaStaticFiles();
+            //}
        
             app.UseRouting();
 
