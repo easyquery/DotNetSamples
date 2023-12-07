@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
-    <SpaRoot>ClientAppNew\</SpaRoot>
+    <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <UserSecretsId>EqDemo.AspNetCoreVue.AdvancedSearch</UserSecretsId>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>

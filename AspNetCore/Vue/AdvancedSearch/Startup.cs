@@ -112,7 +112,7 @@ namespace EqDemo
 
             //app.UseSpa(spa => {
 
-            //    spa.Options.SourcePath = "ClientAppNew";
+            //    spa.Options.SourcePath = "ClientApp";
             //    spa.Options.StartupTimeout = TimeSpan.FromMinutes(2);
 
             //    if (env.IsDevelopment()) {
