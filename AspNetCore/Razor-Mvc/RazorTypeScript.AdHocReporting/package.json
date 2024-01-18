@@ -1,32 +1,33 @@
 {
   "name": "mainpagescripts",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@easydata/core": "1.4.18",
-    "@easydata/ui": "1.4.18",
-    "@easyquery/core": "7.2.4",
-    "@easyquery/ui": "7.2.4",
-    "@easyquery/enterprise": "7.2.4"
-  },
   "scripts": {
-    "test": "test",
-    "build": "webpack --mode=production",
-    "watch": "webpack --mode=development --watch",
-    "dev": "webpack --mode=development"
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "dev": "npm run watch"
+  },
+  "dependencies": {
+    "@easydata/core": "1.4.21",
+    "@easydata/ui": "1.4.21",
+    "@easyquery/core": "7.2.5",
+    "@easyquery/enterprise": "7.2.5",
+    "@easyquery/ui": "7.2.5"
   },
   "devDependencies": {
-    "require": "^2.4.20",
-    "filemanager-webpack-plugin": "2.0.5",
-    "onchange": "^5.2.0",
-    "ts-loader": "^5.3.3",
-    "typescript": "^3.3.3",
-    "webpack": "^4.36.1",
-    "webpack-cli": "^3.3.6",
-    "css-loader": "2.1.1",
-    "style-loader": "0.23.1",
-    "es6-promise": "^4.2.6"
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "autoprefixer": "^10.4.17",
+    "rollup": "^4.9.5",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-no-emit": "^1.1.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-progress": "^1.1.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
   }
 }
