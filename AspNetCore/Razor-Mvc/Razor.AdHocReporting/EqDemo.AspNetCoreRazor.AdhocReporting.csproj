@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -31,7 +31,6 @@
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.5" />
     <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.2.5" />
     <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="7.2.5" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Areas\Identity\Pages\_ViewStart.cshtml">
