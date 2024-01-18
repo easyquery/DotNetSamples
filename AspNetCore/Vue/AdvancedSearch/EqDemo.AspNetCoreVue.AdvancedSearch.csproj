@@ -9,7 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.4" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="System.Drawing.Common" Version="4.7.3" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
@@ -29,10 +29,10 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.19" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.4" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.4" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.4" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.4" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.5" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
@@ -56,7 +56,7 @@
     <!-- Include the newly-built files in the publish output -->
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)build\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </ResolvedFileToPublish>

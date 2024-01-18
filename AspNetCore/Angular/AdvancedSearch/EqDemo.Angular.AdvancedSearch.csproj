@@ -12,7 +12,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.4" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.2.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.1" />
@@ -30,10 +30,10 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.4" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.4" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.4" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.4" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.5" />
   </ItemGroup>
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
