@@ -16,7 +16,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
   <ItemGroup>
     <!-- DB initialization packages. They are not necessary for EasyQuery working and can be removed in production -->
@@ -26,8 +25,8 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Exporters -->
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.9" />
-    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.9" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.21" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.21" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.2.5" />
