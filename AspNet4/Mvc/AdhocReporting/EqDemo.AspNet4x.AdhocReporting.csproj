@@ -73,6 +73,9 @@
     <PackageReference Include="Korzh.EasyQuery.SqlServerGate">
       <Version>7.2.5</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Data.SqlClient">
+      <Version>2.1.7</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.3</Version>
     </PackageReference>
