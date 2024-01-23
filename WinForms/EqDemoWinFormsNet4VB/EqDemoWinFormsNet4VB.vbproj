@@ -11,7 +11,8 @@
     <AssemblyName>EqDemoWinFormsNet4VB</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,20 +57,23 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="System.Data.SqlClient">
+      <Version>4.8.6</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.WinForms" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.0" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFramework6" Version="7.2.0" />
+    <PackageReference Include="Korzh.EasyQuery.Db" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.WinForms" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.2.5" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFramework6" Version="7.2.5" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.2" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.21" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <ItemGroup>
@@ -94,6 +98,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+  <!--
     Microsoft ResX Schema 
-    
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -126,13 +126,39 @@
   <metadata name="ResultDS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>247, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnExportCsv.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAALdJREFUOE/tkKESQUEUQDcIgiAIgigIog8QRVEQfIAgiIIZ0QcIgiAIwguCKAii
+        4Iecs7tmBBLxnZmze/e9u3fvbij5DzXc4B4L7KFM0PURZ1hHc945OGyxbwAm7VIYrnkWvzXQYi0/QBfX
+        Bg+HD3iaG8doYRngPIVxc8fg7vAFT7H9G7axgqc8203EK5go/jDZyvF+mSmOUhiWuEDfKNLEM9qy8xBl
+        hRf0RItVUXwDu36tS34jhCd9bRxpwQWeuQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="toolTipCsv.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>458, 17</value>
   </metadata>
+  <data name="btnExportExel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAnRJREFUOE9j+P//P1UwnHHy5EmPmTNnTuzv758PwuvXry+6d++eKrLily9fSuze
+        vTsBpmbq1KnTDh48GAqSgyv6+vUrX3V19e6AgIAf3t7e/4H09xUrVlR++vSJHyT/8+dP9v3798dERka+
+        Acn7+vr+ycrKuvjmzRspFINA+MKFC3ZAyUsghSCcmpp6a9OmTVEguSNHjjiXlZUdhMklJCQ8BLomCKYX
+        xSAQXrRoUTlIEUxDU1PTxr1798ZOnjx5BkwsIiLizYQJEyYi60MxBIS/ffvG09fXtzAoKOgrSJO/v/9P
+        oMbXYWFh70F8Pz+/X1VVVbvevn0rjqwPxRAYvnr1qklFRcV+mAuQcV5e3tnjx497oOtB4SDjNWvWpGVk
+        ZFxDNiQuLu7J3Llzq7GpxxCA4Q8fPggBvTgf2aDa2tqdwCShiU09hgAMA2MrLjs7+yKyQcCofz1nzpyu
+        v3//MqOrR+HA8J07d3SAaWoXsiEwnJmZeQWYKMPR9aBwQPjHjx+ckyZNmhscHPwZpBGYML9FRUW9hMUa
+        KCGWlpYefvbsmQKyPhRDQHjlypV5ycnJd2EuaGtrWw1MeOHI6Sg0NPRjd3f3oj9//sC9iGLI9evXTXJz
+        c8/DNCQlJd3fsGFD3rt37yROnTrlg5yyY2Njn27ZsiUFwyCgl7jq6+u3BwYGfocphmGQV4BpJxA5r/n4
+        +PwFZaEnT56AMzbcoAULFtSBYgXdEBAGGXTo0CEvYLhIL1y4sAUmDrIUmCR2AL3IAjYEmMOFgAmtG1Y8
+        oGNgKVB148YNPZDax48fy2/evDl76dKlDSC8atWqSqAFKnAXUYb/MwAAaO47Nx90xl8AAAAASUVORK5C
+        YII=
+</value>
+  </data>
   <metadata name="toolTipExel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>347, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="EntPanel.ImageAddColumns" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
