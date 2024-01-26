@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "React", "React", "{D1E3E79A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Stencil", "Stencil", "{F479CC93-A463-418D-94EB-36C740A33879}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vue", "Vue", "{B3073273-2DF6-4853-A1FC-4EFFDD7E1422}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vue2", "Vue2", "{B3073273-2DF6-4853-A1FC-4EFFDD7E1422}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Razor-Mvc", "Razor-Mvc", "{1776D551-217D-4D0D-B255-5F4DF15AC492}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreReact.Adva
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreStencil.AdvancedSearch", "AspNetCore\Stencil\AdvancedSearch\EqDemo.AspNetCoreStencil.AdvancedSearch.csproj", "{61D26EA2-338F-45F9-804F-6DC29A266470}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreVue.AdvancedSearch", "AspNetCore\Vue\AdvancedSearch\EqDemo.AspNetCoreVue.AdvancedSearch.csproj", "{3E09145C-B472-47E8-811B-76388A70901F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreVue2.AdvancedSearch", "AspNetCore\Vue2\AdvancedSearch\EqDemo.AspNetCoreVue2.AdvancedSearch.csproj", "{3E09145C-B472-47E8-811B-76388A70901F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EqDemo.AspNetCoreMvc.DataFiltering", "AspNetCore\Razor-Mvc\Mvc.DataFiltering\EqDemo.AspNetCoreMvc.DataFiltering.csproj", "{4B7F5C07-95A5-451D-9572-96DC36792687}"
 EndProject

@@ -1,0 +1,41 @@
+{
+  "name": "asp-net-core-vue-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@easydata/core": "1.4.21",
+    "@easydata/ui": "1.4.21",
+    "@easyquery/core": "7.2.5",
+    "@easyquery/ui": "7.2.5",
+    "@easyquery/enterprise": "7.2.5",
+    "register-service-worker": "^1.6.2",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.0.2",
+    "vue-property-decorator": "^8.1.0",
+    "vue-router": "^3.0.6",
+    "vuetify": "^1.5.12",
+    "vuex": "^3.1.0",
+    "vuex-class": "^0.3.2"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "@types/node": "^11.13.6",
+    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-plugin-pwa": "^3.6.0",
+    "@vue/cli-plugin-typescript": "^3.6.0",
+    "@vue/cli-service": "^3.6.0",
+    "axios": "^0.18.0",
+    "babel-plugin-transform-imports": "^1.5.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "typescript": "^3.4.4",
+    "vue-cli-plugin-axios": "0.0.4",
+    "vue-cli-plugin-vuetify": "^0.5.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
