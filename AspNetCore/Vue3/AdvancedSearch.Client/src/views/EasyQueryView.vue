@@ -126,7 +126,7 @@ import '@easyquery/enterprise'
 import { onMounted } from 'vue'
 
 let view, context
-const END_POINT = `https://localhost:5173`
+const END_POINT = `https://localhost:7073`
 const QUERY_KEY = `easyqueryview-query`
 
 onMounted(() => {
@@ -156,9 +156,11 @@ onMounted(() => {
   view = new AdvancedSearchView()
   context = view.getContext()
 
-  context.useEndpoint(`${END_POINT}/api/easyquery`).useEnterprise(() => {
-    view.init(viewOptions)
-  })
+    context
+        .useEndpoint(`${END_POINT}/api/easyquery`)
+        .useEnterprise(() => {
+            view.init(viewOptions)
+        })
 
   context.addEventListener('ready', () => {
     const query = context.getQuery()
