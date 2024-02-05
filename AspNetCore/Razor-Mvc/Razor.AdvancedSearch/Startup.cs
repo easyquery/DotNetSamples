@@ -54,6 +54,7 @@ namespace EqDemo
                     .AddDefaultExporters()
                     .AddDataExporter<PdfDataExporter>("pdf")
                     .AddDataExporter<ExcelDataExporter>("excel")
+                    .UseSessionCache()
                     .RegisterDbGate<Korzh.EasyQuery.DbGates.SqLiteGate>();
                     //.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();
 
@@ -94,6 +95,8 @@ namespace EqDemo
                     options.SaveNewQuery = false;
                     options.ConnectionString = DbConnectionString;
                     options.UseDbContext<AppDbContext>();
+                    options.StoreModelInCache = true;
+                    options.StoreQueryInCache = true;
 
                     // If you want to load model directly from DB metadata
                     // remove (or comment) options.UseDbContext(...) call and uncomment the next 3 lines of code
