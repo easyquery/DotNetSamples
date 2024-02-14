@@ -1,4 +1,6 @@
-﻿import React  from 'react';
+﻿/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable no-script-url */
+import React  from 'react';
 
 const AdvacnedSearchHtml = () => (
     <div>
