@@ -28,8 +28,7 @@ namespace EqDemo
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            // Register you exportes here
-            // to make export works
+            // Register you exporters here
             EasyQueryManager.RegisterExporter("csv", new CsvDataExporter());
             EasyQueryManager.RegisterExporter("excel", new ExcelDataExporter());
             EasyQueryManager.RegisterExporter("pdf", new PdfDataExporter());
@@ -37,7 +36,6 @@ namespace EqDemo
             EasyQueryManagerSql.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlClientGate>();
         }
     }
-
 
     public class WebApiCustomDirectRouteProvider : DefaultDirectRouteProvider
     {

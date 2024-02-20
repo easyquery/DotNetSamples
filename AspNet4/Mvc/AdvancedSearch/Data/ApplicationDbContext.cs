@@ -10,8 +10,6 @@ namespace EqDemo.Models
  
         }
 
-
-
         #region NWind
         public DbSet<Category> Categories { get; set; }
 
