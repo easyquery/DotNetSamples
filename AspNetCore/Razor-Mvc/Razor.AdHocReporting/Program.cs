@@ -78,7 +78,6 @@ System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Inst
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseDeveloperExceptionPage();
-    app.UseMigrationsEndPoint();
 }
 else {
     app.UseExceptionHandler("/Error");
