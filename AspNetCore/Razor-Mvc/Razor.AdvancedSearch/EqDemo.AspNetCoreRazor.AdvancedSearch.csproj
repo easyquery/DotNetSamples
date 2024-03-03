@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <UserSecretsId>EqDemo.AspNetCoreRazor.AdvancedSearch</UserSecretsId>
@@ -11,7 +11,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
-
   </ItemGroup>
   <ItemGroup>
     <!-- DB initialization packages. They are not necessary for EasyQuery working and can be removed in production -->
@@ -24,12 +23,12 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.2" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.0-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.3.0-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.3.0-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.3.0-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.3.0-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.3.0-rc03" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.1-rc01" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.3.1-rc01" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.3.1-rc01" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.3.1-rc01" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.3.1-rc01" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.3.1-rc01" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\site.css">
