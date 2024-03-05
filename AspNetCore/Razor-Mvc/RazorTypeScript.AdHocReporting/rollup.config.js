@@ -36,35 +36,49 @@ export default [
         input: './ts/adhoc-reporting.ts',
         cache,
         watch: {
-            include: 'src/**',
             clearScreen: false
         },
         plugins: [
             progress({ clearLine: true, }),
             cleanup(),
             typescript({
-                sourceMap: sourcemap,
+                sourceMap: false,
                 declaration: false,
             }),
             nodeResolve({ browser: true, }),
         ],
-        context: "window",
         output: [
             {
                 file: './wwwroot/js/adhoc-reporting.js',
-                format: 'umd',
+                format: 'iife',
                 sourcemap: false,
                 banner,
-                name: "easyreport",
-                extend: true,
+                name: "easyreport"
             },
+        ]
+    },
+    {
+        input: './ts/adhoc-reporting.ts',
+        cache,
+        watch: {
+            clearScreen: false
+        },
+        plugins: [
+            progress({ clearLine: true, }),
+            cleanup(),
+            typescript({
+                sourceMap: true,
+                declaration: false,
+            }),
+            nodeResolve({ browser: true, }),
+        ],
+        output: [
             {
                 file: './wwwroot/js/adhoc-reporting.min.js',
-                format: 'umd',
+                format: 'iife',
                 sourcemap: true,
                 banner,
                 name: "easyreport",
-                extend: true,
                 plugins: [
                     terser({
                         keep_classnames: true,
