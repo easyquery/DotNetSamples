@@ -21,11 +21,14 @@ namespace EqDemo.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            Korzh.DbUtils.DbInitializer.Create(options => {
-                options.UseSqlServer(context.Database.Connection.ConnectionString);
-                options.UseZipPacker(System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data/EqDemoData.zip"));
-            })
-            .Seed();
+            if (context.Customers.Count() < 10) {
+                Korzh.DbUtils.DbInitializer.Create(options => {
+                    options.UseSqlServer(context.Database.Connection.ConnectionString);
+                    options.UseZipPacker(System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data/EqDemoData.zip"));
+                })
+                .Seed();
+            }
         }
+            
     }
 }

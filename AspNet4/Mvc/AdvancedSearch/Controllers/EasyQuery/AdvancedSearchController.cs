@@ -22,14 +22,14 @@ namespace EqDemo.Controllers
             options.BuildQueryOnSync = true;
             options.SaveQueryOnSync = false;
 
-            options.UseDbContext(ApplicationDbContext.Create());
+            //options.UseDbContext(ApplicationDbContext.Create());
 
             // If you want to load model directly from DB metadata
             // remove (or comment) options.UseDbContext(...) call and uncomment the next 3 lines of code
-            //options.ConnectionString = 
-            //    ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString();
-            //options.UseDbConnection<SqlConnection>();
-            //options.UseDbConnectionModelLoader();
+            options.ConnectionString =
+                ConfigurationManager.ConnectionStrings["DefaultConnection"]?.ToString();
+            options.UseDbConnection<SqlConnection>();
+            options.UseDbConnectionModelLoader();
 
             var path = System.Web.Hosting.HostingEnvironment.MapPath("~/App_Data");
             options.UseQueryStore((_) => new FileQueryStore(path));

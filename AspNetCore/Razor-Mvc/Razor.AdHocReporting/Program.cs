@@ -53,6 +53,10 @@ builder.Services.AddCors(options => {
 
 builder.Services.AddRazorPages();
 
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 // Registering EasyQuery services
 builder.Services.AddEasyQuery()
                 .AddDefaultExporters()
@@ -74,7 +78,6 @@ System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Inst
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseDeveloperExceptionPage();
-    app.UseMigrationsEndPoint();
 }
 else {
     app.UseExceptionHandler("/Error");
@@ -92,6 +95,7 @@ app.UseHttpsRedirection();
 app.UseCors("AllowAllPolicy");
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -102,6 +106,8 @@ app.MapEasyQuery(options => {
     options.SaveNewQuery = true;
     options.SaveQueryOnSync = true;
     options.Endpoint = "/api/adhoc-reporting";
+    options.StoreModelInCache = true;
+    options.StoreQueryInCache = true;
 
     options.UseDbContextWithoutIdentity<AppDbContext>(loaderOptions => {
         //Ignore the "Reports" DbSet as well

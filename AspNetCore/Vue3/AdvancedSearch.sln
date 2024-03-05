@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedSearch.Server", "AdvancedSearch.Server\AdvancedSearch.Server.csproj", "{2E37A49C-2E03-49BA-84EB-D1C806091468}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AdvancedSearch.Client", "AdvancedSearch.Client\AdvancedSearch.Client.esproj", "{C9BA88E5-B773-4C10-BA3D-FA5C5F8CFB90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E37A49C-2E03-49BA-84EB-D1C806091468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E37A49C-2E03-49BA-84EB-D1C806091468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E37A49C-2E03-49BA-84EB-D1C806091468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E37A49C-2E03-49BA-84EB-D1C806091468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9BA88E5-B773-4C10-BA3D-FA5C5F8CFB90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9BA88E5-B773-4C10-BA3D-FA5C5F8CFB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9BA88E5-B773-4C10-BA3D-FA5C5F8CFB90}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C9BA88E5-B773-4C10-BA3D-FA5C5F8CFB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9BA88E5-B773-4C10-BA3D-FA5C5F8CFB90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9BA88E5-B773-4C10-BA3D-FA5C5F8CFB90}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {948718A0-226E-461D-82B1-1CEB006F5FDF}
+	EndGlobalSection
+EndGlobal
