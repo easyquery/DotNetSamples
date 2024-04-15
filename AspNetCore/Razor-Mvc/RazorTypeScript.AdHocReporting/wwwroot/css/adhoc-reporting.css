@@ -3128,6 +3128,8 @@ body {
 
 .eqjs-fb-button {
     -moz-user-select: none;
+    -webkit-user-select: none;
+            user-select: none;
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
@@ -4689,9 +4691,6 @@ input.eqjs-invalid {
     top: 4px;
 }
 
-.eqjs-qp-condition-buttonsBlock {
-}
-
 .eqjs-qc-column-checkbox:hover,
 .eqjs-qp-column-checkbox:hover,
 .eqjs-column-buttonsBlock .eqjs-button:hover,
@@ -4711,11 +4710,10 @@ input.eqjs-invalid {
     align-items: center;
     justify-content: center;
     font-family: 'easyquery' !important;
-    speak: never;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
-    text-transform: none;
+    text-transform: none !important;
     line-height: 1!important;
     font-size: var(--icon-size);
     color: var(--button-text-color);
@@ -4798,10 +4796,6 @@ input.eqjs-invalid {
 .eqjs-qc-row:not(:nth-last-child(1))
 {
     border-bottom: 1px solid var(--border-color);
-}
-
-.eqjs-qc-row.eqjs-qc-disabled {
-    /*min-height: 26px;*/
 }
 
 .eqjs-qc-row:not([data-show-buttons]) .eqjs-qc-column-checkbox,
@@ -4967,7 +4961,7 @@ input.eqjs-invalid {
 }
 
 .eqjs-menu-scrollDiv:not(.eqjs-mobile) {
-    max-height: 250px;
+    max-height: 500px;
 }
 
 .eqjs-qc-colelement {
