@@ -28,15 +28,8 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@easyquery/ui/dist/assets/css/easyquery.css",
-              "node_modules/@easyquery/ui/dist/assets/css/eq-icons-default.css",
+              "node_modules/@easyquery/ui/dist/assets/css/easyquery.ui.css",
               "node_modules/@easyquery/ui/dist/assets/css/easyquery-mobile.css",
-              "node_modules/@easyquery/ui/dist/assets/css/eqview.css",
-              "node_modules/@easyquery/ui/dist/assets/css/easychart.css",
-              "node_modules/@easyquery/ui/dist/assets/css/easyfacets.css",
-              "node_modules/@easydata/ui/dist/assets/css/easy-grid.css",
-              "node_modules/@easydata/ui/dist/assets/css/easy-dialog.css",
-              "node_modules/@easydata/ui/dist/assets/css/easy-forms.css",
               "src/styles.css"
             ],
             "scripts": [

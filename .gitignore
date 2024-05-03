@@ -33,3 +33,5 @@ App_Data/dm-*__default/
 
 *.lck
 .idea
+/AspNetCore/Razor-Mvc/Razor.AdvancedSearch/Properties/serviceDependencies.local.json
+/AspNetCore/Razor-Mvc/Razor.AdvancedSearch/Properties/serviceDependencies.local.json.user
