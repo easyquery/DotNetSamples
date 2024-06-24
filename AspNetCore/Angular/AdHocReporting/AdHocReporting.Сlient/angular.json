@@ -3,19 +3,9 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "adhocreporting.client": {
+    "client": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "standalone": false
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -23,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/adhocreporting.client",
+            "outputPath": "dist/client",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -37,13 +27,9 @@
               }
             ],
             "styles": [
-              "node_modules/@easyquery/ui/dist/assets/css/easyquery.ui.css",
-              "node_modules/@easyquery/ui/dist/assets/css/easyquery-mobile.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.min.js",
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -73,16 +59,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "adhocreporting.client:build:production"
+              "buildTarget": "client:build:production"
             },
             "development": {
-              "buildTarget": "adhocreporting.client:build:development"
+              "buildTarget": "client:build:development"
             }
           },
-          "defaultConfiguration": "development",
-          "options": {
-            "proxyConfig": "src/proxy.conf.js"
-          }
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
@@ -104,8 +87,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "karmaConfig": "karma.conf.js"
+            "scripts": []
           }
         }
       }

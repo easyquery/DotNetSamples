@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  padding-top: 50px;
+  height: 100vh;
+}
+
+.appbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #e8e8e8;
+  background: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    li {
+      margin-right: 10px;
+    }
+
+    li, a {
+      display: flex;
+      height: 24px;
+      line-height: 24px;
+      align-items: center;
+    }
+  }
+}
+
+main {
+  padding: 20px;
+}

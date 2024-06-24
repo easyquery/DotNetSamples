@@ -1,0 +1,7 @@
+:host {
+  height: calc(100% - 38px);
+}
+
+.content-container {
+  height: 100%;
+}

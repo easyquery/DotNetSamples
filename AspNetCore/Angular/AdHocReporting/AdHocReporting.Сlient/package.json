@@ -1,15 +1,12 @@
 {
-  "name": "adhocreporting.client",
+  "name": "client",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "run-script-os",
+    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "prestart": "node aspnetcore-https",
-    "start:windows": "ng serve --ssl --ssl-cert \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem\" --ssl-key \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.key\" --host=127.0.0.1",
-    "start:default": "ng serve --ssl --ssl-cert \"$HOME/.aspnet/https/${npm_package_name}.pem\" --ssl-key \"$HOME/.aspnet/https/${npm_package_name}.key\" --host=127.0.0.1"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
@@ -24,18 +21,15 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3",
-    "jest-editor-support": "*",
-    "run-script-os": "*",
     "@easydata/core": "1.5.5",
     "@easydata/ui": "1.5.5",
     "@easyquery/core": "7.3.3",
     "@easyquery/ui": "7.3.3",
-    "@easyquery/enterprise": "7.3.3",
-    "chart.js": "^2.7.3"
+    "@easyquery/enterprise": "7.3.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.0.1",
-    "@angular/cli": "^18.0.1",
+    "@angular-devkit/build-angular": "^18.0.5",
+    "@angular/cli": "^18.0.5",
     "@angular/compiler-cli": "^18.0.0",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
