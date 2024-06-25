@@ -45,7 +45,7 @@ window.addEventListener('load', () => {
 
     const reportView = new ReportView();
     reportView.getContext()
-        .useEndpoint('http://localhost:5285/api/adhoc-reporting')
+        .useEndpoint('/api/adhoc-reporting')
         .useEnterprise(() => {
             reportView.init(viewOptions);
         });
