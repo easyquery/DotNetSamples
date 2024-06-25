@@ -1,23 +1,24 @@
 <div class="content-container">
-  <div data-role="splitter" data-split="vertical" data-split-sizes="300px, 100%" class="h-100">
-    <div class="report-list" id="ReportList">
-      <!-- Report List -->
-    </div>
-    <div class="query-options" data-role="splitter" data-split="horizontal">
-      <div>
-        <div class="columns-panel">
-          <div id="ColumnsBar"></div>
+    <div data-role="splitter" data-split="vertical" data-split-sizes="300px, 100%" class="h-100">
+        <div class="report-list" id="ReportList">
+            <!-- Report List -->
         </div>
-        <div class="aggregation-panel">
-          <div id="AggregationBar"></div>
+        <div class="query-options d-flex flex-column">
+            <div class="columns-panel border-bottom bd-default">
+                <div class="panel-title">Columns:</div>
+                <div id="ColumnsBar"></div>
+            </div>
+            <div class="aggregation-panel border-bottom bd-default">
+                <div id="AggregationBar"></div>
+            </div>
+            <div class="conditions-panel h-100" data-role="splitter" data-split="horizontal">
+                <div class="conditions-panel">
+                    <div id="QueryPanel"></div>
+                </div>
+                <div class="result-panel">
+                    <div id="ResultFacetsPanel"></div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="conditions-panel">
-        <div id="QueryPanel"></div>
-      </div>
-      <div class="result-panel">
-        <div id="ResultFacetsPanel"></div>
-      </div>
     </div>
-  </div>
 </div>

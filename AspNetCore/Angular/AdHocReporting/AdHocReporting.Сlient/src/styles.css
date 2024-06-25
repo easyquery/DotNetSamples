@@ -42,3 +42,7 @@ body {
 main {
   padding: 20px;
 }
+
+.kdlg-modal-window > * {
+  width: 100%;
+}

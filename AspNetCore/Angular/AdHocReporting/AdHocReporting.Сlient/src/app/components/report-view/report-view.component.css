@@ -10,3 +10,8 @@
   background: var(--default-background);
   color: var(--default-color);
 }
+
+.panel-title {
+  font-weight: bold;
+  margin: 10px 10px 0 10px;
+}
