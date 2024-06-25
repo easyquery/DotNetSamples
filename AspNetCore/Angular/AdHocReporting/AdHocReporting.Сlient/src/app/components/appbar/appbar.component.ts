@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-    selector: 'appbar',
+    selector: 'app-bar',
     standalone: true,
     imports: [],
     templateUrl: './appbar.component.html',

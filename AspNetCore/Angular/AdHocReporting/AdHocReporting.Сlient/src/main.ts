@@ -4,6 +4,7 @@ import { AppComponent } from './app/app.component';
 import {ReportView, ReportViewOptions} from "@easyquery/ui";
 import '@easyquery/enterprise';
 import '@easyquery/ui/dist/assets/css/easyquery.css'
+import '@olton/metroui/source/index.js'
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
@@ -45,7 +46,7 @@ window.addEventListener('load', () => {
 
     const reportView = new ReportView();
     reportView.getContext()
-        .useEndpoint('http://localhost:5285/api/adhoc-reporting')
+        .useEndpoint('https://localhost:5285/api/adhoc-reporting')
         .useEnterprise(() => {
             reportView.init(viewOptions);
         });
