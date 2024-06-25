@@ -55,11 +55,12 @@ main {
 }
 
 .dark-side {
-  .gutter, .eqjs-addrow, .bd-default, footer {
+  .gutter, .eqjs-addrow, .bd-default, footer, .keg-root, .keg-row {
     border-color: #4a4d51!important;
   }
-  .eqjs-cb-row, .eqjs-qp-row:hover, .eqjs-qp-row.active {
+  .eqjs-cb-row, .eqjs-qp-row:hover, .eqjs-qp-row.active, .keg-header, .keg-header-row, .keg-row {
     background-color: var(--selected-row-background)!important;
+    color: #ffffff!important;
   }
   .eqjs-aggrb-panel {
     background-color: var(--default-background)!important;
