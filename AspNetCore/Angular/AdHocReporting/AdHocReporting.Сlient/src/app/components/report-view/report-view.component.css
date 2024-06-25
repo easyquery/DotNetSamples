@@ -5,3 +5,8 @@
 .content-container {
   height: 100%;
 }
+
+#ColumnsBar, #QueryPanel {
+  background: var(--default-background);
+  color: var(--default-color);
+}
