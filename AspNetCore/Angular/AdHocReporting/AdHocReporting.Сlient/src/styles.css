@@ -46,3 +46,40 @@ main {
 .kdlg-modal-window > * {
   width: 100%;
 }
+
+.eqjs-qp-row {
+  padding: 0 10px!important;
+}
+.eqjs-qp-condition-buttonsBlock, .eqjs-facets-total-buttons {
+  margin-right: 10px;
+}
+
+.dark-side {
+  .gutter, .eqjs-addrow, .bd-default, footer {
+    border-color: #4a4d51!important;
+  }
+  .eqjs-cb-row, .eqjs-qp-row:hover, .eqjs-qp-row.active {
+    background-color: var(--selected-row-background)!important;
+  }
+  .eqjs-aggrb-panel {
+    background-color: var(--default-background)!important;
+  }
+  a {
+    color: #0099CC!important;
+    &:hover {
+      color: #04ace4 !important;
+    }
+  }
+  .eqjs-qp-condition-button-active {
+    background-color: #04ace4 !important;
+    color: #ffffff!important;
+  }
+
+  .eqjs-facets-nav-tabs {
+    li.active {
+      background-color: var(--selected-row-background) !important;
+      border-color: #4a4d51!important;
+    }
+  }
+
+}
