@@ -45,5 +45,15 @@
             crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" type="text/javascript"></script>
+
+    <script>
+        window['__appPathBase'] = '@appPathBase';
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>google.charts.load('current', { 'packages': ['corechart'] });</script>
 </body>
 </html>
