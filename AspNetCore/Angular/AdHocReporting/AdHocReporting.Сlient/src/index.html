@@ -6,15 +6,30 @@
     <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="//cdn.metroui.org.ua/dev/metro.css">
-    <link rel="stylesheet" href="//cdn.metroui.org.ua/dev/icons.css">
-    <script>
-        METRO_DISABLE_BANNER = true
-        // METRO_DISABLE_LIB_INFO = true
-    </script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body class="m4-cloak">
+    <header class="navbar border-bottom mb-3 p-0 container-fluid px-5">
+        <div class="header my-2">
+            <a href="~/"><div class="logo-title">EasyQuery Demo</div></a>
+        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a  class="nav-link text-dark" href="#" title="Manage">Hello User!</a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link text-dark" href="#" title="Logout">Logout</a>
+            </li>
+        </ul>
+    </header>
+    <div class="global-message"></div>
+
     <app-main></app-main>
-    <script src="//cdn.metroui.org.ua/dev/metro.js"></script>
 </body>
 </html>

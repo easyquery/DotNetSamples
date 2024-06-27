@@ -1,33 +1,74 @@
-<div class="content-container">
-    <div data-role="splitter" data-split="vertical" data-split-sizes="300px, 100%" class="h-100">
-        <div class="report-list">
-            <div class="p-1 border-bottom bd-default">
-                <button id="NewReportButton" class="button small outline square" title="New report"><span class="mif-libreoffice"></span></button>
-                <button id="SaveReportButton" class="button small  outline square ml-1 mr-1" title="Save report as..."><span class="mif-floppy-disk"></span></button>
-                <button id="RemoveReportButton" class="button small  outline square" title="Delete report"><span class="mif-bin"></span></button>
-            </div>
-            <div id="ReportList"></div>
-            <!-- Report List -->
-        </div>
-        <div class="query-options d-flex flex-column">
-            <div class="columns-panel border-bottom bd-default">
-                <div class="panel-title">Columns:</div>
-                <div id="ColumnsBar"></div>
-            </div>
-            <div class="aggregation-panel border-bottom bd-default">
-                <div class="panel-title">Aggregations:</div>
-                <div id="AggregationBar"></div>
-            </div>
-            <div class="conditions-panel h-100" data-role="splitter" data-split="horizontal" data-split-sizes="25, 75">
-                <div class="conditions-panel">
-                    <div class="panel-title">Conditions:</div>
-                    <div id="QueryPanel"></div>
+<div class="container-fluid px-5">
+    <div class="row" id="ReportsContainer" style="visibility: hidden">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title float-left">Reports</div>
+                    <div class="dropdown float-right card-header-button">
+                        <button id="dropdownMenuButton" class="btn btn-default btn-sm dropdown-toggle"
+                                type="button" data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" data-toggle="tooltip" data-html="true" data-placement="bottom"
+                             title="@tooltipContent">
+                            <a class="dropdown-item disabled" href="javascript:void(0)">New report</a>
+                            <a class="dropdown-item disabled" href="javascript:void(0)">Save as...</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item disabled" href="javascript:void(0)">Remove report</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="result-panel">
-                    <div class="panel-title">Result:</div>
-                    <div id="ResultFacetsPanel"></div>
+                <div class="card-body">
+                    <div id="ReportList" class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div id="ReportPanel" class="card">
+                <div class="card-header">
+                    <div id="ReportTitle" class="card-title float-left">Report title</div>
+                </div>
+                <div class="card-body">
+                    <div class="columns-block mb-3" data-hide-on-max>
+                        <div class="block-caption">Columns:</div>
+                        <div id="ColumnsBar"></div>
+                    </div>
+                    <div class="aggregations-block mb-3" data-hide-on-max>
+                        <div class="block-caption mb-1">Aggregations:</div>
+                        <div id="AggregationBar"></div>
+                    </div>
+                    <div class="conditions-block mb-3" data-hide-on-max>
+                        <div class="block-caption">Conditions:</div>
+                        <div id="QueryPanel" class="query-panel"></div>
+                    </div>
+                    <div class="result-block">
+                        <div class="block-caption">Result:</div>
+                        <!--<div id="ResultPanel" class="eqv-result-panel-content"></div>-->
+                        <div id="ResultFacetsPanel"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row " id="NoReportPanel" style="visibility:hidden;">
+        <div class="col-md-12">
+            <h3 class="text-center">
+                No reports are defined. <a id="FirstReportButton" href="javascript:document['ReportView'].newReport()">Create a first one</a> to start.
+            </h3>
+        </div>
+    </div>
 </div>
+
+<script>
+    window['__appPathBase'] = '@appPathBase';
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>google.charts.load('current', { 'packages': ['corechart'] });</script>
