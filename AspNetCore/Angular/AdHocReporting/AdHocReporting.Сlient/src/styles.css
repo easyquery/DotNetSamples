@@ -40,6 +40,23 @@ body {
   }
 }
 
+.list-group {
+  display: flex;
+  flex-flow: column;
+  margin: 10px 8px;
+  padding: 0;
+  list-style: none;
+  li {
+    padding: 4px 12px;
+    border-radius: 4px;
+
+    &.active {
+      background-color: var(--report-list-background);
+      color: var(--report-list-color);
+    }
+  }
+}
+
 main {
   padding: 20px;
 }
@@ -68,7 +85,15 @@ main {
   background: none!important;
 }
 
+:root {
+  --report-list-background: #e8e8e8;
+  --report-list-color: #191919;
+}
+
 .dark-side {
+  --report-list-background: #4a4d51;
+  --report-list-color: #ffffff;
+
   .gutter,
   .eqjs-addrow,
   .bd-default,
@@ -115,4 +140,10 @@ main {
     }
   }
 
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
