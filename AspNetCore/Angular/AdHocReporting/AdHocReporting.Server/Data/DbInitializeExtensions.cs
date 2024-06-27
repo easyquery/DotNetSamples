@@ -44,15 +44,23 @@ namespace EqDemo.Services
             }
         }
 
-        const string _defaultUserEmail = "demo@korzh.com";
-        const string _defaultUserPassword = "demo";
+        public static string defaultUserEmail {
+            get {
+                return _config.GetValue("defaultUserEmail", "demo@korzh.com").ToString();
+            }
+        }
+        public static string defaultUserPassword {
+            get {
+                return _config.GetValue("defaultUserPassword", "demo").ToString();
+            }
+        }
 
         private static async Task CheckAddDefaultUserAsync(IServiceProvider scopedServices)
         {
             var userManager = scopedServices.GetRequiredService<UserManager<IdentityUser>>();
             try {
                 var dbContext = scopedServices.GetRequiredService<AppDbContext>();
-                var user = await userManager.FindByEmailAsync(_defaultUserEmail);
+                var user = await userManager.FindByEmailAsync(defaultUserEmail);
                 var resetDemoUser = _config.GetValue<bool>("resetDefaultUser");
                 if (resetDemoUser && user != null) {
                     dbContext.Reports.RemoveRange(dbContext.Reports.Where(r => r.OwnerId == user.Id));
@@ -64,11 +72,11 @@ namespace EqDemo.Services
 
                 if (user == null) {
                     user = new IdentityUser() {
-                        UserName = _defaultUserEmail,
-                        Email = _defaultUserEmail,
+                        UserName = defaultUserEmail,
+                        Email = defaultUserEmail,
                         EmailConfirmed = true
                     };
-                    var result = await userManager.CreateAsync(user, _defaultUserPassword);
+                    var result = await userManager.CreateAsync(user, defaultUserPassword);
                     if (result.Succeeded) {
                         await userManager.AddToRoleAsync(user, DefaultEqAuthProvider.EqManagerRole);
                         var defaultReportsGenerator = new DefaultReportGenerator(_env, dbContext);

@@ -118,16 +118,16 @@ app.MapEasyQuery(options => {
     });
 
     // here we add our custom query store
-    options.UseQueryStore((manager) => new ReportStore(manager.Services));
+    options.UseQueryStore((manager) => new ReportStore(manager.Services, builder.Configuration));
 
-//    options.UseDefaultAuthProvider((provider) => {
-        //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
-        //here you can remove that requirement and make those actions available for all authorized users
-        //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+    //    options.UseDefaultAuthProvider((provider) => {
+    //by default NewQuery, SaveQuery and RemoveQuery actions are accessible by the users with 'eq-manager' role 
+    //here you can remove that requirement and make those actions available for all authorized users
+    //provider.RequireAuthorization(EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
 
-        //here is an example how you can make some actions accessible only by users with a particular role.
-        //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
-//    });
+    //here is an example how you can make some actions accessible only by users with a particular role.
+    //provider.RequireRole(DefaultEqAuthProvider.EqManagerRole, EqAction.NewQuery, EqAction.SaveQuery, EqAction.RemoveQuery);
+    //    });
 
     options.AddPreFetchTunerWithHttpContext((manager, context) => {
         //the next two lines demonstrate how to add to each generated query a condition that filters data by the current user
