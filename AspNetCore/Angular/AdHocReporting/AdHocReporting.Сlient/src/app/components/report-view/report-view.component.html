@@ -1,6 +1,12 @@
 <div class="content-container">
     <div data-role="splitter" data-split="vertical" data-split-sizes="300px, 100%" class="h-100">
-        <div class="report-list" id="ReportList">
+        <div class="report-list">
+            <div class="p-1 border-bottom bd-default">
+                <button id="NewReportButton" class="button small outline square" title="New report"><span class="mif-libreoffice"></span></button>
+                <button id="SaveReportButton" class="button small  outline square ml-1 mr-1" title="Save report as..."><span class="mif-floppy-disk"></span></button>
+                <button id="RemoveReportButton" class="button small  outline square" title="Delete report"><span class="mif-bin"></span></button>
+            </div>
+            <div id="ReportList"></div>
             <!-- Report List -->
         </div>
         <div class="query-options d-flex flex-column">

@@ -7,6 +7,7 @@
 body {
   padding-top: 50px;
   height: 100vh;
+  min-width: 640px;
 }
 
 .appbar {
@@ -54,23 +55,54 @@ main {
   margin-right: 10px;
 }
 
+.eqjs-qp-row.eqjs-mobile {
+  border-style: solid!important;
+  margin: 0 4px;
+}
+
+.eqjs-qp-condition-buttonsBlock.eqjs-mobile {
+  top: 0!important;
+}
+
+.eqjs-cb-addrow.eqjs-mobile a, .eqjs-sb-addrow.eqjs-mobile a {
+  background: none!important;
+}
+
 .dark-side {
-  .gutter, .eqjs-addrow, .bd-default, footer, .keg-root, .keg-row {
+  .gutter,
+  .eqjs-addrow,
+  .bd-default,
+  footer,
+  .keg-root,
+  .keg-row,
+  .eqjs-qp-row.eqjs-mobile{
     border-color: #4a4d51!important;
   }
-  .eqjs-cb-row, .eqjs-qp-row:hover, .eqjs-qp-row.active, .keg-header, .keg-header-row, .keg-row {
+  .eqjs-cb-row,
+  .eqjs-qp-row:hover,
+  .eqjs-qp-row.active,
+  .keg-header,
+  .keg-header-row,
+  .keg-row, .eqjs-qp-row.eqjs-mobile {
     background-color: var(--selected-row-background)!important;
     color: #ffffff!important;
   }
   .eqjs-aggrb-panel {
     background-color: var(--default-background)!important;
   }
-  a {
+  .query-options a {
     color: #0099CC!important;
     &:hover {
       color: #04ace4 !important;
     }
   }
+
+  .eqjs-button-placeholder:hover,
+  .eqjs-qp-button-placeholder:hover {
+    background-color: #04ace4;
+    color: #ffffff;
+  }
+
   .eqjs-qp-condition-button-active {
     background-color: #04ace4 !important;
     color: #ffffff!important;
