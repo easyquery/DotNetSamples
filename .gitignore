@@ -33,3 +33,5 @@ App_Data/dm-*__default/
 
 *.lck
 .idea
+/AspNetCore/Angular/AdHocReporting/AdHocReporting.Сlient/.angular/
+
