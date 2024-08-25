@@ -14,20 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set the folders list
-        id: folder_list
+      - name: Archive folders
         run: |
           # Define folders to archive
           folder_list=(
             "AspNet4/Mvc/AdhocReporting"
             "AspNetCore/Razor-Mvc/Razor.AdHocReporting"
           )
-          echo "folder_list=$folder_list" >> "$GITHUB_ENV"
-
-      - name: Archive folders
-        run: |
-          echo "$folder_list"
           
+          # Export folders array so it's accessible in the next step
+          echo "folder_list=${folder_list[*]}" >> $GITHUB_ENV
+
           # Archive each folder
           for folder in "${folder_list[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
@@ -41,7 +38,8 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
-          echo "$folder_list"
+          # Convert the folders string back to an array
+          IFS=' ' read -r -a folder_list <<< "$folder_list"
           
           for folder in "${folder_list[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
@@ -49,5 +47,3 @@ jobs:
             curl -T "$zip_file_name" --ftp-create-dirs -u "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_HOST/cdn.korzh.com/dot-net-samples/$zip_file_name"
             echo "ftp://$FTP_HOST/cdn.korzh.com/dot-net-samples/$zip_file_name"
           done
-
-          echo "Zip files uploaded"
