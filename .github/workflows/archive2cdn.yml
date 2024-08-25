@@ -34,6 +34,7 @@ jobs:
           for folder in "${folders[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
             zip -r "$zip_file_name" "$folder"
+            echo $zip_file_name
           done
 
           echo "Folders compressed"
@@ -42,7 +43,9 @@ jobs:
         run: |
           for folder in "${folders[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
+            echo $zip_file_name
             curl -T "$zip_file_name" --ftp-create-dirs -u "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_HOST/cdn.korzh.com/dot-net-samples/$zip_file_name"
+            echo "ftp://$FTP_HOST/cdn.korzh.com/dot-net-samples/$zip_file_name"
           done
 
           echo "Zip files uploaded"
