@@ -3,7 +3,7 @@ name: Archive and Upload to FTP
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   archive_and_upload:
