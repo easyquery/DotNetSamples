@@ -18,8 +18,17 @@ jobs:
         run: |
           # Define folders to archive
           folder_list=(
-            "AspNet4/Mvc/AdhocReporting"
-            "AspNetCore/Razor-Mvc/Razor.AdHocReporting"
+            "AspNet4/Mvc"
+            "AspNet4/WebForms"
+            "AspNetCore/Angular"
+            "AspNetCore/Blazor"
+            "AspNetCore/Razor-Mvc"
+            "AspNetCore/React"
+            "AspNetCore/Stencil"
+            "AspNetCore/Vue2"
+            "AspNetCore/Vue3"
+            "WinForms"
+            "Wpf"
           )
           
           # Export folders array so it's accessible in the next step
