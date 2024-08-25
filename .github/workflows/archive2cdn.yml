@@ -1,9 +1,10 @@
 name: Archive and Upload to FTP
 
-on:
-  push:
-    branches:
-      - master
+on: workflow_dispatch
+
+#  push:
+#    branches:
+#      - master
 
 jobs:
   archive_and_upload:
