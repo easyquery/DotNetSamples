@@ -25,11 +25,12 @@ jobs:
       - name: Archive folders
         run: |
           # Define folders to archive
-          echo $folders
           folders=(
             "AspNet4/Mvc/AdhocReporting"
             "AspNetCore/Razor-Mvc/Razor.AdHocReporting"
           )
+
+          echo "$folders"
           
           # Archive each folder
           for folder in "${folders[@]}"; do
@@ -42,7 +43,8 @@ jobs:
           
       - name: Upload to FTP
         run: |
-          echo $folders
+          echo "$folders"
+          
           for folder in "${folders[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
             echo $zip_file_name
