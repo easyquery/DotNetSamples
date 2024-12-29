@@ -20,7 +20,7 @@
     <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.3" />
-    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.3.3" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.5-rc03" />
+    <PackageReference Include="Korzh.EasyQuery.Linq" Version="7.3.5-rc03" />
   </ItemGroup>
 </Project>

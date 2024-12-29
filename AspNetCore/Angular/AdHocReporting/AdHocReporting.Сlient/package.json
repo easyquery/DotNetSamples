@@ -14,11 +14,11 @@
   },
   "private": true,
   "dependencies": {
-    "@easydata/core": "1.5.5",
-    "@easydata/ui": "1.5.5",
-    "@easyquery/core": "7.3.3",
-    "@easyquery/enterprise": "7.3.3",
-    "@easyquery/ui": "7.3.3"
+    "@easydata/core": "1.5.7",
+    "@easydata/ui": "1.5.7",
+    "@easyquery/core": "7.3.5-rc03",
+    "@easyquery/enterprise": "7.3.5-rc03",
+    "@easyquery/ui": "7.3.5-rc03"
   },
   "devDependencies": {
     "run-script-os": "^1.1.6",
