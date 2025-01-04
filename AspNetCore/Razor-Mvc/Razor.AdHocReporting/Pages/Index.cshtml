@@ -146,6 +146,7 @@
             alert.classList.add(isError ? 'alert-danger' : 'alert-success');
             alert.childNodes[0].textContent = text;
             alert.style.removeProperty('display');
+            alert.classList.add('show');
 
             const container = document.getElementById('ReportsContainer');
             container.parentElement.insertBefore(alert, container);
@@ -168,8 +169,8 @@
 
                 handlers: {
                     onError: function (_, error) {
-                        console.error(error.sourceError);
-                        showAlert(error.sourceError.message, true);
+                        console.error(error.text);
+                        showAlert(error.text, true);
                     }
                 },
 
