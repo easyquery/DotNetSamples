@@ -26,13 +26,13 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.7" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.5-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.3.5-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.3.5-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.3.5-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="7.3.5-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.3.5-rc03" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.3.5-rc03" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.5-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.3.5-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.3.5-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.3.5-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUi" Version="7.3.5-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.3.5-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.3.5-rc04" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Areas\Identity\Pages\_ViewStart.cshtml">
