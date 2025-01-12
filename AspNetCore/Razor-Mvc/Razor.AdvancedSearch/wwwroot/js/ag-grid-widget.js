@@ -41,7 +41,7 @@ class EqAgGrid extends easyquery.ui.Grid {
             };
         }
 
-        this.agGrid = new agGrid.Grid(this.slot, this.agGridOptions);
+        this.agGrid = agGrid.createGrid(this.slot, this.agGridOptions);
     }
 
     clear() {
@@ -123,7 +123,7 @@ EqAgGrid.prototype.render = function () {
         };
     }
 
-    this.agGrid = new agGrid.Grid(this.slot, this.agGridOptions);
+    this.agGrid = agGrid.createGrid(this.slot, this.agGridOptions);
 }
 
 EqAgGrid.prototype.clear = function () {
