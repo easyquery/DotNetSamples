@@ -1,6 +1,7 @@
 ﻿Imports System
 Imports System.Configuration
 Imports System.Data.Entity.Migrations
+Imports System.Reflection
 Imports System.Web
 Imports System.Web.Http
 Imports System.Web.Optimization

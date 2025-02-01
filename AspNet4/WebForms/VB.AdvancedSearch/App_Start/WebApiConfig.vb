@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Generic
+Imports System.Collections.ObjectModel
 Imports System.Web.Http
 Imports System.Web.Http.Controllers
 Imports System.Web.Http.Routing
@@ -12,8 +13,9 @@ Public Module WebApiConfig
 
         ' Web API configuration and services
         ' Web API routes
-        Dim customRouteProvider As New WebApiCustomDirectRouteProvider
-        config.MapHttpAttributeRoutes(customRouteProvider)
+        ' Dim customRouteProvider As New WebApiCustomDirectRouteProvider
+        ' config.MapHttpAttributeRoutes(customRouteProvider)
+        config.MapHttpAttributeRoutes()
 
         config.Routes.MapHttpRoute(
             name:="DefaultApi",
@@ -33,13 +35,30 @@ Public Module WebApiConfig
     End Sub
 End Module
 
-Public Class WebApiCustomDirectRouteProvider
-    Inherits DefaultDirectRouteProvider
-    Protected Overrides Function GetActionRouteFactories(actionDescriptor As HttpActionDescriptor) As IReadOnlyList(Of IDirectRouteFactory)
+'Public Class WebApiCustomDirectRouteProvider
+'    Inherits DefaultDirectRouteProvider
+'    Protected Overrides Function GetActionRouteFactories(actionDescriptor As HttpActionDescriptor) As IReadOnlyList(Of IDirectRouteFactory)
+'        If TypeOf actionDescriptor Is ReflectedHttpActionDescriptor Then
+'            Dim reflectedHttpActionDescriptor = DirectCast(actionDescriptor, ReflectedHttpActionDescriptor)
+'            If reflectedHttpActionDescriptor.MethodInfo IsNot Nothing AndAlso reflectedHttpActionDescriptor.MethodInfo.DeclaringType IsNot actionDescriptor.ControllerDescriptor.ControllerType Then
+'                Return Nothing
+'            End If
+'        End If
 
-        '    '// inherit route attributes decorated on base class controller's actions
-        Return actionDescriptor.GetCustomAttributes(Of IDirectRouteFactory)(True)
+'        Dim customAttributes As Collection(Of IDirectRouteFactory) = actionDescriptor.GetCustomAttributes(Of IDirectRouteFactory)(inherit:=True)
+'        Dim customAttributes2 As Collection(Of IHttpRouteInfoProvider) = actionDescriptor.GetCustomAttributes(Of IHttpRouteInfoProvider)(inherit:=True)
+'        Dim list As New List(Of IDirectRouteFactory)()
 
-    End Function
+'        list.AddRange(customAttributes)
 
-End Class
+'        For Each item As IHttpRouteInfoProvider In customAttributes2
+'            If Not TypeOf item Is IDirectRouteFactory Then
+'                list.Add(New RouteInfoDirectRouteFactory(item))
+'            End If
+'        Next
+
+'        Return list
+
+'    End Function
+
+'End Class
