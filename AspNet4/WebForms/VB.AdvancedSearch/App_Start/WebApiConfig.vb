@@ -7,6 +7,7 @@ Imports System.Web.Http.Routing
 Imports EasyData.Export
 
 Imports Korzh.EasyQuery.Services
+Imports Korzh.EasyQuery.AspNet
 
 Public Module WebApiConfig
     Public Sub Register(ByVal config As HttpConfiguration)
@@ -15,7 +16,7 @@ Public Module WebApiConfig
         ' Web API routes
         ' Dim customRouteProvider As New WebApiCustomDirectRouteProvider
         ' config.MapHttpAttributeRoutes(customRouteProvider)
-        config.MapHttpAttributeRoutes()
+        config.MapHttpAttributeRoutesWithEasyQuery()
 
         config.Routes.MapHttpRoute(
             name:="DefaultApi",
@@ -35,30 +36,4 @@ Public Module WebApiConfig
     End Sub
 End Module
 
-'Public Class WebApiCustomDirectRouteProvider
-'    Inherits DefaultDirectRouteProvider
-'    Protected Overrides Function GetActionRouteFactories(actionDescriptor As HttpActionDescriptor) As IReadOnlyList(Of IDirectRouteFactory)
-'        If TypeOf actionDescriptor Is ReflectedHttpActionDescriptor Then
-'            Dim reflectedHttpActionDescriptor = DirectCast(actionDescriptor, ReflectedHttpActionDescriptor)
-'            If reflectedHttpActionDescriptor.MethodInfo IsNot Nothing AndAlso reflectedHttpActionDescriptor.MethodInfo.DeclaringType IsNot actionDescriptor.ControllerDescriptor.ControllerType Then
-'                Return Nothing
-'            End If
-'        End If
 
-'        Dim customAttributes As Collection(Of IDirectRouteFactory) = actionDescriptor.GetCustomAttributes(Of IDirectRouteFactory)(inherit:=True)
-'        Dim customAttributes2 As Collection(Of IHttpRouteInfoProvider) = actionDescriptor.GetCustomAttributes(Of IHttpRouteInfoProvider)(inherit:=True)
-'        Dim list As New List(Of IDirectRouteFactory)()
-
-'        list.AddRange(customAttributes)
-
-'        For Each item As IHttpRouteInfoProvider In customAttributes2
-'            If Not TypeOf item Is IDirectRouteFactory Then
-'                list.Add(New RouteInfoDirectRouteFactory(item))
-'            End If
-'        Next
-
-'        Return list
-
-'    End Function
-
-'End Class

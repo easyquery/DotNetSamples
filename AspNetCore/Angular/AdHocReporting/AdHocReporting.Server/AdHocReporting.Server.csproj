@@ -15,13 +15,13 @@
     <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
     <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.5-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.3.5-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.3.5-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.3.5-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.3.5-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.3.5-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.3.5-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.5-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.3.5-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.3.5-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.3.5-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.3.5-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.3.5-rc05" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.3.5-rc05" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.5" />
