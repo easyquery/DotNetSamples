@@ -41,15 +41,9 @@ window.addEventListener('load', function () {
             },
 
             simpleColToAggr: {
-                name: 'Currency columns to aggregates',
+                name: 'Aggregate currency columns',
                 handler: convertColumnsToAggr
-            },
-
-            manageTotals: {
-                name: 'Manage sub and grand totals',
-                handler: manageSubtotals
             }
-
         }
 
         var container = document.createElement('div');
