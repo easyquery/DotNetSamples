@@ -23,16 +23,10 @@ App_Data/dm-*__default/
 /EqAspNetCoreDemo/Properties/serviceDependencies.eqdemo-net5 - Web Deploy.json
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js.map
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js
-/AspNet4/Mvc/AdvancedSearch/App_Data/dm-nwind/queries
 /Samples.AspNetCore.Mvc.sln
 **/eqdemo-sqlite.*
-/AspNet4/Mvc/AdhocReporting/EasyQuery.lck
-/AspNetCore/Razor-Mvc/Razor.AdvancedSearch/EasyQuery.lck
-/AspNet4/Mvc/AdvancedSearch/EasyQuery.lck
-/AspNet4/Mvc/AdhocReporting/EasyQuery.lck
-/AspNetCore/Razor-Mvc/Razor.AdHocReporting/EasyQuery.lck
+
 
 *.lck
 .idea
 /AspNetCore/Angular/AdHocReporting/AdHocReporting.Сlient/.angular/
-
