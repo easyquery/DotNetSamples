@@ -9,6 +9,7 @@ using Korzh.EasyQuery.AspNet;
 
 using EqDemo.Models;
 using EqDemo.Services;
+using System.Linq;
 
 namespace EqDemo.Controllers
 {
@@ -17,7 +18,6 @@ namespace EqDemo.Controllers
     [Authorize]
     public class EasyReportController : EasyQueryApiController
     {
-
         protected override void ConfigureEasyQueryOptions(EasyQueryOptions options)
         {
             //use EasyQuery manager that generates SQL queries

@@ -6,6 +6,7 @@ using System.Web.Http.Routing;
 using Korzh.EasyQuery.Services;
 
 using EasyData.Export;
+using Korzh.EasyQuery.AspNet;
 
 namespace EqDemo
 {
@@ -16,7 +17,7 @@ namespace EqDemo
             // Web API configuration and services
 
             // Web API routes
-            config.MapHttpAttributeRoutes(new WebApiCustomDirectRouteProvider());
+            config.MapHttpAttributeRoutesWithEasyQuery();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -33,17 +34,6 @@ namespace EqDemo
 
             // Uncomment this line to enable model loading from DbConnection
             EasyQueryManagerSql.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlClientGate>();
-        }
-    }
-
-
-    public class WebApiCustomDirectRouteProvider : DefaultDirectRouteProvider
-    {
-        protected override IReadOnlyList<IDirectRouteFactory>
-            GetActionRouteFactories(HttpActionDescriptor actionDescriptor)
-        {
-            // inherit route attributes decorated on base class controller's actions
-            return actionDescriptor.GetCustomAttributes<IDirectRouteFactory>(inherit: true);
         }
     }
 }
