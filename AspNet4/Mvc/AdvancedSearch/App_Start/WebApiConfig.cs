@@ -34,6 +34,7 @@ namespace EqDemo
             EasyQueryManager.RegisterExporter("excel", new ExcelDataExporter());
             EasyQueryManager.RegisterExporter("pdf", new PdfDataExporter());
 
+            //Register your DB gates here (to use DB model loaders)
             EasyQueryManagerSql.RegisterDbGate<Korzh.EasyQuery.DbGates.SqlClientGate>();
         }
     }
