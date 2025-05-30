@@ -61,6 +61,7 @@ header {
     color: var(--header-color);
     border-bottom: 1px solid var(--app-border-color);
     gap: 1rem;
+    position: relative;
     
     .app-title {
         font-size: 24px;
@@ -254,6 +255,10 @@ main {
     padding: 0.5rem 1rem;
     background-color: var(--widget-background);
     gap: 2rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     
     .toolbar-button {
         padding: 0.5rem 1rem;
