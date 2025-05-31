@@ -52,6 +52,7 @@
 @section Scripts {
     <!-- EasyQuery scripts -->
     <script src="https://cdn.korzh.com/eq/7.3.3/eq.enterprise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
         window.addEventListener('DOMContentLoaded', function () {
@@ -76,28 +77,16 @@
                     afterFetchData: function(context) {
                         console.log("After Fetch");
                     },
-                    //Error handler
                     onError: function (_, error) {
                         console.error(error.sourceError);
                     },
                     onListRequest: function (params, onResult) {
                         console.log('Inside list request handler');
-                        var processed = true;
-                        const listName = params.listName;
-                        if (listName.startsWith("Lookup")) {
-                            console.log('Looking for list: ', listName);
-                            const type = listName.split(' ')[1];
-                            const list = [];
-                            getLookupList(type, onResult);
-                        } else {
-                            processed = false;
-                        }
-                        return processed;
                     },
                 },
                 result: {
                     //Show EasyChart
-                    showChart: true,
+                    showChart: false,
                     paging: {
                         pageSize: 30
                     }
@@ -111,6 +100,11 @@
             });
 
             document['AdvancedSearchView'] = view;
+            
+            const execButton = document.getElementById('ExecQueryButton');
+            execButton.addEventListener('click', function () {
+                view.fetchData();
+            });
         });
     </script>
 }

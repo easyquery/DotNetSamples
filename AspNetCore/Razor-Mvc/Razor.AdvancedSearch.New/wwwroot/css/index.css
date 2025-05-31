@@ -186,6 +186,8 @@ main {
     background-color: #fff;
     container-name: content;
     container-type: inline-size;
+    overflow-y: auto;
+    height: 100%;
 }
 
 .easyquery-container {
@@ -228,6 +230,7 @@ main {
 
 .result-panel {
     grid-area: result;
+    
 }
 
 .widget {
@@ -244,6 +247,7 @@ main {
     
     .widget-content {
         height: 100%;
+        overflow-y: auto;
     }
 }
 
