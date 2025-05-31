@@ -268,6 +268,10 @@ body.expand-result {
         display: flex;
         align-items: center;
         gap: 10px;
+        
+        .widget-toolbar {
+            margin-left: auto;
+        }
     }
     
     .widget-content {
@@ -362,5 +366,27 @@ body.expand-result {
         flex-direction: row;
         align-items: center;
         gap: 4px;
+    }
+}
+
+.widget-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.eqjs-export {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        inset: 4px;
     }
 }

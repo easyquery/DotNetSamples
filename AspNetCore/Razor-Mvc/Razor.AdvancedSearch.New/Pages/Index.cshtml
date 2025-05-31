@@ -19,7 +19,7 @@
         <div class="widget">
             <div class="widget-title">Entities</div>
             <div class="widget-content">
-                <div id="EntitiesPanel"></div>        
+                <div id="EntitiesPanel"></div>
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="widget">
             <div class="widget-title">Columns</div>
             <div class="widget-content">
-                <div id="ColumnsPanel"></div>        
+                <div id="ColumnsPanel"></div>
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="widget">
             <div class="widget-title">Conditions</div>
             <div class="widget-content">
-                <div id="QueryPanel"></div>        
+                <div id="QueryPanel"></div>
             </div>
         </div>
     </div>
@@ -47,9 +47,21 @@
                     <img class="icon expand-vertical-icon" src="~/images/expand-vertical.svg" alt=""/>
                 </span>
                 Result
+                <div class="widget-toolbar eqv-export-buttons">
+                    Export:
+                    <a class="eqjs-export" href="javascript:void(0)" data-format="pdf">
+                        <img src="~/images/pdf.svg" alt=""/>
+                    </a>
+                    <a class="eqjs-export" href="javascript:void(0)" data-format="excel">
+                        <img src="~/images/excel.svg" alt=""/>
+                    </a>
+                    <a class="eqjs-export" href="javascript:void(0)" data-format="csv">
+                        <img src="~/images/csv.svg" alt=""/>
+                    </a>
+                </div>
             </div>
             <div class="widget-content">
-                <div id="ResultPanel"></div>        
+                <div id="ResultPanel"></div>
             </div>
         </div>
     </div>
@@ -59,7 +71,7 @@
     <!-- EasyQuery scripts -->
     <script src="https://cdn.korzh.com/eq/7.3.3/eq.enterprise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <script>
         window.addEventListener('DOMContentLoaded', function () {
             // Initialize the EasyQuery application
@@ -80,14 +92,14 @@
 
                 //Handlers
                 handlers: {
-                    afterFetchData: function(context) {
-                        console.log("After Fetch");
+                    afterFetchData: function (context) {
+                        console.log('After Fetch')
                     },
                     onError: function (_, error) {
-                        console.error(error.sourceError);
+                        console.error(error.sourceError)
                     },
                     onListRequest: function (params, onResult) {
-                        console.log('Inside list request handler');
+                        console.log('Inside list request handler')
                     },
                 },
                 result: {
@@ -99,18 +111,18 @@
                 }
             }
 
-            const view = new easyquery.ui.AdvancedSearchView();
-            const context = view.getContext();
+            const view = new easyquery.ui.AdvancedSearchView()
+            const context = view.getContext()
             context.useEnterprise(function () {
-                view.init(viewOptions);
-            });
+                view.init(viewOptions)
+            })
 
-            document['AdvancedSearchView'] = view;
-            
-            const execButton = document.getElementById('ExecQueryButton');
+            document['AdvancedSearchView'] = view
+
+            const execButton = document.getElementById('ExecQueryButton')
             execButton.addEventListener('click', function () {
-                view.fetchData();
-            });
-        });
+                view.fetchData()
+            })
+        })
     </script>
 }
