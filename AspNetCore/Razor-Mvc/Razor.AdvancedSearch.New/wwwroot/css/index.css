@@ -187,7 +187,7 @@ main {
     container-name: content;
     container-type: inline-size;
     overflow-y: auto;
-    height: 100%;
+    height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
 .easyquery-container {
@@ -202,10 +202,13 @@ main {
         "result result";
     
     & > div {
-        padding: 1rem;
+        padding: 10px;
         border: 1px solid var(--app-border-color);
         border-radius: 8px;
     }
+    
+    .expand-vertical-icon { display: flex; }
+    .expand-horizontal-icon { display: none; }
     
     @container (min-width: 1300px) {
         grid-template-columns: 300px auto 50%;
@@ -214,6 +217,13 @@ main {
             "entities columns result"
             "entities conditions result"
     } 
+}
+
+.easyquery-container {
+    @container (min-width: 1300px) {
+        .expand-vertical-icon { display: none; }
+        .expand-horizontal-icon { display: flex; }
+    }
 }
 
 .entities-panel {
@@ -230,7 +240,19 @@ main {
 
 .result-panel {
     grid-area: result;
-    
+}
+
+body.expand-result {
+    .easyquery-container {
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "result";
+        
+        .entities-panel, .columns-panel, .conditions-panel {
+            display: none;
+        }
+    }
 }
 
 .widget {
@@ -241,13 +263,40 @@ main {
     .widget-title {
         font-size: 1.25rem;
         font-weight: 600;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 0;
         border-bottom: 1px solid var(--app-border-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
     
     .widget-content {
         height: 100%;
         overflow-y: auto;
+    }
+    
+    .widget-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        height: 36px;
+        padding: 0 .5rem;
+        cursor: pointer;
+        
+        .icon {
+            width: auto;
+            height: 24px;
+            
+            * {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        .expand-horizontal-icon, .expand-vertical-icon {
+            padding: 0!important;
+        }
     }
 }
 

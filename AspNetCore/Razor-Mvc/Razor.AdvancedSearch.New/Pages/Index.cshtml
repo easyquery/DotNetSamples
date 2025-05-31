@@ -41,7 +41,13 @@
     </div>
     <div class="result-panel">
         <div class="widget">
-            <div class="widget-title">Result</div>
+            <div class="widget-title">
+                <span class="widget-button" onclick="document.body.classList.toggle('expand-result');">
+                    <img class="icon expand-horizontal-icon" src="~/images/expand-horizontal.svg" alt=""/>
+                    <img class="icon expand-vertical-icon" src="~/images/expand-vertical.svg" alt=""/>
+                </span>
+                Result
+            </div>
             <div class="widget-content">
                 <div id="ResultPanel"></div>        
             </div>
@@ -86,7 +92,7 @@
                 },
                 result: {
                     //Show EasyChart
-                    showChart: false,
+                    showChart: true,
                     paging: {
                         pageSize: 30
                     }
