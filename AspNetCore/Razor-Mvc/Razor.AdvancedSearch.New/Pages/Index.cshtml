@@ -42,21 +42,23 @@
     <div class="result-panel">
         <div class="widget">
             <div class="widget-title">
-                <span class="widget-button" onclick="document.body.classList.toggle('expand-result');">
-                    <img class="icon expand-horizontal-icon" src="~/images/expand-horizontal.svg" alt=""/>
-                    <img class="icon expand-vertical-icon" src="~/images/expand-vertical.svg" alt=""/>
-                </span>
+                <div class="toolbar">
+                    <span class="tool-button thin-button" onclick="document.body.classList.toggle('expand-result');">
+                        <img class="icon expand-horizontal-icon" src="~/images/expand-horizontal.svg" alt=""/>
+                        <img class="icon expand-vertical-icon" src="~/images/expand-vertical.svg" alt=""/>
+                    </span>
+                </div>
                 Result
-                <div class="widget-toolbar eqv-export-buttons">
+                <div class="toolbar eqv-export-buttons">
                     Export:
-                    <a class="eqjs-export" href="javascript:void(0)" data-format="pdf">
-                        <img src="~/images/pdf.svg" alt=""/>
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="pdf">
+                        <img class="icon" src="~/images/pdf.svg" alt=""/>
                     </a>
-                    <a class="eqjs-export" href="javascript:void(0)" data-format="excel">
-                        <img src="~/images/excel.svg" alt=""/>
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="excel">
+                        <img class="icon" src="~/images/excel.svg" alt=""/>
                     </a>
-                    <a class="eqjs-export" href="javascript:void(0)" data-format="csv">
-                        <img src="~/images/csv.svg" alt=""/>
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="csv">
+                        <img class="icon" src="~/images/csv.svg" alt=""/>
                     </a>
                 </div>
             </div>

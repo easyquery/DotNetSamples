@@ -8,6 +8,7 @@
     --sidebar-width: 5rem;
     --sidebar-width-expand: 12.5rem;
     --header-height: 70px;
+    --header-height-long: 130px;
     --footer-height: 50px;
     --sidebar-background: #29201d;
     --sidebar-color: #fff;
@@ -35,7 +36,7 @@ body {
     min-block-size: 100vh;
     
     display: grid;
-    grid-template-rows: var(--header-height) 1fr var(--footer-height);
+    grid-template-rows: var(--header-height-long) 1fr var(--footer-height);
     grid-template-columns: var(--sidebar-width) 1fr;
     grid-template-areas: 
         "sidebar header"
@@ -66,6 +67,7 @@ header {
     .app-title {
         font-size: 24px;
         font-weight: 600;
+        display: inline-flex;
     }
     
     .query-name {
@@ -76,6 +78,45 @@ header {
         font-weight: 500;
         flex-flow: row nowrap;
         margin-left: auto;
+    }
+}
+
+header {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    gap: 4px;
+    .app-title, .query-name {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    .main-toolbar {
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 1120px) {
+    body {
+        grid-template-rows: var(--header-height) 1fr var(--footer-height);
+    }
+    header {
+        flex-flow: row nowrap;
+        .app-title {
+            justify-content: flex-start;
+            margin-left: 1rem;
+        }
+        .query-name {
+            justify-content: flex-end;
+            margin-right: 1rem;
+        }
+        .main-toolbar {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
 
@@ -128,6 +169,11 @@ footer {
         transition: background-color 0.2s ease-in-out;
         @media (hover: hover) {
             &:hover {
+                background-color: #ffffff;
+            }
+        }
+        @media (hover: none) {
+            &:active {
                 background-color: #ffffff;
             }
         }
@@ -279,28 +325,8 @@ body.expand-result {
         overflow-y: auto;
     }
     
-    .widget-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        height: 36px;
-        padding: 0 .5rem;
-        cursor: pointer;
-        
-        .icon {
-            width: auto;
-            height: 24px;
-            
-            * {
-                width: 100%;
-                height: 100%;
-            }
-        }
-        
-        .expand-horizontal-icon, .expand-vertical-icon {
-            padding: 0!important;
-        }
+    .expand-horizontal-icon, .expand-vertical-icon {
+        padding: 0!important;
     }
 }
 
@@ -312,24 +338,8 @@ body.expand-result {
     padding: 0.5rem 1rem;
     background-color: var(--widget-background);
     gap: 2rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     
-    .toolbar-button {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 4px;
-        background-color: #007bff;
-        color: #fff;
-        cursor: pointer;
-        transition: background-color 0.2s ease-in-out;
-        
-        &:hover {
-            background-color: #0056b3;
-        }
-    }
     .tool-button {
         display: inline-flex;
         align-items: center;
@@ -344,20 +354,32 @@ body.expand-result {
         gap: 6px;
         height: 36px;
         
-        &:hover {
-            background-color: #e0e0e0;
+        @media (hover: hover) {
+            &:hover {
+                background-color: #f0f0f0;
+            }
         }
         
-        &.active {
-            background-color: #d6f0ff;
-            color: #000;
-            border-color: #25afff;
+        @media (hover: none) {
+            &:active {
+                background-color: #f0f0f0;
+            }
         }
-        
+
         .icon {
             width: 1.2rem;
             height: 1.2rem;
             font-size: 1.2rem;
+            
+            * {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        &.thin-button {
+            padding: 6px;
+            border: none
         }
     }
     
@@ -369,6 +391,10 @@ body.expand-result {
     }
 }
 
+.main-toolbar {
+    position: absolute;
+}
+
 .widget-toolbar {
     display: flex;
     align-items: center;
@@ -377,6 +403,11 @@ body.expand-result {
     font-weight: 400;
 }
 
+
+.eqv-export-buttons {
+    margin-left: auto;
+    gap: 4px;
+}
 .eqjs-export {
     width: 24px;
     height: 24px;
