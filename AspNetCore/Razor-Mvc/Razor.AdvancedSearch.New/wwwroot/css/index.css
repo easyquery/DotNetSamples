@@ -233,7 +233,10 @@ main {
     container-name: content;
     container-type: inline-size;
     overflow-y: auto;
-    height: calc(100vh - var(--header-height) - var(--footer-height));
+    height: calc(100vh - var(--header-height-long) - var(--footer-height));
+    @media (min-width: 1120px) {
+        height: calc(100vh - var(--header-height) - var(--footer-height));
+    }
 }
 
 .easyquery-container {
@@ -309,7 +312,7 @@ body.expand-result {
     .widget-title {
         font-size: 1.25rem;
         font-weight: 600;
-        padding: 0.5rem 0;
+        height: 48px;
         border-bottom: 1px solid var(--app-border-color);
         display: flex;
         align-items: center;
@@ -335,7 +338,7 @@ body.expand-result {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
     background-color: var(--widget-background);
     gap: 2rem;
     position: relative;
