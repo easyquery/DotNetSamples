@@ -1,0 +1,130 @@
+@page
+@using MigraDoc.DocumentObjectModel
+@model EqDemo.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Advanced Search demo";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.3.3/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.3.3/eq.view.min.css">
+    <link rel="stylesheet" href="~/css/easyquery.css"/>
+}
+
+<div class="easyquery-container">
+    <div class="entities-panel">
+        <div class="widget">
+            <div class="widget-title">Entities</div>
+            <div class="widget-content">
+                <div id="EntitiesPanel"></div>
+            </div>
+        </div>
+    </div>
+    <div class="columns-panel">
+        <div class="widget">
+            <div class="widget-title">Columns</div>
+            <div class="widget-content">
+                <div id="ColumnsPanel"></div>
+            </div>
+        </div>
+    </div>
+    <div class="conditions-panel">
+        <div class="widget">
+            <div class="widget-title">Conditions</div>
+            <div class="widget-content">
+                <div id="QueryPanel"></div>
+            </div>
+        </div>
+    </div>
+    <div class="result-panel">
+        <div class="widget">
+            <div class="widget-title">
+                <div class="toolbar">
+                    <span class="tool-button thin-button" onclick="document.body.classList.toggle('expand-result');">
+                        <img class="icon expand-horizontal-icon" src="~/images/expand-horizontal.svg" alt=""/>
+                        <img class="icon expand-vertical-icon" src="~/images/expand-vertical.svg" alt=""/>
+                    </span>
+                </div>
+                Result
+                <div class="toolbar eqv-export-buttons">
+                    Export:
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="pdf">
+                        <img class="icon" src="~/images/pdf.svg" alt=""/>
+                    </a>
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="excel">
+                        <img class="icon" src="~/images/excel.svg" alt=""/>
+                    </a>
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="csv">
+                        <img class="icon" src="~/images/csv.svg" alt=""/>
+                    </a>
+                </div>
+            </div>
+            <div class="widget-content">
+                <div id="ResultPanel"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- EasyQuery scripts -->
+    <script src="https://cdn.korzh.com/eq/7.3.3/eq.enterprise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            // Initialize the EasyQuery application
+            const viewOptions = {
+                //Load model on start
+                loadModelOnStart: true,
+
+                //Load query on start
+                loadQueryOnStart: false,
+
+                enableExport: true,
+                serverExporters: ['pdf', 'excel', 'csv'],
+
+                //locale: 'en-US',
+                localeSettings: {
+                    shortDateFormat: 'yyyy-MM-dd',
+                },
+
+                //Handlers
+                handlers: {
+                    afterFetchData: function (context) {
+                        console.log('After Fetch')
+                    },
+                    onError: function (_, error) {
+                        console.error(error.sourceError)
+                    },
+                    onListRequest: function (params, onResult) {
+                        console.log('Inside list request handler')
+                    },
+                },
+                result: {
+                    //Show EasyChart
+                    showChart: true,
+                    paging: {
+                        pageSize: 30
+                    }
+                }
+            }
+
+            const view = new easyquery.ui.AdvancedSearchView()
+            const context = view.getContext()
+            context.useEnterprise(function () {
+                view.init(viewOptions)
+            })
+
+            document['AdvancedSearchView'] = view
+
+            const execButton = document.getElementById('ExecQueryButton')
+            execButton.addEventListener('click', function () {
+                view.fetchData()
+            })
+        })
+    </script>
+}

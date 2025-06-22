@@ -1,0 +1,17 @@
+@page
+@model PrivacyModel
+@{
+ViewData["Title"] = "About Project";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detailed your site's about.</p>
+
+@section Scripts {
+    <script>
+        const toolbar = document.querySelector('.main-toolbar');
+        if (toolbar) {
+            toolbar.classList.add("disabled");
+        }
+    </script>
+}
