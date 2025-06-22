@@ -94,9 +94,7 @@ namespace EqDemo
                     options.BuildQueryOnSync = true;
                     options.SaveNewQuery = false;
                     options.ConnectionString = DbConnectionString;
-                    options.UseDbContext<AppDbContext>(extractorOptions => {
-                        extractorOptions.HidePrimaryKeys = false;
-                    });
+                    options.UseDbContext<AppDbContext>();
                     options.StoreModelInCache = true;
                     options.StoreQueryInCache = true;
 
