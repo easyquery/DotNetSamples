@@ -10,3 +10,7 @@
 .eqjs-ep-entity-node-label {
     font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif!important;
 }
+
+#EntitiesPanel {
+    user-select: none;
+}
