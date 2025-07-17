@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
 import '@easyquery/ui/dist/assets/css/easyquery.ui.css';
+import './css/index.css'
 
 import React from 'react';
 import ReactDOM from 'react-dom';
