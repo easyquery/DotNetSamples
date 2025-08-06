@@ -14,9 +14,9 @@
   "dependencies": {
     "@easydata/core": "1.5.8",
     "@easydata/ui": "1.5.8",
-    "@easyquery/core": "7.4.0-rc05",
-    "@easyquery/enterprise": "7.4.0-rc05",
-    "@easyquery/ui": "7.4.0-rc05"
+    "@easyquery/core": "7.4.0",
+    "@easyquery/enterprise": "7.4.0",
+    "@easyquery/ui": "7.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
