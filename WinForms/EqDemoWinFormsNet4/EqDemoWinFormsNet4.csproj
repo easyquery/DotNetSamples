@@ -56,8 +56,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\NWind\Category.cs" />
     <Compile Include="Models\NWind\Customer.cs" />
-    <Compile Include="Models\NWind\Employee.cs" />
-    <Compile Include="Models\NWind\Order.cs" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />
+    <PackageReference Include="EasyData.Exporters.Default" Version="1.5.9" />
     <Compile Include="Models\NWind\OrderDetail.cs" />
     <Compile Include="Models\NWind\Product.cs" />
     <Compile Include="Models\NWind\Shipper.cs" />
