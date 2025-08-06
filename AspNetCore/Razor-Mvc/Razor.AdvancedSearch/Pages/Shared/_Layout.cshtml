@@ -1,51 +1,90 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Serhii Pimenov"/>
+    
     <title>@(ViewData["IsIndexPage"] == null ? @ViewData["Title"] + " - " : "")EasyQuery library samples</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-          crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/themes/base/jquery-ui.css">
-
-    <link rel="stylesheet" href="~/css/root.css" />
+    <link rel="stylesheet" href="~/css/index.css"/>
 
     @RenderSection("Styles", required: false)
-
 </head>
 <body>
 
-    <header class="navbar border-bottom mb-3 p-0 container-fluid px-5">
-        <div class="header my-2">
-            <a href="~/"><div class="logo-title">Advanced Search Demo</div></a>
+<header id="app-bar">
+    <div class="app-title">Advanced Search v2.0</div>
+    <div class="toolbar main-toolbar">
+        <div class="toolbar-group">
+            <button class="tool-button" id="NewQueryButton" title="New Query" aria-label="New Query">
+                <img class="icon" src="~/images/new.svg" alt="New Query"/>
+            </button>
+            <button class="tool-button" id="LoadQueryButton" title="Load Query From Storage" aria-label="Load Query From Storage">
+                <img class="icon" src="~/images/load.svg" alt="Load Query"/>
+            </button>
+            <button class="tool-button" id="ClearQueryButton" title="Clear Query" aria-label="Clear Query">
+                <img class="icon" src="~/images/clear.svg" alt="Clear Query"/>
+            </button>
         </div>
-    </header>
-    <div class="global-message"></div>
+        <div class="toolbar-group">
+            <button class="tool-button" id="SaveQueryButton" title="Save Query" aria-label="Save Query">
+                <img class="icon" src="~/images/save.svg" alt="Save Query"/>
+            </button>
+            <button class="tool-button" id="CopyQueryButton" title="Save Query As..." aria-label="Save Query As">
+                <img class="icon" src="~/images/save-as.svg" alt="SaveAs"/>
+            </button>
+            <button class="tool-button" id="RemoveQueryButton" title="Remove Query From Storage" aria-label="Remove Query From Storage">
+                <img class="icon" src="~/images/remove.svg" alt="Remove Query"/>
+            </button>
+        </div>
+        <div class="toolbar-group">
+            <button class="tool-button" id="ExecQueryButton" title="Execute Query" aria-label="Execute Query">
+                <img class="icon" src="~/images/run.svg" alt="Execute Query"/>
+            </button>
+        </div>
+    </div>
+    <div class="query-name">
+        [ <div id="query-name">New Query</div> ]
+    </div>
+</header>
 
+<aside id="sidebar">
+    <div class="logo">
+        <img src="~/images/search-list.svg" alt="logo"/>
+    </div>
+    <button type="button" class="btn-toggle-sidebar" onclick="document.body.classList.toggle('sb-expand');">
+        <span class="icon">&#9776;</span>
+    </button>
+
+    <ul class="sidebar-menu">
+        <li title="Dashboard"><a href="/">
+                <span class="icon"><img src="~/images/dashboard.svg" alt="dashboard"/></span>
+                <span class="caption">Dashboard</span>
+            </a></li>
+        <li title="Privacy"><a href="/privacy">
+                <span class="icon"><img src="~/images/privacy.svg" alt="dashboard"/></span>
+                <span class="caption">Privacy</span>
+            </a></li>
+        <li title="About"><a href="/about">
+                <span class="icon"><img src="~/images/about.svg" alt="dashboard"/></span>
+                <span class="caption">About</span>
+            </a></li>
+    </ul>
+</aside>
+
+<main>
     @RenderBody()
+</main>
 
-    <footer class="footer container-fluid px-5">
-        <div class="float-right">Powered by <a href="https://korzh.com/easyquery">EasyQuery</a></div>
-        <div>Copyright 2019-@DateTime.Now.Year © <a href="https://korzh.com">Korzh.com</a></div>
-    </footer>
+<footer id="app-footer">
+    <div>Powered by <a href="https://korzh.com/easyquery">EasyQuery</a></div>
+    <div>Copyright 2019-@DateTime.Now.Year © <a href="https://korzh.com">Korzh.com</a></div>
+</footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
+<script src="~/js/index.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
+@RenderSection("Scripts", required: false)
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" type="text/javascript"></script>
-
-    @RenderSection("Scripts", required: false)
 </body>
 </html>

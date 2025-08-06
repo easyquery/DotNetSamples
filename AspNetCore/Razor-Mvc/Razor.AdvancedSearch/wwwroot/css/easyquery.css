@@ -1,0 +1,16 @@
+.eqjs-ep-panel, .eqjs-qc-panel, .eqjs-qp-panel {
+    background-color: var(--widget-background);
+    color: var();
+}
+
+.eqjs-qp-grelement {
+    font-weight: 400;
+}
+
+.eqjs-ep-entity-node-label {
+    font-family: Roboto, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif!important;
+}
+
+#EntitiesPanel {
+    user-select: none;
+}

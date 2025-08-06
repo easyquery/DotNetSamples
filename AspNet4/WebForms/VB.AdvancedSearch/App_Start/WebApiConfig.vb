@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Generic
+Imports System.Collections.ObjectModel
 Imports System.Web.Http
 Imports System.Web.Http.Controllers
 Imports System.Web.Http.Routing
@@ -6,14 +7,16 @@ Imports System.Web.Http.Routing
 Imports EasyData.Export
 
 Imports Korzh.EasyQuery.Services
+Imports Korzh.EasyQuery.AspNet
 
 Public Module WebApiConfig
     Public Sub Register(ByVal config As HttpConfiguration)
 
         ' Web API configuration and services
         ' Web API routes
-        Dim customRouteProvider As New WebApiCustomDirectRouteProvider
-        config.MapHttpAttributeRoutes(customRouteProvider)
+        ' Dim customRouteProvider As New WebApiCustomDirectRouteProvider
+        ' config.MapHttpAttributeRoutes(customRouteProvider)
+        config.MapHttpAttributeRoutesWithEasyQuery()
 
         config.Routes.MapHttpRoute(
             name:="DefaultApi",
@@ -33,13 +36,4 @@ Public Module WebApiConfig
     End Sub
 End Module
 
-Public Class WebApiCustomDirectRouteProvider
-    Inherits DefaultDirectRouteProvider
-    Protected Overrides Function GetActionRouteFactories(actionDescriptor As HttpActionDescriptor) As IReadOnlyList(Of IDirectRouteFactory)
 
-        '    '// inherit route attributes decorated on base class controller's actions
-        Return actionDescriptor.GetCustomAttributes(Of IDirectRouteFactory)(True)
-
-    End Function
-
-End Class

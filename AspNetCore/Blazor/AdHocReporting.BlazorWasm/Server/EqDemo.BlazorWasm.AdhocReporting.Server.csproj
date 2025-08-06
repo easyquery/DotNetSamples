@@ -39,13 +39,13 @@
     <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.4.21" />
-    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.4.21" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.3.3" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.3.3" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.3.3" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.3.3" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Identity" Version="7.4.0" />
   </ItemGroup>
 </Project>

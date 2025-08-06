@@ -427,6 +427,7 @@
     justify-content: flex-start;
     padding: 20px;
     position: relative;
+    width: 100%;
 }
 
 .kdlg-footer.align-right {
@@ -531,6 +532,7 @@
     padding: 20px;
     font-size: 1em;
     color: #4a4a4a;
+    width: 100%;
 }
 
 
@@ -4714,10 +4716,10 @@ input.eqjs-invalid {
     font-weight: normal;
     font-variant: normal;
     text-transform: none !important;
-    line-height: 1!important;
+    line-height: 1 !important;
     font-size: var(--icon-size);
     color: var(--button-text-color);
-    text-decoration: none;
+    text-decoration: none !important;
     padding: 0;
     outline: none;
 
@@ -4858,6 +4860,11 @@ input.eqjs-invalid {
     flex-wrap: nowrap;
 }
 
+.eqjs-qp-valueelement {
+    width: auto;
+    flex-grow: 0;
+}
+
 .eqjs-qc-attrelement, .eqjs-qp-attrelement, .eqjs-qp-operelement {
     margin-left: 0;
     flex-shrink: 1;
@@ -4961,7 +4968,7 @@ input.eqjs-invalid {
 }
 
 .eqjs-menu-scrollDiv:not(.eqjs-mobile) {
-    max-height: 500px;
+    /*max-height: 500px;*/
 }
 
 .eqjs-qc-colelement {
@@ -5100,6 +5107,27 @@ input.eqjs-invalid {
     min-width: var(--column-panel-caption-size);
     width: auto;
 }
+
+.eqjs-qp-row {
+    padding: 0 10px!important;
+}
+.eqjs-qp-condition-buttonsBlock, .eqjs-facets-total-buttons {
+    margin-right: 10px;
+}
+
+.eqjs-qp-row.eqjs-mobile {
+    border-style: solid!important;
+    margin: 0 4px;
+}
+
+.eqjs-qp-condition-buttonsBlock.eqjs-mobile {
+    top: 0!important;
+}
+
+.eqjs-cb-addrow.eqjs-mobile a, .eqjs-sb-addrow.eqjs-mobile a {
+    background: none!important;
+}
+
 /*setting to all page */
 #eqv-main{
     width:1174px;
@@ -6119,6 +6147,7 @@ input.eqjs-invalid {
     justify-content: flex-start;
     padding: 20px;
     position: relative;
+    width: 100%;
 }
 
 .kdlg-footer.align-right {
@@ -6223,6 +6252,7 @@ input.eqjs-invalid {
     padding: 20px;
     font-size: 1em;
     color: #4a4a4a;
+    width: 100%;
 }
 
 

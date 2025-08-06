@@ -40,7 +40,7 @@ namespace EqDemo
         private System.Windows.Forms.Button btSave;
         private System.Windows.Forms.Button btExecute;
         private GroupBox groupBoxEntities;
-		private System.Windows.Forms.Panel panelQuery;
+        private System.Windows.Forms.Panel panelQuery;
         private System.Windows.Forms.GroupBox groupBoxColumns;
         private System.Windows.Forms.GroupBox groupBoxConditions;
         private System.Windows.Forms.Panel panelColumns;
@@ -218,8 +218,7 @@ namespace EqDemo
                 _connection.Close();
                 ShowExportPanel();
             }
-            catch (Exception error)
-            {
+            catch (Exception error) {
                 //if some error occurs just show the error message 
                 MessageBox.Show(error.Message);
             }
@@ -230,7 +229,7 @@ namespace EqDemo
         {
             teSQL.Clear();
             try {
-                
+
                 EqManager.SqlQueryBuilder.Formats.SetDefaultFormats(FormatType.MsSqlServer);
 
                 if (EqManager.SqlQueryBuilder.CanBuild) {
@@ -359,7 +358,7 @@ namespace EqDemo
                     saveFileDialog.FilterIndex = 2;
                     saveFileDialog.RestoreDirectory = true;
 
-                    if (saveFileDialog.ShowDialog(this) == DialogResult.OK)  {
+                    if (saveFileDialog.ShowDialog(this) == DialogResult.OK) {
                         ExportData(new ExcelDataExporter(), saveFileDialog.FileName);
                     }
                 }
@@ -374,8 +373,8 @@ namespace EqDemo
 
         private void ExportData(IDataExporter exporter, string fileName)
         {
-            using (var resultSet = new EasyDbResultSet(EqManager.Query, 
-                ResultDS.Tables[0].CreateDataReader(), 
+            using (var resultSet = new EasyDbResultSet(EqManager.Query,
+                ResultDS.Tables[0].CreateDataReader(),
                 EqManager.ResultSetOptions))
             using (var fileStream = File.OpenWrite(fileName))
                 exporter.Export(resultSet, fileStream);

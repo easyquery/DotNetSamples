@@ -1,4 +1,5 @@
-﻿@page
+@page
+@using MigraDoc.DocumentObjectModel
 @model EqDemo.Pages.IndexModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @inject Microsoft.Extensions.Configuration.IConfiguration Configuration
@@ -8,76 +9,75 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.3.3/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.3.3/eq.view.min.css">
-
-    <!-- AgGrid script -->
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css">
-
-    <style>
-        .eqjs-menu-levelDiv {
-            border: 1px solid silver;
-            border-radius: 0 0 4px 4px;
-            padding: 6px 0;
-            box-shadow: 4px 8px 15px 0px rgba(0,0,0,.16);
-        }
-
-        .eqjs-menu-itemDiv {
-            min-width: 158px;
-            font-size: 0.9rem;
-        }
-
-            .eqjs-menu-itemDiv:hover {
-                background-color: #ecf3f5 !important;
-                color: #1776b1;
-            }
-    </style>
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.0/eq.view.min.css">
+    <link rel="stylesheet" href="~/css/easyquery.css"/>
 }
 
-<div class="container">
-    <partial name="EasyQuery/_AdvancedSearch" />
+<div class="easyquery-container">
+    <div class="entities-panel">
+        <div class="widget">
+            <div class="widget-title">Entities</div>
+            <div class="widget-content">
+                <div id="EntitiesPanel"></div>
+            </div>
+        </div>
+    </div>
+    <div class="columns-panel">
+        <div class="widget">
+            <div class="widget-title">Columns</div>
+            <div class="widget-content">
+                <div id="ColumnsPanel"></div>
+            </div>
+        </div>
+    </div>
+    <div class="conditions-panel">
+        <div class="widget">
+            <div class="widget-title">Conditions</div>
+            <div class="widget-content">
+                <div id="QueryPanel"></div>
+            </div>
+        </div>
+    </div>
+    <div class="result-panel">
+        <div class="widget">
+            <div class="widget-title">
+                <div class="toolbar">
+                    <span class="tool-button thin-button" onclick="document.body.classList.toggle('expand-result');">
+                        <img class="icon expand-horizontal-icon" src="~/images/expand-horizontal.svg" alt=""/>
+                        <img class="icon expand-vertical-icon" src="~/images/expand-vertical.svg" alt=""/>
+                    </span>
+                </div>
+                Result
+                <div class="toolbar eqv-export-buttons">
+                    Export:
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="pdf">
+                        <img class="icon" src="~/images/pdf.svg" alt=""/>
+                    </a>
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="excel">
+                        <img class="icon" src="~/images/excel.svg" alt=""/>
+                    </a>
+                    <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="csv">
+                        <img class="icon" src="~/images/csv.svg" alt=""/>
+                    </a>
+                </div>
+            </div>
+            <div class="widget-content">
+                <div id="ResultPanel"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-    <!-- ChartJS script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js" type="text/javascript"></script>
-
-    <!-- Kendo script -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-    <!-- 
-        The following Kendo scripts are used for demonstration purposes only
-        (to show how you can use a third-party grid with EasyQuery).
-        They are not necessary in general cases.
-    -->
-    <script src="https://kendo.cdn.telerik.com/2021.1.119/js/kendo.all.min.js"></script>
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2021.1.119/styles/kendo.default-v2.min.css" />
-
     <!-- EasyQuery scripts -->
-    <script src="https://cdn.korzh.com/eq/7.3.3/eq.enterprise.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/7.4.0/eq.enterprise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Examples of custom GRID integration -->
-    <script src="~/js/kendo-grid-widget.js"></script>
-    <script src="~/js/ag-grid-widget.js"></script>
-
-    <!-- Useful code samples -->
-    <script src="~/js/samples/convert-columns-to-aggr.js"></script>
-    <script src="~/js/samples/manage-subtotals.js"></script>
-
-    <!-- Sample selectors logic -->
-    <script src="~/js/sample-selectors.js"></script>
-
-    <!-- EasyQuery Advanced Search view initialization -->
     <script>
-
-        window.addEventListener('load', function () {
-
-            //Options for AdvancedSearchViewJQuery
-            var viewOptions = {
-
+        window.addEventListener('DOMContentLoaded', function () {
+            // Initialize the EasyQuery application
+            const viewOptions = {
                 //Load model on start
                 loadModelOnStart: true,
 
@@ -94,26 +94,14 @@
 
                 //Handlers
                 handlers: {
-                    afterFetchData: function(context) {
-                        //console.log("After Fetch");
+                    afterFetchData: function (context) {
+                        console.log('After Fetch')
                     },
-                    //Error handler
                     onError: function (_, error) {
-                        console.error(error.sourceError);
+                        console.error(error.sourceError)
                     },
                     onListRequest: function (params, onResult) {
-                        console.log('Inside list request handler');
-                        var processed = true;
-                        const listName = params.listName;
-                        if (listName.startsWith("Lookup")) {
-                            console.log('Looking for list: ', listName);
-                            const type = listName.split(' ')[1];
-                            const list = [];
-                            getLookupList(type, onResult);
-                        } else {
-                            processed = false;
-                        }
-                        return processed;
+                        console.log('Inside list request handler')
                     },
                 },
                 result: {
@@ -123,31 +111,20 @@
                         pageSize: 30
                     }
                 }
-            };
+            }
 
-            configureOptionsForSelectedGrid(viewOptions);
-
-            var view = new easyquery.ui.AdvancedSearchView();
-            var context = view.getContext();
+            const view = new easyquery.ui.AdvancedSearchView()
+            const context = view.getContext()
             context.useEnterprise(function () {
-                view.init(viewOptions);
-            });
+                view.init(viewOptions)
+            })
 
-            document['AdvancedSearchView'] = view;
-        });
+            document['AdvancedSearchView'] = view
 
-        function getLookupList(type, onSuccess) {
-            $.ajax({
-                dataType: 'json',
-                url: '/api/values/list1',
-                success: function (data) {
-                    onSuccess(data);
-                },
-
-                error: function (jqXHR, textStatus, errorThrown) {
-                    alert('ERROR: ' + textStatus + ' ' + errorThrown);
-                }
-            });
-        }
+            const execButton = document.getElementById('ExecQueryButton')
+            execButton.addEventListener('click', function () {
+                view.fetchData()
+            })
+        })
     </script>
 }
