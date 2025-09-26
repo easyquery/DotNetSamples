@@ -25,12 +25,12 @@ export class FetchData {
     }
 
     componentWillLoad() {
-        fetch('api/SampleData/WeatherForecasts')
-        .then(response => response.json())
-        .then(data => {
-            this.loading = false;
-            this.forecasts = data;
-        });
+        // fetch('api/SampleData/WeatherForecasts')
+        // .then(response => response.json())
+        // .then(data => {
+        //     this.loading = false;
+        //     this.forecasts = data;
+        // });
     }
   
     static renderForecastsTable (forecasts: Forecast[]) {

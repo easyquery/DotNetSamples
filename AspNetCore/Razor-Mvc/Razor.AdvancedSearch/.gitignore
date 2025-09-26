@@ -1,0 +1,5 @@
+﻿.idea
+node_modules
+*.lck
+bin/
+obj/
