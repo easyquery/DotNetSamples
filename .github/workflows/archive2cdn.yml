@@ -1,10 +1,10 @@
 name: Archive and Upload to FTP
 
-on: workflow_dispatch
-
-#  push:
-#    branches:
-#      - master
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
   archive_and_upload:
@@ -53,6 +53,6 @@ jobs:
           for folder in "${folder_list[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
             echo $zip_file_name
-            curl -T "$zip_file_name" --ftp-create-dirs -u "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_HOST/cdn.korzh.com/dot-net-samples/$zip_file_name"
-            echo "ftp://$FTP_HOST/cdn.korzh.com/dot-net-samples/$zip_file_name"
+            curl -T "$zip_file_name" --ftp-create-dirs -u "$FTP_USERNAME:$FTP_PASSWORD" "ftp://$FTP_HOST/dot-net-samples/$zip_file_name"
+            echo "ftp://$FTP_HOST/dot-net-samples/$zip_file_name"
           done
