@@ -4,6 +4,7 @@
     <UserSecretsId>EqDemo.AspNetCoreRazor.AdvancedSearch</UserSecretsId>
     <NoWin32Manifest>true</NoWin32Manifest>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
+	  <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />

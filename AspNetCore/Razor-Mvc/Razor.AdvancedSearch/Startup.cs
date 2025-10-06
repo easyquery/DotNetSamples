@@ -110,6 +110,13 @@ namespace EqDemo
                         var attr = manager.Model.FindEntityAttr("Order.ShipRegion");
                         attr.Operations.RemoveByIDs(manager.Model, "StartsWith,Contains");
                         attr.DefaultEditor = new CustomListValueEditor("Lookup", "Lookup");
+
+                        var catNameAttr = manager.Model.FindEntityAttr("Category.CategoryName");
+                        var catIdAttr = manager.Model.FindEntityAttr("Product.Category");
+                        catIdAttr.Entity.Attributes.Add(catNameAttr);
+                        catNameAttr.UseInConditions = false;
+                        catIdAttr.UseInResult = false;
+                        catIdAttr.LookupAttr = catNameAttr;
                     });
 
                     options.UseSqlFormats(FormatType.Sqlite, formats => {
