@@ -24,7 +24,7 @@ namespace EqDemo
         {
             Configuration = configuration;
 
-            DbConnectionString = Configuration.GetConnectionString("EqDemoDb");            
+            DbConnectionString = Configuration.GetConnectionString("EqDemoDbLite");            
 
             Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ExportFormats = new string[] { "pdf", "excel", "excel-html", "csv" };
             
