@@ -6,9 +6,16 @@
 	  <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="App_Data\EqDemoData.zip" />
+    <None Remove="App_Data\NWindSQL.xml" />
     <None Remove="EasyQuery.lck" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\EqDemoData.zip" />
+    <Content Include="App_Data\NWindSQL.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\ServiceDependencies\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
