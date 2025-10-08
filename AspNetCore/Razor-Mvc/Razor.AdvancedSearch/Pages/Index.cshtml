@@ -6,6 +6,7 @@
 
 @{
     ViewData["Title"] = "Advanced Search demo";
+    var appPathBase = Configuration["appPathBase"] ?? "";
 }
 
 @section Styles {
@@ -139,27 +140,29 @@
                 }
             }
 
-            const view = new easyquery.ui.AdvancedSearchView()
-            const context = view.getContext()
-            context.useEnterprise(function () {
-                view.init(viewOptions)
-            })
+            const view = new easyquery.ui.AdvancedSearchView();
+            const context = view.getContext();
+            context
+                .useEndpoint('@(appPathBase)/api/easyquery') // Middleware endpoint
+                .useEnterprise(function () {
+                    view.init(viewOptions)
+                });
 
             context.addEventListener('ready', () => {
                 console.log('EasyQuery is ready')
-            })
+            });
 
             context.addEventListener('syncQuery', ()=> {
                 const qn = document.getElementById('query-name')
                 qn.innerHTML = context.query.getName()
-            })
+            });
 
-            document['AdvancedSearchView'] = view
+            document['AdvancedSearchView'] = view;
 
             const execButton = document.getElementById('ExecQueryButton')
             execButton.addEventListener('click', function () {
                 view.fetchData()
-            })
+            });
         })
     </script>
 }
