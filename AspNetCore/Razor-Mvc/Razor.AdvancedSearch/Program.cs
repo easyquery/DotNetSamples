@@ -13,8 +13,8 @@ using EasyData;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Only load env vars that begin with ADMIN_
-builder.Configuration.AddEnvironmentVariables(prefix: "AdvancedSearch");
+// Only load env vars that begin with AdvancedSearch_
+builder.Configuration.AddEnvironmentVariables(prefix: "AdvancedSearch_");
 
 // Configuration
 var configuration = builder.Configuration;
