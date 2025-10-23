@@ -11,8 +11,12 @@
     <None Remove="EasyQuery.lck" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\EqDemoData.zip" />
-    <Content Include="App_Data\NWindSQL.xml" />
+    <Content Include="App_Data\EqDemoData.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\NWindSQL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\ServiceDependencies\" />
