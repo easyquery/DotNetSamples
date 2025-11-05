@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>EqDemo</RootNamespace>
     <AssemblyName>EqDemoWinFormsNet4</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -58,6 +58,8 @@
     <Compile Include="Models\NWind\Customer.cs" />
     <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />
     <PackageReference Include="EasyData.Exporters.Default" Version="1.5.9" />
+    <Compile Include="Models\NWind\Employee.cs" />
+    <Compile Include="Models\NWind\Order.cs" />
     <Compile Include="Models\NWind\OrderDetail.cs" />
     <Compile Include="Models\NWind\Product.cs" />
     <Compile Include="Models\NWind\Shipper.cs" />
@@ -123,11 +125,23 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EasyData.Core">
-      <Version>1.5.8</Version>
+      <Version>1.5.9</Version>
     </PackageReference>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.Data.SqlClient">
-      <Version>2.1.7</Version>
+      <Version>6.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <Version>9.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
+      <Version>9.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Options">
+      <Version>9.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Primitives">
+      <Version>9.0.8</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SqlClient">
       <Version>4.8.6</Version>
