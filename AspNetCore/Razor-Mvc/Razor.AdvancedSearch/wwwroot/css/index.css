@@ -449,3 +449,8 @@ main {
     width: 100%;
     overflow: auto;
 }
+
+#ExecQueryButton {
+    border-radius: 50%;
+    margin-left: 20px;
+}
