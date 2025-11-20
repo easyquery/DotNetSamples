@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.AdhocReporting", "AdhocReporting\EqDemo.AspNet4x.AdhocReporting.csproj", "{420AEDD8-5D2E-4994-95B8-67644681C908}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.AdhocReporting.Metadata", "AdhocReportingMetaData\EqDemo.AspNet4x.AdhocReporting.Metadata.csproj", "{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.AdvancedSearch", "AdvancedSearch\EqDemo.AspNet4x.AdvancedSearch.csproj", "{F063D29F-C3C2-4076-A036-F891AC8C09AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.DataFiltering", "DataFiltering\EqDemo.AspNet4x.DataFiltering.csproj", "{25B4D977-9D95-4133-B95F-A3C88830C21F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.MultiLayered.FrontApp", "AdvancedSearch-Multilayered\FrontApp\EqDemo.AspNet4x.MultiLayered.FrontApp.csproj", "{953CBD6B-5213-4930-B0E5-4AC110A0597A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNet4x.MultiLayered.ServiceApp", "AdvancedSearch-Multilayered\ServiceApp\EqDemo.AspNet4x.MultiLayered.ServiceApp.csproj", "{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{420AEDD8-5D2E-4994-95B8-67644681C908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56835F83-C5B2-4C59-B5BE-EA1B2AC12215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F063D29F-C3C2-4076-A036-F891AC8C09AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25B4D977-9D95-4133-B95F-A3C88830C21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{953CBD6B-5213-4930-B0E5-4AC110A0597A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953CBD6B-5213-4930-B0E5-4AC110A0597A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953CBD6B-5213-4930-B0E5-4AC110A0597A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953CBD6B-5213-4930-B0E5-4AC110A0597A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32C7CC19-CBB8-469D-87EA-4E4E1FAAC4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
