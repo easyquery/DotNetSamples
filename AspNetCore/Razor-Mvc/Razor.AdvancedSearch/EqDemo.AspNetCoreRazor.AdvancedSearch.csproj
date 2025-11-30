@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <UserSecretsId>EqDemo.AspNetCoreRazor.AdvancedSearch</UserSecretsId>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
-	  <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="App_Data\EqDemoData.zip" />
