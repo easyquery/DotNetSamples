@@ -22,7 +22,7 @@ var dbConnectionString = configuration.GetConnectionString("EqDemoDbLite");
 
 // EasyQuery static settings
 Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ExportFormats = new string[] { "pdf", "excel", "excel-html", "csv" };
-// Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ShowSqlPanel = true; // Uncomment to show SQL panel
+// Korzh.EasyQuery.RazorUI.Pages.AdvancedSearch.ShowSqlPanel = true; // Uncomment to show the SQL panel
 
 // Services
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -78,7 +78,16 @@ app.MapEasyQuery(options => {
     options.StoreModelInCache = true;
     options.StoreQueryInCache = true;
 
-    options.UseQueryStore((_) => new FileQueryStore("App_Data"));
+    //defining different query store depending on configuration
+    if (string.Compare(configuration.GetValue<string>("QueryStoreMode"), "session", true) == 0) {
+        options.UseQueryStore(manager => new SessionQueryStore(manager.Services, "App_Data"));
+    }
+    else {
+        options.UseQueryStore(_ => new FileQueryStore(new FileQueryStoreSettings {
+            DataPath = "App_Data",
+            FileFormat = "xml"
+        }));
+    }
 
     options.UseModelTuner(manager => {
         var attr = manager.Model.FindEntityAttr("Order.ShipRegion");
