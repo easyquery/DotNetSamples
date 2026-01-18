@@ -10,8 +10,8 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.0/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.0/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.1/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.1/eq.view.min.css">
     <link rel="stylesheet" href="~/css/easyquery.css"/>
 }
 
@@ -79,7 +79,7 @@
 
 @section Scripts {
     <!-- EasyQuery scripts -->
-    <script src="https://cdn.korzh.com/eq/7.4.0/eq.enterprise.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/7.4.1/eq.enterprise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         Chart.defaults.animation = false;
@@ -128,6 +128,8 @@
                     queryPanel: {
                         alwaysShowButtonsInGroups: showPanelButtons,
                         alwaysShowButtonsInConditions: showPanelButtons,
+                        minDate: '2025-12-20',
+                        maxDate: 'today'
                     }
                 },
                 
