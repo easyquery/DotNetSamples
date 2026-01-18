@@ -17,7 +17,14 @@
 <div class="easyquery-container">
     <div class="entities-panel">
         <div class="widget">
-            <div class="widget-title">Entities</div>
+            <div class="widget-title">
+                Entities
+                <div class="toolbar" style="margin-left: auto;">
+                    <button class="tool-button thin-button" onclick="document.body.classList.add('no-entities')">
+                        <img class="icon close-panel" src="~/images/close.svg" alt=""/>
+                    </button>
+                </div>
+            </div>
             <div class="widget-content">
                 <div id="EntitiesPanel"></div>
             </div>
@@ -49,7 +56,7 @@
                     </span>
                 </div>
                 Result
-                <div class="toolbar eqv-export-buttons">
+                <div class="toolbar export-toolbar eqv-export-buttons">
                     Export:
                     <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="pdf">
                         <img class="icon" src="~/images/pdf.svg" alt=""/>
@@ -73,9 +80,14 @@
     <!-- EasyQuery scripts -->
     <script src="https://cdn.korzh.com/eq/7.4.0/eq.enterprise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        Chart.defaults.animation = false;
+    </script>
 
     <script>
         window.addEventListener('DOMContentLoaded', function () {
+            const showPanelButtons = false
+            
             // Initialize the EasyQuery application
             const viewOptions = {
                 //Load model on start
@@ -104,6 +116,20 @@
                         console.log('Inside list request handler')
                     },
                 },
+                
+                widgets: {
+                    columnsPanel: {
+                        alwaysShowButtons: showPanelButtons,
+                    },
+                    entitiesPanel: {
+                        
+                    },
+                    queryPanel: {
+                        alwaysShowButtonsInGroups: showPanelButtons,
+                        alwaysShowButtonsInConditions: showPanelButtons,
+                    }
+                },
+                
                 result: {
                     //Show EasyChart
                     showChart: true,
@@ -117,6 +143,15 @@
             const context = view.getContext()
             context.useEnterprise(function () {
                 view.init(viewOptions)
+            })
+
+            context.addEventListener('ready', () => {
+                console.log('EasyQuery is ready')
+            })
+
+            context.addEventListener('syncQuery', ()=> {
+                const qn = document.getElementById('query-name')
+                qn.innerHTML = context.query.getName()
             })
 
             document['AdvancedSearchView'] = view
