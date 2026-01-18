@@ -30,3 +30,4 @@ App_Data/dm-*__default/
 *.lck
 .idea
 /AspNetCore/Angular/AdHocReporting/AdHocReporting.Сlient/.angular/
+/AspNetCore/Razor-Mvc/Razor.AdvancedSearch/App_Data/dm-nwind/queries
