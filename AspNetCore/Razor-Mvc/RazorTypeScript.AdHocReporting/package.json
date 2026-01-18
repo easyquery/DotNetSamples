@@ -12,11 +12,11 @@
     "dev": "npm run watch"
   },
   "dependencies": {
-    "@easydata/core": "1.5.8",
-    "@easydata/ui": "1.5.8",
-    "@easyquery/core": "7.4.0",
-    "@easyquery/enterprise": "7.4.0",
-    "@easyquery/ui": "7.4.0"
+    "@easydata/core": "1.5.10",
+    "@easydata/ui": "1.5.10",
+    "@easyquery/core": "7.4.1-rc04",
+    "@easyquery/enterprise": "7.4.1-rc04",
+    "@easyquery/ui": "7.4.1-rc04"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",

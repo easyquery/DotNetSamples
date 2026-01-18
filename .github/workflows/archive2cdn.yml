@@ -30,14 +30,20 @@ jobs:
             "WinForms"
             "Wpf"
           )
-          
+
           # Export folders array so it's accessible in the next step
           echo "folder_list=${folder_list[*]}" >> $GITHUB_ENV
+
+          # Get the absolute path of the current directory
+          base_dir=$(pwd)          
 
           # Archive each folder
           for folder in "${folder_list[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
-            zip -r "$zip_file_name" "$folder"
+            
+            # Change into the folder and zip all contents to the base directory
+            (cd "$folder" && zip -r "$base_dir/$zip_file_name" .)
+
             echo $zip_file_name
           done
 
@@ -49,7 +55,7 @@ jobs:
         run: |
           # Convert the folders string back to an array
           IFS=' ' read -r -a folder_list <<< "$folder_list"
-          
+
           for folder in "${folder_list[@]}"; do
             zip_file_name=$(echo "$folder" | sed 's/\//-/g').zip
             echo $zip_file_name

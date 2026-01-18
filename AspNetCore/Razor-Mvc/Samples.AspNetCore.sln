@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNetCoreRazor.AdvancedSearch", "Razor.AdvancedSearch\EqDemo.AspNetCoreRazor.AdvancedSearch.csproj", "{260AD93A-BCBE-44C9-83FC-5FDE73FCA658}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNetCoreRazor.AdhocReporting", "Razor.AdHocReporting\EqDemo.AspNetCoreRazor.AdhocReporting.csproj", "{EC92C971-C0D3-44B9-96B0-0D5DF57856AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNetCoreRazorTypeScript.AdhocReporting", "RazorTypeScript.AdHocReporting\EqDemo.AspNetCoreRazorTypeScript.AdhocReporting.csproj", "{6DBE8C76-577F-490A-8CEB-609EC488FB74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNetCoreMvc.DataFiltering", "Mvc.DataFiltering\EqDemo.AspNetCoreMvc.DataFiltering.csproj", "{ECFAAFBF-74B0-4DDB-A930-F7B8C9D678A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.AspNetCoreRazor.DataFiltering", "Razor.DataFiltering\EqDemo.AspNetCoreRazor.DataFiltering.csproj", "{BC64EABA-92EA-49C5-941C-A31816EE81A3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{260AD93A-BCBE-44C9-83FC-5FDE73FCA658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{260AD93A-BCBE-44C9-83FC-5FDE73FCA658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{260AD93A-BCBE-44C9-83FC-5FDE73FCA658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{260AD93A-BCBE-44C9-83FC-5FDE73FCA658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC92C971-C0D3-44B9-96B0-0D5DF57856AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC92C971-C0D3-44B9-96B0-0D5DF57856AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC92C971-C0D3-44B9-96B0-0D5DF57856AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC92C971-C0D3-44B9-96B0-0D5DF57856AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DBE8C76-577F-490A-8CEB-609EC488FB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBE8C76-577F-490A-8CEB-609EC488FB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBE8C76-577F-490A-8CEB-609EC488FB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBE8C76-577F-490A-8CEB-609EC488FB74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFAAFBF-74B0-4DDB-A930-F7B8C9D678A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFAAFBF-74B0-4DDB-A930-F7B8C9D678A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFAAFBF-74B0-4DDB-A930-F7B8C9D678A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFAAFBF-74B0-4DDB-A930-F7B8C9D678A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC64EABA-92EA-49C5-941C-A31816EE81A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC64EABA-92EA-49C5-941C-A31816EE81A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC64EABA-92EA-49C5-941C-A31816EE81A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC64EABA-92EA-49C5-941C-A31816EE81A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

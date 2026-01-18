@@ -68,9 +68,6 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.MsSqlGate">
-      <Version>7.4.0-rc04</Version>
-    </PackageReference>
     <PackageReference Include="System.Data.SqlClient">
       <Version>4.8.6</Version>
     </PackageReference>
@@ -116,6 +113,7 @@
     <PackageReference Include="Korzh.EasyQuery.AspNet4" Version="7.4.0" />
     <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.4.0" />
     <PackageReference Include="Korzh.EasyQuery.EntityFramework6" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.MsSqlGate" Version="7.4.0" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />

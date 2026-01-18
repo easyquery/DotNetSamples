@@ -5,5 +5,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>EqDemo.AspNetCoreRazor.AdvancedSearch</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>C:\Projects\EasyQuery\DotNetSamples\AspNetCore\Razor-Mvc\Razor.AdvancedSearch\Properties\PublishProfiles\KorzhCom-Demo-WebApp - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

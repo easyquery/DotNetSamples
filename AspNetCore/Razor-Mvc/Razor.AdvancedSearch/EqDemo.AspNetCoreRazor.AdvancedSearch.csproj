@@ -2,9 +2,25 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <UserSecretsId>EqDemo.AspNetCoreRazor.AdvancedSearch</UserSecretsId>
-    <NoWin32Manifest>true</NoWin32Manifest>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="App_Data\EqDemoData.zip" />
+    <None Remove="App_Data\NWindSQL.xml" />
+    <None Remove="EasyQuery.lck" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\EqDemoData.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\NWindSQL.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\ServiceDependencies\" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
@@ -14,21 +30,21 @@
   </ItemGroup>
   <ItemGroup>
     <!-- DB initialization packages. They are not necessary for EasyQuery working and can be removed in production -->
-    <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.1" />
-    <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.1" />
-    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.1" />
+    <PackageReference Include="Korzh.DbUtils.Import" Version="1.4.3" />
+    <PackageReference Include="Korzh.DbUtils.Sqlite" Version="1.4.3" />
+    <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.8" />
-    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.8" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.4.0-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.4.0-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.4.0-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.4.0-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.4.0-rc04" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.4.0-rc04" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.4.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\site.css">
