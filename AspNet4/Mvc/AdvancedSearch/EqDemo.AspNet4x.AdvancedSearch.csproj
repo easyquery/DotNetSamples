@@ -113,8 +113,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />
-    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.9" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.10" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.10" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.Db" Version="7.4.1" />

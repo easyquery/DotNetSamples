@@ -56,8 +56,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\NWind\Category.cs" />
     <Compile Include="Models\NWind\Customer.cs" />
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />
-    <PackageReference Include="EasyData.Exporters.Default" Version="1.5.9" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.10" />
+    <PackageReference Include="EasyData.Exporters.Default" Version="1.5.10" />
     <Compile Include="Models\NWind\Employee.cs" />
     <Compile Include="Models\NWind\Order.cs" />
     <Compile Include="Models\NWind\OrderDetail.cs" />
@@ -125,7 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EasyData.Core">
-      <Version>1.5.9</Version>
+      <Version>1.5.10</Version>
     </PackageReference>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.Data.SqlClient">
