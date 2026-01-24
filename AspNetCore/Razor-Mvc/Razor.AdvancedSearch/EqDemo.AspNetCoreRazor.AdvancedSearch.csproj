@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <UserSecretsId>EqDemo.AspNetCoreRazor.AdvancedSearch</UserSecretsId>
     <TypeScriptCompileBlocked>True</TypeScriptCompileBlocked>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
@@ -22,11 +22,11 @@
     <Folder Include="Properties\ServiceDependencies\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
   </ItemGroup>
   <ItemGroup>
     <!-- DB initialization packages. They are not necessary for EasyQuery working and can be removed in production -->
@@ -35,8 +35,8 @@
     <PackageReference Include="Korzh.DbUtils.SqlServer" Version="1.4.3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.9" />
-    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.9" />
+    <PackageReference Include="EasyData.Exporters.ClosedXML" Version="1.5.10" />
+    <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.10" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.4.1" />
