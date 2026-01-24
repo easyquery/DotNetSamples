@@ -33,7 +33,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
-builder.Services.AddEasyQuery()
+builder.Services.AddEasyQuery<EasyQueryConfigurator>()
     .UseSqlManager()
     .AddDefaultExporters()
     .AddDataExporter<PdfDataExporter>("pdf")
@@ -70,42 +70,7 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapEasyQuery(options => {
-    options.DefaultModelId = "nwind";
-    options.BuildQueryOnSync = true;
-    options.SaveNewQuery = false;
-    options.ConnectionString = dbConnectionString;
-    options.UseDbContext<AppDbContext>();
-    options.StoreModelInCache = true;
-    options.StoreQueryInCache = true;
-
-    //defining different query store depending on configuration
-    if (string.Compare(configuration.GetValue<string>("QueryStoreMode"), "session", true) == 0) {
-        options.UseQueryStore(manager => new SessionQueryStore(manager.Services, "App_Data"));
-    }
-    else {
-        options.UseQueryStore(_ => new FileQueryStore(new FileQueryStoreSettings {
-            DataPath = "App_Data",
-            FileFormat = "xml"
-        }));
-    }
-
-    options.UseModelTuner(manager => {
-        var attr = manager.Model.FindEntityAttr("Order.ShipRegion");
-        attr.Operations.RemoveByIDs(manager.Model, "StartsWith,Contains");
-        attr.DefaultEditor = new CustomListValueEditor("Lookup", "Lookup");
-
-        var catNameAttr = manager.Model.FindEntityAttr("Category.CategoryName");
-        var catIdAttr = manager.Model.FindEntityAttr("Product.Category");
-        catIdAttr.Entity.Attributes.Add(catNameAttr);
-        catNameAttr.UseInConditions = false;
-        catIdAttr.UseInResult = false;
-        catIdAttr.LookupAttr = catNameAttr;
-    });
-
-    options.UseSqlFormats(FormatType.Sqlite, formats => {
-        formats.UseDbName = false;
-        formats.UseSchema = false;
-    });
+    // all configurations are done in EasyQueryConfigurator
 });
 
 app.MapRazorPages();

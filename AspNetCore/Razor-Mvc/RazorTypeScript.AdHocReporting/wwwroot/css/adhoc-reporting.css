@@ -2076,6 +2076,10 @@ fieldset .kfrm-fields > label {
     background:0 0
 }
 
+.kdtp-cal-day-disabled {
+    opacity: 0.5!important;
+    pointer-events: none!important;
+}
 :root {
     --tsp-border-color: #e8e8e8;
     --tsp-control-background: #ebebeb;
@@ -2353,6 +2357,9 @@ body {
     min-height: 27px;
     cursor: pointer;
     position: relative;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
 }
 
 .eqjs-qc-col-landing-slot, .eqjs-qp-cond-landing-slot {
@@ -3292,6 +3299,9 @@ body {
     position: relative;
     font: normal 14px Trebuchet MS, Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
     padding: 0.5rem;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
 }
 
 .eqjs-cb-header, .eqjs-sb-header {
@@ -4686,7 +4696,7 @@ input.eqjs-invalid {
     padding: 0;
     position: absolute;
     right: 0;
-    display: flex;
+    /*display: flex;*/
     align-items: center;
     justify-content: flex-end;
     /*border: 1px solid red;*/
@@ -5067,16 +5077,6 @@ input.eqjs-invalid {
     color: #ffffff;
 }
 
-/* Debug styles */
-
-/*.eqjs-qc-row {*/
-/*    border: 1px solid blue;*/
-/*}*/
-
-/*.eqjs-qc-expr-block a, .eqjs-qc-captionelement a {*/
-/*    border: 1px solid red!important;*/
-/*}*/
-
 /* Mobile */
 .eqjs-qc-row.eqjs-mobile, .eqjs-qp-row.eqjs-mobile {
     padding: 4px 8px;
@@ -5091,13 +5091,38 @@ input.eqjs-invalid {
     top: 6px;
 }
 
+.eqjs-menu-scrollDiv.eqjs-mobile {
+    height: calc(100vh - 50px)!important;
+    max-height: calc(100vh - 50px)!important;
+}
+
+.eqjs-qp-row.eqjs-mobile {
+    padding: 0 10px;
+    margin: 4px 4px 0 4px;
+}
+
+.eqjs-qp-row-group.eqjs-mobile {
+    padding: 4px 10px!important;
+}
+
+.eqjs-qp-condition-buttonsBlock.eqjs-mobile {
+    top: 0!important;
+}
+
+.eqjs-cb-addrow.eqjs-mobile a, .eqjs-sb-addrow.eqjs-mobile a {
+    background: none!important;
+}
+
+.eqjs-qc-row.eqjs-mobile {
+    border-style: solid;
+}
+
 /* Legacy */
 .eqjs-addrow > a:hover {
     text-decoration: none;
     border-bottom: 1px dashed;
 }
 
-/* Legacy */
 .eqjs-qc-captionelement {
     border: 1px solid transparent;
     padding: 2px;
@@ -5108,24 +5133,8 @@ input.eqjs-invalid {
     width: auto;
 }
 
-.eqjs-qp-row {
-    padding: 0 10px!important;
-}
 .eqjs-qp-condition-buttonsBlock, .eqjs-facets-total-buttons {
     margin-right: 10px;
-}
-
-.eqjs-qp-row.eqjs-mobile {
-    border-style: solid!important;
-    margin: 0 4px;
-}
-
-.eqjs-qp-condition-buttonsBlock.eqjs-mobile {
-    top: 0!important;
-}
-
-.eqjs-cb-addrow.eqjs-mobile a, .eqjs-sb-addrow.eqjs-mobile a {
-    background: none!important;
 }
 
 /*setting to all page */
@@ -7796,6 +7805,10 @@ fieldset .kfrm-fields > label {
     background:0 0
 }
 
+.kdtp-cal-day-disabled {
+    opacity: 0.5!important;
+    pointer-events: none!important;
+}
 :root {
     --tsp-border-color: #e8e8e8;
     --tsp-control-background: #ebebeb;

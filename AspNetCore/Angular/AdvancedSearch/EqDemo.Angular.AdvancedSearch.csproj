@@ -12,7 +12,7 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.4.1" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
@@ -30,10 +30,10 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.5.9" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.4.0" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.4.0" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.4.0" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.4.0" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.4.1" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.4.1" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.4.1" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.4.1" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.5.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.4" />

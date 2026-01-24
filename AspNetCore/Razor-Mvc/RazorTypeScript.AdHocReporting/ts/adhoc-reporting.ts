@@ -14,6 +14,12 @@ window.addEventListener('load', () => {
         //Saves report on each change
         syncReportOnChange: true,
 
+        widgets: {
+            queryPanel: {
+                minDate: '2025-01-01', 
+                maxDate: 'today'
+            }            
+        },
         handlers: {
             onError: function (context, error) {
                 console.error(error.sourceError);

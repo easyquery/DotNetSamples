@@ -12,141 +12,140 @@ using Newtonsoft.Json;
 using Korzh.EasyQuery;
 using Korzh.EasyQuery.Services;
 
-namespace EqDemo.Services
+namespace EqDemo.Services;
+
+public class SessionQueryStore : IQueryStore
 {
-    public class SessionQueryStore : IQueryStore
+    private const string _keyPrefixQuery = "query-";
+    private const string _keyPrefixItem = "items-";
+
+    private HttpContext _httpContext;
+
+    protected readonly IServiceProvider Services;
+
+    private string fileStoreDataPath;
+
+    public SessionQueryStore(IServiceProvider services, string initialStoreDataPath = "App_Data")
     {
-        private const string _keyPrefixQuery = "query-";
-        private const string _keyPrefixItem = "items-";
+        fileStoreDataPath = initialStoreDataPath;
+        Services = services;
+        _httpContext = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext 
+                       ?? throw new ArgumentNullException("IHttpContextAccessor or HttpContext is null.");
+    }
 
-        private HttpContext _httpContext;
+    public virtual async Task<bool> AddQueryAsync(Query query, CancellationToken ct = default)
+    {
+        _httpContext.Session.SetString(_keyPrefixQuery + query.Id, await query.SaveToJsonStringAsync());
+        AddQueryListItem(query.Model.Id, new QueryListItem(query.Id, query.ModelId, query.Name, query.Description));
+        return true;
+    }
 
-        protected readonly IServiceProvider Services;
+    public Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId, CancellationToken ct = default)
+    {
+        return Task.FromResult(GetQueryListItems(modelId).OrderBy(item => item.name).AsEnumerable());
+    }
 
-        private string fileStoreDataPath;
-
-        public SessionQueryStore(IServiceProvider services, string initialStoreDataPath = "App_Data")
-        {
-            fileStoreDataPath = initialStoreDataPath;
-            Services = services;
-            _httpContext = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext 
-                           ?? throw new ArgumentNullException("IHttpContextAccessor or HttpContext is null.");
-        }
-
-        public virtual async Task<bool> AddQueryAsync(Query query, CancellationToken ct = default)
-        {
-            _httpContext.Session.SetString(_keyPrefixQuery + query.Id, await query.SaveToJsonStringAsync());
-            AddQueryListItem(query.Model.Id, new QueryListItem(query.Id, query.ModelId, query.Name, query.Description));
+    public virtual async Task<bool> LoadQueryAsync(Query query, string queryId, CancellationToken ct = default)
+    {
+        var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + queryId);
+        if (!string.IsNullOrEmpty(queryJson)) {
+            await query.LoadFromJsonStringAsync(queryJson);
             return true;
         }
 
-        public Task<IEnumerable<QueryListItem>> GetAllQueriesAsync(string modelId, CancellationToken ct = default)
-        {
-            return Task.FromResult(GetQueryListItems(modelId).OrderBy(item => item.name).AsEnumerable());
+        return false;
+    }
+
+    public virtual Task<bool> RemoveQueryAsync(string modelId, string queryId, CancellationToken ct = default)
+    {
+        _httpContext.Session.Remove(_keyPrefixQuery + queryId);
+        RemoveQueryListItem(modelId, queryId);
+        return Task.FromResult(true);
+    }
+
+    public virtual async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true, CancellationToken ct = default)
+    {
+        var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + query.Id);
+        if (!string.IsNullOrEmpty(queryJson)) {
+
+            _httpContext.Session.SetString(_keyPrefixQuery + query.Id, await query.SaveToJsonStringAsync());
+            UpdateQueryListItem(query.Model.Id, new QueryListItem(query.Id, query.ModelId, query.Name, query.Description));
+            return true;
+        }
+        else if (createIfNotExists) {
+            return await AddQueryAsync(query, ct);
         }
 
-        public virtual async Task<bool> LoadQueryAsync(Query query, string queryId, CancellationToken ct = default)
+        return false;
+    }
+
+    private List<QueryListItem> GetQueryListItems(string modelId, CancellationToken ct = default)
+    {
+        var json = _httpContext.Session.GetString(_keyPrefixItem + modelId);
+        if (json == null) {
+            FileQueryStore initialQueryStore = new FileQueryStore(fileStoreDataPath);
+
+            List<QueryListItem> initialQueryList = initialQueryStore.GetAllQueriesAsync(modelId).Result.ToList();
+
+            initialQueryList.ForEach(delegate (QueryListItem item) {
+                _httpContext.Session.SetString(_keyPrefixQuery + item.id, initialQueryStore.GetQueryFileText(modelId, item.id));
+            });
+
+            SaveQueryListItems(modelId, initialQueryList);
+
+            return initialQueryList;
+        }
+
+        var queryItemObj = new
         {
-            var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + queryId);
-            if (!string.IsNullOrEmpty(queryJson)) {
-                await query.LoadFromJsonStringAsync(queryJson);
-                return true;
+            id = "",
+            name = "",
+            desacription = ""
+        };
+
+        List<T> CreateList<T>(T type)
+        {
+            return new List<T>();
+        }
+
+        var queryItems = CreateList(queryItemObj);
+
+        var result = JsonConvert.DeserializeAnonymousType(json, queryItems);
+        return result.Select(item => new QueryListItem(item.id, modelId, item.name, item.desacription)).ToList();
+    }
+
+
+    private void SaveQueryListItems(string modelId, List<QueryListItem> items)
+    {
+        _httpContext.Session.SetString(_keyPrefixItem + modelId, 
+            JsonConvert.SerializeObject(items, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+    }
+
+    private void AddQueryListItem(string modelId, QueryListItem item)
+    {
+        var items = GetQueryListItems(modelId);
+        items.Add(item);
+        SaveQueryListItems(modelId, items);
+    }
+
+    private void UpdateQueryListItem(string modelId, QueryListItem item)
+    {
+        var items = GetQueryListItems(modelId);
+        foreach (var it in items) {
+            if (it.id == item.id) {
+                it.name = item.name;
+                it.description = item.description;
+                break;
             }
-
-            return false;
         }
+        SaveQueryListItems(modelId, items);
 
-        public virtual Task<bool> RemoveQueryAsync(string modelId, string queryId, CancellationToken ct = default)
-        {
-            _httpContext.Session.Remove(_keyPrefixQuery + queryId);
-            RemoveQueryListItem(modelId, queryId);
-            return Task.FromResult(true);
-        }
+    }
 
-        public virtual async Task<bool> SaveQueryAsync(Query query, bool createIfNotExists = true, CancellationToken ct = default)
-        {
-            var queryJson = _httpContext.Session.GetString(_keyPrefixQuery + query.Id);
-            if (!string.IsNullOrEmpty(queryJson)) {
-
-                _httpContext.Session.SetString(_keyPrefixQuery + query.Id, await query.SaveToJsonStringAsync());
-                UpdateQueryListItem(query.Model.Id, new QueryListItem(query.Id, query.ModelId, query.Name, query.Description));
-                return true;
-            }
-            else if (createIfNotExists) {
-                return await AddQueryAsync(query, ct);
-            }
-
-            return false;
-        }
-
-        private List<QueryListItem> GetQueryListItems(string modelId, CancellationToken ct = default)
-        {
-            var json = _httpContext.Session.GetString(_keyPrefixItem + modelId);
-            if (json == null) {
-                FileQueryStore initialQueryStore = new FileQueryStore(fileStoreDataPath);
-
-                List<QueryListItem> initialQueryList = initialQueryStore.GetAllQueriesAsync(modelId).Result.ToList();
-
-                initialQueryList.ForEach(delegate (QueryListItem item) {
-                    _httpContext.Session.SetString(_keyPrefixQuery + item.id, initialQueryStore.GetQueryFileText(modelId, item.id));
-                });
-
-                SaveQueryListItems(modelId, initialQueryList);
-
-                return initialQueryList;
-            }
-
-            var queryItemObj = new
-            {
-                id = "",
-                name = "",
-                desacription = ""
-            };
-
-            List<T> CreateList<T>(T type)
-            {
-                return new List<T>();
-            }
-
-            var queryItems = CreateList(queryItemObj);
-
-            var result = JsonConvert.DeserializeAnonymousType(json, queryItems);
-            return result.Select(item => new QueryListItem(item.id, modelId, item.name, item.desacription)).ToList();
-        }
-
-
-        private void SaveQueryListItems(string modelId, List<QueryListItem> items)
-        {
-            _httpContext.Session.SetString(_keyPrefixItem + modelId, 
-                JsonConvert.SerializeObject(items, Formatting.None, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
-        }
-
-        private void AddQueryListItem(string modelId, QueryListItem item)
-        {
-            var items = GetQueryListItems(modelId);
-            items.Add(item);
-            SaveQueryListItems(modelId, items);
-        }
-
-        private void UpdateQueryListItem(string modelId, QueryListItem item)
-        {
-            var items = GetQueryListItems(modelId);
-            foreach (var it in items) {
-                if (it.id == item.id) {
-                    it.name = item.name;
-                    it.description = item.description;
-                    break;
-                }
-            }
-            SaveQueryListItems(modelId, items);
-
-        }
-
-        private void RemoveQueryListItem(string modelId, string itemId)
-        {
-            var items = GetQueryListItems(modelId);
-            items.Remove(items.FirstOrDefault(item => item.id == itemId));
-            SaveQueryListItems(modelId, items);
-        }
+    private void RemoveQueryListItem(string modelId, string itemId)
+    {
+        var items = GetQueryListItems(modelId);
+        items.Remove(items.FirstOrDefault(item => item.id == itemId));
+        SaveQueryListItems(modelId, items);
     }
 }
