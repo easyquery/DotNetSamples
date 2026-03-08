@@ -31,3 +31,4 @@ App_Data/dm-*__default/
 .idea
 /AspNetCore/Angular/AdHocReporting/AdHocReporting.Сlient/.angular/
 /AspNetCore/Razor-Mvc/Razor.AdvancedSearch/App_Data/dm-nwind/queries
+/AspNetCore/Razor-Mvc/Razor.AdvancedSearch/App_Data/export
