@@ -38,6 +38,7 @@ builder.Services.AddEasyQuery<EasyQueryConfigurator>()
     .AddDefaultExporters()
     .AddDataExporter<PdfDataExporter>("pdf")
     .AddDataExporter<ExcelDataExporter>("excel")
+    .AddBackgroundJobsService()
     .UseSessionCache()
     .RegisterDbGate<Korzh.EasyQuery.DbGates.SqLiteGate>();
     // .RegisterDbGate<Korzh.EasyQuery.DbGates.SqlServerGate>();

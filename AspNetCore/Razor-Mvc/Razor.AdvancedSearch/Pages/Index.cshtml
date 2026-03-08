@@ -68,6 +68,14 @@
                     <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="csv">
                         <img class="icon" src="~/images/csv.svg" alt=""/>
                     </a>
+                    |
+
+                    Export Async:
+                    <a id="ExportExcelAsync" class="eqjs-export tool-button" href="javascript:void(0)">
+                        <img class="icon" src="~/images/excel.svg" alt="" />
+                    </a>
+
+
                 </div>
             </div>
             <div class="widget-content">
@@ -108,13 +116,13 @@
                 //Handlers
                 handlers: {
                     afterFetchData: function (context) {
-                        console.log('After Fetch')
+                        //console.log('After Fetch')
                     },
                     onError: function (_, error) {
                         console.error(error.sourceError)
                     },
                     onListRequest: function (params, onResult) {
-                        console.log('Inside list request handler')
+                        //console.log('Inside list request handler')
                     },
                 },
                 
@@ -147,7 +155,12 @@
             context
                 .useEndpoint('@(appPathBase)/api/easyquery') // Middleware endpoint
                 .useEnterprise(function () {
-                    view.init(viewOptions)
+                    view.init(viewOptions);
+                    const exportExcelAsync = document.getElementById('ExportExcelAsync')
+                    exportExcelAsync.addEventListener('click', function (e) {
+                        e.stopImmediatePropagation();
+                        context.exportStart({ format: 'excel' });
+                    });
                 });
 
             context.addEventListener('ready', () => {
@@ -160,11 +173,6 @@
             });
 
             document['AdvancedSearchView'] = view;
-
-            const execButton = document.getElementById('ExecQueryButton')
-            execButton.addEventListener('click', function () {
-                view.fetchData()
-            });
         })
     </script>
 }

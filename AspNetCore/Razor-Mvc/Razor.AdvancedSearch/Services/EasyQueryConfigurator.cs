@@ -19,6 +19,7 @@ public class EasyQueryConfigurator : IEasyQueryConfigurator
 
     public void Configure(EasyQueryOptions options)
     {
+        options.UseManager<EasyQueryManagerSql>();
         options.DefaultModelId = "nwind";
         options.BuildQueryOnSync = true;
         options.SaveNewQuery = false;
