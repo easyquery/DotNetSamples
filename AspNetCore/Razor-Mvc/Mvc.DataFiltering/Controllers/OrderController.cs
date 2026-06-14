@@ -35,6 +35,8 @@ namespace EqDemo.Controllers
                     .Include(o => o.Employee)
                     .AsQueryable());
 
+            options.UseQueryStore(_ => new FileQueryStore("App_Data"));
+
             _eqManager = new EasyQueryManagerLinq<Order>(options, services);
         }
 
@@ -68,6 +70,21 @@ namespace EqDemo.Controllers
             var list = await _eqManager.GetValueListAsync(modelId, editorId);
 
             return this.EqOk(new { Values = list });
+        }
+
+        [HttpGet("models/{modelId}/queries/{queryId}")]
+        public async Task<IActionResult> LoadQueryAsync(string modelId, string queryId)
+        {
+            await _eqManager.LoadQueryAsync(modelId, queryId);
+            return this.EqOk(new { query = _eqManager.Query });
+        }
+
+        [HttpPut("models/{modelId}/queries/{queryId}")]
+        public async Task<IActionResult> SaveQueryAsync(string modelId, string queryId)
+        {
+            await _eqManager.ReadRequestContentFromStreamAsync(modelId, Request.Body);
+            await _eqManager.SaveQueryToStoreAsync(true);
+            return this.EqOk(new { query = _eqManager.Query });
         }
 
         /// <summary>

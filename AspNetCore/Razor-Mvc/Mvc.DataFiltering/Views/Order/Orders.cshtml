@@ -26,6 +26,29 @@
             flex: 0 0 auto;
             padding-left: 15px;
         }
+
+        .filter-bar-container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .filter-bar-container #FilterBar {
+            flex: 1 1 auto;
+        }
+
+        .query-buttons {
+            flex: 0 0 auto;
+            padding-left: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .query-buttons .btn {
+            padding: 2px 10px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
     </style>
 }
 
@@ -47,7 +70,13 @@
         </div>
     </div>
 
-    <div id="FilterBar"></div>
+    <div class="filter-bar-container">
+        <div id="FilterBar"></div>
+        <div class="query-buttons">
+            <button id="loadQueryButton" class="btn btn-light border">Load Query</button>
+            <button id="saveQueryButton" class="btn btn-light border">Save Query</button>
+        </div>
+    </div>
 
     <div id="ResultPanel"></div>
 </div>
@@ -109,6 +138,43 @@
                     const input = document.getElementById("textField");
                     input.value = "";
                     view.fetchData();
+                });
+            }
+
+            var context = view.getContext();
+            var query = context.getQuery();
+            query.setId('LastQuery');
+            query.setName('LastQuery');
+
+            var saveQueryButton = document.getElementById("saveQueryButton");
+            if (saveQueryButton) {
+                saveQueryButton.addEventListener('click', function () {
+                    var query = context.getQuery();
+                    query.setId('LastQuery');
+                    query.setName('LastQuery');
+                    context.saveQuery({
+                        success: function () {
+                            alert('Query saved successfully');
+                        },
+                        error: function (msg) {
+                            alert('Error saving query: ' + msg);
+                        }
+                    });
+                });
+            }
+
+            var loadQueryButton = document.getElementById("loadQueryButton");
+            if (loadQueryButton) {
+                loadQueryButton.addEventListener('click', function () {
+                    context.loadQuery({
+                        queryId: 'LastQuery',
+                        success: function () {
+                            view.fetchData();
+                        },
+                        error: function (msg) {
+                            alert('No saved query found. Please save a query first.');
+                        }
+                    });
                 });
             }
 
