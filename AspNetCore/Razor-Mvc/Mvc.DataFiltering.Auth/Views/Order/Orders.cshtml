@@ -1,0 +1,186 @@
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Data Filtering demo";
+    ViewData["MenuTitle"] = "Data Filtering demo";
+    var appPathBase = Configuration["appPathBase"] ?? "";
+}
+
+@section Styles  {
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.2/eq.core.min.css">
+
+    <style>
+        .text-search {
+            margin-bottom: 10px;
+        }
+
+        .krh-fts-container {
+            display: flex;
+        }
+
+        .krh-fts-input {
+            flex: 1 1 auto;
+        }
+
+        .krh-fts-buttons {
+            flex: 0 0 auto;
+            padding-left: 15px;
+        }
+
+        .filter-bar-container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .filter-bar-container #FilterBar {
+            flex: 1 1 auto;
+        }
+
+        .query-buttons {
+            flex: 0 0 auto;
+            padding-left: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .query-buttons .btn {
+            padding: 2px 10px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+    </style>
+}
+
+<div class="eqjs-process-bar" id="ProcessBar"></div>
+<div class="container">
+    <h4>Orders</h4>
+    <div class="row text-search">
+        <div class="col-md-12 krh-fts-container">
+            <div class="input-group krh-fts-input">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Text Search</div>
+                </div>
+                <input id="textField" class="form-control" placeholder="Type here...">
+            </div>
+            <div class="krh-fts-buttons">
+                <button id="searchButton" class="btn btn-success">Search</button>
+                <button id="clearButton" class="btn btn-secondary">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-bar-container">
+        <div id="FilterBar"></div>
+        <div class="query-buttons">
+            <!--button id="loadQueryButton" class="btn btn-light border">Load Query</button-->
+            <button id="saveQueryButton" class="btn btn-light border">Save Query</button>
+        </div>
+    </div>
+
+    <div id="ResultPanel"></div>
+</div>
+
+@section Scripts {
+    <!-- EasyQuery script -->
+    <script src="https://cdn.korzh.com/eq/7.4.2/eq.enterprise.min.js"></script>
+
+    <!-- EasyQuery components initialization -->
+    <script>
+
+        window.addEventListener('load', function () {
+            var viewOptions = {
+                loadModelOnStart: true,
+                loadQueryOnStart: true,
+                defaultQueryId: 'LastQuery',
+                clearResultOnQueryChange: false,
+                widgets: {
+                    eqHtmlGrid: {
+                        useBootstrap: true
+                    }
+                },
+                handlers: {
+                    beforeFetchData: function (_, options) {
+                        options.data = options.data || {};
+
+                        //add full text search text to query
+                        var input = document.getElementById("textField");
+                        options.data.text = input.value;
+
+                        console.log(options);
+                    }
+                }
+            }
+
+            var view = new easyquery.ui.HtmlDataFilterView();
+            view.getContext()
+                .useEndpoint('/data-filtering')
+                .useEnterprise('@Korzh.EasyQuery.AspNetCore.JSLicense.Key');
+            view.init(viewOptions);
+
+            var searchButton = document.getElementById("searchButton");
+            if (searchButton) {
+                searchButton.addEventListener('click', function (ev) {
+                    view.fetchData();
+                });
+
+                var textField = document.getElementById("textField");
+                if (textField) {
+                    textField.addEventListener('keypress', function (e) {
+                        if (e.which == 13) {
+                            searchButton.click();
+                        }
+                    });
+                }
+            }
+
+            var clearButton = document.getElementById("clearButton");
+            if (clearButton) {
+                clearButton.addEventListener('click', function (ev) {
+                    const input = document.getElementById("textField");
+                    input.value = "";
+                    view.fetchData();
+                });
+            }
+
+            var context = view.getContext();
+            var query = context.getQuery();
+            query.setId('LastQuery');
+            query.setName('LastQuery');
+
+            var saveQueryButton = document.getElementById("saveQueryButton");
+            if (saveQueryButton) {
+                saveQueryButton.addEventListener('click', function () {
+                    var query = context.getQuery();
+                    query.setId('LastQuery');
+                    query.setName('LastQuery');
+                    context.saveQuery({
+                        success: function () {
+                            alert('Query saved successfully');
+                        },
+                        error: function (msg) {
+                            alert('Error saving query: ' + msg);
+                        }
+                    });
+                });
+            }
+
+            var loadQueryButton = document.getElementById("loadQueryButton");
+            if (loadQueryButton) {
+                loadQueryButton.addEventListener('click', function () {
+                    context.loadQuery({
+                        queryId: 'LastQuery',
+                        success: function () {
+                            view.fetchData();
+                        },
+                        error: function (msg) {
+                            alert('No saved query found. Please save a query first.');
+                        }
+                    });
+                });
+            }
+
+        });
+
+    </script>
+}
