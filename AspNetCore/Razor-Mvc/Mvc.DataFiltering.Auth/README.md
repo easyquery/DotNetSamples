@@ -1,6 +1,6 @@
 # Mvc.DataFiltering.Auth
 
-An ASP.NET Core (.NET 8) MVC project that implements the [data-filtering scenario](https://korzh.com/demo/easyquery-asp-net-core-razor/data-filtering) for a multi-user application with authentication.
+An ASP.NET Core (.NET 8) MVC project that implements the [data-filtering scenario](https://demo.korzh.com/data-filtering) for a multi-user application with authentication and a database query storage.
 
 It extends the basic `Mvc.DataFiltering` sample with:
 
@@ -41,7 +41,10 @@ It extends the basic `Mvc.DataFiltering` sample with:
    dotnet user-secrets set "EasyQuery:LicenseKey" "<your key>"
    ```
 
-   > __NB:__ without a valid license key, EasyQuery.JS falls back to storing queries in the browser's local storage, so `DbQueryStore` will not be called on Save/Load Query operations.
+   > __NB1:__ you can get a trial key for the EasyQuery right there by registering your account via the dialog that appears. The key will availalbe on the [Korzh.com Client's Area](https://account.korzh.com) right after the regisration.
+
+
+   > __NB2:__ without a valid license key, EasyQuery.JS falls back to storing queries in the browser's local storage, so `DbQueryStore` will not be called on Save/Load Query operations.
 
 3. Run the project:
 
