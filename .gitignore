@@ -25,6 +25,7 @@ App_Data/dm-*__default/
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js
 /Samples.AspNetCore.Mvc.sln
 **/eqdemo-sqlite.*
+**/eqdemo-auth-sqlite.*
 
 
 *.lck
