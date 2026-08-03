@@ -27,6 +27,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2" />
+    <!-- Transitive pin: EF Core 10.0.x still resolves SQLitePCLRaw.lib.e_sqlite3 2.1.11, which carries
+         CVE-2025-6965 (NU1903). Can be dropped once EF Core ships with SQLitePCLRaw 2.1.12 or later. -->
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3" Version="2.1.12" />
   </ItemGroup>
   <ItemGroup>
     <!-- DB initialization packages. They are not necessary for EasyQuery working and can be removed in production -->
@@ -39,12 +42,12 @@
     <PackageReference Include="EasyData.Exporters.PdfSharp" Version="1.6.0-rc01" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.5.0-rc01" />
-    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.5.0-rc01" />
-    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.5.0-rc01" />
-    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.5.0-rc01" />
-    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.5.0-rc01" />
-    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.5.0-rc01" />
+    <PackageReference Include="Korzh.EasyQuery.AspNetCore" Version="7.5.0-rc02" />
+    <PackageReference Include="Korzh.EasyQuery.DataExport" Version="7.5.0-rc02" />
+    <PackageReference Include="Korzh.EasyQuery.EntityFrameworkCore.Relational" Version="7.5.0-rc02" />
+    <PackageReference Include="Korzh.EasyQuery.RazorUI" Version="7.5.0-rc02" />
+    <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.5.0-rc02" />
+    <PackageReference Include="Korzh.EasyQuery.SqlServerGate" Version="7.5.0-rc02" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\site.css">
