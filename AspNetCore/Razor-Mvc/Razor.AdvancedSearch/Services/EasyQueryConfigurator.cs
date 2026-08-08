@@ -73,10 +73,11 @@ public class EasyQueryConfigurator : IEasyQueryConfigurator
 
             //The scope of the search is defined by the query itself: its result columns if it has any,
             //otherwise the entities used in its conditions. So we only need to say how to treat
-            //the date/time fields here.
+            //the non-text fields here.
             var ftsOptions = new DbFullTextSearchOptions {
-                //search in date/time fields as well (by their string representations)
-                IncludeDateTimeFields = true
+                //search in date/time and numeric fields as well (by their string representations)
+                IncludeDateTimeFields = true,
+                IncludeNumericFields = true
             };
 
             query.AddFullTextSearchConditions(text, ftsOptions);
