@@ -119,8 +119,8 @@
     @Component({})
     export default class EasyQueryView extends Vue {
 
-        private view: AdvancedSearchView;
-        private context: EqContext;
+        private view!: AdvancedSearchView;
+        private context!: EqContext;
         private QUERY_KEY = 'easyqueryview-query';
 
 

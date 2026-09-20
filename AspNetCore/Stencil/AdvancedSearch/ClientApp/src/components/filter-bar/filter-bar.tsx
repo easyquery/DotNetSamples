@@ -1,4 +1,4 @@
-import { Component, Element, h } from '@stencil/core';
+import { Component, Element, h, Build } from '@stencil/core';
 
 import { DataFilterView, EqViewOptions } from '@easyquery/ui';
 import '@easyquery/enterprise';
@@ -16,6 +16,8 @@ export class FilterBar {
     @Element() host: HTMLDivElement;
     
     componentWillLoad() {
+        // prerender runs in Node, where the EasyQuery client cannot reach the API
+        if (!Build.isBrowser) return;
         this.options = {
             shadowRoots: [ this.host.shadowRoot ],
             loadModelOnStart: true,

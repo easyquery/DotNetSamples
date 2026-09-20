@@ -1,4 +1,4 @@
-import { Component, Element, h } from '@stencil/core';
+import { Component, Element, h, Build } from '@stencil/core';
 import { AdvacnedSearchHtml } from './easy-query-html';
 
 import { EqContext } from '@easyquery/core';
@@ -20,6 +20,8 @@ export class EasyQuery {
     QUERY_KEY = 'easyquerycomponent-query';
     
     componentWillLoad() {
+        // prerender runs in Node, where the EasyQuery client cannot reach the API
+        if (!Build.isBrowser) return;
         const viewOptions: EqViewOptions = {
             shadowRoots: [ this.host.shadowRoot ],
             enableExport: true,

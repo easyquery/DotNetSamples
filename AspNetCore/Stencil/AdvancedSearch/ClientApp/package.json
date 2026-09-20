@@ -11,18 +11,19 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "^2.2.0",
-    "@stencil/router": "^1.0.1",
     "@easydata/core": "1.6.0",
     "@easydata/ui": "1.6.0",
     "@easyquery/core": "7.5.0-rc03",
+    "@easyquery/enterprise": "7.5.0-rc03",
     "@easyquery/ui": "7.5.0-rc03",
-    "@easyquery/enterprise": "7.5.0-rc03"
+    "@stencil/core": "^2.2.0",
+    "@stencil/router": "^1.0.1"
   },
   "license": "MIT",
   "devDependencies": {
     "@stencil/sass": "^1.4.0",
     "@types/jest": "26.0.15",
+    "@types/node": "^20.19.43",
     "@types/puppeteer": "^5.4.0",
     "jest": "^26.6.2",
     "jest-cli": "^26.6.2",
