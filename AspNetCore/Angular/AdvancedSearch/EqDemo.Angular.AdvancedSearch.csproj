@@ -13,7 +13,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.SqLiteGate" Version="7.5.0-rc05" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.4" />

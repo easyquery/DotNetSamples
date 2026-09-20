@@ -63,9 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="Microsoft.Data.SqlClient">
-      <Version>2.1.7</Version>
-    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Korzh.EasyQuery.Db" Version="7.5.0-rc05" />
