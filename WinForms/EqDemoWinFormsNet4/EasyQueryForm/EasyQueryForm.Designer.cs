@@ -255,7 +255,6 @@
             // 
             // CPanel
             // 
-            this.CPanel.Active = false;
             this.CPanel.ActiveRowIndex = -1;
             this.CPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -296,7 +295,6 @@
             // 
             // QPanel
             // 
-            this.QPanel.Active = false;
             this.QPanel.ActiveRowIndex = -1;
             this.QPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -348,7 +346,6 @@
             // 
             // SPanel
             // 
-            this.SPanel.Active = false;
             this.SPanel.ActiveRowIndex = -1;
             this.SPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
