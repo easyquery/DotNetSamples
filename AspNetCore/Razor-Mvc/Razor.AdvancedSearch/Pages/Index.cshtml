@@ -8,8 +8,8 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.2/eq.core.min.css">
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.4.2/eq.view.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.5.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.5.0/eq.view.min.css">
     <link rel="stylesheet" href="~/css/easyquery.css"/>
 }
 
@@ -55,6 +55,21 @@
                     </span>
                 </div>
                 Result
+
+                <!-- Full-text search. The text is sent to the server with each "fetch data" request
+                     and turned there into a group of hidden conditions (see EasyQueryConfigurator) -->
+                <div class="toolbar fts-toolbar">
+                    <input id="FullTextSearch" class="fts-input" type="text" autocomplete="off"
+                           placeholder="Search in the result..."
+                           title="Use || to search for several terms at once"/>
+                    <a id="FullTextSearchButton" class="tool-button" href="javascript:void(0)" title="Search">
+                        <img class="icon" src="~/images/search.svg" alt=""/>
+                    </a>
+                    <a id="FullTextSearchClearButton" class="tool-button" href="javascript:void(0)" title="Clear the search">
+                        <img class="icon" src="~/images/clear.svg" alt=""/>
+                    </a>
+                </div>
+
                 <div class="toolbar export-toolbar eqv-export-buttons">
                     Export:
                     <a class="eqjs-export tool-button" href="javascript:void(0)" data-format="pdf">
@@ -85,7 +100,7 @@
 
 @section Scripts {
     <!-- EasyQuery scripts -->
-    <script src="https://cdn.korzh.com/eq/7.4.2/eq.enterprise.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/7.5.0/eq.enterprise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         Chart.defaults.animation = false;
@@ -113,6 +128,13 @@
 
                 //Handlers
                 handlers: {
+                    //Pass the full-text search text to the server with each "fetch data" request.
+                    //On the server side it's read from `manager.ClientData` in the query tuner
+                    //(see Services/EasyQueryConfigurator.cs)
+                    beforeFetchData: function (_, options) {
+                        options.data = options.data || {};
+                        options.data.text = document.getElementById('FullTextSearch').value;
+                    },
                     afterFetchData: function (context) {
                         //console.log('After Fetch')
                     },
@@ -136,6 +158,31 @@
                         alwaysShowButtonsInConditions: showPanelButtons,
                         //minDate: '2025-12-20',
                         //maxDate: 'today'
+                    },
+
+                    resultGrid: {
+                        //Sorting: click a column header to cycle none -> ascending -> descending.
+                        //It's a multi-column and server-side sorting: the direction is stored in the query
+                        //and the data is re-fetched (so it sorts the whole result set, not the current page).
+                        sortable: true,
+
+                        //Resizing: drag the right edge of a header cell to change the column width
+                        allowColumnResize: true,
+
+                        columnWidths: {
+                            //measure the column widths once on the first render and keep them
+                            //across sorting/paging re-fetches
+                            autoResize: easydata.ui.AutoResizeColumns.Once
+                        },
+
+                        //The widths set by the user are saved in the browser's localStorage.
+                        //Use scope: 'query' to keep a separate set of widths for each saved query.
+                        //A different storage (e.g. on the server) can be plugged in
+                        //through the `columnWidthStoreResolver` context option.
+                        columnWidthPersistence: {
+                            enabled: true,
+                            scope: 'model'
+                        }
                     }
                 },
                 
@@ -159,6 +206,29 @@
                         e.stopImmediatePropagation();
                         context.exportStart({ format: 'excel' });
                     });
+
+                    //Full-text search: both buttons just re-fetch the data - the search text
+                    //itself is attached to the request by the `beforeFetchData` handler above.
+                    //NB: it's view.fetchData() (not context.fetchData()) - the view also re-renders
+                    //the result widgets and updates the records count.
+                    const searchField = document.getElementById('FullTextSearch')
+
+                    searchField.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') {
+                            view.fetchData();
+                        }
+                    });
+
+                    document.getElementById('FullTextSearchButton')
+                        .addEventListener('click', function () {
+                            view.fetchData();
+                        });
+
+                    document.getElementById('FullTextSearchClearButton')
+                        .addEventListener('click', function () {
+                            searchField.value = '';
+                            view.fetchData();
+                        });
                 });
 
             context.addEventListener('ready', () => {

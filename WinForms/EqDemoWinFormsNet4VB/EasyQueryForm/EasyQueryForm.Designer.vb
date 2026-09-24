@@ -195,7 +195,6 @@ Partial Class EasyQueryForm
         Me.groupBoxColumns.TabIndex = 33
         Me.groupBoxColumns.TabStop = False
         Me.groupBoxColumns.Text = "Query Columns"
-        Me.CPanel.Active = False
         Me.CPanel.ActiveRowIndex = -1
         Me.CPanel.Anchor = (CType(((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) Or System.Windows.Forms.AnchorStyles.Left) Or System.Windows.Forms.AnchorStyles.Right)), System.Windows.Forms.AnchorStyles))
         Me.CPanel.Appearance.ActiveBackColor = System.Drawing.Color.FromArgb((CInt(((CByte((190)))))), (CInt(((CByte((225)))))), (CInt(((CByte((190)))))))
@@ -226,7 +225,6 @@ Partial Class EasyQueryForm
         Me.groupBoxConditions.TabIndex = 2
         Me.groupBoxConditions.TabStop = False
         Me.groupBoxConditions.Text = "Query Conditions"
-        Me.QPanel.Active = False
         Me.QPanel.ActiveRowIndex = -1
         Me.QPanel.Anchor = (CType(((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) Or System.Windows.Forms.AnchorStyles.Left) Or System.Windows.Forms.AnchorStyles.Right)), System.Windows.Forms.AnchorStyles))
         Me.QPanel.Appearance.ActiveBackColor = System.Drawing.Color.FromArgb((CInt(((CByte((190)))))), (CInt(((CByte((225)))))), (CInt(((CByte((190)))))))
@@ -266,7 +264,6 @@ Partial Class EasyQueryForm
         Me.groupBoxSorting.TabIndex = 30
         Me.groupBoxSorting.TabStop = False
         Me.groupBoxSorting.Text = "Columns Sorting"
-        Me.SPanel.Active = False
         Me.SPanel.ActiveRowIndex = -1
         Me.SPanel.Anchor = (CType(((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) Or System.Windows.Forms.AnchorStyles.Left) Or System.Windows.Forms.AnchorStyles.Right)), System.Windows.Forms.AnchorStyles))
         Me.SPanel.Appearance.ActiveBackColor = System.Drawing.Color.FromArgb((CInt(((CByte((190)))))), (CInt(((CByte((225)))))), (CInt(((CByte((190)))))))
