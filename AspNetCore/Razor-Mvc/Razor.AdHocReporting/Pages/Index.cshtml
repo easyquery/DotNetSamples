@@ -195,6 +195,7 @@
             var reportView = new easyquery.ui.ReportView();
             var context = reportView.getContext();
             context
+                .setAppName('Sample/AspNetCore/Razor-Mvc/Razor.AdHocReporting')
                 .useEndpoint('/api/adhoc-reporting')
                 .useEnterprise(function () {
                     reportView.init(viewOptions);

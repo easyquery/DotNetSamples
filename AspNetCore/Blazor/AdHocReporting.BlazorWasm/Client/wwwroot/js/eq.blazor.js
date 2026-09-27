@@ -7,6 +7,7 @@ easyquery.blazor = {
             var http = context.getServices().getHttpClient();
             http.defaultHeaders['Authorization'] = 'Bearer ' + viewOptions.token;
         }
+        context.setAppName('Sample/AspNetCore/Blazor/AdHocReporting.BlazorWasm');
         context.useEndpoint('/api/adhoc-reporting');
         context.useEnterprise(function () {
             view.init(viewOptions);

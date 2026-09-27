@@ -198,6 +198,7 @@
             const view = new easyquery.ui.AdvancedSearchView();
             const context = view.getContext();
             context
+                .setAppName('Sample/AspNetCore/Razor-Mvc/Razor.AdvancedSearch')
                 .useEndpoint('@(appPathBase)/api/easyquery') // Middleware endpoint
                 .useEnterprise(function () {
                     view.init(viewOptions);

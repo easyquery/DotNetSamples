@@ -152,6 +152,7 @@
             this.context = this.view.getContext();
 
             this.context
+                .setAppName('Sample/AspNetCore/Vue2/AdvancedSearch')
                 .useEndpoint('/api/easyquery')
                 .useEnterprise(() => {
                     this.view.init(viewOptions);

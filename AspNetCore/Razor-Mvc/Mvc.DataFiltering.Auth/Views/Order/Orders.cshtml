@@ -114,6 +114,7 @@
 
             var view = new easyquery.ui.HtmlDataFilterView();
             view.getContext()
+                .setAppName('Sample/AspNetCore/Razor-Mvc/Mvc.DataFiltering.Auth')
                 .useEndpoint('/data-filtering')
                 .useEnterprise('@Korzh.EasyQuery.AspNetCore.JSLicense.Key');
             view.init(viewOptions);

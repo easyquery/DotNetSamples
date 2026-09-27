@@ -45,6 +45,7 @@ window.addEventListener('load', () => {
 
     const reportView = new ReportView();
     reportView.getContext()
+        .setAppName('Sample/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting')
         .useEndpoint('/api/adhoc-reporting')
         .useEnterprise(() => {
             reportView.init(viewOptions);
