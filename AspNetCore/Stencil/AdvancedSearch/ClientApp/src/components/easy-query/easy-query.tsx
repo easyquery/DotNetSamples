@@ -51,6 +51,7 @@ export class EasyQuery {
         this.context = this.view.getContext();
 
         this.context
+            .setAppName('Sample/AspNetCore/Stencil/AdvancedSearch')
             .useEndpoint('/api/easyquery')
             .useEnterprise(() => {
                 this.view.init(viewOptions);

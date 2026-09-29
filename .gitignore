@@ -23,6 +23,8 @@ App_Data/dm-*__default/
 /EqAspNetCoreDemo/Properties/serviceDependencies.eqdemo-net5 - Web Deploy.json
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js.map
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js
+/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.min.js
+/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.min.js.map
 /Samples.AspNetCore.Mvc.sln
 **/eqdemo-sqlite.*
 **/eqdemo-auth-sqlite.*

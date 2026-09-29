@@ -41,6 +41,7 @@ export class EasyQueryComponent implements AfterViewInit {
       }
 
       this.context
+        .setAppName('Sample/AspNetCore/Angular/AdvancedSearch')
         .useEndpoint('/api/easyquery')
         .useEnterprise(() => {
           this.view.init(viewOptions);

@@ -41,6 +41,7 @@ export class EasyQuery extends Component {
         this.context = this.view.getContext();
 
         this.context
+            .setAppName('Sample/AspNetCore/React/AdvancedSearch')
             .useEndpoint('/api/easyquery')
             .useEnterprise(() => {
                 this.view.init(viewOptions);

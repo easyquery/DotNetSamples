@@ -9,7 +9,7 @@
 }
 
 @section Styles  {
-    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.5.0/eq.core.min.css">
+    <link rel="stylesheet" href="https://cdn.korzh.com/eq/7.5.1/eq.core.min.css">
 
     <style>
         .text-search {
@@ -40,7 +40,7 @@
 
 @section Scripts {
     <!-- EasyQuery script -->
-    <script src="https://cdn.korzh.com/eq/7.5.0/eq.enterprise.min.js"></script>
+    <script src="https://cdn.korzh.com/eq/7.5.1/eq.enterprise.min.js"></script>
 
     <!-- EasyQuery components initialization -->
     <script>
@@ -58,6 +58,7 @@
 
             var view = new easyquery.ui.DataFilterView();
             view.getContext()
+                .setAppName('Sample/AspNetCore/Razor-Mvc/Razor.DataFiltering')
                 .useEndpoint('/data-filtering')
                 .useEnterprise(function () {
                     view.init(viewOptions);
