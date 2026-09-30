@@ -25,6 +25,9 @@ App_Data/dm-*__default/
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.js
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.min.js
 /AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/js/adhoc-reporting.min.js.map
+/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/css/adhoc-reporting.css
+/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/css/adhoc-reporting.min.css
+/AspNetCore/Razor-Mvc/RazorTypeScript.AdHocReporting/wwwroot/css/adhoc-reporting.min.css.map
 /Samples.AspNetCore.Mvc.sln
 **/eqdemo-sqlite.*
 **/eqdemo-auth-sqlite.*
