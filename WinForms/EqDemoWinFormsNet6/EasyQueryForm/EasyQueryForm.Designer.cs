@@ -242,7 +242,6 @@
             // 
             // CPanel
             // 
-            CPanel.Active = false;
             CPanel.ActiveRowIndex = -1;
             CPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             CPanel.Appearance.ActiveBackColor = System.Drawing.Color.FromArgb(190, 225, 190);
@@ -280,7 +279,6 @@
             // 
             // QPanel
             // 
-            QPanel.Active = false;
             QPanel.ActiveRowIndex = -1;
             QPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             QPanel.Appearance.ActiveBackColor = System.Drawing.Color.FromArgb(190, 225, 190);
@@ -330,7 +328,6 @@
             // 
             // SPanel
             // 
-            SPanel.Active = false;
             SPanel.ActiveRowIndex = -1;
             SPanel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             SPanel.Appearance.ActiveBackColor = System.Drawing.Color.FromArgb(190, 225, 190);

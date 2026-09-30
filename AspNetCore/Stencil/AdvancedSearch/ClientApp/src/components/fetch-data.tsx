@@ -1,4 +1,4 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, State, h, Build } from '@stencil/core';
 
 interface Forecast {
     dateFormatted?: string; 
@@ -25,6 +25,8 @@ export class FetchData {
     }
 
     componentWillLoad() {
+        // prerender runs in Node, where the EasyQuery client cannot reach the API
+        if (!Build.isBrowser) return;
         // fetch('api/SampleData/WeatherForecasts')
         // .then(response => response.json())
         // .then(data => {

@@ -157,6 +157,7 @@ onMounted(() => {
   context = view.getContext()
 
     context
+        .setAppName('Sample/AspNetCore/Vue3/AdvancedSearch')
         .useEndpoint(`${END_POINT}/api/easyquery`)
         .useEnterprise(() => {
             view.init(viewOptions)

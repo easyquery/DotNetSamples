@@ -119,8 +119,8 @@
     @Component({})
     export default class EasyQueryView extends Vue {
 
-        private view: AdvancedSearchView;
-        private context: EqContext;
+        private view!: AdvancedSearchView;
+        private context!: EqContext;
         private QUERY_KEY = 'easyqueryview-query';
 
 
@@ -152,6 +152,7 @@
             this.context = this.view.getContext();
 
             this.context
+                .setAppName('Sample/AspNetCore/Vue2/AdvancedSearch')
                 .useEndpoint('/api/easyquery')
                 .useEnterprise(() => {
                     this.view.init(viewOptions);

@@ -2,6 +2,7 @@
 easyquery.blazor = {
     initEasyQueryView: function (view, viewOptions) {
         var context = view.getContext();
+        context.setAppName('Sample/AspNetCore/Blazor/AdvancedSearch.BlazorServer');
         context.useEndpoint('/api/easyquery');
         context.useEnterprise(function () {
             view.init(viewOptions);
