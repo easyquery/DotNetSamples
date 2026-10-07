@@ -234,6 +234,21 @@
 
             context.addEventListener('ready', () => {
                 console.log('EasyQuery is ready')
+
+                //Open the first query from the storage (if there is any) and fetch its data
+                context.loadQueryList({
+                    success: function (queries) {
+                        if (queries && queries.length > 0) {
+                            context.loadQuery({
+                                queryId: queries[0].id,
+                                silent: false,
+                                success: function () {
+                                    view.fetchData();
+                                }
+                            });
+                        }
+                    }
+                });
             });
 
             context.addEventListener('syncQuery', ()=> {
