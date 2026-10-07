@@ -13,8 +13,8 @@
     
     <title>@(ViewData["IsIndexPage"] == null ? @ViewData["Title"] + " - " : "")EasyQuery library samples</title>
 
-    <link rel="stylesheet" href="~/css/index.css"/>
-    <link rel="stylesheet" href="~/css/layout.css"/>
+    <link rel="stylesheet" href="~/css/index.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true"/>
 
     @RenderSection("Styles", required: false)
 </head>
@@ -157,7 +157,7 @@
     @RenderBody()
 </main>
 
-<script src="~/js/index.js"></script>
+<script src="~/js/index.js" asp-append-version="true"></script>
 <script>
     function toggleSidebar() {
         document.querySelector("#showSidebarButton").classList.toggle('transform');
