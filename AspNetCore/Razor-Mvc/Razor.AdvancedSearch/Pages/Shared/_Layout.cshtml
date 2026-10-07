@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@{
+    // The address of the page that lists several demos, set only where this sample is deployed as one of them
+    // (demo.korzh.com). When it is empty, which is the default, the links back to that page are not shown.
+    var demoIndexUrl = Configuration["DemoIndexUrl"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
@@ -17,7 +23,14 @@
 <header id="app-bar">
     <div class="app-title">
         <button id="showSidebarButton" class="transform-button" onclick="toggleSidebar()"><span></span></button>
-        Advanced Search Demo
+        @if (!string.IsNullOrEmpty(demoIndexUrl)) {
+            <a class="demo-index-link" href="@demoIndexUrl" title="All demos">EasyQuery Demos</a>
+            <span class="demo-index-separator">/</span>
+            <span>Advanced Search</span>
+        }
+        else {
+            <span>Advanced Search Demo</span>
+        }
     </div>
     <div class="toolbar main-toolbar">
         <div class="toolbar-group">
@@ -111,6 +124,14 @@
             </a>
         </li>
         <li class="separator"></li>
+        @if (!string.IsNullOrEmpty(demoIndexUrl)) {
+            <li title="All demos">
+                <a href="@demoIndexUrl">
+                    <span class="icon"><img src="~/images/all-demos.svg" alt="all demos"/></span>
+                    <span class="caption">All demos</span>
+                </a>
+            </li>
+        }
         <li title="Dashboard">
             <a href="~/">
                 <span class="icon"><img src="~/images/dashboard.svg" alt="dashboard"/></span>
