@@ -54,6 +54,7 @@ export class FilterBar {
 
         context
             .setAppName('Sample/AspNetCore/Stencil/AdvancedSearch')
+            .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-spa' })
             .useEndpoint('api/data-filtering')
             .useEnterprise(() => {
                 this.view.init(this.options);

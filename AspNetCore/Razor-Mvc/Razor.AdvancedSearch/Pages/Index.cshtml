@@ -199,6 +199,7 @@
             const context = view.getContext();
             context
                 .setAppName('Sample/AspNetCore/Razor-Mvc/Razor.AdvancedSearch')
+                .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-razor' })
                 .useEndpoint('@(appPathBase)/api/easyquery') // Middleware endpoint
                 .useEnterprise(function () {
                     view.init(viewOptions);

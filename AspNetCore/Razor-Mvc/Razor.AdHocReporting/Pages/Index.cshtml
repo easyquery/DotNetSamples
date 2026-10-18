@@ -196,6 +196,7 @@
             var context = reportView.getContext();
             context
                 .setAppName('Sample/AspNetCore/Razor-Mvc/Razor.AdHocReporting')
+                .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-razor' })
                 .useEndpoint('/api/adhoc-reporting')
                 .useEnterprise(function () {
                     reportView.init(viewOptions);

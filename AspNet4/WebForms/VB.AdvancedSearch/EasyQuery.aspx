@@ -62,6 +62,7 @@
             var view = new easyquery.ui.AdvancedSearchView();
             view.getContext()
                 .setAppName('Sample/AspNet4/WebForms/VB.AdvancedSearch')
+                .useBackend({ type: 'EQN-ASP', subType: 'asp-net-4-webforms' })
                 .useEndpoint('/api/easyquery')
                 .useEnterprise(function () {
                     view.init(viewOptions);

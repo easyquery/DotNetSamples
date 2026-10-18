@@ -158,6 +158,7 @@ onMounted(() => {
 
     context
         .setAppName('Sample/AspNetCore/Vue3/AdvancedSearch')
+        .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-spa' })
         .useEndpoint(`${END_POINT}/api/easyquery`)
         .useEnterprise(() => {
             view.init(viewOptions)

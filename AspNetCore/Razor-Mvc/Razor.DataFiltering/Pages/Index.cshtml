@@ -59,6 +59,7 @@
             var view = new easyquery.ui.DataFilterView();
             view.getContext()
                 .setAppName('Sample/AspNetCore/Razor-Mvc/Razor.DataFiltering')
+                .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-razor' })
                 .useEndpoint('/data-filtering')
                 .useEnterprise(function () {
                     view.init(viewOptions);

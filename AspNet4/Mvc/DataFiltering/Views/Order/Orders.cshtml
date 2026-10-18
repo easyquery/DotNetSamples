@@ -77,6 +77,7 @@
             var view = new easyquery.ui.HtmlDataFilterView();
             view.getContext()
                 .setAppName('Sample/AspNet4/Mvc/DataFiltering')
+                .useBackend({ type: 'EQN-ASP', subType: 'asp-net-4-mvc' })
                 .useEndpoint('/data-filtering')
                 .useEnterprise('@Korzh.EasyQuery.AspNet.JSLicense.Key');
 

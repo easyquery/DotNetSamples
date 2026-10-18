@@ -46,6 +46,7 @@ window.addEventListener('load', () => {
     const reportView = new ReportView();
     reportView.getContext()
         .setAppName('Sample/AspNetCore/Angular/AdHocReporting')
+        .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-spa' })
         .useEndpoint('/api/adhoc-reporting')
         .useEnterprise(() => {
             reportView.init(viewOptions);

@@ -153,6 +153,7 @@
 
             this.context
                 .setAppName('Sample/AspNetCore/Vue2/AdvancedSearch')
+                .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-spa' })
                 .useEndpoint('/api/easyquery')
                 .useEnterprise(() => {
                     this.view.init(viewOptions);

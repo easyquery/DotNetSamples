@@ -52,6 +52,7 @@ export class EasyQuery {
 
         this.context
             .setAppName('Sample/AspNetCore/Stencil/AdvancedSearch')
+            .useBackend({ type: 'EQN-ANC', subType: 'asp-net-core-spa' })
             .useEndpoint('/api/easyquery')
             .useEnterprise(() => {
                 this.view.init(viewOptions);
