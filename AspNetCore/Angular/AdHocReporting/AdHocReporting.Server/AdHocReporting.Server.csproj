@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdHocReporting.Сlient\AdHocReporting.Сlient.esproj">
+    <ProjectReference Include="..\AdHocReporting.Client\AdHocReporting.Client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

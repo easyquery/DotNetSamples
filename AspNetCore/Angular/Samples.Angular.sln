@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdHocReporting.Server", "AdHocReporting\AdHocReporting.Server\AdHocReporting.Server.csproj", "{A85F8CF7-4E76-49F0-8031-2E70DA0D5564}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AdHocReporting.Сlient", "AdHocReporting\AdHocReporting.Сlient\AdHocReporting.Сlient.esproj", "{4C7CD866-0D06-4E92-B648-988BDFBDC6C8}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "AdHocReporting.Client", "AdHocReporting\AdHocReporting.Client\AdHocReporting.Client.esproj", "{4C7CD866-0D06-4E92-B648-988BDFBDC6C8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EqDemo.Angular.AdvancedSearch", "AdvancedSearch\EqDemo.Angular.AdvancedSearch.csproj", "{27712286-5B18-44E5-B31B-AF94D5F226D1}"
 EndProject
